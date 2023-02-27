@@ -30,8 +30,8 @@ public class LoginFrmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//4. 화면 처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/login.jsp");
+		//페이지 이동
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/loginFrm.jsp");
 		view.forward(request, response);
 	}
 
