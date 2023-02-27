@@ -12,13 +12,14 @@
 		width: calc(100%);
 	}
 	.page-title{
-	width: calc(50%);
-	margin: 0 auto;
+		width: calc(50%);
+		margin: 0 auto;
 	}
 	.page-title>h3{
 		font-size: 36px;
 		margin: 10px;
 		margin-bottom: 30px;
+	
 	}
 	.btnList{
 		width: calc(100%);
@@ -28,7 +29,7 @@
 	.btnList button{
 		flot: left;
 		border-radius: 10px;
-		width: 100%;
+		width: calc(100%);
 		margin-left:50px;
 		height: 80px;
 		margin-top: 50px;
