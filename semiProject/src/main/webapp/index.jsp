@@ -12,6 +12,7 @@
 	<div class="page-content">
 		<h1>EveryUniverse</h1>
 	</div>
+		<a href="/test.do">관리자 페이지 바로가기</a>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
