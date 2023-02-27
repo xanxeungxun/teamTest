@@ -17,7 +17,7 @@
 			</div>
 			
 			<div>
-				<a href="#">아이디</a>
+				<a href="/searchIdFrm.do">아이디</a>
 				<span>/</span>
 				<a href="#">비밀번호</a>
 				<span> 찾기</span>
