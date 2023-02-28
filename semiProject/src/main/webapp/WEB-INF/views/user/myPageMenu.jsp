@@ -10,9 +10,9 @@
 	<h1>마이페이지</h1>
 	<ul>
 		<li>
-			<a href="#">나의 작품</a>
+			<a href="/uploadBookCheck.do?reqPage=1">나의 작품</a>
 			<ul>
-				<li><a href="#">투고한 작품 확인</a></li>
+				<li><a href="/uploadBookCheck.do?reqPage=1">투고한 작품 확인</a></li>
 			</ul>
 		</li>
 		<li>

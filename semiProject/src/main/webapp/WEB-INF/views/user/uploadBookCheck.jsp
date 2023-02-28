@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
+	
+	<div>
+		<h3>투고한 작품 확인</h3>
+		<div class="line"></div>
+		<div>
+			<div></div>
+		</div>	
+	</div>
 </body>
 </html>
