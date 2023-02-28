@@ -1,4 +1,4 @@
-package com.iei.user.controller;
+package com.iei.notice.controller;
 
 import java.io.IOException;
 
@@ -9,19 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.user.model.service.UserService;
-
 /**
- * Servlet implementation class SearchIdServlet
+ * Servlet implementation class NoticeWriteFrmServlet
  */
-@WebServlet(name = "SearchId", urlPatterns = { "/searchId.do" })
-public class SearchIdServlet extends HttpServlet {
+@WebServlet(name = "NoticeWriteFrm", urlPatterns = { "/noticeWriteFrm.do" })
+public class NoticeWriteFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdServlet() {
+    public NoticeWriteFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +30,11 @@ public class SearchIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
-		
-		//2. 값 추출
-		String inputEmail = request.getParameter("inputEmail");
-		
-		//3. 비즈니스 로직
-		UserService service = new UserService();
-		String searchId = service.selectUserId(inputEmail);
-		
-		//4. 화면 처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/searchId.jsp");
-		
-		request.setAttribute("searchId", searchId);
-		
+		//2. 값추출
+		//3. 비즈니스로직
+		//4. 결과처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeWriteFrm.jsp");
 		view.forward(request, response);
-		
 	}
 
 	/**

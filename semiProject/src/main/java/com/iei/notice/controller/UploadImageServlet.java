@@ -1,27 +1,28 @@
-package com.iei.user.controller;
+package com.iei.notice.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.user.model.service.UserService;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
- * Servlet implementation class SearchIdServlet
+ * Servlet implementation class UploadImageServlet
  */
-@WebServlet(name = "SearchId", urlPatterns = { "/searchId.do" })
-public class SearchIdServlet extends HttpServlet {
+@WebServlet(name = "UploadImage", urlPatterns = { "/uploadImage.do" })
+public class UploadImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdServlet() {
+    public UploadImageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +33,17 @@ public class SearchIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
-		
-		//2. 값 추출
-		String inputEmail = request.getParameter("inputEmail");
-		
-		//3. 비즈니스 로직
-		UserService service = new UserService();
-		String searchId = service.selectUserId(inputEmail);
-		
-		//4. 화면 처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/searchId.jsp");
-		
-		request.setAttribute("searchId", searchId);
-		
-		view.forward(request, response);
-		
+		//2. 값추출
+		String root = getServletContext().getRealPath("/");
+		String saveDirectory = root+"upload/editor";
+		int maxSize = 10*1024*1024;
+		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+		String filepath = mRequest.getFilesystemName("file");
+		//3. 비즈니스로직
+		//4. 결과처리
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("/upload/editor/"+filepath);
 	}
 
 	/**

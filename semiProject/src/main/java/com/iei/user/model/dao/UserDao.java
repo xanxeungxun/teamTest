@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.catalina.valves.JDBCAccessLogValve;
 
 import com.iei.user.model.vo.User;
 
@@ -81,6 +80,4 @@ public class UserDao {
 		
 		return searchId;
 	}
-
-
 }
