@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>아이디 찾기</h1>
-	<form action="/searchId.do" method="post">
+	<div>아이디 찾기</div>
+	<form action="/searchPw.do" method="post">
+		<input type="text" name="inputId" id="inputId" placeholder="아이디"><br>
 		<input type="email" name="inputEmail" id="inputEmail" placeholder="이메일 주소"><br>
 		<button type="submit">찾기</button>
 	</form>
