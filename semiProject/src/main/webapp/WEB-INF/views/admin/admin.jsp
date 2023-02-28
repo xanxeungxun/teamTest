@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%--<link rel="stylesheet" href="/css/common.css"> --%>
+<link rel="stylesheet" href="/css/common.css">
 
 <style>
 	.page-content{
@@ -44,7 +44,7 @@
 </style>
 </head>
 <body>
-	<%-- <%@ include file="/WEB-INF/views/common/header.jsp" %>--%>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="page-content">
 		<div class="page-title">
 			<h3>관리자 페이지</h3>
@@ -57,6 +57,6 @@
 			</div>
 		</div>
 	</div>
-	<%-- <%@ include file="/WEB-INF/views/common/footer.jsp" %>--%>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
