@@ -20,13 +20,10 @@
 				</div>
 				<table class="notice-tbl">
 					<tr class="notice-tr">
-						<td class="notice-td">공지사항 제목</td>
-					</tr>
-					<tr class="notice-tr">
-						<td class="notice-td">공지사항 제목</td>
-					</tr>
-					<tr class="notice-tr">
-						<td class="notice-td">공지사항 제목</td>
+						<td class="notice-td">
+							공지사항 제목
+							<div>2023-02-28</div>
+						</td>
 					</tr>
 				</table>
 			</div>

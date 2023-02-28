@@ -1,11 +1,16 @@
 package com.iei.notice.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class UploadImageServlet
@@ -32,8 +37,13 @@ public class UploadImageServlet extends HttpServlet {
 		String root = getServletContext().getRealPath("/");
 		String saveDirectory = root+"upload/editor";
 		int maxSize = 10*1024*1024;
+		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8", new DefaultFileRenamePolicy());
+		String filepath = mRequest.getFilesystemName("file");
 		//3. 비즈니스로직
 		//4. 결과처리
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("/upload/editor/"+filepath);
 	}
 
 	/**
