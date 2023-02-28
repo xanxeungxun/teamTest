@@ -260,6 +260,7 @@ div[class$="-menu"]>ul>li {
     font-weight: bold;
     float: left;
 }
+<<<<<<< HEAD
 .inner-sub1{
     color: gray;
 }
@@ -292,4 +293,9 @@ div[class$="-menu"]>ul>li {
 }
 .material-symbols-outlined{
     margin-left: 10px;
+=======
+.page-content{
+	padding-top : 142px;
+	padding-bottom: 142px;
+>>>>>>> main
 }

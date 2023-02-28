@@ -434,6 +434,10 @@
         </div>
     </div>
     </div>
+	<div class="page-content">
+		<h1>EveryUniverse</h1>
+	</div>
+		<a href="/adminMain.do">관리자 페이지 바로가기</a>
 	<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
