@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.iei.notice.model.service.NoticeService;
+import com.iei.notice.model.vo.NoticePageData;
 
 /**
  * Servlet implementation class NoticeListServlet
@@ -34,7 +35,8 @@ public class NoticeListServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
 		//3. 비즈니스로직
-		
+		NoticeService service = new NoticeService();
+		NoticePageData npd = service.selectNoticeList();
 		//4. 결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList.jsp");
 		view.forward(request, response);
