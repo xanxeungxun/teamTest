@@ -11,7 +11,7 @@
             <div class="left-top-wrap">
                 <span class="logo-text" href="#">Every Universe</span>
                 <input id="integrated-search" class="search-bar" type="search" name="keyword" value=""
-                    placeholder="포스트, 시리즈, 채널 검색" maxlength="50"><a href="team_login.html">로그인</a> | <a href="jacomo-join1.html">회원가입</a>
+                    placeholder="포스트, 시리즈, 채널 검색" maxlength="50"><a href="#">로그인</a> | <a href="#">회원가입</a>
             </div>
             <div class="header-bottom">
                 <div class="menu-wrap">
@@ -21,10 +21,16 @@
                             <li class="top-menu-button"><a href="#">랭킹</a></li>
                             <li class="top-menu-button"><a href="/bookList.do">소설게시판</a></li>
                             <li class="top-menu-button"><a href="#">HOT</a></li>
+                            <li class="top-menu-button"><a href="#"><span class="material-symbols-outlined write-icon">
+                                drive_file_rename_outline
+                                </span>작품등록</a></li>
+                            <li class="top-menu-button"><a href="#">공지사항</a></li>
+                            <li class="top-menu-button"><a href="#">소설게시판</a></li>
+                            <li class="top-menu-button"><a href="#">자유게시판</a></li>
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    <div class="header-blocked"></div>
