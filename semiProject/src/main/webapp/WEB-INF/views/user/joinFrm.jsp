@@ -14,9 +14,9 @@
             <div class="join-input-wrap">
                 <input type="text" name="userId" id="userId" placeholder="아이디">
                 <span class="reg-msg"></span>
-                <input type="text" name="userPw" id="userPw" placeholder="비밀번호">
-                <input type="text" name="userPwCh" id="userPwCh" placeholder="비밀번호 확인">
-                <span class="reg-msg"></span></td>
+                <input type="password" name="userPw" id="userPw" placeholder="비밀번호">
+                <input type="password" name="userPwCh" id="userPwCh" placeholder="비밀번호 확인">
+                <span class="reg-msg"></span>
                 <input type="text" name="userNick" id="userNick" placeholder="닉네임">
                 <input type="text" name="userName" id="userName" placeholder="이름">
                 <input type="text" name="userPhone" id="userPhone" placeholder="전화번호">
@@ -30,21 +30,30 @@
                 <div class="agree-box">
                     <div class="usingAgreement">
                         <div>
-                            <input type="checkbox" id="agreement">
-                            <label for="agreement">이용약관 동의(필수)</label>
+                            <div>
+                                <input type="checkbox" id="agreement">
+                                <label for="agreement">이용약관 동의(필수)</label>
+                            </div>
+                            <a href="#">약관 보기 ></a>
                         </div>
                         <div>
                             <input type="checkbox" id="agreement">
                             <label for="agreement">알림 수신동의(선택)</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="agreement">
-                            <label for="agreement">성별, 생년 정보 제공 동의(선택)</label>
+                            <div>
+                                <input type="checkbox" id="agreement">
+                                <label for="agreement">성별, 생년 정보 제공 동의(선택)</label>
+                            </div>
+                            <a href="#">내용 확인 ></a>
                         </div>
                     </div>
                     <div class="privacyAgreement">
-                        <input type="checkbox" id="privacyAgreement">
-                        <label for="privacyAgreement">개인정보 수집 및 이용 동의(필수)</label>
+                        <div>
+                            <input type="checkbox" id="privacyAgreement">
+                            <label for="privacyAgreement">개인정보 수집 및 이용 동의(필수)</label>
+                        </div>
+                        <a href="#">내용 확인 ></a>
                     </div>
                 </div>
             </div>

@@ -43,6 +43,7 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     box-sizing: border-box;
+    font-size: 12px;
 }
 .allAgree-box{
     font-size: 18px;
@@ -67,4 +68,13 @@
     margin-top: 10px;
     border: none;
     border-radius: 5px;
+}
+
+.usingAgreement>div:first-child, .usingAgreement>div:nth-child(3), .privacyAgreement {
+    display: flex;
+    justify-content: space-between;
+}
+
+.agree-box a{
+    text-decoration: none;
 }

@@ -40,4 +40,21 @@ public class UserService {
 		return searchId;
 	}
 
+
+	public int inserUser(User u) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.insertUser(conn, u);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
 }
