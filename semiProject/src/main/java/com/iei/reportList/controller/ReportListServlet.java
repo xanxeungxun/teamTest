@@ -1,4 +1,4 @@
-package com.iei.memberList.controller;
+package com.iei.reportList.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/MemberListServlet")
-public class MemberListServlet extends HttpServlet {
+public class ReportListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MemberListServlet() {
+    public ReportListServlet() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
