@@ -30,7 +30,7 @@
                                 drive_file_rename_outline
                                 </span>작품등록</a></li>
                             <li class="top-menu-button"><a href="/noticeList.do?reqPage=1">공지사항</a></li>
-                            <li class="top-menu-button"><a href="#">소설게시판</a></li>
+                            <li class="top-menu-button"><a href="/bookList.do">소설게시판</a></li>
                             <li class="top-menu-button"><a href="#">자유게시판</a></li>
                         </ul>
                     </div>
