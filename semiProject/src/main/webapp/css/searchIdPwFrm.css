@@ -1,17 +1,3 @@
-.input-wrap{
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-input::placeholder{
-    font-size: 14px;
-}
-
-input:first-child{
-    border-bottom: 1px solid lightgray;
-}
-
 .pw-email-msg{
     font-size: 11px;
     text-align: center;
