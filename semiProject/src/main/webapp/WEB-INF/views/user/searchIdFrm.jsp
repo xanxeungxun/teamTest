@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/searchIdPwFrm.css">
 </head>
 <body>
-    <div class="searchIdPw-wrap">
+    <div class="searchIdPw-wrap loginJoin-wrap">
         <div class="loginJoin-title">아이디 찾기</div>
         <form action="/searchId.do" method="post">
             <div class="input-wrap">
