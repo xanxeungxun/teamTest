@@ -25,7 +25,7 @@
 		<li>
 			<a href="#">개인</a>
 			<ul>
-				<li><a href="#">회원정보 변경</a></li>
+				<li><a href="/updateUser.do">회원정보 변경</a></li>
 				<li><a href="#">회원 탈퇴</a></li>
 			</ul>
 		</li>
