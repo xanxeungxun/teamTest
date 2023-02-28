@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+*{
+    list-style-type: none;
+}
+
+.book-wrap{
+    background-color: antiquewhite;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.book-list-header{
+    background-color: aqua;
+}

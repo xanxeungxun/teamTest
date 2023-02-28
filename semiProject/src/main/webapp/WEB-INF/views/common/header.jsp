@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <link rel="stylesheet" href="/css/common.css"><!-- 공용 css -->
-<script src="/js/default.js"></script><!-- 기본 js -->
+
+<script src="/js/jquery-3.6.0.js"></script><!-- jquery -->
 
 
 <div class="header-wrap">
