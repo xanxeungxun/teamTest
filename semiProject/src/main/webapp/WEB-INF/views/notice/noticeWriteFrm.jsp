@@ -44,7 +44,7 @@
 		
 		<script>
 		$("#noticeContent").summernote({
-			height : 400,
+			height : 500,
 			lang : "ko-KR",
 			callbacks : {
 					onImageUpload : function(files){
