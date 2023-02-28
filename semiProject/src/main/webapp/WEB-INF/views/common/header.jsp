@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <script src="js/jquery-3.6.3.min.js"></script>
     <script src="js/slick.js"></script>
     <link rel="stylesheet" href="css/slick.css">
@@ -11,11 +10,10 @@
 <link rel="stylesheet" href="/css/common.css">
     
 <link rel="stylesheet" href="/css/common.css"><!-- 공용 css -->
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><!-- 구글 아이콘 -->
 <script src="/js/jquery-3.6.0.js"></script><!-- jquery -->
 
 
->>>>>>> main
 <div class="header-wrap">
         <div class="header-top">
             <div class="left-top-wrap">
@@ -31,8 +29,8 @@
                             <li class="top-menu-button"><a href="#"><span class="material-symbols-outlined write-icon">
                                 drive_file_rename_outline
                                 </span>작품등록</a></li>
-                            <li class="top-menu-button"><a href="#">공지사항</a></li>
-                            <li class="top-menu-button"><a href="#">소설게시판</a></li>
+                            <li class="top-menu-button"><a href="/noticeList.do?reqPage=1">공지사항</a></li>
+                            <li class="top-menu-button"><a href="/bookList.do">소설게시판</a></li>
                             <li class="top-menu-button"><a href="#">자유게시판</a></li>
                         </ul>
                     </div>

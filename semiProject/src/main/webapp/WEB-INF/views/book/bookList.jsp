@@ -1,31 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>소설게시판</title>
-<link rel="stylesheet" href="/css/bookList.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>소설게시판</title>
+    
+    <link rel="stylesheet" href="/css/bookList.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 300,
+            'GRAD' 0,
+            'opsz' 48;
+        }
+        .bookmarks{
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 300
+        }
+    </style>
 </head>
+
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <div class="page-content">
         <div class="book-wrap">
-            <ul class="book-list-header">
-                <li>전체 소설</li>
-                <li>최신순</li>
-                <li>인기순</li>
-                <li>완결</li>
-                <li>
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                    </select>
-                </li>
-            </ul>
+
+            <div class="book-list-header">
+                <div>전체 소설</div>
+                <div>
+                   <ul>
+                        <li><a href="#">최신순</a></li>
+                        <li><a href="#">인기순</a></li>
+                        <li><a href="#">완결</a></li>
+                    </ul>
+                </div>
+                <div class="book-selectBox">
+                    <div>select</div>
+                </div>
+            </div>
+
+            <div class="book-list">
+                <div class="book-one">
+                    <div class="book-one-cover">
+                        소설표지
+                    </div>
+                    <div class="book-one-etc">
+                        <div class="book-one-title"><a href="#">소설 글자수는 이정도 이정도 이정도 소설제목 소설제목 소설...</a></div>
+                        <div class="book-one-subTitle">
+                            <span class="genre"><a href="#">장르</a></span>
+                            <span class=""><a href="#">올라온 화 수</a></span>
+                        </div>
+                        <div class="book-one-writer"><a href="#">작성자</div>
+                        <div class="book-one-syn">
+                            미안해, 솔직하지 못 한 내가
+                            지금 이 순간이 꿈이라면
+                            살며시 너에게로 다가가
+                            모든 걸 고백 할텐데
+                            전화도 할 수 없는 밤이 오면
+                        </div>
+                        <div class="book-one-exp">
+                            <span class="material-symbols-outlined">
+                                visibility
+                            </span>
+                            <span class="book-one-count">조회수</span>
+                            <span class="material-symbols-outlined bookmarks">
+                                bookmarks
+                            </span>
+                            <span class="subscriber">구독자수</span>
+                        </div>
+                    </div>
+                </div><!--작품하나..-->
+            </div><!--book-list-->
+            
+
         </div>
-</div>
+    </div>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
