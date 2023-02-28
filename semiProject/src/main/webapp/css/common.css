@@ -105,7 +105,7 @@ div[class$="-menu"]>ul>li {
 
 .top-menu>ul>li>a {
     display: block;
-    width: 120px;
+    width: 130px;
     height: 50px;
     margin-left: 35px;
     margin-right: 35px;
@@ -240,6 +240,12 @@ div[class$="-menu"]>ul>li {
     width: 500px;
     float: left;
 }
+.content-box > .img-box:first-child{
+    margin-right: 100px;
+}
+.content-box > .img-box:nth-child(3){
+    margin-right: 100px;
+}
 .img-box>a>img{
     float: left;
     width: 100px;
@@ -273,6 +279,32 @@ div[class$="-menu"]>ul>li {
     border-radius: 5px;
     border: 1px solid #0000000d;
     background-color: #0000000d;
+}
+.btm-link1{
+    padding-top: 80px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 50px;
+    width: 1000px;
+}
+.link-main1>a{
+    border: 1px solid gray;
+    border-radius: 100px;
+    padding: 15px;
+    margin-left: 445px;
+}
+.btm-link2{
+    padding-top: 80px;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 200px;
+    width: 1000px;
+}
+.link-main2>a{
+    border: 1px solid gray;
+    border-radius: 100px;
+    padding: 15px;
+    margin-left: 505px;
 }
 /*---------------------------------icon*/
 .write-icon{

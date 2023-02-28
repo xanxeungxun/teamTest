@@ -30,7 +30,7 @@
 						<%Notice n = list.get(i); %>
 							<tr class="notice-tr">
 									<td class="notice-td">
-										<%=n.getNoticeTitle() %>
+										<a href="/noticeView.do"><%=n.getNoticeTitle() %></a>
 										<div><%=n.getRegDate() %></div>
 									</td>
 							</tr>
