@@ -8,6 +8,26 @@
 </head>
 <link rel="stylesheet" href="/css/loginJoin.css">
 <link rel="stylesheet" href="/css/login.css">
+<style>
+	.searchIdPw-box {
+    background-color: rgb(238, 238, 238);
+    box-sizing: border-box;
+    border-radius: 5px;
+	}
+	
+	/*아이디/비번 찾기 박스*/
+	.searchIdPw-wrap{
+	    text-align: right;
+	    font-size: 12px;
+	    padding-bottom: 10px;
+	    padding-right: 10px;
+	    margin-bottom: 10px;
+	}
+	
+	.searchIdPw-wrap>a{
+	    text-decoration: none;
+	}
+</style>
 <body>
     <div class="loginJoin-wrap">
         <div class="loginJoin-title">로그인</div>

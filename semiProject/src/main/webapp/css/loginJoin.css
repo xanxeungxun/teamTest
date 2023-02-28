@@ -36,4 +36,14 @@ input::placeholder{
     border: none;
     border-radius: 5px;
     margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.a-btn{
+    display: block;
+    text-decoration: none;
+    background-color: lightgray;
+    text-align: center;
+    line-height: 50px;
+    font-size: 14px;
 }

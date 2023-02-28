@@ -6,7 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/loginJoin.css">
-<link rel="stylesheet" href="/css/searchIdPwFrm.css">
+<style>
+	.pw-email-msg{
+	    font-size: 11px;
+	    text-align: center;
+	}
+</style>
 </head>
 <body>
     <div class="searchIdPw-wrap loginJoin-wrap">
