@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<link rel="stylesheet" href="/css/common.css"><!-- 공용 css -->
+<script src="/js/default.js"></script><!-- 기본 js -->
+
 
 <div class="header-wrap">
         <div class="header-top">
@@ -15,7 +18,7 @@
                         <ul>
                             <li class="top-menu-button"><a href="#">홈</a></li>
                             <li class="top-menu-button"><a href="#">랭킹</a></li>
-                            <li class="top-menu-button"><a href="#">최신</a></li>
+                            <li class="top-menu-button"><a href="/bookList.do">소설게시판</a></li>
                             <li class="top-menu-button"><a href="#">HOT</a></li>
                         </ul>
                     </div>
