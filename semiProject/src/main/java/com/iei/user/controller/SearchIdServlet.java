@@ -1,6 +1,8 @@
 package com.iei.user.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +41,11 @@ public class SearchIdServlet extends HttpServlet {
 		String searchId = service.selectUserId(inputEmail);
 		
 		//4. 화면 처리
-		System.out.println(searchId);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/searchId.jsp");
+		
+		request.setAttribute("searchId", searchId);
+		
+		view.forward(request, response);
 		
 	}
 
