@@ -1,0 +1,70 @@
+@charset "UTF-8";
+.join-wrap{
+    width: 340px;
+}
+
+.loginJoin-title{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/*회원가입 frm*/
+.join-input-wrap>input{
+    width: 100%;
+    height: 50px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-color: lightgray;
+    box-sizing: border-box;
+}
+
+.join-input-wrap>input::placeholder{
+    font-size: 16px;
+
+}
+
+.join-input-wrap>input:focus {
+    outline: 1px solid #d50000;
+}
+
+#userPw{
+    margin-bottom: 2px;
+}
+
+
+/*약관 동의*/
+.join-agree-wrap{
+    width: 100%;
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.allAgree-box{
+    font-size: 18px;
+    font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.usingAgreement{
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.usingAgreement>div{
+    margin-bottom: 5px;
+}
+
+.btn>button{
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+}
