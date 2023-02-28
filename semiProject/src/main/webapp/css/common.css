@@ -240,4 +240,5 @@ div[class$="-menu"]>ul>li {
 }
 .page-content{
 	padding-top : 142px;
+	padding-bottom: 142px;
 }
