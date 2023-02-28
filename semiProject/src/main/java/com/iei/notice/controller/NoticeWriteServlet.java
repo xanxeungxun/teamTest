@@ -41,7 +41,7 @@ public class NoticeWriteServlet extends HttpServlet {
 		NoticeService service = new NoticeService();
 		int result = service.insertNotice(n);
 		//4. 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/noticeList.do?reqPage=1");
 		if(result > 0) {
 			System.out.println("성공");
 		}else {
