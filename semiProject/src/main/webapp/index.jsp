@@ -339,6 +339,21 @@
 
 
 	<a href="/adminMain.do">관리자 페이지 바로가기</a>
+	<script src="/js/slick.js"></script>
+	<script>
+        $(function () {
+            $('.autoplay').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 100,
+                dotsClass: "slick-dots"
+            });
+        });
+        $(".slick-arrow").attr("display", "none");
+
+    </script>
+    <link rel="stylesheet" href="/css/slick.css">
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
