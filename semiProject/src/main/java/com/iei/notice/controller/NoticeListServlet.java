@@ -34,11 +34,15 @@ public class NoticeListServlet extends HttpServlet {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		//3. 비즈니스로직
 		NoticeService service = new NoticeService();
-		NoticePageData npd = service.selectNoticeList();
+		NoticePageData npd = service.selectNoticeList(reqPage);
 		//4. 결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/noticeList.jsp");
+		request.setAttribute("list", npd.getList());
+		request.setAttribute("pageNavi", npd.getPageNavi());
+		request.setAttribute("start", npd.getStart());
 		view.forward(request, response);
 		
 	}
