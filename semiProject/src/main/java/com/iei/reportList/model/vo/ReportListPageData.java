@@ -1,25 +1,25 @@
-package com.iei.memberList.model.vo;
+package com.iei.reportList.model.vo;
 
 import java.util.ArrayList;
 
-public class MemberListPageData {
-	private ArrayList<MemberList> list;
+public class ReportListPageData {
+	private ArrayList<ReportList> list;
 	private String pageNavi;
 	private int start;
-	public MemberListPageData() {
+	public ReportListPageData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberListPageData(ArrayList<MemberList> list, String pageNavi, int start) {
+	public ReportListPageData(ArrayList<ReportList> list, String pageNavi, int start) {
 		super();
 		this.list = list;
 		this.pageNavi = pageNavi;
 		this.start = start;
 	}
-	public ArrayList<MemberList> getList() {
+	public ArrayList<ReportList> getList() {
 		return list;
 	}
-	public void setList(ArrayList<MemberList> list) {
+	public void setList(ArrayList<ReportList> list) {
 		this.list = list;
 	}
 	public String getPageNavi() {
