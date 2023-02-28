@@ -23,7 +23,6 @@
                     </div>
                 </div>
             </div>
-            <div>test</div>
         </div>
     </div>
     <div class="header-blocked"></div>
