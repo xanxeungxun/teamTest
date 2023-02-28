@@ -18,7 +18,7 @@
 				<div class="notice-header">
 					<span>공지사항 작성</span>
 				</div>
-				<form action="/noticeWrite.do" method="post" enctype="multipart/form-data">
+				<form action="/noticeWrite.do" method="post">
 					<table class="notice-tbl" id="noticeWrite-tbl">
 						<tr class="notice-tr">
 							<th class="notice-td">제목</th>
