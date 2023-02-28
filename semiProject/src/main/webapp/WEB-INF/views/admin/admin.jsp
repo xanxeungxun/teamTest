@@ -50,10 +50,10 @@
 			<h3>관리자 페이지</h3>
 			<hr>
 			<div class="btnList">
-				<button type="button" onclick="location.href='/memberList.do'"><span>회원관리</span></button>
-				<button type="button" onclick="location.href='/bookList.do'">작품관리</button>
-				<button type="button" onclick="location.href='/questionList.do'">문의사항</button>
-				<button type="button" onclick="location.href='/reportList.do'">신고접수</button>
+				<button type="button" onclick="location.href='/userListManage.do'">회원관리</button>
+				<button type="button" onclick="location.href='/bookListManage.do'">작품관리</button>
+				<button type="button" onclick="location.href='/questionListManage.do'">문의사항</button>
+				<button type="button" onclick="location.href='/reportListManage.do'">신고접수</button>
 			</div>
 		</div>
 	</div>
