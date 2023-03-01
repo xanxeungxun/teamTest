@@ -110,6 +110,7 @@ a{
 .book-one-etc .book-one-syn{
     background-color: chartreuse;
     margin-bottom: 10px;
+    height: 86px;
 }
 .book-one-etc .book-one-exp{
     background-color: cornsilk;
