@@ -40,10 +40,9 @@ public class BookListServlet extends HttpServlet {
 		BookService service = new BookService();
 		ArrayList<Book> bookList = service.selectAllBook();
 		
-		
 		//4결과처리
-		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/bookList.jsp");
+		request.setAttribute("bookList", bookList);
 		view.forward(request, response);
 	}
 

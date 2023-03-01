@@ -21,6 +21,7 @@ public class BookService {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Book> bookList = dao.seletAllBook(conn);
 		
+		JDBCTemplate.close(conn);
 		return bookList;
 	}
 	

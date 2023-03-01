@@ -1,5 +1,11 @@
+<%@page import="com.iei.book.model.vo.Book"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%	
+	ArrayList<Book> list = (ArrayList<Book>)request.getAttribute("bookList");
+	Book b = list.get(0);
+%>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -35,7 +41,7 @@
         <div class="book-wrap">
 
             <div class="book-list-header">
-                <div>전체 소설</div>
+                <div>전체소설</div>
                 <div>
                    <ul>
                         <li><a href="#">최신순</a></li>
@@ -56,10 +62,10 @@
                     <div class="book-one-etc">
                         <div class="book-one-title"><a href="#">소설 글자수는 이정도 이정도 이정도 소설제목 소설제목 소설...</a></div>
                         <div class="book-one-subTitle">
-                            <span class="genre"><a href="#">장르</a></span>
+                            <span class="genre"><a href="#"><%=b.getGenreName() %></a></span>
                             <span class=""><a href="#">올라온 화 수</a></span>
                         </div>
-                        <div class="book-one-writer"><a href="#">작성자</div>
+                        <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
                             미안해, 솔직하지 못 한 내가
                             지금 이 순간이 꿈이라면
