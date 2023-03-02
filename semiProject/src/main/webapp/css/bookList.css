@@ -31,6 +31,7 @@ a{
     font-weight: bold;
     padding-right:30px;
 }
+
 .book-list-header>div:nth-child(2){
     height: 100%;
     display: flex;
@@ -44,7 +45,10 @@ a{
     font-size: 20px;
     padding: 0 10px;
 }
-
+.book-list-header>div>ul>li span{
+	color : #ccc;
+	padding-left : 20px;
+}
 
 
 .book-list-header .book-selectBox{
@@ -88,29 +92,32 @@ a{
     background-color: turquoise;
 }
 .book-one-etc div{
-    background-color: skyblue;
     width: 100%;
 }
 .book-one-etc .book-one-title{
     background-color: crimson;
+    height:45px;
     font-size: 20px;
     font-weight: bold;
     padding: 5px 0;
     margin-bottom: 8px;
 }
 .book-one-etc .book-one-subTitle{
-    background-color: royalblue;
     font-size: 12px;
     margin-bottom: 5px;
 }
+.book-one-etc .book-one-subTitle .gray-bar{
+	color : #ccc;
+	margin : 0 10px;
+}
 .book-one-etc .book-one-writer{
     background-color: burlywood;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 .book-one-etc .book-one-syn{
     background-color: chartreuse;
     margin-bottom: 10px;
-    height: 86px;
+    height: 88px;
 }
 .book-one-etc .book-one-exp{
     display: flex;

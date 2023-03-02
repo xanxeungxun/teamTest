@@ -70,6 +70,8 @@ public class BookService {
 			naviCode += "</span></a></li>";
 		}
 		naviCode += "</ul>";
+		
+
 		JDBCTemplate.close(conn);
 		
 		BookListData bld = new BookListData(bookList, naviCode, start);
