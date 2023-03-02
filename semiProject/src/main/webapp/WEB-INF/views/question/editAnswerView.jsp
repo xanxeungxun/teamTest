@@ -9,50 +9,52 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/notice.css">
+<link rel="stylesheet" href="/css/question.css">
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="page-content">
-		<div class="notice-wrap">
-			<div class="notice-header">
+		<div class="question-wrap">
+			<div class="question-header">
 				<span>문의사항 답변 등록/수정</span>
 			</div>
-			<table class="notice-tbl">
-				<tr class="notice-tr">
-					<td class="notice-td">
+			<table class="question-tbl">
+				<tr class="question-tr">
+					<td class="question-td">
 						<span><%=question.getQuestionTitle()%></span>
 					</td>
-					<td class="notice-td">
+					<td class="question-td">
 						<div><%=question.getEnrollDate() %></div>
 					</td>
-					<td class="notice-td">
-						<div><%=question.getQuestionUserId() %> / <%=question.getQuestionName() %></div>
+					<td class="question-td">
+						<div>아이디<%=question.getQuestionUserId() %><br>닉네임<%=question.getQuestionName() %></div>
 					</td>
 				</tr>
-				<tr class="notice-tr">
-					<td class="notice-td" colspan="3">
+				<tr class="question-tr">
+					<td class="question-td" colspan="3">
 						<%=question.getQuestionContent() %>
 					</td>
 				</tr>
-				<tr class="notice-tr">
-					<td class="notice-td">
-						<input type="text" id="answerTitle" value="<%=question.getAnswerTitle()%>"></input>
+				<tr class="question-tr">
+					<td class="question-td">
+						<input class="input-form" type="text" id="answerTitle" value="<%=question.getAnswerTitle()%>"></input>
 					</td>
-					<td class="notice-td">
+					<td class="question-td">
 						<div><%=question.getAnswerDate() %></div>
 					</td>
-					<td class="notice-td">
-						<div><%=question.getAnswerUserId() %> / <%=question.getAnswerUserName() %></div>
+					<td class="question-td">
+						<div>관리자 아이디<%=question.getAnswerUserId() %> <br>관리자 닉네임 <%=question.getAnswerUserName() %></div>
 					</td>
 				</tr>
-				<tr class="notice-tr">
-					<td class="notice-td" colspan="3">
-						<textarea id="answerContent"><%=question.getAnswerContent() %></textarea>
+				<tr class="question-tr">
+					<td class="question-td" colspan="3">
+						<textarea class="input-form" id="answerContent"><%=question.getAnswerContent() %></textarea>
 					</td>
 				</tr>
 			</table>
-			<button onclick="writeAnswer()">작성 완료</button>
+			<div class="btn-position">
+				<button class="btn bc1 bs1" id="editBtn" onclick="writeAnswer()">작성 완료</button>
+			</div>
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
