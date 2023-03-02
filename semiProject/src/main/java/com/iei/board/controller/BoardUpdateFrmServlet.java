@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.iei.board.model.service.BoardService;
-import com.iei.board.model.vo.BoardViewData;
+import com.iei.board.model.vo.Board;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class BoardUpdateFrmServlet
  */
-@WebServlet(name = "BoardView", urlPatterns = { "/boardView.do" })
-public class BoardViewServlet extends HttpServlet {
+@WebServlet(name = "BoardUpdateFrm", urlPatterns = { "/boardUpdateFrm.do" })
+public class BoardUpdateFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public BoardUpdateFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +33,11 @@ public class BoardViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		
 		BoardService service = new BoardService();
-		BoardViewData bvd = service.selectOneBoard(boardNo);
-		
-		if(bvd == null) {
-			RequestDispatcher view = request.getRequestDispatcher("/boardList.do?regPage=1");
-			view.forward(request, response);
-			
-		}else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/boardView.jsp");
-			request.setAttribute("b", bvd.getB());
-			view.forward(request, response);
-		}
+		Board b = service.getBoard(boardNo);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/boardUpdateFrm.jsp");
+		request.setAttribute("b", b);
+		view.forward(request, response);
 	}
 
 	/**

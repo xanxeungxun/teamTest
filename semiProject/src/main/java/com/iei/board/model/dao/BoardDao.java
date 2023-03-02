@@ -131,6 +131,48 @@ public class BoardDao {
 		return n;
 	}
 
+	public int deleteBoard(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from board where board_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateBoard(Connection conn, Board b) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update board set board_title=?, board_content=?, filename=?, filepath=? where board_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setString(3, b.getFileName());
+			pstmt.setString(4, b.getFilePath());
+			pstmt.setInt(5, b.getBoardNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+
+	
 	
 	
 	
