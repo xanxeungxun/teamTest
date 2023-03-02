@@ -34,10 +34,11 @@
                 <div class="menu-wrap">
                     <div class="top-menu">
                         <ul>
-                            
-                            <li class="top-menu-button"><a href="#"><span class="material-symbols-outlined write-icon">
+                            <li class="top-menu-button"><a href="#">
+                            <span class="material-symbols-outlined write-icon">
                                 drive_file_rename_outline
-                                </span>작품등록</a></li>
+                            </span>
+                            작품등록</a></li>
                             <li class="top-menu-button"><a href="/noticeList.do?reqPage=1">공지사항</a></li>
                             <li class="top-menu-button"><a href="/boardList.do?reqPage=1">자유게시판</a></li>
                             <li class="top-menu-button"><a href="/bookList.do?reqPage=1">소설게시판</a></li>
@@ -54,6 +55,8 @@
 
 	</div>
     <div class="header-blocked"></div>
+    
+    <script src="/js/common.js"></script>
     
 
     
