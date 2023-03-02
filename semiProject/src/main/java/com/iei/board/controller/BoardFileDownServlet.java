@@ -1,28 +1,30 @@
 package com.iei.board.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.iei.board.model.service.BoardService;
-import com.iei.board.model.vo.BoardViewData;
+import com.iei.board.model.vo.Board;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class BoardFileDownServlet
  */
-@WebServlet(name = "BoardView", urlPatterns = { "/boardView.do" })
-public class BoardViewServlet extends HttpServlet {
+@WebServlet(name = "BoardFileDown", urlPatterns = { "/boardFileDown.do" })
+public class BoardFileDownServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public BoardFileDownServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +35,30 @@ public class BoardViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		
 		BoardService service = new BoardService();
-		BoardViewData bvd = service.selectOneBoard(boardNo);
+		Board b = service.getBoard(boardNo);
+		String root = getServletContext().getRealPath("/");
 		
-		if(bvd == null) {
-			RequestDispatcher view = request.getRequestDispatcher("/boardList.do?regPage=1");
-			view.forward(request, response);
-			
-		}else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/boardView.jsp");
-			request.setAttribute("b", bvd.getB());
-			view.forward(request, response);
+		String downFile = root+"upload/board/"+b.getFilePath();
+		FileInputStream fis = new FileInputStream(downFile);
+		BufferedInputStream bis = new BufferedInputStream(fis);
+		ServletOutputStream sos = response.getOutputStream();
+		BufferedOutputStream bos = new BufferedOutputStream(sos);
+		
+		String resFilename = new String(b.getFileName().getBytes("utf-8"),"ISO-8859-1");
+		
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment;filename="+resFilename);
+		while(true) {
+			int read = bis.read();
+			if(read != -1) {
+				bos.write(read);
+			}else {
+				break;
+			}
 		}
+		bos.close();
+		bis.close();
 	}
 
 	/**

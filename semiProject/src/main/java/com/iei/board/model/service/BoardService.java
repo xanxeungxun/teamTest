@@ -118,4 +118,37 @@ public class BoardService {
 			return null;
 		}
 	}
+
+	public Board deleteBoard(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Board b = dao.selectOneBoard(conn, boardNo);
+		int result = dao.deleteBoard(conn, boardNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+			b = null;
+		}
+		JDBCTemplate.close(conn);
+		return b;
+	}
+
+	public Board getBoard(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Board b = dao.selectOneBoard(conn, boardNo);
+		JDBCTemplate.close(conn);
+		return b;
+	}
+
+	public int updateBoard(Board b) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateBoard(conn, b);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }

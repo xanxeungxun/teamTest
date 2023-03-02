@@ -1,5 +1,9 @@
+<%@page import="com.iei.board.model.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	Board b = (Board)request.getAttribute("b");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,32 +20,44 @@
 		<div class="page-content">
 			<div class="board-wrap">
 				<div class="board-header">
-					<span>자유게시판 작성</span>
+					<span>자유게시판 수정</span>
 				</div>
-				<form action="/boardWrite.do" method="post" enctype="multipart/form-data">
+				<form action="/boardUpdate.do" method="post" enctype="multipart/form-data">
 					<table class="board-tbl" id="board-tbl">
 						<tr class="board-tr">
-							
 							<th class="board-td">제목</th>
 							<td class="board-td" colspan="3">
-								<input type="text" name="boardTitle" class="board-input">
+								<input type="hidden" name="status" value="stay">
+								<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>">
+								<input type="text" name="boardTitle" class="board-input" value="<%=b.getBoardTitle()%>">
 							</td>
 						</tr>
 						<tr class="board-tr">
 							<th class="board-td">작성자</th>
-							<td class="board-td">작성자</td>
+							<td class="board-td"><%=b.getBoardWriter() %></td>
 							<th class="board-td">첨부파일</th>
-							<td class="board-td"><input type="file" name="upfile"></td>
+							<td class="board-td">
+								<%if(b.getFilePath()!=null){ %>
+									<img src="/img/file.png" width="16px" class="delFile">
+									<span class="delFile"><%=b.getFileName() %></span>
+									<button type="button" class="btn bc1 delFile">삭제</button>
+									<input type="file" name="upfile" style="display:none;">
+									<input type="hidden" name="oldFilename" value="<%=b.getFileName()%>">
+									<input type="hidden" name="oldFilepath" value="<%=b.getFilePath()%>">				
+								<%}else{ %>
+									<input type="file" name="upfile">
+								<%} %>
+							</td>
 						</tr>
 						<tr class="board-tr">
 							<th class="board-td">내용</th>
 							<td class="board-td" colspan="3">
-								<textarea id="boardContent" name="boardContent" class="board-input"></textarea>
+								<textarea id="boardContent" name="boardContent" class="board-input"><%=b.getBoardContent() %></textarea>
 							</td>
 						</tr>
 						<tr class="board-tr">
 							<td colspan="4" class="sub-btn-td">
-								<button type="submit" class="board-sub-btn">자유게시판 작성</button>
+								<button type="submit" class="board-sub-btn">자유게시판 수정</button>
 							</td>
 						</tr>				
 					</table>
@@ -50,6 +66,12 @@
 		</div>
 		
 		<script>
+		$("button.delFile").on("click",function(){
+			$(".delFile").hide();
+			$(this).next().show();
+			$("[name=status]").val("delete");
+		});
+		
 		$("#boardContent").summernote({
 			height : 500,
 			lang : "ko-KR",
