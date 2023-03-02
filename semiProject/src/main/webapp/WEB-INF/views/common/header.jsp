@@ -41,6 +41,7 @@
                             <li class="top-menu-button"><a href="/noticeList.do?reqPage=1">공지사항</a></li>
                             <li class="top-menu-button"><a href="/bookList.do">소설게시판</a></li>
                             <li class="top-menu-button"><a href="#">자유게시판</a></li>
+                            <li class="top-menu-button"><a href="#">문의게시판</a></li>
                         </ul>
                     </div>
                 </div>

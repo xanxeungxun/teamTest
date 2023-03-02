@@ -26,6 +26,7 @@
 	border-collapse: collapse;
 }
 .question-td{
+	width: calc(100%);
 	height: 100px;
 	padding: 1rem;
 	border: 1px solid #ccc;	
@@ -105,10 +106,19 @@
 }
 .write-btd-wrap{
 	width: calc(100%);
-	overflow: hidden;
+	text-align: right;
+	margin-bottom: 30px;
 }
 #write-btn1{
-	width: 100px;
+	width: 150px;
+	text-align: center;
+	
+}
+.btn-position{
 	text-align: right;
+	
+}
+#answerContent{
+	width: calc(100%);
 	
 }

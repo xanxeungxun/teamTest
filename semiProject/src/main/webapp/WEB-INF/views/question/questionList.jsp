@@ -34,11 +34,11 @@ ArrayList<QuestionVo> list = (ArrayList<QuestionVo>) request.getAttribute("quest
 				
 				<div class="write-btd-wrap">
 
-					<button id="write-btn1">버튼테스트</button>
+					<button id="write-btn1" class="btn bc1 bs1">버튼테스트</button>
 				</div>
 				<thead>
 					<tr class="question-tr">
-						<td class="question-td">문의번호</td>
+						<td class="question-td">번호</td>
 						<td class="question-td">ID</td>
 						<td class="question-td">이름</td>
 						<td class="question-td">제목</td>
