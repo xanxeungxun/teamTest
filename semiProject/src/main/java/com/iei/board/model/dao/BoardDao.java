@@ -170,25 +170,44 @@ public class BoardDao {
 		return result;
 	}
 
-	
+	public int insertBoardComment(Connection conn, BoardComment bc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into board_comment values(board_comment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bc.getBoardCommnetWriter());
+			pstmt.setString(2, bc.getBoardCommentContent());
+			pstmt.setInt(3, bc.getBoardRef());
+			pstmt.setString(4, (bc.getBoardCommentRef()==0)?null:String.valueOf(bc.getBoardCommentRef()));
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
+	public int updateBoardComment(Connection conn, BoardComment bc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update board_comment set board_comment_content=? where board_comment_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bc.getBoardCommentContent());
+			pstmt.setInt(2, bc.getBoardCommentNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 	public ArrayList<BoardComment> selectBoardComment(Connection conn, int boardNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -203,7 +222,7 @@ public class BoardDao {
 				bc.setBoardCommentContent(rset.getString("board_comment_content"));
 				bc.setBoardCommentDate(rset.getString("board_comment_date"));
 				bc.setBoardCommentNo(rset.getInt("board_comment_no"));
-				bc.setBoardCommentRef(rset.getInt("board_commnet_ref"));
+				bc.setBoardCommentRef(rset.getInt("board_comment_ref"));
 				bc.setBoardCommnetWriter(rset.getString("board_comment_writer"));
 				bc.setBoardRef(rset.getInt("board_ref"));
 				list.add(bc);
@@ -215,7 +234,6 @@ public class BoardDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
-		
 		return list;
 	}
 
@@ -233,7 +251,7 @@ public class BoardDao {
 				bc.setBoardCommentContent(rset.getString("board_comment_content"));
 				bc.setBoardCommentDate(rset.getString("board_comment_date"));
 				bc.setBoardCommentNo(rset.getInt("board_comment_no"));
-				bc.setBoardCommentRef(rset.getInt("board_commnet_ref"));
+				bc.setBoardCommentRef(rset.getInt("board_comment_ref"));
 				bc.setBoardCommnetWriter(rset.getString("board_comment_writer"));
 				bc.setBoardRef(rset.getInt("board_ref"));
 				list.add(bc);
@@ -245,8 +263,28 @@ public class BoardDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
+		
 		return list;
 	}
-	*/
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

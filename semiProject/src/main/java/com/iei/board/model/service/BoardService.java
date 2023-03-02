@@ -109,7 +109,9 @@ public class BoardService {
 		if(result > 0) {
 			JDBCTemplate.commit(conn);
 			Board b = dao.selectOneBoard(conn, boardNo);
-			BoardViewData bvd = new BoardViewData(b);
+			ArrayList<BoardComment> commentList = dao.selectBoardComment(conn, boardNo);
+			ArrayList<BoardComment> reCommentList = dao.selectReCommentList(conn, boardNo);
+			BoardViewData bvd = new BoardViewData(b, commentList, reCommentList);
 			JDBCTemplate.close(conn);
 			return bvd;
 		}else {
@@ -143,6 +145,30 @@ public class BoardService {
 	public int updateBoard(Board b) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateBoard(conn, b);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int insertBoardComment(BoardComment bc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertBoardComment(conn, bc);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int updateBoardComment(BoardComment bc) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateBoardComment(conn, bc);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		}else {

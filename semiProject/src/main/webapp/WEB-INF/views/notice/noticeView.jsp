@@ -17,11 +17,13 @@
 		<div class="notice-wrap">
 			<div class="notice-header">
 				<span>공지사항</span>
+				<button class="news-btn btn1" onclick="noticeDelete(<%=n.getNoticeNo()%>);">삭제</button>
+				<a  class="news-btn btn1" href="/noticeUpdateFrm.do?noticeNo=<%=n.getNoticeNo() %>">수정</a>
 			</div>
 			<table class="notice-tbl">
 				<tr class="notice-tr">
 					<td class="notice-td">
-						<span><%=n.getNoticeTitle() %></span>
+						<span class="title-span"><%=n.getNoticeTitle() %></span>
 						<div><%=n.getRegDate() %></div>
 					</td>
 				</tr>

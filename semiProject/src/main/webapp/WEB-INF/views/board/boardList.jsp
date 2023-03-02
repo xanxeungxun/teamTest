@@ -27,7 +27,7 @@
 				<%Board b = list.get(i); %>
 				<tr class="board-tr">
 					<td class="board-td title-td"><a href="/boardView.do?boardNo=<%=b.getBoardNo()%>"><span class="title-span"><%=b.getBoardTitle() %></span></a>
-						<div><span class="writer-span"><%=b.getBoardWriter() %></span> <%=b.getboardDate() %></div>
+						<div><span class="writer-span"><%=b.getBoardWriter() %></span> <span class="date-span"><%=b.getboardDate() %></span></div>
 					</td>
 					<td class="board-td read-td">
 						조회수 : <%=b.getReadCount() %>
