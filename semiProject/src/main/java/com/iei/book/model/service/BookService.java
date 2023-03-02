@@ -33,7 +33,8 @@ public class BookService {
 		//페이징 제작
 		//필요한 전체 페이지수 구하기 <-- 일단 전체 작품 수 알아야함
 		int totalCount = dao.selectBookCount(conn); //전체 작품수
-		int totalPage = (int) Math.ceil((double)(totalCount/numPerPage)); //네비게이터 전체 페이지수
+		System.out.println("total : " + totalCount);
+		int totalPage = (int) Math.ceil((double)totalCount/numPerPage); //네비게이터 전체 페이지수
 		int naviSize = 5;
 		int naviStart = ( ((reqPage-1)/naviSize) * naviSize )+1;
 		//↑내가 5번페이지가 보고싶으면, navi시작번호는 1번임, 6페이지부터 5임
@@ -42,7 +43,7 @@ public class BookService {
 		if(naviStart != 1) {//네비시작숫자가 1이상(5,11,16...)생겨야함
 			naviCode += "<li>";
 			naviCode += "<a class='' href='/bookList.do?reqPage="+(naviStart-1)+"'>";
-			naviCode += "<span class'material-icons'>chevron_left";
+			naviCode += "<span class='material-icons'>chevron_left";
 			naviCode += "</span></a></li>";
 		}
 		for(int i=0 ; i<naviSize ; i++) {
@@ -64,8 +65,8 @@ public class BookService {
 		}//숫자넣기for문
 		if(naviStart <= totalPage) {
 			naviCode += "<li>";
-			naviCode += "<a class='' href='/bookList.do?reqPage="+(naviStart-1)+"'>";
-			naviCode += "<span class'material-icons'>chevron_right";
+			naviCode += "<a class='' href='/bookList.do?reqPage="+(naviStart)+"'>";
+			naviCode += "<span class='material-icons'>chevron_right";
 			naviCode += "</span></a></li>";
 		}
 		naviCode += "</ul>";
