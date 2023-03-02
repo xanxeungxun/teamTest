@@ -46,8 +46,8 @@
                 <div>전체소설</div>
                 <div>
                    <ul>
-                        <li><a href="#">최신순</a></li>
-                        <li><a href="#">인기순</a></li>
+                        <li><a href="#">최신순</a><span class="gray-bar">|</span></li>
+                        <li><a href="#">인기순</a><span class="gray-bar">|</span></li>
                         <li><a href="#">완결</a></li>
                     </ul>
                 </div>
@@ -94,14 +94,18 @@
             <%		Book b = list.get(i);		  %>
             	
             	<div class="book-one">
-                    <div class="book-one-cover">
-                        <%=b.getCoverpath() %>
+                    <div class="book-one-cover"
+                    	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
+                    	 background-size: contain;
+  						 background-position: center;
+  						 background-repeat: no-repeat">
                     </div>
                     <div class="book-one-etc">
                         <div class="book-one-title"><a href="#"><%=b.getBookTitle() %></a></div>
                         <div class="book-one-subTitle">
                             <span class="genre"><a href="#"><%=b.getGenreName() %></a></span>
-                            <span class=""><a href="#">올라온 화 수</a></span>
+                            <span class="gray-bar">|</span>
+                            <span>총 <%=b.getStoryCount()%>화</span>
                         </div>
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
