@@ -41,10 +41,9 @@ int start = (int)request.getAttribute("start");
 				<thead>
 					<tr class="question-tr">
 						<td class="question-td" style="width:6%">번호</td>
-						<td class="question-td" style="width:8%">ID</td>
-						<td class="question-td" style="width:8%">이름</td>
 						<td class="question-td" style="width:49%">제목</td>
-						<td class="question-td" style="width:10%">작성일자</td>
+						<td class="question-td" style="width:8%">작성자</td>
+						<td class="question-td" style="width:10%">작성일</td>
 						<td class="question-td" style="width:9%">답변여부</td>
 						<td class="question-td" style="width:10%">답변일자</td>
 					</tr>
@@ -58,10 +57,9 @@ int start = (int)request.getAttribute("start");
 					%>
 					<tr class="question-tr">
 						<td class="question-td"><%=i+start %></td>
-						<td class="question-td"><%=q.getQuestionUserId()%></td>
-						<td class="question-td"><%=q.getQuestionName()%></td>
 						<td class="question-td"><a
 							href="/question/viewQuestion.do?questionNo=<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a></td>
+						<td class="question-td"><%=q.getQuestionName()%></td>
 						<td class="question-td"><%=q.getEnrollDate()%></td>
 						<td class="question-td">&emsp;<%=q.getAnswerYn()%>&emsp;</td>
 						
