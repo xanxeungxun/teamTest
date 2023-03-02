@@ -4,6 +4,8 @@
     pageEncoding="UTF-8"%>
 <%	
 	ArrayList<Book> list = (ArrayList<Book>)request.getAttribute("bookList");
+	String naviCode = (String)request.getAttribute("naviCode");
+	int start = (int)request.getAttribute("start");
 	String result="";
 %>    
 <!DOCTYPE html>
@@ -130,13 +132,14 @@
             	
             <%} %>
             
-                
-                
             </div><!--book-list-->
             
-
-        </div>
-    </div>
+			<div id="pageNavi">
+			<%=naviCode %>
+			</div>
+			
+      </div><!-- book-wrap -->
+</div><!-- page-content -->
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
