@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/joinFrm.css">
 </head>
 <body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="join-wrap">
 		<div class="loginJoin-title">회원가입</div>
         <form action="/join.do" method="post">

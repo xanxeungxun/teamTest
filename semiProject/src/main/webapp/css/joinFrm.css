@@ -1,31 +1,28 @@
 .join-wrap{
     width: 340px;
 }
-
+/*
 .loginJoin-title{
     font-size: 30px;
     text-align: center;
     margin-bottom: 10px;
 }
-
+*/
 /*회원가입 frm*/
 .join-input-wrap>input{
-    width: 100%;
-    height: 50px;
     padding-left: 10px;
     margin-bottom: 10px;
-    border-radius: 5px;
-    border-color: lightgray;
     box-sizing: border-box;
 }
 
 .join-input-wrap>input::placeholder{
     font-size: 14px;
-
 }
 
 .join-input-wrap>input:focus {
-    outline: 1px solid #d50000;
+
+    outline: 3px solid #ffc6d3;
+    box-sizing: border-box;
 }
 
 #userPw{
@@ -42,13 +39,17 @@
     border: 1px solid lightgray;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 12px;
+    font-size: 14px;
 }
 .allAgree-box{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     padding-bottom: 10px;
     border-bottom: 1px solid lightgray;
+}
+
+[name="agreement"]{
+    margin-right: 7px;
 }
 
 .usingAgreement{
@@ -61,13 +62,12 @@
     margin-bottom: 5px;
 }
 
-.btn>button{
+.submit-btn{
     width: 100%;
     height: 50px;
     margin-top: 10px;
-    border: none;
-    border-radius: 5px;
 }
+
 
 .usingAgreement>div:first-child, .usingAgreement>div:nth-child(3), .privacyAgreement {
     display: flex;
@@ -75,5 +75,10 @@
 }
 
 .agree-box a{
-    text-decoration: none;
+    font-size: 12px;
+    padding-top: 2px;
+    color: #59516e;
+}
+.agree-box a:hover{
+    color: #978faa;
 }
