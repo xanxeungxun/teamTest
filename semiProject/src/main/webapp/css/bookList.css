@@ -78,8 +78,9 @@ a{
     float: left;
     width: 180px;
     margin: 0 20px 0 10px;
-    background-color: seagreen;
+    background-color: #fff;
     height: 240px;
+    border: 1px solid #ccc;
 }
 .book-one-etc{
     float: left;

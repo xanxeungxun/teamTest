@@ -94,8 +94,11 @@
             <%		Book b = list.get(i);		  %>
             	
             	<div class="book-one">
-                    <div class="book-one-cover">
-                        <%=b.getCoverpath() %>
+                    <div class="book-one-cover"
+                    	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
+                    	 background-size: contain;
+  						 background-position: center;
+  						 background-repeat: no-repeat">
                     </div>
                     <div class="book-one-etc">
                         <div class="book-one-title"><a href="#"><%=b.getBookTitle() %></a></div>
