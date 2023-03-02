@@ -1,0 +1,22 @@
+.page-content{
+    width: 700px;
+}
+
+.content-wrap{
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    padding: 10px;
+}
+.content-title{
+    font-family: ns-bold;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.content-title:not(:first-child){
+    padding-top: 30px;
+}
+.foot-btn{
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}

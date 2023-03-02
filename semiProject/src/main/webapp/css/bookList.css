@@ -12,7 +12,6 @@ a{
     color : #000;
 }
 .book-wrap{
-    background-color: antiquewhite;
     width: 1200px;
     margin: 0 auto;
 }
@@ -32,8 +31,9 @@ a{
     font-weight: bold;
     padding-right:30px;
 }
+
 .book-list-header>div:nth-child(2){
-    height: 100%;
+    height: 45px;
     display: flex;
     align-items:flex-end;
 }
@@ -45,7 +45,13 @@ a{
     font-size: 20px;
     padding: 0 10px;
 }
-
+.book-list-header>div>ul>li>a:hover{
+	color : #952eee;
+}
+.book-list-header>div>ul>li span{
+	color : #EEEEEE;
+	padding-left : 20px;
+}
 
 
 .book-list-header .book-selectBox{
@@ -54,7 +60,7 @@ a{
     background-color: yellow;
 }
 .book-selectBox>div{
-    height: 100%;
+    height: 45px;
     background-color: tomato;
     display: flex;
     align-items: flex-end;
@@ -62,58 +68,64 @@ a{
 
 
 .book-list{
-    background-color: violet;
     width: 1140px;
-    margin: 0 auto;
+    margin: 0 auto 80px auto;
     overflow: hidden;
 }
 .book-one{
     float: left;
-    background-color: sandybrown;
     width: 530px;
-    margin: 10px;
+    margin: 20px 10px;
     padding: 10px;
     overflow: hidden;
+    border-top: 1px solid #EEEEEE;
+    border-bottom : 1px solid #EEEEEE;
 }
 .book-one-cover{
     float: left;
     width: 180px;
     margin: 0 20px 0 10px;
-    background-color: seagreen;
+    background-color: #fff;
     height: 240px;
+    border: 1px solid #EEEEEE;
 }
 .book-one-etc{
     float: left;
     width: 300px;
-    background-color: turquoise;
 }
 .book-one-etc div{
-    background-color: skyblue;
     width: 100%;
 }
 .book-one-etc .book-one-title{
-    background-color: crimson;
+    height:45px;
     font-size: 20px;
     font-weight: bold;
     padding: 5px 0;
     margin-bottom: 8px;
 }
+.book-one-etc .book-one-title>a:hover{
+	color:#952eee;
+}
 .book-one-etc .book-one-subTitle{
-    background-color: royalblue;
     font-size: 12px;
     margin-bottom: 5px;
 }
+.book-one-etc .book-one-subTitle .gray-bar{
+	color : #EEEEEE;
+	margin : 0 10px;
+}
 .book-one-etc .book-one-writer{
-    background-color: burlywood;
-    margin-bottom: 5px;
+    margin-bottom: 18px;
 }
 .book-one-etc .book-one-syn{
-    background-color: chartreuse;
+    background-color: ghostwhite;
     margin-bottom: 10px;
-    height: 86px;
+    height: 71px;
+    padding:10px;
+    font-size:16px;
+    border-radius: 5px;
 }
 .book-one-etc .book-one-exp{
-    background-color: cornsilk;
     display: flex;
     cursor: default;
     justify-content: right;
