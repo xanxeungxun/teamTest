@@ -12,7 +12,7 @@ import common.JDBCTemplate;
 
 public class BookDao {
 
-	public ArrayList<Book> seletAllBook(Connection conn) {
+	public ArrayList<Book> seletAllBook(Connection conn,int start, int end) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Book> bookList = new ArrayList<Book>();
@@ -48,6 +48,29 @@ public class BookDao {
 		
 		
 		return bookList;
+	}
+
+	public int selectBookCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query ="select count(*) as count from book";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 	
