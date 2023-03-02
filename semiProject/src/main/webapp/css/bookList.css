@@ -33,7 +33,7 @@ a{
 }
 
 .book-list-header>div:nth-child(2){
-    height: 100%;
+    height: 45px;
     display: flex;
     align-items:flex-end;
 }
@@ -57,7 +57,7 @@ a{
     background-color: yellow;
 }
 .book-selectBox>div{
-    height: 100%;
+    height: 45px;
     background-color: tomato;
     display: flex;
     align-items: flex-end;
