@@ -1,5 +1,9 @@
+<%@page import="com.iei.notice.model.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+	Notice n = (Notice)request.getAttribute("n");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,19 +21,30 @@
 			<table class="notice-tbl">
 				<tr class="notice-tr">
 					<td class="notice-td">
-						<span>공지사항 제목</span>
-						<div>2023-02-28</div>
-					</td>
-					<td>
-						<span>조회수 : </span>
-					</td>
-					<td>
-						<span>작성자 : </span>
+						<span><%=n.getNoticeTitle() %></span>
+						<div><%=n.getRegDate() %></div>
 					</td>
 				</tr>
+				<tr class="notice-tr">
+					<td class="notice-td">
+						<div><%=n.getNoticeContent() %></div>
+					</td>					
+				</tr>
 			</table>
+			<div>
+				<a href="/noticeUpdateFrm.do?noticeNo=<%=n.getNoticeNo() %>">수정</a>
+				<button onclick="noticeDelete(<%=n.getNoticeNo()%>);">삭제</button>
+			</div>
 		</div>
 	</div>
+	
+	<script>
+		function noticeDelete(noticeNo) {
+			if(confirm("게시글을 삭제하시겠습니까?")){
+				location.href="/deleteNotice.do?noticeNo="+noticeNo;
+			}
+		}
+	</script>
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>

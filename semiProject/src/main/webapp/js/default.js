@@ -7,6 +7,15 @@ $(function () {
   });  
   $(".sub-navi").prev().after("<span class='material-icons dropdown'>expand_more</span>");
 });
+$(function () {
+    $(document).on("click", ".modal-open-btn2", function () {
+        $($(this).attr("target")).css("display", "flex");
+    });
+    $(document).on("click", ".modal-close", function () {
+        $(this).parents(".modal-wrap").parent().css("display", "none");
+    });  
+    $(".sub-navi").prev().after("<span class='material-icons dropdown'>expand_more</span>");
+});
 function alertFunc(icon){
 	swal({
         title: '제목',

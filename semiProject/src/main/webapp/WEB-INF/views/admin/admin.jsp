@@ -52,7 +52,7 @@
 			<div class="btnList">
 				<button type="button" onclick="location.href='/userListManage.do'">회원관리</button>
 				<button type="button" onclick="location.href='/bookListManage.do'">작품관리</button>
-				<button type="button" onclick="location.href='/questionListManage.do'">문의사항</button>
+				<button type="button" onclick="location.href='/question/questionList.do'">문의사항</button>
 				<button type="button" onclick="location.href='/reportListManage.do'">신고접수</button>
 			</div>
 		</div>
