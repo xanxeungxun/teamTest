@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import com.iei.board.model.dao.BoardDao;
 import com.iei.board.model.vo.Board;
+import com.iei.board.model.vo.BoardComment;
 import com.iei.board.model.vo.BoardPageData;
+import com.iei.board.model.vo.BoardViewData;
 
 import common.JDBCTemplate;
 
@@ -99,5 +101,21 @@ public class BoardService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public BoardViewData selectOneBoard(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateReadCount(conn, boardNo);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+			Board b = dao.selectOneBoard(conn, boardNo);
+			BoardViewData bvd = new BoardViewData(b);
+			JDBCTemplate.close(conn);
+			return bvd;
+		}else {
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return null;
+		}
 	}
 }
