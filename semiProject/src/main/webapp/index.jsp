@@ -22,22 +22,22 @@
 
 			<div class="autoplay">
 				<div>
-					<img src="slideimg/bg-1.jpg">
+					<img src="/slideimg/slideimg1.png">
 				</div>
 				<div>
-					<img src="slideimg/bg-2.jpg">
+					<img src="/slideimg/slideimg2.jpg">
 				</div>
 				<div>
-					<img src="slideimg/bg-3.jpg">
+					<img src="/slideimg/slideimg3.jpg">
 				</div>
 				<div>
-					<img src="slideimg/bg-1.jpg">
+					<img src="/slideimg/slideimg4.jpg">
 				</div>
 				<div>
-					<img src="slideimg/bg-2.jpg">
+					<img src="/slideimg/slideimg5.jfif">
 				</div>
 				<div>
-					<img src="slideimg/bg-3.jpg">
+					<img src="/slideimg/slideimg6.jpg">
 				</div>
 			</div>
 
@@ -220,12 +220,10 @@
 									</div>
 									<p class="inner-sub2">
 										<a href="#">각성하지 못했다는 이유로 괴롭힘을 받던 김진성.
-										자신도 모르게 휘두른 유리 조각에 일진을 죽이게 된다.ㅤ
-										ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-										▶ 악인을 처치하셨습니다.ㅤㅤㅤ
-										▶ 상대방의 특성을 획득했습니다.
-										▶ 상대방의 스킬을 획득했습니다.
-										ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+										자신도 모르게 휘두른 유리 조각에 일진을 죽이게 된다.ㅤㅤㅤㅤㅤ
+										▶ 악인을 처치하셨습니다.ㅤㅤㅤㅤㅤ
+										▶ 상대방의 특성을 획득했습니다.ㅤ
+										▶ 상대방의 스킬을 획득했습니다.ㅤ
 										‘내가 각성을 했다고…?’</a>
 									</p>
 								</div>
