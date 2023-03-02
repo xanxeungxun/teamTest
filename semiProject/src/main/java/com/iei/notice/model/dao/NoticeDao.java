@@ -34,7 +34,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Notice> list = new ArrayList<Notice>();
-		String query = "select * from(select rownum as rnum, n.* from(SELECT NOTICE_TITLE, REG_DATE, READ_COUNT FROM NOTICE ORDER BY 1 DESC)n) where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, n.* from(SELECT NOTICE_NO, NOTICE_TITLE, REG_DATE, READ_COUNT FROM NOTICE ORDER BY 1 DESC)n) where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -42,6 +42,7 @@ public class NoticeDao {
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Notice n = new Notice();
+				n.setNoticeNo(rset.getInt("notice_no"));
 				n.setNoticeTitle(rset.getString("notice_title"));
 				n.setRegDate(rset.getString("reg_date"));
 				n.setReadCount(rset.getInt("read_count"));
@@ -77,5 +78,73 @@ public class NoticeDao {
 		}
 		return totalCount;
 	}
+
+	public Notice selectOneNotice(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Notice n = null;
+		String query = "select * from notice where notice_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				n = new Notice();
+				n.setFilePath(rset.getString("filepath"));
+				n.setNoticeContent(rset.getString("notice_content"));
+				n.setNoticeNo(rset.getInt("notice_no"));
+				n.setNoticeTitle(rset.getString("notice_title"));
+				n.setNoticeWriter(rset.getString("notice_writer"));
+				n.setReadCount(rset.getInt("read_count"));
+				n.setRegDate(rset.getString("reg_date"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return n;
+	}
+
+	public int updateNotice(Connection conn, Notice n) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update notice set notice_title=?, notice_content=? where notice_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setInt(3, n.getNoticeNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteNotice(Connection conn, int noticeNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from notice where notice_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeNo);
+			result  = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	
 
 }

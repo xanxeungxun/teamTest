@@ -13,16 +13,16 @@ import com.iei.notice.model.service.NoticeService;
 import com.iei.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeViewServlet
+ * Servlet implementation class NoticeUpdateServlet
  */
-@WebServlet(name = "NoticeView", urlPatterns = { "/noticeView.do" })
-public class NoticeViewServlet extends HttpServlet {
+@WebServlet(name = "NoticeUpdate", urlPatterns = { "/noticeUpdate.do" })
+public class NoticeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeViewServlet() {
+    public NoticeUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,13 +34,20 @@ public class NoticeViewServlet extends HttpServlet {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
-		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-		//3. 비즈니스 로직
+		Notice n = new Notice();
+		n.setNoticeNo(Integer.parseInt(request.getParameter("noticeNo")));
+		n.setNoticeTitle(request.getParameter("noticeTitle"));
+		n.setNoticeContent(request.getParameter("noticeContent"));
+		//3.비즈니스 로직
 		NoticeService service = new NoticeService();
-		Notice n = service.selectOneNotice(noticeNo);
+		int result = service.updateNotice(n);
 		//4. 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/notice/noticeView.jsp");
-		request.setAttribute("n", n);
+		RequestDispatcher view = request.getRequestDispatcher("/noticeView.do?noticeNo="+n.getNoticeNo());
+		if(result>0) {
+			System.out.println("변경성공");
+		}else {
+			System.out.println("수정실패");
+		}
 		view.forward(request, response);
 	}
 

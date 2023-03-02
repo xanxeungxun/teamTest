@@ -83,4 +83,46 @@ public class NoticeService {
 		NoticePageData npd = new NoticePageData(list, pageNavi, start);
 		return npd;
 	}
+
+	public Notice selectOneNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Notice n = dao.selectOneNotice(conn, noticeNo);
+		JDBCTemplate.close(conn);
+		return n;
+	}
+
+	public Notice getNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Notice n = dao.selectOneNotice(conn, noticeNo);
+		JDBCTemplate.close(conn);
+		return n;
+	}
+
+	public int updateNotice(Notice n) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateNotice(conn, n);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public Notice deleteNotice(int noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Notice n = dao.selectOneNotice(conn, noticeNo);
+		int result = dao.deleteNotice(conn, noticeNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+			n = null;
+		}
+		JDBCTemplate.close(conn);
+		return n;
+	}
+
+
 }
