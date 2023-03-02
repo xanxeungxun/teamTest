@@ -33,7 +33,6 @@ public class BookService {
 		//페이징 제작
 		//필요한 전체 페이지수 구하기 <-- 일단 전체 작품 수 알아야함
 		int totalCount = dao.selectBookCount(conn); //전체 작품수
-		System.out.println("total : " + totalCount);
 		int totalPage = (int) Math.ceil((double)totalCount/numPerPage); //네비게이터 전체 페이지수
 		int naviSize = 5;
 		int naviStart = ( ((reqPage-1)/naviSize) * naviSize )+1;

@@ -98,10 +98,16 @@
                     	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
                     	 background-size: contain;
   						 background-position: center;
-  						 background-repeat: no-repeat">
+  						 background-repeat: no-repeat;
+  						 cursor : pointer;"
+  						 onclick="location.href='/bookView.do?bookNo=<%=b.getBookNo()%>';">
                     </div>
-                    <div class="book-one-etc">
-                        <div class="book-one-title"><a href="#"><%=b.getBookTitle() %></a></div>
+                    <div class="book-one-etc">	
+                        <div class="book-one-title">
+	                        <a href="/bookView.do?bookNo=<%=b.getBookNo()%>">
+	                        	<%=b.getBookTitle() %>
+	                        </a>
+                        </div>
                         <div class="book-one-subTitle">
                             <span class="genre"><a href="#"><%=b.getGenreName() %></a></span>
                             <span class="gray-bar">|</span>
@@ -109,17 +115,19 @@
                         </div>
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
-                        <%int total = b.getBookExp().length();
-                        	if(88 < total){
-                        		char[] arrayExp = b.getBookExp().toCharArray();
-                        		for(int j=0 ; j<89 ; j++){
-                        			result = result + arrayExp[j];		
-                         		}//for문
-                        %>
-                        	<%=result+" ...."%>
-                        <%}else{//공백포함 89글자가 안넘는다면%>
-                        	<%=b.getBookExp() %>
-                        <%} %>
+	                        <a href="/bookView.do?bookNo=<%=b.getBookNo()%>">
+		                        <%int total = b.getBookExp().length();
+		                        	if(88 < total){
+		                        		char[] arrayExp = b.getBookExp().toCharArray();
+		                        		for(int j=0 ; j<89 ; j++){
+		                        			result = result + arrayExp[j];		
+		                         		}//for문
+		                        %>
+		                        	<%=result+" ...."%>
+		                        <%}else{//공백포함 89글자가 안넘는다면%>
+		                        	<%=b.getBookExp() %>
+		                        <%} %>
+	                        </a>
                         </div>
                         <div class="book-one-exp">
                             <span class="material-symbols-outlined">
@@ -138,7 +146,7 @@
             
             </div><!--book-list-->
             
-			<div id="pageNavi">
+			<div id="pageNavi" style="margin-bottom: 50px;">
 			<%=naviCode %>
 			</div>
 			

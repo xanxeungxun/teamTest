@@ -67,7 +67,7 @@ a{
 .book-list{
     background-color: violet;
     width: 1140px;
-    margin: 0 auto;
+    margin: 0 auto 80px auto;
     overflow: hidden;
 }
 .book-one{
