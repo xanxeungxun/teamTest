@@ -26,7 +26,7 @@
 			<%for(int i=0;i<list.size();i++) {%>
 				<%Board b = list.get(i); %>
 				<tr class="board-tr">
-					<td class="board-td title-td"><span class="title-span"><%=b.getBoardTitle() %></span>
+					<td class="board-td title-td"><a href="/boardView.do?boardNo=<%=b.getBoardNo()%>"><span class="title-span"><%=b.getBoardTitle() %></span></a>
 						<div><span class="writer-span"><%=b.getBoardWriter() %></span> <%=b.getboardDate() %></div>
 					</td>
 					<td class="board-td read-td">

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.iei.board.model.vo.Board;
+import com.iei.board.model.vo.BoardComment;
 
 import common.JDBCTemplate;
 
@@ -83,4 +84,127 @@ public class BoardDao {
 		return result;
 	}
 
+	public int updateReadCount(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update board set read_count = read_count+1 where board_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public Board selectOneBoard(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board n = null;
+		String query = "select * from board where board_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				n = new Board();
+				n.setFileName(rset.getString("filename"));
+				n.setFilePath(rset.getString("filepath"));
+				n.setBoardContent(rset.getString("board_content"));
+				n.setBoardNo(rset.getInt("board_no"));
+				n.setBoardTitle(rset.getString("board_title"));
+				n.setBoardWriter(rset.getString("board_writer"));
+				n.setReadCount(rset.getInt("read_count"));
+				n.setboardDate(rset.getString("board_date"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return n;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	public ArrayList<BoardComment> selectBoardComment(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<BoardComment> list = new ArrayList<BoardComment>();
+		String query = "select * from board_comment where board_ref=? and board_comment_ref is null order by 1";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				BoardComment bc = new BoardComment();
+				bc.setBoardCommentContent(rset.getString("board_comment_content"));
+				bc.setBoardCommentDate(rset.getString("board_comment_date"));
+				bc.setBoardCommentNo(rset.getInt("board_comment_no"));
+				bc.setBoardCommentRef(rset.getInt("board_commnet_ref"));
+				bc.setBoardCommnetWriter(rset.getString("board_comment_writer"));
+				bc.setBoardRef(rset.getInt("board_ref"));
+				list.add(bc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<BoardComment> selectReCommentList(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<BoardComment> list = new ArrayList<BoardComment>();
+		String query = "select * from board_comment where board_ref=? and board_comment_ref is not null order by 1";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				BoardComment bc = new BoardComment();
+				bc.setBoardCommentContent(rset.getString("board_comment_content"));
+				bc.setBoardCommentDate(rset.getString("board_comment_date"));
+				bc.setBoardCommentNo(rset.getInt("board_comment_no"));
+				bc.setBoardCommentRef(rset.getInt("board_commnet_ref"));
+				bc.setBoardCommnetWriter(rset.getString("board_comment_writer"));
+				bc.setBoardRef(rset.getInt("board_ref"));
+				list.add(bc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+	}
+	*/
+	
 }
