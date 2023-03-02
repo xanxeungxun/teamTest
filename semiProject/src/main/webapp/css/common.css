@@ -235,21 +235,19 @@ div[class$="-menu"]>ul>li {
 }
 .content-box{
     overflow: hidden;
+    box-sizing: border-box;
 }
 .img-box{
     width: 500px;
+    padding-bottom : 50px;
     float: left;
 }
-.content-box > .img-box:first-child{
-    margin-right: 100px;
-}
-.content-box > .img-box:nth-child(3){
-    margin-right: 100px;
-}
+
 .img-box>a>img{
+    border-radius: 10px;
     float: left;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 300px;
 }
 .img-box>a{
     overflow: hidden;
@@ -264,10 +262,15 @@ div[class$="-menu"]>ul>li {
 .author{
     padding-right: 15px;
     font-weight: bold;
+    font-size : 13px;
     float: left;
 }
 .inner-sub1{
     color: gray;
+    font-size: 11px;
+}
+.inner-sub1 i{
+	font-size : 11px;
 }
 .inner-sub2{
     margin-top: 10px;
@@ -291,7 +294,7 @@ div[class$="-menu"]>ul>li {
     border: 1px solid gray;
     border-radius: 100px;
     padding: 15px;
-    margin-left: 445px;
+    margin-left: 380px;
 }
 .btm-link2{
     padding-top: 80px;
@@ -304,23 +307,23 @@ div[class$="-menu"]>ul>li {
     border: 1px solid gray;
     border-radius: 100px;
     padding: 15px;
-    margin-left: 505px;
+    margin-left: 440px;
 }
 /*---------------------------------icon*/
 .write-icon{
-    font-size: 40px;
+    font-size: 10px;
 }
 .read-count-icon{
     vertical-align: bottom;
-    font-size: 20px;
+    font-size: 10px;
 }
 .favorite-icon{
     vertical-align: bottom;
-    font-size: 18px;
+    font-size: 10px;
 }
 .comment{
     vertical-align: bottom;
-    font-size: 18px;
+    font-size: 10px;
 }
 .material-symbols-outlined{
     margin-left: 10px;
