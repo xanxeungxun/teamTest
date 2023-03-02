@@ -18,7 +18,7 @@
 
 
 >>>>>>> main
-<div class="header-wrap">
+	<div class="header-wrap">
         <div class="header-top">
             <div class="left-top-wrap">
                 <span class="logo-text" href="#">Every Universe</span>
@@ -41,5 +41,8 @@
                 </div>
             </div>
         </div>
-    </div>
+	</div>
     <div class="header-blocked"></div>
+    
+
+    
