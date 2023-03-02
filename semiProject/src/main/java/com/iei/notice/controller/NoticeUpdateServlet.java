@@ -42,12 +42,17 @@ public class NoticeUpdateServlet extends HttpServlet {
 		NoticeService service = new NoticeService();
 		int result = service.updateNotice(n);
 		//4. 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/noticeView.do?noticeNo="+n.getNoticeNo());
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result>0) {
-			System.out.println("변경성공");
+			request.setAttribute("title", "수정완료");
+			request.setAttribute("msg", "공지사항이 수정되었습니다.");
+			request.setAttribute("icon", "success");
 		}else {
-			System.out.println("수정실패");
+			request.setAttribute("title", "변경실패");
+			request.setAttribute("msg", "관리자에게 문의하세요.");
+			request.setAttribute("icon", "error");
 		}
+		request.setAttribute("loc", "/noticeView.do?noticeNo="+n.getNoticeNo());
 		view.forward(request, response);
 	}
 

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import com.iei.board.model.dao.BoardDao;
 import com.iei.board.model.vo.Board;
+import com.iei.board.model.vo.BoardComment;
 import com.iei.board.model.vo.BoardPageData;
+import com.iei.board.model.vo.BoardViewData;
 
 import common.JDBCTemplate;
 
@@ -92,6 +94,55 @@ public class BoardService {
 	public int insertBoard(Board b) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertBoard(conn, b);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public BoardViewData selectOneBoard(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateReadCount(conn, boardNo);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+			Board b = dao.selectOneBoard(conn, boardNo);
+			BoardViewData bvd = new BoardViewData(b);
+			JDBCTemplate.close(conn);
+			return bvd;
+		}else {
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return null;
+		}
+	}
+
+	public Board deleteBoard(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Board b = dao.selectOneBoard(conn, boardNo);
+		int result = dao.deleteBoard(conn, boardNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+			b = null;
+		}
+		JDBCTemplate.close(conn);
+		return b;
+	}
+
+	public Board getBoard(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Board b = dao.selectOneBoard(conn, boardNo);
+		JDBCTemplate.close(conn);
+		return b;
+	}
+
+	public int updateBoard(Board b) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateBoard(conn, b);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		}else {
