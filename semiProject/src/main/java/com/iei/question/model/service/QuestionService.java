@@ -52,7 +52,7 @@ public class QuestionService {
 				pageNavi += "</a></li>";
 			}else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/question//questionList.do?reqPage="+(pageNo)+"'>";
+				pageNavi += "<a class='page-item' href='/question/questionList.do?reqPage="+(pageNo)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a></li>";
 			}
