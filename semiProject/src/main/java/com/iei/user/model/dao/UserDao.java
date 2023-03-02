@@ -80,4 +80,32 @@ public class UserDao {
 		
 		return searchId;
 	}
+
+	public int insertUser(Connection conn, User u) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = "insert into user_tbl values(user_tbl_seq.nextval, ?, ?, ?, ?, ?, 2, null, 0, to_char(sysdate,'yyyy-mm-dd'), ?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, u.getUserId());
+			pstmt.setString(2, u.getUserPw());
+			pstmt.setString(3, u.getUserName());
+			pstmt.setString(4, u.getUserNick());
+			pstmt.setString(5, u.getUserPhone());
+			pstmt.setString(6, u.getUserEmail());
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 }

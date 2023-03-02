@@ -1,29 +1,27 @@
-package com.iei.book.controller;
+package com.iei.user.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.book.model.service.BookService;
-import com.iei.book.model.vo.Book;
+import com.iei.user.model.service.UserService;
+import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class BookListServlet
+ * Servlet implementation class JoinServlet
  */
-@WebServlet(name = "BookList", urlPatterns = { "/bookList.do" })
-public class BookListServlet extends HttpServlet {
+@WebServlet(name = "Join", urlPatterns = { "/join.do" })
+public class JoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookListServlet() {
+    public JoinServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +30,29 @@ public class BookListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.인코딩
+		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
-		//2.값추출
 		
-		//3.비즈니스로직
-		BookService service = new BookService();
-		ArrayList<Book> bookList = service.selectAllBook();
+		//2. 값 추출
+		User u = new User();
+		u.setUserId(request.getParameter("userId"));
+		u.setUserName(request.getParameter("userName"));
+		u.setUserNick(request.getParameter("userNick"));
+		u.setUserPhone(request.getParameter("userPhone"));
+		u.setUserPw(request.getParameter("userPw"));
+		u.setUserEmail(request.getParameter("userEmail"));
 		
-		//4결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/bookList.jsp");
-		request.setAttribute("bookList", bookList);
-		view.forward(request, response);
+		//3. 비즈니스 로직
+		UserService service = new UserService();
+		int result = service.inserUser(u);
+		
+		//4. 결과 처리
+		if(result>0) {
+			System.out.println("회원가입 성공");
+		} else {
+			System.out.println("회원가입 실패");
+		}
+	
 	}
 
 	/**
