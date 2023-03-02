@@ -30,7 +30,8 @@
 			text : msg,
 			icon : icon
 		}).then(function(){
-			location.href = loc;
+			
+		location.href = loc;
 		});
 	</script>
 </body>
