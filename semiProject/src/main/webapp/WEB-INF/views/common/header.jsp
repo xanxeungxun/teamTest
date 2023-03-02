@@ -9,12 +9,22 @@
 <link rel="stylesheet" href="/css/common.css">
     
 <link rel="stylesheet" href="/css/common.css"><!-- 공용 css -->
+<<<<<<< HEAD
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><!-- 구글 아이콘 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <script src="/js/jquery-3.6.0.js"></script><!-- jquery -->
 
 
 <div class="header-wrap">
+=======
+<link rel="stylesheet" href="/css/default.css" />
+<script src="/js/default.js"></script>
+<script src="/js/jquery-3.6.0.js"></script><!-- jquery -->
+
+
+>>>>>>> main
+	<div class="header-wrap">
+>>>>>>> ea_br
         <div class="header-top">
             <div class="left-top-wrap">
                 <span class="logo-text" href="#">Every Universe</span>
@@ -37,6 +47,14 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
     <div class="header-blocked"></div>
     
+=======
+	</div>
+    <div class="header-blocked"></div>
+    
+
+    
+>>>>>>> ea_br
