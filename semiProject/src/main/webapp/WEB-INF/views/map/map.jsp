@@ -14,7 +14,7 @@
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 		<div class="page-content">
 			<div class="header-wrap">
-				<div class="notice-header">
+				<div class="map-header">
 					<span>회사소개</span>
 				</div>
 		<div class="map" style="width:100%; height:500px;"></div>
