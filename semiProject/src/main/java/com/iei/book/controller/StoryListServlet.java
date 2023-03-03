@@ -43,7 +43,7 @@ public class StoryListServlet extends HttpServlet {
 		
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/storyList.jsp");
-		request.setAttribute("bookNo", bookNo); //<--테스트용이라 나중에지우든가하셈!!!!!!!
+		request.setAttribute("b", b);
 		view.forward(request, response);
 	}
 

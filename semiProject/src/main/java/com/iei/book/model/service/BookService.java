@@ -81,6 +81,7 @@ public class BookService {
 		Connection conn = JDBCTemplate.getConnection();
 		Book b = dao.selectOneBook(conn,bookNo);
 		
+		JDBCTemplate.close(conn);
 		return b;
 	}
 	
