@@ -39,6 +39,7 @@ public class UserDao {
 				user.setUserPic(rset.getString("user_pic"));
 				user.setUserPoint(rset.getInt("user_point"));
 				user.setUserPw(rset.getString("user_pw"));
+				user.setUserEmail(rset.getString("user_email"));
 			}
 		
 		} catch (SQLException e) {
@@ -107,5 +108,45 @@ public class UserDao {
 		}
 		
 		return result;
+	}
+
+	public User selectOneUser(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		User u = null;
+		
+		String query = "select * from user_tbl where user_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				u = new User();
+				
+				u.setUserEnroll(rset.getString("user_enroll"));
+				u.setUserId(rset.getString("user_id"));
+				u.setUserLevel(rset.getInt("user_level"));
+				u.setUserName(rset.getString("user_name"));
+				u.setUserNick(rset.getString("user_nick"));
+				u.setUserNo(rset.getInt("user_no"));
+				u.setUserPhone(rset.getString("user_phone"));
+				u.setUserPic(rset.getString("user_pic"));
+				u.setUserPoint(rset.getInt("user_point"));
+				u.setUserPw(rset.getString("user_pw"));
+				u.setUserEmail(rset.getString("user_email"));
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return u;
 	}
 }
