@@ -149,4 +149,37 @@ public class UserDao {
 		
 		return u;
 	}
+
+	public int updateUser(Connection conn, User u) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		
+		return 0;
+	}
+
+	public int deleteUser(Connection conn, String userId, String checkPw) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = "update user_tbl set user_level=4 where user_id=? and user_pw=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, checkPw);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 }

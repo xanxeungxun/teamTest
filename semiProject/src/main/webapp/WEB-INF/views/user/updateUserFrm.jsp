@@ -90,19 +90,19 @@
 	                </div> 
 	                <div>
 	                    <label for="userNick" class="bold user-bold">닉네임</label>
-	                    <input type="text" name="userNick" id="userNick" class="input-form">
+	                    <input type="text" name="userNick" id="userNick" class="input-form" value="<%=loginUser.getUserNick()%>">
 	                </div>
 	                <div>
 	                    <label for="userId" class="bold user-bold">아이디</label>
-	                    <input type="text" name="userId" id="userId" class="input-form">
+	                    <input type="text" name="userId" id="userId" class="input-form" value="<%=loginUser.getUserId()%>" readonly>
 	                </div>
 	                <div>
 	                    <label for="userPhone" class="bold user-bold">전화번호</label>
-	                    <input type="text" name="userPhone" id="userPhone" class="input-form">
+	                    <input type="text" name="userPhone" id="userPhone" class="input-form" value="<%=loginUser.getUserPhone()%>">
 	                </div>
 	                <div>
 	                    <label for="userEmail" class="user-bold">이메일</label>
-	                    <input type="text" name="userEmail" id="userEmail" class="input-form">
+	                    <input type="text" name="userEmail" id="userEmail" class="input-form" value="<%=loginUser.getUserEmail()%>">
 	                </div>
 	                <div>
 	                    <label for="userPw" class="bold user-bold">비밀번호</label>
@@ -112,9 +112,9 @@
 	                    <div class="pw-change-notice">
 	                        <div class="bold">비밀번호 변경 시 유의사항</div>
 	                        <ul>
-	                            <li>8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력해주세요.</li>
-	                            <li>연속된 3자 이상의 같은 문자는 제한합니다.</li>
-	                            <li>ID와 같은 비밀번호는 사용할 수 없습니다.</li>
+	                            <li>· 8자 이상, 영문/숫자/특수문자 중 2가지 이상 입력해주세요.</li>
+	                            <li>· 연속된 3자 이상의 같은 문자는 제한합니다.</li>
+	                            <li>· ID와 같은 비밀번호는 사용할 수 없습니다.</li>
 	                        </ul>
 	                    </div>
 	                </div>

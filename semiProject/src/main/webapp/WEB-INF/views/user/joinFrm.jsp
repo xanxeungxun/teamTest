@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/loginJoin.css">
 <link rel="stylesheet" href="/css/joinFrm.css">
-<link rel="stylesheet" href="/css/default.css">
 </head>
 <body>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="page-content">
 		<div class="loginJoin-wrap join-wrap">
 			<div class="loginJoin-title page-title">회원가입</div>
@@ -60,5 +60,6 @@
 	        </form>
 		</div>
 	</div>
+	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
