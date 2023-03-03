@@ -57,4 +57,15 @@ public class UserService {
 		return result;
 	}
 
+
+	public User selectOneUser(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		User u = dao.selectOneUser(conn, userId);
+		
+		JDBCTemplate.close(conn);
+		
+		return u;
+	}
+
 }

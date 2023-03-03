@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+	User user = (User)request.getAttribute("u");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,8 +102,8 @@
 				<div class="material-icons">account_circle</div>
 				<div class="mypage-info">
 					<div class="user-info">
-						<div class="nick">(닉네임나오는곳)</div>
-						<div class="email">(이메일나오는곳)</div>
+						<div class="nick"><%=user.getUserNick() %></div>
+						<div class="email"><%=user.getUserEmail() %></div>
 					</div>
 					<div class="line"></div>
 					<div class="link">
@@ -118,7 +121,7 @@
 			</div>
 			<div>
 				<div class="myPoint bc4">
-					나의 포인트 : <span class="myPoint-num">0</span> P</a>
+					나의 포인트 : <span class="myPoint-num"><%=user.getUserPoint() %></span> P</a>
 				</div>
 			</div>
 		</div>
