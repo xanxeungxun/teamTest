@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.iei.board.model.service.BoardService;
-import com.iei.board.model.vo.BoardViewData;
+import com.iei.board.model.vo.BoardPageData;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class BoardListViewsServlet
  */
-@WebServlet(name = "BoardView", urlPatterns = { "/boardView.do" })
-public class BoardViewServlet extends HttpServlet {
+@WebServlet(name = "BoardListViews", urlPatterns = { "/boardListViews.do" })
+public class BoardListViewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public BoardListViewsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +31,19 @@ public class BoardViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		
+		//2. 값추출
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		//3. 비즈니스 로직
 		BoardService service = new BoardService();
-		BoardViewData bvd = service.selectOneBoard(boardNo);
-		
-		if(bvd == null) {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			request.setAttribute("title", "조회 실패");
-			request.setAttribute("msg", "게시글이 존재하지 않습니다.");
-			request.setAttribute("icon", "info");
-			request.setAttribute("loc", "/boardList.do?regPage=1");
-			view.forward(request, response);
-		}else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/boardView.jsp");
-			request.setAttribute("b", bvd.getB());
-			request.setAttribute("commentList", bvd.getCommentList());
-			request.setAttribute("reCommentList", bvd.getReCommentList());
-			view.forward(request, response);
-		}
+		BoardPageData bpd = service.selectBoardViewsList(reqPage);
+		//4. 결과처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/boardList.jsp");
+		request.setAttribute("list", bpd.getList());
+		request.setAttribute("pageNavi", bpd.getPageNavi());
+		request.setAttribute("start", bpd.getStart());
+		view.forward(request, response);
 	}
 
 	/**

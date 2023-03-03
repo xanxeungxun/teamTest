@@ -10,19 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.iei.board.model.service.BoardService;
-import com.iei.board.model.vo.BoardViewData;
+import com.iei.board.model.vo.BoardComment;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class UpdateBoardCommentServlet
  */
-@WebServlet(name = "BoardView", urlPatterns = { "/boardView.do" })
-public class BoardViewServlet extends HttpServlet {
+@WebServlet(name = "UpdateBoardComment", urlPatterns = { "/updateBoardComment.do" })
+public class UpdateBoardCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public UpdateBoardCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +32,25 @@ public class BoardViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		BoardComment bc = new BoardComment();
+		bc.setBoardCommentContent(request.getParameter("boardCommentContent"));
+		bc.setBoardCommentNo(Integer.parseInt(request.getParameter("boardCommentNo")));
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		
 		BoardService service = new BoardService();
-		BoardViewData bvd = service.selectOneBoard(boardNo);
+		int result = service.updateBoardComment(bc);
 		
-		if(bvd == null) {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			request.setAttribute("title", "조회 실패");
-			request.setAttribute("msg", "게시글이 존재하지 않습니다.");
-			request.setAttribute("icon", "info");
-			request.setAttribute("loc", "/boardList.do?regPage=1");
-			view.forward(request, response);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		if(result>0) {
+			request.setAttribute("title", "성공");
+			request.setAttribute("msg", "댓글이 수정되었습니다.");
+			request.setAttribute("icon", "success");
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/boardView.jsp");
-			request.setAttribute("b", bvd.getB());
-			request.setAttribute("commentList", bvd.getCommentList());
-			request.setAttribute("reCommentList", bvd.getReCommentList());
-			view.forward(request, response);
+			request.setAttribute("title", "실패");
+			request.setAttribute("msg", "댓글 수정 실패.");
+			request.setAttribute("icon", "error");
 		}
+		request.setAttribute("loc", "/boardView.do?boardNo="+boardNo);
+		view.forward(request, response);
 	}
 
 	/**

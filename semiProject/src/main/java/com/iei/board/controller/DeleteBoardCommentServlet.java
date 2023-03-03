@@ -10,19 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.iei.board.model.service.BoardService;
-import com.iei.board.model.vo.BoardViewData;
 
 /**
- * Servlet implementation class BoardViewServlet
+ * Servlet implementation class DeleteBoardCommentServlet
  */
-@WebServlet(name = "BoardView", urlPatterns = { "/boardView.do" })
-public class BoardViewServlet extends HttpServlet {
+@WebServlet(name = "DeleteBoardComment", urlPatterns = { "/deleteBoardComment.do" })
+public class DeleteBoardCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardViewServlet() {
+    public DeleteBoardCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,25 +31,22 @@ public class BoardViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		int boardCommentNo = Integer.parseInt(request.getParameter("boardCommentNo"));
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		
 		BoardService service = new BoardService();
-		BoardViewData bvd = service.selectOneBoard(boardNo);
-		
-		if(bvd == null) {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-			request.setAttribute("title", "조회 실패");
-			request.setAttribute("msg", "게시글이 존재하지 않습니다.");
-			request.setAttribute("icon", "info");
-			request.setAttribute("loc", "/boardList.do?regPage=1");
-			view.forward(request, response);
+		int result = service.deleteBoardComment(boardCommentNo);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		if(result>0) {
+			request.setAttribute("title", "성공");
+			request.setAttribute("msg", "댓글이 삭제되었습니다");
+			request.setAttribute("icon", "success");
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/boardView.jsp");
-			request.setAttribute("b", bvd.getB());
-			request.setAttribute("commentList", bvd.getCommentList());
-			request.setAttribute("reCommentList", bvd.getReCommentList());
-			view.forward(request, response);
+			request.setAttribute("title", "실패");
+			request.setAttribute("msg", "댓글 삭제 실패");
+			request.setAttribute("icon", "error");
 		}
+		request.setAttribute("loc", "/boardView.do?boardNo="+boardNo);
+		view.forward(request, response);
 	}
 
 	/**

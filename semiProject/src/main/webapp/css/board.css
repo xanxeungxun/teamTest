@@ -44,6 +44,7 @@
 	 background-color: rgba(37, 42, 52, 0.9);
     color: #fff;
     border: 2px solid rgba(37, 42, 52, 0.9);
+    cursor: pointer;
 }
 #boardWrite-tbl{
 	border: 1px solid #ccc;
@@ -112,9 +113,22 @@
 	width: 10%;
 	border-left: none;
 }
+.file-td{
+	width: 10%;
+	height: 30px;
+}
+.file2-td{
+	width: 90%;
+	height: 30px;
+}
 .writer-span{
 	color: #f85f73;
 }
-.title-span{
-	font-size: 23px;
+
+.date-span{
+	font-size: 12px;
+	color: #a8a8a8;
+}
+.comment-margin{
+	margin-top: 50px;
 }
