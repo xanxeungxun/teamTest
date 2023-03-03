@@ -8,6 +8,7 @@
 </head>
 <link rel="stylesheet" href="/css/loginJoin.css">
 <link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/default.css">
     <style>
         .page-content>*{
             margin: 0 auto;
@@ -19,9 +20,6 @@
         }
         form{
             width: 340px;
-        }
-        .loginJoin-title{
-            padding: 0;
         }
 
         /*아이디/비번 찾기 박스*/
@@ -45,7 +43,6 @@
     </style>
 </head>
 <body>
-	<%@include file="/WEB-INF/views/common/header.jsp" %>
     <div class="loginJoin-wrap page-content">
         <div class="loginJoin-title page-title">로그인</div>
         <form action="login.do" method="post">

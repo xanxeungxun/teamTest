@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/loginJoin.css">
+<link rel="stylesheet" href="/css/default.css">
 <style>
 	.searchIdPw-wrap>form{
 		margin: 0 auto;
@@ -18,7 +19,6 @@
 	}
 </style>
 <body>
-	<%@include file="/WEB-INF/views/common/header.jsp" %>
     <div class="searchIdPw-wrap loginJoin-wrap page-content">
         <div class="loginJoin-title page-title">비밀번호 재설정</div>
         <div class="pw-email-msg">새 비밀번호를 설정할 수 있도록 이메일로 메세지가 전송됩니다.</div>
