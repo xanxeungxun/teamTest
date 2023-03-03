@@ -253,11 +253,21 @@ div[class$="-menu"]>ul>li {
 }
 .bottom-menu>ul>a{
 	color : #ccc;
+	font-size: 13px;
 }
 .bottom-menu>ul>:first-child{
-    margin-left: 65px;
+    margin-left: 30px;
 }
 
+.co-info{
+	font-weight: bold;
+}
+.copyright{
+	pointer-events: none;
+}
+.bottom-menu>ul>a:last-child{
+	font-size: 12px;
+}
 .bottom-menu>ul>a:hover {
     color: blue;
     font-weight: 1000;

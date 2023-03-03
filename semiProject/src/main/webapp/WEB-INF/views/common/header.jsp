@@ -33,7 +33,7 @@
 
 		<div class="header-top">
 			<div class="left-top-wrap">
-				<a href="#" class="logo-text" href="#"><h4>Every Universe</h4></a>
+				<a href="/" class="logo-text"><h4>Every Universe</h4></a>
                 
                 <div class="please">
 	                <form>
@@ -64,7 +64,7 @@
 							<li class="top-menu-button"><a href="/noticeList.do?reqPage=1">공지사항</a></li>
 							<li class="top-menu-button"><a href="/boardList.do?reqPage=1">자유게시판</a></li>
 							<li class="top-menu-button"><a href="/bookList.do?reqPage=1">소설게시판</a></li>
-							<li class="top-menu-button"><a href="/question/questionList.do?reqPage=1"">문의게시판</a></li>
+							<li class="top-menu-button"><a href="/question/questionList.do?reqPage=1">문의게시판</a></li>
 						</ul>
 					</div>
 				</div>

@@ -38,10 +38,10 @@ public class BookService {
 		int naviStart = ( ((reqPage-1)/naviSize) * naviSize )+1;
 		//↑내가 5번페이지가 보고싶으면, navi시작번호는 1번임, 6페이지부터 5임
 		// 그래서 (0 * 5)+1 = 1나와야함  
-		String naviCode = "<ul class='pagination'>";
+		String naviCode = "<ul class='pagination circle-style'>";
 		if(naviStart != 1) {//네비시작숫자가 1이상(5,11,16...)생겨야함
 			naviCode += "<li>";
-			naviCode += "<a class='' href='/bookList.do?reqPage="+(naviStart-1)+"'>";
+			naviCode += "<a class='page-item' href='/bookList.do?reqPage="+(naviStart-1)+"'>";
 			naviCode += "<span class='material-icons'>chevron_left";
 			naviCode += "</span></a></li>";
 		}
@@ -64,7 +64,7 @@ public class BookService {
 		}//숫자넣기for문
 		if(naviStart <= totalPage) {
 			naviCode += "<li>";
-			naviCode += "<a class='' href='/bookList.do?reqPage="+(naviStart)+"'>";
+			naviCode += "<a class='page-item' href='/bookList.do?reqPage="+(naviStart)+"'>";
 			naviCode += "<span class='material-icons'>chevron_right";
 			naviCode += "</span></a></li>";
 		}
@@ -75,6 +75,14 @@ public class BookService {
 		
 		BookListData bld = new BookListData(bookList, naviCode, start);
 		return bld;
+	}
+
+	public Book selectOneBook(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Book b = dao.selectOneBook(conn,bookNo);
+		
+		JDBCTemplate.close(conn);
+		return b;
 	}
 	
 	
