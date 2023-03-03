@@ -3,8 +3,11 @@
     border-bottom: 2px solid lightgray;
     padding: 10px;
 }
-.mypage-title{
-    font-size: 24px;
+.mypage-content>.mypage-title{
+    font-size: 22px;
+}
+.mypage-detail{
+	width:900px;
 }
 .detail-title{
     font-family: ns-bold;
