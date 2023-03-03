@@ -32,43 +32,7 @@
 	}
 	
 	
-	.inputCommentBox{
-		margin: 50px;
-	}
-	.inputCommentBox>form>ul{
-		list-style-type: none;
-		display: flex;
-	}
-	.inputCommentBox>form>ul>li:first-child{
-		width: 15%;.
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.inputCommentBox>form>ul>li:first-child>span{
-		font-size: 80px;
-		color: #ccc;
-	}
-	.inputCommentBox>form>ul>li:nth-child(2){
-		width: 75%;
-	}
-	.inputCommentBox>form>ul>li:nth-child(2)>textarea{
-		height: 96px;
-		min-height: 96px;
-	}
-	.inputCommentBox>form>ul>li:last-child{
-		width: 10%;
-	}
-	.commentBox{
-		margin: 50px;
-	}
-	.inputRecommentBox{
-		margin: 30px 0px;
-		display: none;
-	}
-	.inputCommentBox{
-		margin: 70px;
-	}
+	
 </style>
 </head>
 <body>
@@ -103,10 +67,10 @@
 						<td class="board-td" colspan="2">
 							<div><%=b.getBoardContent() %></div>
 						</td>					
+						<a class="news-btn btn1" id="list-btn" href="/boardList.do?reqPage=1">목록보기</a>
 					</tr>
 				</table>
 				
-				<a class="news-btn btn1" id="list-btn" href="/boardList.do?reqPage=1">목록보기</a>
 				
 				
 				
