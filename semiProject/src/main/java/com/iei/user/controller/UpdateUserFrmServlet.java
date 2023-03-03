@@ -13,16 +13,16 @@ import com.iei.user.model.service.UserService;
 import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class MyPageMainServlet
+ * Servlet implementation class UpdateUserServlet
  */
-@WebServlet(name = "MyPageMain", urlPatterns = { "/myPageMain.do" })
-public class MyPageMainServlet extends HttpServlet {
+@WebServlet(name = "UpdateUserFrm", urlPatterns = { "/updateUserFrm.do" })
+public class UpdateUserFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageMainServlet() {
+    public UpdateUserFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +35,11 @@ public class MyPageMainServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//2. 값 추출
-		String userId = request.getParameter("userId");
 		
 		//3. 비즈니스 로직
-		UserService service = new UserService();
-		User u = service.selectOneUser(userId);
 		
-		//4. 페이지 이동
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageMain.jsp");
-		request.setAttribute("u", u);
+		//4. 화면 처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateUserFrm.jsp");
 		view.forward(request, response);
 	}
 
