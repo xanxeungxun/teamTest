@@ -479,7 +479,7 @@ box-shadow: 0 0 0 0.1rem #eee;
 
 textarea.input-form {
 resize: none;
-min-height: 300px;
+min-height: 100px;
 }
 .input-form:read-only:not(select),
 .input-form:disabled {

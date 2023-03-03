@@ -267,6 +267,53 @@ public class BoardDao {
 		return list;
 	}
 
+	public int deleteBoardComment(Connection conn, int boardCommentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from board_comment where board_comment_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Board> selectBoardViewsList(Connection conn, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = new ArrayList<Board>();
+		String query = "select * from(select rownum as rnum, n.* from(SELECT BOARD_NO, BOARD_TITLE, BOARD_WRITER, READ_COUNT, board_Date FROM BOARD ORDER BY 4 desc)n) where rnum between ? and ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Board b = new Board();
+				b.setBoardNo(rset.getInt("board_no"));
+				b.setBoardTitle(rset.getString("board_title"));
+				b.setBoardWriter(rset.getString("board_writer"));
+				b.setReadCount(rset.getInt("read_count"));
+				b.setboardDate(rset.getString("board_date"));
+				list.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+	}
+
 	
 
 	
