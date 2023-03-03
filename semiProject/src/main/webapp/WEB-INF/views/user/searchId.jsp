@@ -19,13 +19,16 @@
 		width: 100%;
 		text-align: center;
 	}
+	.searchId{
+		color: #e98ead;
+	}
 </style>
 <body>
 	<div class="page-content searchId-wrap">
 		<%if(searchId == null) { %>
 			<div>회원정보가 없습니다.</div>
 		<%} else {%>
-			<div>회원님의 아이디는 <span><%=searchId %></span>입니다.</div>
+			<div>회원님의 아이디는 <span class="searchId"><%=searchId %></span>입니다.</div>
 			<a href="/loginFrm.do" class="btn bc6 login-btn">로그인</a>
 		<%} %>
 	</div>
