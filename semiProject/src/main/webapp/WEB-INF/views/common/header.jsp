@@ -28,7 +28,7 @@
             <div class="left-top-wrap">
                 <span class="logo-text" href="#">Every Universe</span>
                 <input id="integrated-search" class="search-bar" type="search" name="keyword" value=""
-                    placeholder="포스트, 시리즈, 채널 검색" maxlength="50"><a href="#">로그인</a> | <a href="#">회원가입</a>
+                    placeholder="포스트, 시리즈, 채널 검색" maxlength="50"><a href="/loginFrm.do">로그인</a> | <a href="/joinFrm.do">회원가입</a>
             </div>
             <div class="header-bottom">
                 <div class="menu-wrap">
