@@ -10,6 +10,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/notice.css">
+<style>
+	.date-span{
+		font-size: 12px;
+		color: #a8a8a8;
+	}
+	.notice-td{
+		height: 80px;
+		margin-bottom: 20px;
+	}
+	.title-span{
+		font-size: 17px;
+	}
+	
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
@@ -24,7 +38,7 @@
 				<tr class="notice-tr">
 					<td class="notice-td">
 						<span class="title-span"><%=n.getNoticeTitle() %></span>
-						<div><%=n.getRegDate() %></div>
+						<div><span class="date-span"><%=n.getRegDate() %></span></div>
 					</td>
 				</tr>
 				<tr class="notice-tr">
@@ -33,10 +47,7 @@
 					</td>					
 				</tr>
 			</table>
-			<div>
-				<a href="/noticeUpdateFrm.do?noticeNo=<%=n.getNoticeNo() %>">수정</a>
-				<button onclick="noticeDelete(<%=n.getNoticeNo()%>);">삭제</button>
-			</div>
+			
 		</div>
 	</div>
 	

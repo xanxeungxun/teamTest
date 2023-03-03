@@ -13,6 +13,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/notice.css">
+<style>
+	#pageNavi{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.date-span{
+		font-size: 12px;
+		color: #a8a8a8;
+	}
+	.notice-td{
+		height: 80px;
+		margin-bottom: 20px;
+	}
+	.title-span{
+		font-size: 17px;
+	}
+</style>
 </head>
 <body>
 

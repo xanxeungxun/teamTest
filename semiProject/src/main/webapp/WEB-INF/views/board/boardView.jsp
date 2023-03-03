@@ -14,7 +14,59 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/board.css">
+<style>
+	.inputRecommentBox{
+		margin: 30px 0px;
+		display: none;
+	}
+	.board-td{
+		height: 80px;
+	}
+	.file-td{
+	width: 10%;
+	height: 30px;
+	}
+	.file2-td{
+		width: 90%;
+		height: 30px;
+	}
 	
+	
+	.inputCommentBox{
+		margin: 50px;
+	}
+	.inputCommentBox>form>ul{
+		list-style-type: none;
+		display: flex;
+	}
+	.inputCommentBox>form>ul>li:first-child{
+		width: 15%;.
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.inputCommentBox>form>ul>li:first-child>span{
+		font-size: 80px;
+		color: #ccc;
+	}
+	.inputCommentBox>form>ul>li:nth-child(2){
+		width: 75%;
+	}
+	.inputCommentBox>form>ul>li:nth-child(2)>textarea{
+		height: 96px;
+		min-height: 96px;
+	}
+	.inputCommentBox>form>ul>li:last-child{
+		width: 10%;
+	}
+	.commentBox{
+		margin: 50px;
+	}
+	.inputRecommentBox{
+		margin: 30px 0px;
+		display: none;
+	}
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
@@ -50,6 +102,30 @@
 						</td>					
 					</tr>
 				</table>
+				
+				
+				
+				
+				
+				<%--로그인 되어있는 경우에만 댓글 작성 화면을 띄움--%>
+				<div class="inputCommentBox">
+					<form action="/insertBoardComment.do" method="post">
+						<ul>
+							<li>
+								<span class="material-icons">account_box</span>
+							</li>
+							<li>
+								<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>">
+								<input type="hidden" name="boardCommentRef" value="0">
+								<textarea name="boardCommentContent" class="input-form"></textarea>
+							</li>
+							<li>
+								<button type="submit" class="btn bc1 bs4">등록</button>
+							</li>
+						</ul>
+					</form>
+				</div>
+				
 				
 				<div>
 				<%for(BoardComment bc : commentList) {%>
@@ -126,24 +202,7 @@
 				
 			
 			
-			<%--로그인 되어있는 경우에만 댓글 작성 화면을 띄움--%>
-				<div class="inputCommentBox">
-					<form action="/insertBoardComment.do" method="post">
-						<ul>
-							<li>
-								<span class="material-icons">account_box</span>
-							</li>
-							<li>
-								<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>">
-								<input type="hidden" name="boardCommentRef" value="0">
-								<textarea name="boardCommentContent" class="input-form"></textarea>
-							</li>
-							<li>
-								<button type="submit" class="btn bc1 bs4">등록</button>
-							</li>
-						</ul>
-					</form>
-				</div>
+			
 				
       			
       			
