@@ -44,7 +44,9 @@
 				<span>자유게시판</span>
 				<a href="/boardList.do?reqPage=1" class="new-view">최신순</a>
 				<a href="/boardListViews.do?reqPage=1" class="best-view">조회순</a>
+				<%if(loginUser != null) {%>
 				<a href="/boardWriteFrm.do" class="news-btn btn1">자유게시판 작성</a>
+				<%} %>
 			</div>
 			<table class="board-tbl">
 			<%for(int i=0;i<list.size();i++) {%>
