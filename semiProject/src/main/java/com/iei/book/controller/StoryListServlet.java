@@ -40,7 +40,6 @@ public class StoryListServlet extends HttpServlet {
 		//3비즈니스로직
 		BookService service = new BookService();
 		Book b = service.selectOneBook(bookNo);
-		
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/storyList.jsp");
 		request.setAttribute("b", b);
