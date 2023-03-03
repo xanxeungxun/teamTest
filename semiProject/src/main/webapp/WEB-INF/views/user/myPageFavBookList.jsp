@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/mypageDefault.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
 </head>
 <style>
@@ -57,7 +57,9 @@
     }
 </style>
 <body>
-    <div class="page-content">
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
+    <div class="page-content mypage-content">
+    	<%@include file="/WEB-INF/views/common/myPageMenu.jsp" %>
         <div class="mypage-detail">
             <div class="page-title">관심작품 목록</div>
             <div class="content-wrap">
@@ -188,5 +190,6 @@
             </div>
         </div>
     </div>
+    <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>

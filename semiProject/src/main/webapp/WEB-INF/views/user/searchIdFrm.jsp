@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/loginJoin.css">
 <link rel="stylesheet" href="/css/searchIdPwFrm.css">
+<link rel="stylesheet" href="/css/default.css">
 </head>
 <style>
 	.searchIdPw-wrap>form{
@@ -20,7 +21,6 @@
 	}
 </style>
 <body>
-	<%@include file="/WEB-INF/views/common/header.jsp" %>
     <div class="searchIdPw-wrap loginJoin-wrap page-content">
         <div class="loginJoin-title page-title">아이디 찾기</div>
         <div class="id-msg">아이디는 가입시 입력한 이메일을 통해 찾을 수 있습니다.</div>

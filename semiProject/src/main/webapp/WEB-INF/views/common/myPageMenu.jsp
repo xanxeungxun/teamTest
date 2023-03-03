@@ -43,7 +43,7 @@ ul {
 	color: #423c4d;
 }
 
-a:not(.page-title) {
+.mypage-link:not(.page-title) {
 	font-size: 14px;
 	font-family: ns-m;
 	color: #6f6b7a;
@@ -58,7 +58,7 @@ a:not(.page-title) {
 				<div class="bold">나의 작품</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/uploadBookCheck.do?reqPage=1">투고한 작품 확인</a></li>
+				<li><a href="/uploadBookList.do" class="mypage-link">투고한 작품 확인</a></li>
 			</ul>
 		</li>
 		<li>
@@ -67,8 +67,8 @@ a:not(.page-title) {
 				<div class="bold">나의 책갈피</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="#">관심작품 목록</a></li>
-				<li><a href="#">후원작품 목록</a></li>
+				<li><a href="/myPageFavBookList.do" class="mypage-link">관심작품 목록</a></li>
+				<li><a href="/myPageSupBookList.do" class="mypage-link">후원작품 목록</a></li>
 			</ul>
 		</li>
 		<li>
@@ -77,8 +77,8 @@ a:not(.page-title) {
 				<div class="bold">개인</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/updateUserFrm.do">회원정보 변경</a></li>
-				<li><a href="/deleteUserFrm.do">회원 탈퇴</a></li>
+				<li><a href="/updateUserFrm.do" class="mypage-link">회원정보 변경</a></li>
+				<li><a href="/deleteUserFrm.do" class="mypage-link">회원 탈퇴</a></li>
 			</ul>
 		</li>
 	</ul>

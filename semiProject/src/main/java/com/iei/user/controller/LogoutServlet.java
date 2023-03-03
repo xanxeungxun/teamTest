@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class UploadBookCheckServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet(name = "UploadBookCheck", urlPatterns = { "/uploadBookCheck.do" })
-public class UploadBookCheckServlet extends HttpServlet {
+@WebServlet(name = "Logout", urlPatterns = { "/logout.do" })
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UploadBookCheckServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,14 +30,16 @@ public class UploadBookCheckServlet extends HttpServlet {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		//2. 값 추출
-		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		//2. 값 추출 ... 없음
 		
 		//3. 비즈니스 로직
-		
+		HttpSession session = request.getSession(false); 
+		if(session != null) {
+			session.invalidate(); //현재 세션 파기
+		}
 		
 		//4. 결과 처리
-		
+		response.sendRedirect("/");
 	}
 
 	/**

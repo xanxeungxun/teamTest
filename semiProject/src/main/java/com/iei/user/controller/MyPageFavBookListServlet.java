@@ -9,20 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.user.model.service.UserService;
-import com.iei.user.model.vo.User;
-
 /**
- * Servlet implementation class UpdateUserServlet
+ * Servlet implementation class MyPageFavBookListServlet
  */
-@WebServlet(name = "UpdateUser", urlPatterns = { "/updateUser.do" })
-public class UpdateUserServlet extends HttpServlet {
+@WebServlet(name = "MyPageFavBookList", urlPatterns = { "/myPageFavBookList.do" })
+public class MyPageFavBookListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateUserServlet() {
+    public MyPageFavBookListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +28,8 @@ public class UpdateUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 인코딩
-		request.setCharacterEncoding("utf-8");
-		
-		//2. 값 추출
-		
-		//3. 비즈니스 로직
-		
-		//4. 화면 처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateUser.jsp");
+		//페이지 이동
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageFavBookList.jsp");
 		view.forward(request, response);
 	}
 
