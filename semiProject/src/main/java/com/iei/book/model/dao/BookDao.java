@@ -76,6 +76,28 @@ public class BookDao {
 		return result;
 	}
 
+	public Book selectOneBook(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Book b = null;
+		String query ="select * from book where book_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				b = new Book();
+			
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return b;
+	}
+
 	
 	
 }//BookDao
