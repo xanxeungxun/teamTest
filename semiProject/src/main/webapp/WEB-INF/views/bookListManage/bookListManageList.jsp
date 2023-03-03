@@ -15,6 +15,9 @@ int start = (int)request.getAttribute("start");
 <meta charset="UTF-8">
 <title>작품 관리</title>
 <link rel="stylesheet" href="/css/bookListManage.css">
+<script>
+
+</script>
 </head>
 <body>
 
@@ -43,7 +46,6 @@ int start = (int)request.getAttribute("start");
 						<td class="bookListManage-td" style="width:6%">장르코드</td>
 						<td class="bookListManage-td" style="width:57%">작품명</td>
 						<td class="bookListManage-td" style="width:8%">작가명</td>
-						<td class="bookListManage-td" style="width:10%">등록일</td>
 						<td class="bookListManage-td" style="width:9%">연재상태</td>
 						<td class="bookListManage-td" style="width:10%">삭제하기</td>
 					</tr>
@@ -58,11 +60,22 @@ int start = (int)request.getAttribute("start");
 					<tr class="bookListManage-tr">
 						<td class="bookListManage-td"><%=i+start %></td>
 						<td class="bookListManage-td"><%=q.getBookNo() %></td>
-						<td class="bookListManage-td"><%=q.getGenreCode() %></td>
+						<td class="bookListManage-td"><%=q.getGenreName() %>
 						<td class="bookListManage-td"><a
-							href="/bookListManage/BookListManageView.do?bookListManageNo=<%=q.getBookNo()%>"><%=q.getBookTitle()%></a></td>
-						<td class="bookListManage-td"><%=q.getBookWriter()%></td>
-						<td class="bookListManage-td"><%=q.getBookDate() %></td>
+							href="/bookView.do?bookNo=<%=q.getBookNo()%>"><%=q.getBookTitle()%></a></td>
+						<td class="bookListManage-td"><%=q.getBookWriter() %></td>
+						<td class="bookListManage-td">
+						<%
+						if(q.getBookStatus() == 1 ){
+						%>
+						연재중
+						<%
+						}else if(q.getBookStatus() == 2 ){
+						%>
+						완결
+						<%} %>
+						
+						</td>
 						<td class="bookListManage-td"><button id="delBtn">삭제하기</button></td>
 					</tr>
 					<%

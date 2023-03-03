@@ -1,4 +1,4 @@
-package com.iei.bookListManage.controller;
+package com.iei.userManage.controller;
 
 import java.io.IOException;
 
@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.bookListManage.model.service.BookListManageService;
-import com.iei.bookListManage.model.vo.BookListManagePageData;
+import com.iei.userManage.model.service.UserManageService;
+import com.iei.userManage.model.vo.UserManagePageData;
 
 // 질문 목록 조회
-@WebServlet(name = "BookListManageList", urlPatterns = { "/bookListManage/bookListManageList.do" })
-public class BookListManageListServlet extends HttpServlet {
+@WebServlet(name = "UserManageList", urlPatterns = { "/userManage/userManageList.do" })
+public class UserManageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public BookListManageListServlet() {
+	public UserManageListServlet() {
 		super();
 	}
 
@@ -28,11 +28,11 @@ public class BookListManageListServlet extends HttpServlet {
 		//2값추출
 		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		//3비즈니스 로직
-		BookListManageService service = new BookListManageService();
-		BookListManagePageData qpd = service.selectAllBookListManageList(reqPage);
+		UserManageService service = new UserManageService();
+		UserManagePageData qpd = service.selectAllUserManageList(reqPage);
 		
 		//4 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/bookListManage/bookListManageList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/userManage/userManageList.jsp");
 		request.setAttribute("list", qpd.getList());
 		request.setAttribute("pageNavi", qpd.getPageNavi());
 		request.setAttribute("start", qpd.getStart());

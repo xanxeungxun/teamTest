@@ -64,7 +64,7 @@ public class QuestionService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<hr>";
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/questionList.do?reqPage="+(pageNo)+"'>";
+			pageNavi += "<a class='page-item' href='/question/questionList.do?reqPage="+(pageNo)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span>";
 			pageNavi += "</a></li>";
 		}

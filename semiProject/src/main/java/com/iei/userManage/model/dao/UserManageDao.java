@@ -1,4 +1,4 @@
-package com.iei.bookListManage.model.dao;
+package com.iei.userManage.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,39 +6,38 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.iei.bookListManage.model.vo.BookListManageVo;
+import com.iei.userManage.model.vo.UserManageVo;
 
 import common.JDBCTemplate;
 
-public class BookListManageDao {
+public class UserManageDao {
 	
 	
 	// 전체 목록 조회
-	public ArrayList<BookListManageVo> selectAllBookListManageList(Connection conn,int start,int end) {
+	public ArrayList<UserManageVo> selectAllUserManageList(Connection conn,int start,int end) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ArrayList<BookListManageVo> list = new ArrayList<BookListManageVo>();
-		String query = "select * from(select rownum as rnum, n.* from(select book_no,b.genre_code,genre_name,book_title,book_writer,book_status,book_date from book a join genre b on a.genre_code = b.genre_code order by 1 desc)n)where rnum between ? and ?";
+		ArrayList<UserManageVo> list = new ArrayList<UserManageVo>();
+		String query = "select * from(select rownum as rnum, n.* from(select user_id,user_name,user_nick,user_phone,user_level,user_enroll,user_email from user_tbl order by 1 desc)n)where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				BookListManageVo n = new BookListManageVo();
-				n.setBookNo(rset.getInt("book_no"));
-				n.setGenreCode(rset.getInt("genre_code"));
-				n.setGenreName(rset.getString("genre_name"));
-				n.setBookTitle(rset.getString("book_title"));
-				n.setBookWriter(rset.getString("book_writer"));
-				n.setBookStatus(rset.getInt("book_status"));
-				n.setBookDate(rset.getString("book_date"));
+				UserManageVo n = new UserManageVo();
+				n.setUserId(rset.getString("user_id"));
+				n.setUserName(rset.getString("user_name"));
+				n.setUserNick(rset.getString("user_nick"));
+				n.setUserPhone(rset.getString("user_phone"));
+				n.setUserLevel(rset.getInt("user_level"));
+				n.setUserEnroll(rset.getString("user_enroll"));
+				n.setUserEmail(rset.getString("user_email"));
 				list.add(n);
 				System.out.println(list.toString());
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(pstmt);
@@ -49,20 +48,14 @@ public class BookListManageDao {
 	
 	
 	// 문의 상세 조회
-	public BookListManageVo selectOneBookListManage(Connection conn, String bookListManageNo) {
+	public UserManageVo selectOneUserManage(Connection conn, String userManageNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		BookListManageVo result = new BookListManageVo();
+		UserManageVo result = new UserManageVo();
 		String query = "SELECT * FROM QUESTION WHERE QUESTION_NO = ?";
-		
-		
-		System.out.println("========= EXECUTED QUERY =========");
-		System.out.println("questionNo : " + bookListManageNo);
-		System.out.println(query);
-		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, Integer.parseInt(bookListManageNo));
+			pstmt.setInt(1, Integer.parseInt(userManageNo));
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -95,11 +88,11 @@ public class BookListManageDao {
 	}
 	
 
-	public int selectBookListManageCount(Connection conn) {
+	public int selectUserManageCount(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int totalCount = 0;
-		String query = "select count(*) as cnt from book";
+		String query = "select count(*) as cnt from user_tbl";
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();

@@ -40,7 +40,7 @@ public class BookListManageService {
 		String pageNavi = "<ul class='pagination circle-style'>";
 		if(pageNo != 1) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/BookListManageList.do?reqPage="+(pageNo-1)+"'>";
+			pageNavi += "<a class='page-item' href='/bookListManage/bookListManageList.do?reqPage="+(pageNo-1)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a></li>";
 		}
@@ -64,7 +64,7 @@ public class BookListManageService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<hr>";
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/BookListManageList.do?reqPage="+(pageNo)+"'>";
+			pageNavi += "<a class='page-item' href='/bookListManage/bookListManageList.do?reqPage="+(pageNo)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span>";
 			pageNavi += "</a></li>";
 		}
