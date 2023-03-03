@@ -124,6 +124,7 @@
 		                  <%} %>
 		                </li>
 		              </ul>
+		              
 		             <%for(BoardComment bcc : reCommentList) {%>
 		              <ul class="posting-comment reply">
 		                <li>
@@ -234,7 +235,7 @@
 			const boardNoInput = $("<input type='text' name='boardNo'>");
 			boardNoInput.val(boardNo);
 			//3. textarea
-			const boardCommentContent = $(obj).parent().prev().clone();
+			const boardCommentContent = $(".hide-textarea").clone();
 			//4. form태그에 input, textarea를 모두 포함
 			form.append(boardCommentNoInput).append(boardNoInput).append(boardCommentContent);
 			//5. 생성된 form태그를 body태그에 추가

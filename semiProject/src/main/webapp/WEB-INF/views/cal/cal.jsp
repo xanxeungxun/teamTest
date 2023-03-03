@@ -185,22 +185,29 @@
 		<div id='calendar'></div>
     </div>
     <div class="chk-btn-div">
+    	<input type="hidden" name="userId" class="userId" value="<%=loginUser.getUserId() %>">
     	<button class="chk-btn bc6" id="chk-btn">출석체크</button>
     </div>
     
     <script>
     	$("#chk-btn").on("click",function(){
+    		const userId = $(".userId").val();
     		const today = $(".fc-day-today");
     		today.empty();
     		$.ajax({
     			url : "/calEvent.do",
     			type : "post",
+    			data : {userId : userId},
     			dataType : "Json",
     			success : function(data) {
-					
+					if(data == null){
+						today.css("color","blue");
+					}else{
+						today.css("color","red");
+					}
 				},
     			error : function() {
-					
+					console.log("에러");
 				}
     		})
     	});
