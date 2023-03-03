@@ -1,0 +1,419 @@
+*{
+    list-style-type: none;
+    text-decoration: none;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+a{
+    color : #000;
+}
+
+/* 버튼 디자인 */
+.btn {
+    border: none;
+    padding: 17px 20px 17px 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    transition-duration: 0.4s;
+    font-size: 16px;
+    font-family: ns-light;
+    border-radius: 4px;
+    }
+.btn-pill{
+border-radius: 10rem;
+}
+.bc1 {
+background-color: #2f343d;
+color: #fff;
+border: 2px solid #2f343d;
+}
+.bc1:hover {
+background-color: #262c38;
+border: 2px solid #262c38;
+cursor: pointer;
+}
+.bc2 {
+background-color: #59516e;
+color: #fff;
+border: 2px solid #59516e;
+}
+.bc2:hover {
+background-color: #403950;
+border: 2px solid #403950;
+cursor: pointer;
+}
+.bc3 {
+background-color: rgba(238, 238, 238, 0.9);
+color: #252a34;
+border: 2px solid rgba(238, 238, 238, 0.9);
+}
+.bc3:hover {
+background-color: rgba(238, 238, 238, 1);
+border: 2px solid rgba(238, 238, 238, 1);
+cursor: pointer;
+}
+.bc4 {
+background-color: #3a4f7a;
+color: #fff;
+border: 2px solid #3a4f7a;
+}
+.bc4:hover {
+background-color: #233863;
+border: 2px solid #233863;
+cursor: pointer;
+}
+.bc5 {
+background-color: #ffc6d3;
+color: #fff;
+border: 2px solid #ffc6d3;
+}
+.bc5:hover {
+background-color: #ffb1c2;
+border: 2px solid #ffb1c2;
+cursor: pointer;
+}
+.bc6 {
+background-color: #fea1bf;
+color: #fff;
+border: 2px solid #fea1bf;
+}
+.bc6:hover {
+background-color: #fa7ca4;
+border: 2px solid #fa7ca4;
+cursor: pointer;
+}
+.bc7 {
+background-color: #e98ead;
+color: #fff;
+border: 2px solid #e98ead;
+}
+.bc7:hover {
+background-color: rgb(248, 102, 151);
+border: 2px solid rgb(248, 102, 151);
+cursor: pointer;
+}
+.bc8 {
+background-color: #952eee;
+color: #fff;
+border: 2px solid #952eee;
+}
+.bc8:hover {
+background-color: #8008e9;
+border: 2px solid #8008e9;
+cursor: pointer;
+}
+.bc11 {
+color: #2f343d;
+background-color: #fff;
+border: 2px solid #2f343d;
+}
+.bc11:hover {
+background-color: #262c38;
+cursor: pointer;
+color: #fff;
+}
+.bc22 {
+color: #59516e;
+background-color: #fff;
+border: 2px solid #403950;
+}
+.bc22:hover {
+background-color: #403950;
+cursor: pointer;
+color: #fff;
+}
+.bc33 {
+color: rgba(37, 42, 52, 1);
+background-color: #fff;
+border: 2px solid rgba(238, 238, 238, 1);
+}
+.bc33:hover {
+background-color: rgba(238, 238, 238, 1);
+cursor: pointer;
+color: rgba(37, 42, 52, 1);
+}
+.bc44 {
+color: #3a4f7a;
+background-color: #fff;
+border: 2px solid #3a4f7a;
+}
+.bc44:hover {
+background-color: #3a4f7a;
+color: #fff;
+cursor: pointer;
+}
+.bc55 {
+color: #ffc6d3;
+background-color: #fff;
+border: 2px solid #ffc6d3;
+}
+.bc55:hover {
+background-color: #ffc6d3;
+color: #fff;
+cursor: pointer;
+}
+.bc66 {
+color: #fea1bf;
+background-color: #fff;
+border: 2px solid #fea1bf;
+}
+.bc66:hover {
+background-color: #fea1bf;
+color: #fff;
+cursor: pointer;
+}
+.bc77 {
+color: #e98ead;
+background-color: #fff;
+border: 2px solid #e98ead;
+}
+.bc77:hover {
+background-color: #e98ead;
+color: #fff;
+cursor: pointer;
+}
+.bc88 {
+color: #952eee;
+background-color: #fff;
+border: 2px solid #952eee;
+}
+.bc88:hover {
+background-color: #952eee;
+color: #fff;
+cursor: pointer;
+}
+
+.bc000 {
+    color: #2f343d;
+    background-color: #fff;
+    border: 2px solid #ccc;
+}
+.bc111:hover {
+cursor: pointer;
+border-color: #2f343d;
+color: #2f343d;
+}
+.bc222:hover {
+cursor: pointer;
+border-color: #59516e;
+color: #59516e;
+}
+.bc333:hover {
+cursor: pointer;
+color: #59516e;;
+border-color: rgba(238, 238, 238, 1);
+}
+.bc444:hover {
+color: #3a4f7a;
+cursor: pointer;
+border-color: #3a4f7a;
+}
+.bc555:hover {
+color: #ffc6d3;
+cursor: pointer;
+border-color: #ffc6d3;
+}
+.bc666:hover {
+color: #fea1bf;
+cursor: pointer;
+border-color: #fea1bf;
+}
+.bc777:hover {
+color: #e98ead;
+cursor: pointer;
+border-color: #e98ead;
+}
+.bc888:hover {
+color: #952eee;
+border-color: #952eee;
+cursor: pointer;
+}
+
+.bs1 {
+padding: 1rem;
+}
+.bs2 {
+padding: 1.5rem;
+font-size: 1.1em;
+}
+.bs3 {
+padding: 1.8rem;
+font-size: 1.2em;
+}
+.bs4 {
+width: 100%;
+padding: 2rem;
+font-size: 1.2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.book-wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+.book-list-header{
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    padding: 10px 30px;
+    margin: 50px 0;
+}
+.book-list-header div{
+    float: left;
+}
+.book-list-header>div:first-child{
+    font-size: 40px;
+    font-weight: bold;
+    padding-right:30px;
+}
+
+.book-content-box{
+    width: 1000px;
+    margin: 0 auto 80px auto;
+}
+
+.book-content{
+
+    display: flex;
+}
+.book-cover{
+    background-color: wheat;
+    align-self: center;
+    width: 180px;
+    height: 240px;
+}
+.book-exp{
+    padding: 0 10px;
+    width: 630px;
+}
+.book-exp .book-title{
+    font-size: 23px;
+    font-weight: bold;
+}
+.book-exp .book-genre{
+    display: flex;
+    align-items: center;
+    font-size:14px;
+}
+.book-exp .book-genre .material-symbols-outlined{
+	font-size:18px;
+	margin-left:0;
+}
+.book-exp .book-genre .gray-bar{
+    color : #EEEEEE;
+	margin : 0 10px;
+}
+.book-exp .book-genre a{
+    margin-left: auto;
+}
+.book-exp .book-writer{
+    padding-top: 10px;
+    margin-bottom: 11px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #952eee;
+}
+.book-exp .book-synop{
+    background-color: #eeeeee;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.book-botton{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 250px;
+}
+
+.switch-zone{
+    padding: 0px 10px;
+    height: 80px;
+}
+.author-menu{
+    display: none;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+.book-story{
+    padding: 10px 0;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+.book-story .one-story{
+    display: flex;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.book-story .one-story div:not(:first-child){
+    margin-right: 10px;
+}
+.book-story .one-story .icon-or-box{
+    width: 3%;
+    display: flex;
+}
+.book-story .one-story .icon-or-box #check{
+   	display:none;
+}
+.book-story .one-story #none{
+    display: none;
+    font-size: 10px;
+    text-align: center;
+    color:red;
+    line-height: 18px;
+}
+.book-story .one-story .story-scene{
+    width: 8%;
+    text-align: center;
+}
+.book-story .one-story .story-title{
+    width: 70%;
+}
+.book-story .one-story .story-coment{
+    display: flex;
+    justify-content: center;
+    width: 5%;
+}
+.book-story .one-story .story-date{
+    width: 15%;
+    text-align: center;
+}

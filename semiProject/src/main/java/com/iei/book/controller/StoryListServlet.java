@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class BookViewServlet
  */
-@WebServlet(name = "BookView", urlPatterns = { "/bookView.do" })
-public class BookViewServlet extends HttpServlet {
+@WebServlet(name = "BookView", urlPatterns = { "/storyList.do" })
+public class StoryListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookViewServlet() {
+    public StoryListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +37,7 @@ public class BookViewServlet extends HttpServlet {
 		//3비즈니스로직
 		
 		//4결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/bookView.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/storyList.jsp");
 		request.setAttribute("bookNo", bookNo); //<--테스트용이라 나중에지우든가하셈!!!!!!!
 		view.forward(request, response);
 	}
