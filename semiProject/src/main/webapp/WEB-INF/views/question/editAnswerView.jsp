@@ -32,7 +32,7 @@
 				</tr>
 				<tr class="question-tr">
 					<td class="question-td" colspan="3">
-						<%=question.getQuestionContent() %>
+						<%=question.getQuestionContent().replace("\r\n","<br>") %>
 					</td>
 				</tr>
 				<tr class="question-tr">
@@ -48,7 +48,7 @@
 				</tr>
 				<tr class="question-tr">
 					<td class="question-td" colspan="3">
-						<textarea class="input-form" id="answerContent"><%=question.getAnswerContent() %></textarea>
+						<textarea class="input-form" id="answerContent"><%=question.getAnswerContent().replace("\r\n","<br>") %></textarea>
 					</td>
 				</tr>
 			</table>

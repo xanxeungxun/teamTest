@@ -41,7 +41,8 @@ int start = (int)request.getAttribute("start");
 				<thead>
 					<tr class="question-tr">
 						<td class="question-td" style="width:6%">번호</td>
-						<td class="question-td" style="width:49%">제목</td>
+						<td class="question-td" style="width:6%">종류</td>
+						<td class="question-td" style="width:57%">제목</td>
 						<td class="question-td" style="width:8%">작성자</td>
 						<td class="question-td" style="width:10%">작성일</td>
 						<td class="question-td" style="width:9%">답변여부</td>
@@ -57,6 +58,7 @@ int start = (int)request.getAttribute("start");
 					%>
 					<tr class="question-tr">
 						<td class="question-td"><%=i+start %></td>
+						<td class="question-td"></td>
 						<td class="question-td"><a
 							href="/question/viewQuestion.do?questionNo=<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a></td>
 						<td class="question-td"><%=q.getQuestionName()%></td>
@@ -71,7 +73,9 @@ int start = (int)request.getAttribute("start");
 					%>
 				</tbody>
 			</table>
+			<br>
 			<div id="pageNavi"><%=pageNavi %>
+			<br>
 		</div>
 		</div>
 	</div>
