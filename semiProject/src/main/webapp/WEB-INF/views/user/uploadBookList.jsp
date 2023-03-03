@@ -6,87 +6,120 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/mypageDefault.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
 </head>
 <style>
-    .mypage-menu-wrap{
-        width: 140px;
-    }
-    .bold{
-        font-family: ns-bold;
-        font-size: 15px;
-        padding-top: 5px;
-        padding-left: 5px;
-        color: #3a4f7a;
-    }
-    .icon{
-        color: #3a4f7a;
-    }
-    .cat-title{
+    .line-content{
         display: flex;
-        padding-bottom: 5px;
-        border-bottom: 1px solid lightgray;
-        margin-bottom: 7px;
-        cursor: default;
+        justify-content: space-between;
     }
-    ul{
-        list-style-type: none;
-        
+    .book-box{
+        display: flex;
+        margin: 10px;
+        width: 100%;
+        border: 1px solid lightgray;
+        border-radius: 4px;
+        padding: 20px;
     }
-    .cat>li{
-        padding-top: 30px;
-
+    .book-num{
+        font-size: 20px;
+        font-family: ns-bold;
+        margin-top: 10px;
+        margin-right: 20px;
     }
-    .cat-detail>li{
-        padding-left: 25px;
-        margin-top: 5px;
-        transition-duration: 0.3s;
+    .book-img{
+        width: 120px;
+        background-color: #a7a7a7;
+        border-radius: 4px;
+        margin-right: 20px;
     }
-    .cat-detail>li>a:hover{
-        color: #423c4d;
+    .book-info>div{
+        padding: 3px 0px 3px 0px;
     }
-    a:not(.page-title){
-        font-size: 14px;
+    .book-info-head{
+        display: flex;
+        justify-content: space-between;
+    }
+    .close-btn{
+        cursor: pointer;
+    }
+    .book-title{
+        font-size: 18px;
         font-family: ns-m;
-        color: #6f6b7a;
+    }
+    .genre{
+        font-size: 14px;
+    }
+    .book-date{
+        font-size: 12px;
+        color: #a7a7a7;
+    }
+    .writer-wrap{
+        display: flex;
+    }
+    .material-symbols-outlined{
+        font-size: 18px;
+        margin-right: 3px;
+    }
+    .writer{
+        font-size: 15px;
+    }
+    .book-btn{
+        width: 120px;
+        text-align: center;
     }
 </style>
 <body>
-    <div class="page-content">
-        <div class="mypage-menu-wrap">
-            <a href="/mypageMain.do" class="page-title">마이페이지</a>
-            <ul class="cat">
-                <li>
-                    <div class="cat-title">
-                        <span class="material-symbols-outlined icon">edit_square</span>
-                        <div class="bold">나의 작품</div>
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
+    <div class="page-content mypage-content">
+    	<%@include file="/WEB-INF/views/common/myPageMenu.jsp" %>
+        <div class="mypage-detail">
+            <div class="page-title">투고한 작품 확인</div>
+            <div class="content-wrap">
+                <div class="line-content">
+                    <div class="book-box">
+                        <div class="book-num">1</div>
+                        <div class="book-img"></div>
+                        <div class="book-info">
+                            <div class="book-info-head">
+                                <div class="book-title">(작품제목)</div>
+                            </div>
+                            <div class="genre">(장르)</div>
+                            <div class="writer-wrap">
+                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
+                                <div class="writer">(작가이름)</div>
+                            </div>
+                            <div class="book-date">작품 등록일 : <span class="book-date">(날짜)</span></div>
+                            <div>
+                                <a href="#" class="btn bc6 book-btn">수정</a>
+                                <a href="#" class="btn bc000 bc444 book-btn">삭제</a>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="cat-detail">
-                        <li><a href="/uploadBookCheck.do?reqPage=1">투고한 작품 확인</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <div class="cat-title">
-                        <span class="material-symbols-outlined icon">auto_stories</span>
-                        <div class="bold">나의 책갈피</div>
+                </div>
+                <div class="line-content">
+                    <div class="book-box">
+                        <div class="book-num">2</div>
+                        <div class="book-img"></div>
+                        <div class="book-info">
+                            <div class="book-info-head">
+                                <div class="book-title">(작품제목)</div>
+                            </div>
+                            <div class="genre">(장르)</div>
+                            <div class="writer-wrap">
+                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
+                                <div class="writer">(작가이름)</div>
+                            </div>
+                            <div class="book-date">작품 등록일 : <span class="book-date">(날짜)</span></div>
+                            <div>
+                                <a href="#" class="btn bc6 book-btn">수정</a>
+                                <a href="#" class="btn bc000 bc444 book-btn">삭제</a>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="cat-detail">
-                        <li><a href="#">관심작품 목록</a></li>
-                        <li><a href="#">후원작품 목록</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <div class="cat-title">
-                        <div class="material-icons icon">account_circle</div>
-                        <div class="bold">개인</div>
-                    </div>
-                    <ul class="cat-detail">
-                        <li><a href="/updateUserFrm.do">회원정보 변경</a></li>
-                        <li><a href="/deleteUserFrm.do">회원 탈퇴</a></li>
-                    </ul>
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>
