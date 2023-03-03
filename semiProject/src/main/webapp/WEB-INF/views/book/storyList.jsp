@@ -1,8 +1,11 @@
+<%@page import="com.iei.story.model.vo.Story"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.iei.book.model.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
     	Book b = (Book)request.getAttribute("b");
+    	ArrayList<Story> storyList = (ArrayList<Story>)request.getAttribute("list");
     %>    
 <!DOCTYPE html>
 <html>
@@ -96,31 +99,35 @@
                 </div>
 
                 <div class="book-story">
-                    <div class="one-story">
-                        <div class="icon-or-box">
-                            <span id="none">
-                            	new
-                            </span>
-                            <input type="checkbox" id="check" name="check">
-                        </div>
-                        <div class="story-scene">
-                            0000화
-                        </div>
-                        <div class="story-title">
-                            <a href="#">
-                            100바이트 다 채운 소설제목?? 공백포함 100바이트 몇글자정도 cERA di CUPra
-                            </a>
-                        </div>
-                        <div class="story-coment">
-                            <span class="material-symbols-outlined">
-                                forum
-                            </span>
-                            <span>000</span>
-                        </div>
-                        <div class="story-date">
-                            2023-03-14
-                        </div>
-                    </div><!--스토리 하나-->
+                
+                
+	                    <div class="one-story">
+	                        <div class="icon-or-box">
+	                            <span id="none">
+	                            	new
+	                            </span>
+	                            <input type="checkbox" id="check" name="check">
+	                        </div>
+	                        <div class="story-scene">
+	                            0000화
+	                        </div>
+	                        <div class="story-title">
+	                            <a href="#">
+	                            100바이트 다 채운 소설제목?? 공백포함 100바이트 몇글자정도 cERA di CUPra
+	                            </a>
+	                        </div>
+	                        <div class="story-coment">
+	                            <span class="material-symbols-outlined">
+	                                forum
+	                            </span>
+	                            <span>000</span>
+	                        </div>
+	                        <div class="story-date">
+	                            2023-03-14
+	                        </div>
+	                    </div><!--스토리 하나-->
+                    
+                    
                     
                 </div><!--book-story-->
 
