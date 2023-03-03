@@ -13,6 +13,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/notice.css">
+<style>
+	#pageNavi{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.date-span{
+		font-size: 12px;
+		color: #a8a8a8;
+	}
+	.notice-td{
+		height: 80px;
+		margin-bottom: 20px;
+	}
+	.title-span{
+		font-size: 17px;
+	}
+</style>
 </head>
 <body>
 
@@ -21,8 +38,6 @@
 			<div class="notice-wrap">
 				<div class="notice-header">
 					<span>공지사항</span>
-					<a href="#" class="header-a notice-a">공지사항</a>
-					<a href="#" class="header-a news-a">언론보도</a>
 					<a href="/noticeWriteFrm.do" class="news-btn btn1">공지사항 작성</a>
 				</div>
 				<table class="notice-tbl">
@@ -30,8 +45,8 @@
 						<%Notice n = list.get(i); %>
 							<tr class="notice-tr">
 									<td class="notice-td">
-										<a href="/noticeView.do?noticeNo=<%=n.getNoticeNo()%>"><%=n.getNoticeTitle() %></a>
-										<div><%=n.getRegDate() %></div>
+										<a href="/noticeView.do?noticeNo=<%=n.getNoticeNo()%>"><span class="title-span"><%=n.getNoticeTitle() %></span></a>
+										<div><span class="date-span"><%=n.getRegDate() %></span></div>
 									</td>
 							</tr>
 					<%} %>

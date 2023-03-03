@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리-메인</title>
 <link rel="stylesheet" href="/css/common.css">
-
 <style>
 	.page-content{
 		width: calc(100%);
@@ -50,9 +49,9 @@
 			<h3>관리자 페이지</h3>
 			<hr>
 			<div class="btnList">
-				<button type="button" onclick="location.href='/userListManage.do'">회원관리</button>
-				<button type="button" onclick="location.href='/bookListManage.do'">작품관리</button>
-				<button type="button" onclick="location.href='/question/questionList.do'">문의사항</button>
+				<button type="button" onclick="location.href='/userManage/userManageList.do?reqPage=1'">회원관리</button>
+				<button type="button" onclick="location.href='/bookListManage/bookListManageList.do?reqPage=1'">작품관리</button>
+				<button type="button" onclick="location.href='/question/questionList.do?reqPage=1'">문의사항</button>
 				<button type="button" onclick="location.href='/reportListManage.do'">신고접수</button>
 			</div>
 		</div>

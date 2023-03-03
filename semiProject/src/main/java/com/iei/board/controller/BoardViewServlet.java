@@ -38,12 +38,17 @@ public class BoardViewServlet extends HttpServlet {
 		BoardViewData bvd = service.selectOneBoard(boardNo);
 		
 		if(bvd == null) {
-			RequestDispatcher view = request.getRequestDispatcher("/boardList.do?regPage=1");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			request.setAttribute("title", "조회 실패");
+			request.setAttribute("msg", "게시글이 존재하지 않습니다.");
+			request.setAttribute("icon", "info");
+			request.setAttribute("loc", "/boardList.do?regPage=1");
 			view.forward(request, response);
-			
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/board/boardView.jsp");
 			request.setAttribute("b", bvd.getB());
+			request.setAttribute("commentList", bvd.getCommentList());
+			request.setAttribute("reCommentList", bvd.getReCommentList());
 			view.forward(request, response);
 		}
 	}

@@ -170,25 +170,44 @@ public class BoardDao {
 		return result;
 	}
 
-	
+	public int insertBoardComment(Connection conn, BoardComment bc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into board_comment values(board_comment_seq.nextval,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bc.getBoardCommnetWriter());
+			pstmt.setString(2, bc.getBoardCommentContent());
+			pstmt.setInt(3, bc.getBoardRef());
+			pstmt.setString(4, (bc.getBoardCommentRef()==0)?null:String.valueOf(bc.getBoardCommentRef()));
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
+	public int updateBoardComment(Connection conn, BoardComment bc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update board_comment set board_comment_content=? where board_comment_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bc.getBoardCommentContent());
+			pstmt.setInt(2, bc.getBoardCommentNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 	public ArrayList<BoardComment> selectBoardComment(Connection conn, int boardNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -203,7 +222,7 @@ public class BoardDao {
 				bc.setBoardCommentContent(rset.getString("board_comment_content"));
 				bc.setBoardCommentDate(rset.getString("board_comment_date"));
 				bc.setBoardCommentNo(rset.getInt("board_comment_no"));
-				bc.setBoardCommentRef(rset.getInt("board_commnet_ref"));
+				bc.setBoardCommentRef(rset.getInt("board_comment_ref"));
 				bc.setBoardCommnetWriter(rset.getString("board_comment_writer"));
 				bc.setBoardRef(rset.getInt("board_ref"));
 				list.add(bc);
@@ -215,7 +234,6 @@ public class BoardDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
-		
 		return list;
 	}
 
@@ -233,7 +251,7 @@ public class BoardDao {
 				bc.setBoardCommentContent(rset.getString("board_comment_content"));
 				bc.setBoardCommentDate(rset.getString("board_comment_date"));
 				bc.setBoardCommentNo(rset.getInt("board_comment_no"));
-				bc.setBoardCommentRef(rset.getInt("board_commnet_ref"));
+				bc.setBoardCommentRef(rset.getInt("board_comment_ref"));
 				bc.setBoardCommnetWriter(rset.getString("board_comment_writer"));
 				bc.setBoardRef(rset.getInt("board_ref"));
 				list.add(bc);
@@ -245,8 +263,75 @@ public class BoardDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
+		
 		return list;
 	}
-	*/
+
+	public int deleteBoardComment(Connection conn, int boardCommentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from board_comment where board_comment_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public ArrayList<Board> selectBoardViewsList(Connection conn, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Board> list = new ArrayList<Board>();
+		String query = "select * from(select rownum as rnum, n.* from(SELECT BOARD_NO, BOARD_TITLE, BOARD_WRITER, READ_COUNT, board_Date FROM BOARD ORDER BY 4 desc)n) where rnum between ? and ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Board b = new Board();
+				b.setBoardNo(rset.getInt("board_no"));
+				b.setBoardTitle(rset.getString("board_title"));
+				b.setBoardWriter(rset.getString("board_writer"));
+				b.setReadCount(rset.getInt("read_count"));
+				b.setboardDate(rset.getString("board_date"));
+				list.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+	}
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

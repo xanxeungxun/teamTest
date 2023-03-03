@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	int bookNo = (int)request.getAttribute("bookNo");
+    %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>북상세보기</title>
+<title><%=bookNo %></title>
 </head>
 <body>
-	<h1>젭알</h1>
+	<h1><%=bookNo %></h1>
 </body>
 </html>
