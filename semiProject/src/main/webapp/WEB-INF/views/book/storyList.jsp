@@ -33,8 +33,6 @@
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-
-	
 	<div class="page-content">
         <div class="book-wrap">
             
