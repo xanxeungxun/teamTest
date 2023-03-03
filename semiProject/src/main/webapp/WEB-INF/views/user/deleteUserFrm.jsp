@@ -8,9 +8,6 @@
 <link rel="stylesheet" href="/css/mypageDefault.css">
 </head>
 <style>
-	.mypage-content{
-		display: flex;
-	}
     .check-content{
         padding-left: 10px;
     }

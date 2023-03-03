@@ -15,7 +15,7 @@ import com.iei.user.model.vo.User;
 /**
  * Servlet implementation class UpdateUserServlet
  */
-@WebServlet(name = "UpdateUser", urlPatterns = { "/updateUser.do" })
+@WebServlet(name = "UpdateUserFrm", urlPatterns = { "/updateUserFrm.do" })
 public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,7 +39,7 @@ public class UpdateUserServlet extends HttpServlet {
 		//3. 비즈니스 로직
 		
 		//4. 화면 처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateUser.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateUserFrm.jsp");
 		view.forward(request, response);
 	}
 

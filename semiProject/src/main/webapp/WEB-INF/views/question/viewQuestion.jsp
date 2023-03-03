@@ -31,8 +31,8 @@
 					</td>
 				</tr>
 				<tr class="question-tr">
-					<td class="question-td" colspan="3" style="text-indent:10px;">
-						<%=question.getQuestionContent() %>
+					<td class="question-td" colspan="3" style="padding-left:30px;">
+						<%=question.getQuestionContent().replace("\r\n","<br>") %>
 					</td>
 				</tr>
 				<tr class="question-tr">
@@ -47,8 +47,8 @@
 					</td>
 				</tr>
 				<tr class="question-tr">
-					<td class="question-td" colspan="3" style="text-indent:10px;">
-						<%=question.getAnswerContent() %>
+					<td class="question-td" colspan="3" style="padding-left:30px;">
+						<%=question.getAnswerContent().replace("\n","<br>") %>
 					</td>
 				</tr>
 			</table>
