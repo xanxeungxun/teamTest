@@ -123,6 +123,7 @@ a{
     padding:10px;
     font-size:16px;
     border-radius: 5px;
+    width: 93%;
 }
 .book-one-etc .book-one-exp{
     display: flex;

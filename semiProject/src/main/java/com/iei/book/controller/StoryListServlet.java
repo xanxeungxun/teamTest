@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.book.model.service.BookService;
+import com.iei.book.model.vo.Book;
+
 /**
  * Servlet implementation class BookViewServlet
  */
@@ -32,13 +35,14 @@ public class StoryListServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//2값추출
-		int bookNo = Integer.parseInt(request.getParameter("bookNo")) ;
+		int bookNo = Integer.parseInt(request.getParameter("bookNo")); //<--이 값을 가지고 그 작품의 정보&가진 스토리 가져와야 함
 		
 		//3비즈니스로직
-		
+		BookService service = new BookService();
+		Book b = service.selectOneBook(bookNo);
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/storyList.jsp");
-		request.setAttribute("bookNo", bookNo); //<--테스트용이라 나중에지우든가하셈!!!!!!!
+		request.setAttribute("b", b);
 		view.forward(request, response);
 	}
 

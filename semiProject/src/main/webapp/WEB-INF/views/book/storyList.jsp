@@ -1,13 +1,17 @@
+<%@page import="com.iei.story.model.vo.Story"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.iei.book.model.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    	int bookNo = (int)request.getAttribute("bookNo");
+    	Book b = (Book)request.getAttribute("b");
+    	ArrayList<Story> storyList = (ArrayList<Story>)request.getAttribute("list");
     %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title><%=bookNo %>번 작품</title>
+<title><%=b.getBookTitle() %></title>
 	
 	<link rel="stylesheet" href="/css/storyList.css">
 	
@@ -43,15 +47,18 @@
             <div class="book-content-box">
 
                 <div class="book-content">
-                    <div class="book-cover">
-                        소설표지
+                    <div class="book-cover"
+                    	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
+                    	 background-size: contain;
+  						 background-position: center;
+  						 background-repeat: no-repeat;">
                     </div>
                     <div class="book-exp">
                         <div class="book-title">
-                            소설제목이 이곳에들어오는건데 소설제목이 몇자까지였더라? 아무튼 두줄은 쓰게 만들어야함
+                            <%=b.getBookTitle() %>
                         </div>
                         <div class="book-genre">
-                            <span>장르명</span>
+                            <span><%=b.getGenreName() %></span>
                             <span class="gray-bar">|</span>
                             <span class="material-symbols-outlined">
                                 visibility
@@ -63,16 +70,18 @@
                             </span>
                             <span>총 구독자수</span>
                             <span class="gray-bar">|</span>
-                            <span>연재중</span>
+                            <span>
+                            <%=b.getBookStatus() %>
+                            </span>
                             <a href="#">
                                 <span class="report material-symbols-outlined" style="font-size:22px;">e911_emergency</span>
                             </a>
                         </div>
                         <div class="book-writer">
-                            작가명
+                            <%=b.getBookWriterNick() %>
                         </div>
                         <div class="book-synop">
-                            시놉시스
+                            <%=b.getBookExp() %>
                         </div>
                     </div>
                     <div class="book-botton">
@@ -90,31 +99,35 @@
                 </div>
 
                 <div class="book-story">
-                    <div class="one-story">
-                        <div class="icon-or-box">
-                            <span id="none">
-                            	new
-                            </span>
-                            <input type="checkbox" id="check" name="check">
-                        </div>
-                        <div class="story-scene">
-                            0000화
-                        </div>
-                        <div class="story-title">
-                            <a href="#">
-                            100바이트 다 채운 소설제목?? 공백포함 100바이트 몇글자정도 cERA di CUPra
-                            </a>
-                        </div>
-                        <div class="story-coment">
-                            <span class="material-symbols-outlined">
-                                forum
-                            </span>
-                            <span>000</span>
-                        </div>
-                        <div class="story-date">
-                            2023-03-14
-                        </div>
-                    </div><!--스토리 하나-->
+                
+                
+	                    <div class="one-story">
+	                        <div class="icon-or-box">
+	                            <span id="none">
+	                            	new
+	                            </span>
+	                            <input type="checkbox" id="check" name="check">
+	                        </div>
+	                        <div class="story-scene">
+	                            0000화
+	                        </div>
+	                        <div class="story-title">
+	                            <a href="#">
+	                            100바이트 다 채운 소설제목?? 공백포함 100바이트 몇글자정도 cERA di CUPra
+	                            </a>
+	                        </div>
+	                        <div class="story-coment">
+	                            <span class="material-symbols-outlined">
+	                                forum
+	                            </span>
+	                            <span>000</span>
+	                        </div>
+	                        <div class="story-date">
+	                            2023-03-14
+	                        </div>
+	                    </div><!--스토리 하나-->
+                    
+                    
                     
                 </div><!--book-story-->
 
@@ -122,9 +135,6 @@
 
         </div><!--book-wrap-->
     </div><!--page-content-->
-
-
-
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>

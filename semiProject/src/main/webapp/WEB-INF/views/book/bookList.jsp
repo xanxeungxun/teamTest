@@ -117,9 +117,9 @@
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
 		                        <%int total = b.getBookExp().length();
-		                        	if(88 < total){
+		                        	if(86 < total){
 		                        		char[] arrayExp = b.getBookExp().toCharArray();
-		                        		for(int j=0 ; j<89 ; j++){
+		                        		for(int j=0 ; j<86 ; j++){
 		                        			result = result + arrayExp[j];		
 		                         		}//for문
 		                        %>
