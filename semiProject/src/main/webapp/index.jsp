@@ -373,7 +373,7 @@
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 autoplay: true,
-                autoplaySpeed: 100,
+                autoplaySpeed: 3000,
                 dotsClass: "slick-dots"
             });
         });
