@@ -28,7 +28,16 @@ public class MyPageMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//페이지 이동
+		//1. 인코딩
+		request.setCharacterEncoding("utf-8");
+		
+		//2. 값 추출
+		String userId = request.getParameter("userId");
+		
+		//3. 비즈니스 로직
+		
+		
+		//4. 페이지 이동
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageMain.jsp");
 		view.forward(request, response);
 	}
