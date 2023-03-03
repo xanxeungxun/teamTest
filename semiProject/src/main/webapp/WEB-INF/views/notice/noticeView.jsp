@@ -48,8 +48,10 @@
 				</tr>
 			</table>
 			
+			<a class="news-btn btn1" href="/noticeList.do?reqPage=1">목록보기</a>
 		</div>
 	</div>
+	
 	
 	<script>
 		function noticeDelete(noticeNo) {

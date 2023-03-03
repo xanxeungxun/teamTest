@@ -66,6 +66,9 @@
 		margin: 30px 0px;
 		display: none;
 	}
+	.inputCommentBox{
+		margin: 70px;
+	}
 </style>
 </head>
 <body>
@@ -103,7 +106,7 @@
 					</tr>
 				</table>
 				
-				
+				<a class="news-btn btn1" id="list-btn" href="/boardList.do?reqPage=1">목록보기</a>
 				
 				
 				
