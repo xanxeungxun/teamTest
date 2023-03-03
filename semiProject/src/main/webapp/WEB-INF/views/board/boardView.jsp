@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/board.css">
+	
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
@@ -50,55 +51,50 @@
 					</tr>
 				</table>
 				
-				
-				<div class="commentBox">
+				<div>
 				<%for(BoardComment bc : commentList) {%>
-					<ul class="posting-comment">
-						<li>
-							<span class="material-icons">account_box</span>
-						</li>
-						<li>
-							<p class="comment-info">
-								<span><%=bc.getBoardCommnetWriter() %></span>
-								<span><%=bc.getBoardCommentDate() %></span>
-							</p>
-							<p class="comment-content"><%=bc.getBoardCommentContent() %></p>
-							<textarea name="boardCommentContent" class="input-form" style="min-height:96px;display:none;"><%=bc.getBoardCommentContent() %></textarea>
-							<p class="comment-link">
-							<%-- 	<%if(m != null) {%> --%>
-								<%-- <%if(m.getMemberId().equals(nc.getNcWriter())) {%> --%>
-										<a href="javascript:void(0)" onclick="modifyComment(this,<%=bc.getBoardCommentNo()%>,<%=b.getBoardNo()%>);">수정</a>
-										<a href="javascript:void(0)" onclick="deleteComment(this,<%=bc.getBoardCommentNo()%>,<%=b.getBoardNo()%>);">삭제</a>
-								<%-- 	<%}//해당 댓글 수정 조건(댓글작성자가 로그인한 회원인지 확인) %> --%>
-									<a href="javascript:void(0)" class="recShow">답글달기</a>
-							<%-- 	<%}//대댓글 달기 조건문(로그인체크) %> --%>
-							</p>
-						</li>
-					</ul>
-					<%for(BoardComment bcc : reCommentList) {%>
-						<%if(bcc.getBoardCommentRef()==bc.getBoardCommentNo()) {%>
-							<ul class="posting-comment reply">
-								<li>
-									<span class="material-icons">subdirectory_arrow_right</span>
-									<span class="material-icons">account_box</span>
-								</li>
-								<li>
-									<p class="comment-info">
-										<span><%=bcc.getBoardCommnetWriter() %></span>
-										<span><%=bcc.getBoardCommentDate() %></span>
-									</p>
-									<p class="comment-content"><%=bcc.getBoardCommentContent() %></p>
-									<textarea name="boardCommentContent" class="input-form" style="min-height:96px;display:none;"><%=bcc.getBoardCommentContent() %></textarea>
-									<p class="comment-link">
-									<%-- 	<%if(m!=null && m.getMemberId().equals(ncc.getNcWriter())) {%> --%>
-											<a href="javascript:void(0)" onclick="modifyComment(this,<%=bcc.getBoardCommentNo()%>,<%=b.getBoardNo()%>);">수정</a>
-											<a href="javascript:void(0)" onclick="deleteComment(this,<%=bcc.getBoardCommentNo()%>,<%=b.getBoardNo()%>);">삭제</a>
-									<%-- 	<%} %> --%>
-									</p>
-								</li>
-							</ul>	
-						<%}//댓글번호 체크 if문 종료 %>				
-					<%}// %>
+		            <ul class="posting-comment">
+		                <li>
+		                  <span class="material-icons">account_circle</span>
+		                </li>
+		                <li>
+		                  <p class="comment-info">
+		                    <span><%=bc.getBoardCommnetWriter() %></span>
+		                    <span class="comment-link">
+		                        <a href="#">수정</a>
+		                        <a type="button" href="#">삭제</a>
+		                    </span>
+		                  </p>
+		                  <p class="comment-date">
+		                      <span><%=bc.getBoardCommentDate() %></span>
+		                  </p>
+		                  <p class="comment-content"><%=bc.getBoardCommentContent() %></p>
+		                  <a href="javascript:void(0)" class="recShow"><span class="material-symbols-outlined">sms</span></a>
+		                </li>
+		              </ul>
+		             <%for(BoardComment bcc : reCommentList) {%>
+		              <ul class="posting-comment reply">
+		                <li>
+		                  <span class="material-icons">account_circle</span>
+		                </li>
+		                <li>
+		                  <p class="comment-info">
+		                      <span><%=bcc.getBoardCommnetWriter() %></span>
+		                      <span class="comment-link">
+		                          <a href="#">수정</a>
+		                          <a href="#">삭제</a>
+		                      </span>
+		                    </p>
+		                    <p class="comment-date">
+		                        <span><%=bcc.getBoardCommentDate() %></span>
+		                    </p>
+		                  <p class="comment-content"><%=bcc.getBoardCommentContent() %></p>
+		                </li>
+		              </ul>
+		              <%} %>
+        		</div>
+				 
+				
 					
 					
 					<%-- 댓글에 대한 대댓글 입력양식 --%>
@@ -161,13 +157,13 @@
 			}
 		}
 		
-		$(".recShow").on("click",function(){
-			//몇번째 답글달기 버튼을 클릭한지
-			const idx = $(".recShow").index(this);
-			if($(this).text()=="답글달기"){
-				$(this).text("취소");
+		
+		$(".recShow>span").on("click",function(){
+			const idx = $(".recShow>span").index(this);
+			if($(this).text()=="sms"){
+				$(this).text("close");
 			}else{
-				$(this).text("답글달기");
+				$(this).text("sms");
 			}
 			$(".inputRecommentBox").eq(idx).toggle();
 			$(".inputRecommentBox").eq(idx).find("textarea").focus();

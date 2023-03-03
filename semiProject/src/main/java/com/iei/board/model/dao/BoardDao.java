@@ -267,6 +267,24 @@ public class BoardDao {
 		return list;
 	}
 
+	public int deleteBoardComment(Connection conn, int boardCommentNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from board_comment where board_comment_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
 
 	

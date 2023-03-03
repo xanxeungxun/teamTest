@@ -177,4 +177,16 @@ public class BoardService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public int deleteBoardComment(int boardCommentNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteBoardComment(conn, boardCommentNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 }
