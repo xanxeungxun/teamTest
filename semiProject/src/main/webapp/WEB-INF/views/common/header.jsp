@@ -33,15 +33,21 @@
 
 		<div class="header-top">
 			<div class="left-top-wrap">
-				<span class="logo-text" href="#">Every Universe</span> 
-				<input id="integrated-search" class="search-bar" type="search" name="keyword" value="" placeholder="포스트, 시리즈, 채널 검색" maxlength="50">
+				<a href="#" class="logo-text" href="#"><h4>Every Universe</h4></a>
+                <form>
+                <input id="integrated-search" class="search-bar" type="text" name="search" value=""
+                    placeholder="포스트, 시리즈, 채널 검색" maxlength="50">
+                    <button type="submit" id="search-icon" class="material-symbols-outlined search-icon">search</button>
+                </form>
+                <div class="sign">
 				<%if(loginUser == null) { %>
 					<%-- 로그인 안된 경우 --%>
-					<a href="/loginFrm.do">로그인</a> | <a href="/joinFrm.do">회원가입</a>
+					<a href="/loginFrm.do">로그인</a> <i>ㅤ|ㅤ</i> <a href="/joinFrm.do">회원가입</a>
 				<%} else { %>
 					<%-- 로그인된 경우 --%>
 					<a href="/myPageMain.do" class="material-symbols-outlined" style="font-size: 30px;">person</a>
 				<%} %>
+				</div>
 			</div>
 			<div class="header-bottom">
 				<div class="menu-wrap">
