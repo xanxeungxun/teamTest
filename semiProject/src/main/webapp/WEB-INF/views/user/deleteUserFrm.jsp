@@ -40,39 +40,44 @@
         padding: 30px;
         padding-top: 50px;
     }
+    .title{
+    	font-family: ns-m;
+    }
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
-    <div class="page-content mypage-detail">
-        <div class="page-title">회원 탈퇴</div>
-        <form action="/deleteUser.do" method="post">
-            <div class="content-wrap">
-                <div class="content-title">Q.탈퇴하는 이유가 무엇인가요?</div>
-                <div class="check-quit-reason check-content">
-                    <label><input type="checkbox" name="quit-reason" id="quit-reason1" value="1">원하는 작품이 부족해서</label>
-                    <label><input type="checkbox" name="quit-reason" id="quit-reason2" value="2">회원 혜택이 부족해서</label>
-                    <label><input type="checkbox" name="quit-reason" id="quit-reason3" value="3">시스템 오류가 잦아서</label>
-                    <label><input type="checkbox" name="quit-reason" id="quit-reason4" value="4">불만, 불편 사항에 대한 응대가 늦어서</label>
-                    <label><input type="checkbox" name="quit-reason" id="quit-reason5" value="5">자주 사용하지 않아서</label>
-                    <label><input type="checkbox" name="quit-reason" id="quit-reason6" value="6">개인정보 및 보안이 우려되어서</label>
-                    <label><input type="checkbox" name="quit-reason" id="quit-reason7" value="7">기타</label>
-                </div>
-                <div class="check-pw">
-                    <div class="content-title">본인 확인을 위해 (회원아이디) 계정의 비밀번호를 입력해주세요.</div>
-                    <div>
-                        <input type="password" name="checkPw" id="checkPw" placeholder="비밀번호 입력" class="input-form">
-                    </div>
-                    <div class="check-notice">※ 탈퇴가 완료된 계정은 다시 복구할 수 없습니다.</div>
-                </div>
-                <div class="check-agree">
-                    <label><input type="checkbox" name="quit-agreement" id="quit-agreement" value="agree">위 내용을 이해했으며, 모두 동의합니다.</label>
-                </div>
-            </div>
-            <div class="foot-btn">
-                <a href="#" class="btn bc33">취소</a>
-                <button type="submit" class="btn bc6">회원 탈퇴</button>
-            </div>
-        </form>
+    <div class="page-content">
+    	<div class="mypage-detail">
+    		<div class="page-title">회원 탈퇴</div>
+	        <form action="/deleteUser.do" method="post">
+	            <div class="content-wrap">
+	                <div class="check-quit-title title">Q.탈퇴하는 이유가 무엇인가요?</div>
+	                <div class="check-quit-reason check-content">
+	                    <label><input type="checkbox" name="quit-reason" id="quit-reason1" value="1">원하는 작품이 부족해서</label>
+	                    <label><input type="checkbox" name="quit-reason" id="quit-reason2" value="2">회원 혜택이 부족해서</label>
+	                    <label><input type="checkbox" name="quit-reason" id="quit-reason3" value="3">시스템 오류가 잦아서</label>
+	                    <label><input type="checkbox" name="quit-reason" id="quit-reason4" value="4">불만, 불편 사항에 대한 응대가 늦어서</label>
+	                    <label><input type="checkbox" name="quit-reason" id="quit-reason5" value="5">자주 사용하지 않아서</label>
+	                    <label><input type="checkbox" name="quit-reason" id="quit-reason6" value="6">개인정보 및 보안이 우려되어서</label>
+	                    <label><input type="checkbox" name="quit-reason" id="quit-reason7" value="7">기타</label>
+	                </div>
+	                <div class="check-pw">
+	                    <div class="check-pw-title title">본인 확인을 위해 (회원아이디) 계정의 비밀번호를 입력해주세요.</div>
+	                    <div>
+	                        <input type="password" name="checkPw" id="checkPw" placeholder="비밀번호 입력" class="input-form">
+	                    </div>
+	                    <div class="check-notice">※ 탈퇴가 완료된 계정은 다시 복구할 수 없습니다.</div>
+	                </div>
+	                <div class="check-agree">
+	                    <label><input type="checkbox" name="quit-agreement" id="quit-agreement" value="agree">위 내용을 이해했으며, 모두 동의합니다.</label>
+	                </div>
+	            </div>
+	            <div class="foot-btn">
+	                <a href="#" class="btn bc33">취소</a>
+	                <button type="submit" class="btn bc6">회원 탈퇴</button>
+	            </div>
+	        </form>
+    	</div>
     </div>
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
