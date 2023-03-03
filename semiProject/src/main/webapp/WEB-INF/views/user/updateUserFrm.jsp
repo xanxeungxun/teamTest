@@ -72,7 +72,7 @@
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="page-content mypage-content">
-		<%@include file="/WEB-INF/views/common/myPageMenu.jsp" %>
+		<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
 		<div class="mypage-detail">
 			<div class="mypage-title page-title">회원정보 변경</div>
 	        <form action="/updateUser.do" method="post">

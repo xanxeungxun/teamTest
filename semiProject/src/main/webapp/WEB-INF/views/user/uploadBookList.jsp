@@ -73,7 +73,7 @@
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
     <div class="page-content mypage-content">
-    	<%@include file="/WEB-INF/views/common/myPageMenu.jsp" %>
+    	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
             <div class="page-title">투고한 작품 확인</div>
             <div class="content-wrap">
