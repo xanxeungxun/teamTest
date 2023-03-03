@@ -54,6 +54,7 @@ body>div>div {
 .left-top-wrap {
 	display : flex;
 	justify-content: space-between;
+	flex-wrap : nowrap;
     padding-top: 20px;
     height: 40px;
     text-align: right;
@@ -146,7 +147,7 @@ div[class$="-menu"]>ul>li {
 
 
 .logo-text{
-	padding-right : 300px;
+	width : 700px;
     float: left;
     font-size: 30px;
     color: blueviolet;
@@ -155,11 +156,16 @@ div[class$="-menu"]>ul>li {
 .logo-text>h4{
 	font-weight: bolder;
 	color : blueviolet;
+	float: left;
 }
 .logo-text>h4:hover{
 	cursor: pointer;
 }
-
+.please{
+	display : flex;
+	justify-content: space-between;
+	flex-shrink: 0;
+}
 #integrated-search{
     border-right: none;
 }
@@ -176,10 +182,10 @@ div[class$="-menu"]>ul>li {
     border: 1px solid #ccc;
 }
 #search-icon{
-	width : 50px;
+	width : 40px;
 	border-left : none;
 	margin-left : 0px;
-	margin-right : 18px;
+	margin-right : 10px;
 	float : left;
 	font-size: 30px;
 	color : #ccc;
@@ -195,7 +201,10 @@ div[class$="-menu"]>ul>li {
 #search-icon:hover{
 	color : blueviolet;
 }
-
+.sign{
+	flex-shrink: 0;
+	
+}
 .sign>a{
 	line-height : 50px;
 }
