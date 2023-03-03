@@ -41,9 +41,24 @@ public class SearchIdServlet extends HttpServlet {
 		String searchId = service.selectUserId(inputEmail);
 		
 		//4. 화면 처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/searchId.jsp");
+		/*RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/searchId.jsp");
 		
 		request.setAttribute("searchId", searchId);
+		
+		view.forward(request, response);*/
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		
+		if(searchId != null) {
+			request.setAttribute("title", "아이디를 찾았습니다!");
+			request.setAttribute("msg", "회원님의 아이디는 "+searchId+" 입니다.");
+			request.setAttribute("icon", "success");
+			request.setAttribute("icon", "/loginFrm.do");
+		} else {
+			request.setAttribute("title", "회원정보가 없습니다.");
+			request.setAttribute("msg", "이메일 주소를 확인해주세요.");
+			request.setAttribute("icon", "error");
+			request.setAttribute("icon", "/searchIdFrm.do");
+		}
 		
 		view.forward(request, response);
 		
