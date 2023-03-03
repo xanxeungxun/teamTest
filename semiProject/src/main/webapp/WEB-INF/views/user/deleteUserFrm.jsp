@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/mypageDefault.css">
 </head>
 <style>
-	body>.mypage-detail{
-		width: 700px;
+	.mypage-content{
+		display: flex;
 	}
     .check-content{
         padding-left: 10px;
@@ -23,7 +24,7 @@
     .check-pw>.check-title{
         padding-top: 40px;
     }
-    .input-form{
+    .check-pw .input-form{
         width: 40%;
     }
     .check-notice{
@@ -40,18 +41,16 @@
         padding: 30px;
         padding-top: 50px;
     }
-    .title{
-    	font-family: ns-m;
-    }
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
-    <div class="page-content">
+    <div class="page-content mypage-content">
+    	<%@include file="/WEB-INF/views/common/myPageMenu.jsp" %>
     	<div class="mypage-detail">
-    		<div class="page-title">회원 탈퇴</div>
+    		<div class="mypage-title page-title">회원 탈퇴</div>
 	        <form action="/deleteUser.do" method="post">
 	            <div class="content-wrap">
-	                <div class="check-quit-title title">Q.탈퇴하는 이유가 무엇인가요?</div>
+	                <div class="detail-title">Q.탈퇴하는 이유가 무엇인가요?</div>
 	                <div class="check-quit-reason check-content">
 	                    <label><input type="checkbox" name="quit-reason" id="quit-reason1" value="1">원하는 작품이 부족해서</label>
 	                    <label><input type="checkbox" name="quit-reason" id="quit-reason2" value="2">회원 혜택이 부족해서</label>
@@ -62,7 +61,7 @@
 	                    <label><input type="checkbox" name="quit-reason" id="quit-reason7" value="7">기타</label>
 	                </div>
 	                <div class="check-pw">
-	                    <div class="check-pw-title title">본인 확인을 위해 (회원아이디) 계정의 비밀번호를 입력해주세요.</div>
+	                    <div class="detail-title">본인 확인을 위해 (회원아이디) 계정의 비밀번호를 입력해주세요.</div>
 	                    <div>
 	                        <input type="password" name="checkPw" id="checkPw" placeholder="비밀번호 입력" class="input-form">
 	                    </div>
