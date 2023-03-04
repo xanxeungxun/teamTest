@@ -21,6 +21,7 @@
 	}
 </style>
 <body>
+	<%@include file="/WEB-INF/views/common/header.jsp"%>
     <div class="searchIdPw-wrap loginJoin-wrap page-content">
         <div class="loginJoin-title page-title">아이디 찾기</div>
         <div class="id-msg">아이디는 가입시 입력한 이메일을 통해 찾을 수 있습니다.</div>
@@ -31,5 +32,6 @@
             <button type="submit" class="btn bc66">찾기</button>
         </form>
     </div>
+    <%@include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
