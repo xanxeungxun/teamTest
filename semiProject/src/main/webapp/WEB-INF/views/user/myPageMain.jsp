@@ -96,7 +96,7 @@
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-content mypage-content">
-		<%@include file="/WEB-INF/views/common/myPageMenu.jsp"%>
+		<%@include file="/WEB-INF/views/user/myPageMenu.jsp"%>
 		<div class="mypage-main-wrap mypage-detail">
 			<div class="mypage-box">
 				<div class="material-icons">account_circle</div>

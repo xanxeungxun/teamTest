@@ -1,5 +1,10 @@
+<%@page import="com.iei.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <style>
 .mypage-menu-wrap {
 	width: 140px;
@@ -43,14 +48,14 @@ ul {
 	color: #423c4d;
 }
 
-.mypage-link:not(.page-title) {
+.mypage-menu-wrap a:not(.page-title) {
 	font-size: 14px;
 	font-family: ns-m;
 	color: #6f6b7a;
 }
 </style>
 <div class="mypage-menu-wrap">
-	<a href="/mypageMain.do" class="page-title">마이페이지</a>
+	<a href="/myPageMain.do" class="page-title">마이페이지</a>
 	<ul class="cat">
 		<li>
 			<div class="cat-title">
@@ -58,7 +63,7 @@ ul {
 				<div class="bold">나의 작품</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/uploadBookList.do" class="mypage-link">투고한 작품 확인</a></li>
+				<li><a href="/uploadBookCheck.do?reqPage=1">투고한 작품 확인</a></li>
 			</ul>
 		</li>
 		<li>
@@ -67,8 +72,8 @@ ul {
 				<div class="bold">나의 책갈피</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/myPageFavBookList.do" class="mypage-link">관심작품 목록</a></li>
-				<li><a href="/myPageSupBookList.do" class="mypage-link">후원작품 목록</a></li>
+				<li><a href="#">관심작품 목록</a></li>
+				<li><a href="#">후원작품 목록</a></li>
 			</ul>
 		</li>
 		<li>
@@ -77,8 +82,8 @@ ul {
 				<div class="bold">개인</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/updateUserFrm.do" class="mypage-link">회원정보 변경</a></li>
-				<li><a href="/deleteUserFrm.do" class="mypage-link">회원 탈퇴</a></li>
+				<li><a href="/updateUserFrm.do">회원정보 변경</a></li>
+				<li><a href="/deleteUserFrm.do">회원 탈퇴</a></li>
 			</ul>
 		</li>
 	</ul>

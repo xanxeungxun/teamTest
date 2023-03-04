@@ -35,8 +35,16 @@ public class UpdateUserFrmServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//2. 값 추출
+		//프로필 이미지
+		User u = new User();
+		u.setUserNick(request.getParameter("userNick"));
+		u.setUserPhone(request.getParameter("userPhone"));
+		u.setUserEmail(request.getParameter("userEmail"));
+		u.setUserPw(request.getParameter("newPw"));
 		
 		//3. 비즈니스 로직
+		UserService service = new UserService();
+		int result = service.updateUser(u);
 		
 		//4. 화면 처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateUserFrm.jsp");

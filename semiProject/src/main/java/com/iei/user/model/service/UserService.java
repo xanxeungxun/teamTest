@@ -68,4 +68,49 @@ public class UserService {
 		return u;
 	}
 
+
+	public int updateUser(User u) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.updateUser(conn, u);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.close(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+
+	public int deleteUser(String userId, String checkPw) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.deleteUser(conn, userId, checkPw);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.close(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+
+	public String selectUserPw(String inputId, String inputEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		String searchPw = dao.selectUserPw(conn, inputId, inputEmail);
+		
+		JDBCTemplate.close(conn);
+		
+		return searchPw;
+	}
+
 }

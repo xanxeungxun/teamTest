@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="/js/sweetalert.min.js"></script>
+<link rel="stylesheet" href="/css/default.css">
 </head>
 <body>
 	<div style="display : none;">
