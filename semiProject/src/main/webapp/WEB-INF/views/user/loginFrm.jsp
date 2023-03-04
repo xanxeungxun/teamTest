@@ -65,8 +65,8 @@ div>.btn {
 			</div>
 
 			<div>
-				<button type="submit" class="btn bc6">로그인</button>
-				<br> <a href="/join.do" class="btn bc33 a-btn">회원가입</a>
+				<button type="submit" class="btn bc4">로그인</button>
+				<br> <a href="/join.do" class="btn bc000 bc888 a-btn">회원가입</a>
 			</div>
 		</form>
 	</div>

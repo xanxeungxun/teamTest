@@ -29,7 +29,7 @@
             <div class="input-wrap">
                 <input type="email" name="inputEmail" id="inputEmail" class="input-box input-form" placeholder="이메일 주소">
             </div>
-            <button type="submit" class="btn bc66">찾기</button>
+            <button type="submit" class="btn bc4">찾기</button>
         </form>
     </div>
     <%@include file="/WEB-INF/views/common/footer.jsp"%>
