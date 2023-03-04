@@ -182,4 +182,34 @@ public class UserDao {
 		
 		return result;
 	}
+
+	public String selectUserPw(Connection conn, String inputId, String inputEmail) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String searchPw = null;
+		
+		String query = "select user_pw from user_tbl where user_id=? and user_email=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, inputId);
+			pstmt.setString(2, inputEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				searchPw = rset.getString("user_pw");
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return searchPw;
+	}
 }

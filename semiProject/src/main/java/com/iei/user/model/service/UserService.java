@@ -102,4 +102,15 @@ public class UserService {
 		return result;
 	}
 
+
+	public String selectUserPw(String inputId, String inputEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		String searchPw = dao.selectUserPw(conn, inputId, inputEmail);
+		
+		JDBCTemplate.close(conn);
+		
+		return searchPw;
+	}
+
 }
