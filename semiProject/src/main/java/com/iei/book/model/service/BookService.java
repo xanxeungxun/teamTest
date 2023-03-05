@@ -91,6 +91,7 @@ public class BookService {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<Story> storyList = dao.selectStoryList(conn,bookNo);
+		JDBCTemplate.close(conn);
 		return storyList;
 	}
 	
