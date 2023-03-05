@@ -84,11 +84,23 @@
                             <%=b.getBookExp() %>
                         </div>
                     </div>
+                    
+                    
+                    
                     <div class="book-botton">
+                    
+                    <!-- 만약 b.get작가아이디가 세션에 있는 작가 아이디랑 다르다면, 같다면 -->
                         <button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
                         <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
                         <button class="btn bc6">관심작품</button>
+                        
+                    
+                    
+                        
                     </div>
+                    
+                    
+                    
                 </div><!--book-content-->
 
                 <div class="switch-zone">
