@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.iei.book.model.vo.Book;
+import com.iei.story.model.vo.Story;
 
 import common.JDBCTemplate;
 
@@ -109,6 +110,42 @@ public class BookDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return b;
+	}
+
+	public ArrayList<Story> selectStoryList(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		ArrayList<Story> storyList = new ArrayList<Story>();
+		ResultSet rset = null;
+		String query ="select rownum, a.* from (select s.STORY_NO, s.BOOK_NO , s.STORY_NAME,s.STORY_CONTENT,s.STORY_AFTER,s.STORY_TIME,s.READ_COUNT from story s, book b where s.book_no = b.BOOK_NO)a where a.book_no = ? order by 1 desc";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			rset = pstmt.executeQuery();
+
+			while(rset.next()) {
+				Story s = new Story();
+				s.setBookNo(rset.getInt("book_no"));
+				s.setReadCount(rset.getInt("read_count"));
+				s.setStoryAfter(rset.getString("story_after"));
+				s.setStoryContent(rset.getString("story_content"));
+				s.setStoryName(rset.getString("story_name"));
+				s.setStoryNo(rset.getInt("story_no"));
+				s.setStoryTime(rset.getString("story_time"));
+				s.setRownum(rset.getInt("rownum"));
+				
+				storyList.add(s);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return storyList;
 	}
 
 	

@@ -1,6 +1,7 @@
 package com.iei.book.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.iei.book.model.service.BookService;
 import com.iei.book.model.vo.Book;
+import com.iei.story.model.vo.Story;
 
 /**
  * Servlet implementation class BookViewServlet
@@ -39,10 +41,13 @@ public class StoryListServlet extends HttpServlet {
 		
 		//3비즈니스로직
 		BookService service = new BookService();
-		Book b = service.selectOneBook(bookNo);
+		Book b = service.selectOneBook(bookNo); //<--클릭한 작품의 bookNo로 그 작품의 정보를 불러옴
+		ArrayList<Story> storyList = service.selectStoryList(bookNo); //<--클릭한 작품의 bookNo로 그 작품의 스토리 목록을 불러옴
+		
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/storyList.jsp");
 		request.setAttribute("b", b);
+		request.setAttribute("storyList", storyList);
 		view.forward(request, response);
 	}
 

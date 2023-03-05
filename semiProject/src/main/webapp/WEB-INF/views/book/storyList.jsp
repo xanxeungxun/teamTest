@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
     <%
     	Book b = (Book)request.getAttribute("b");
-    	ArrayList<Story> storyList = (ArrayList<Story>)request.getAttribute("list");
+    	ArrayList<Story> storyList = (ArrayList<Story>)request.getAttribute("storyList");
     %>    
 <!DOCTYPE html>
 <html>
@@ -98,8 +98,14 @@
                     </div><!--author-menu-->
                 </div>
 
+
+			<!-- 여기서부턴 스토리리스트 ================================================= -->
+
                 <div class="book-story">
                 
+                <%for(int i=0 ; i < storyList.size() ; i++){ 
+                		Story s = storyList.get(i);
+                %>
                 
 	                    <div class="one-story">
 	                        <div class="icon-or-box">
@@ -109,25 +115,27 @@
 	                            <input type="checkbox" id="check" name="check">
 	                        </div>
 	                        <div class="story-scene">
-	                            0000화
+	                            <%=s.getRownum() %>화
 	                        </div>
 	                        <div class="story-title">
 	                            <a href="#">
-	                            100바이트 다 채운 소설제목?? 공백포함 100바이트 몇글자정도 cERA di CUPra
+	                            <%=s.getStoryName() %>
 	                            </a>
 	                        </div>
 	                        <div class="story-coment">
 	                            <span class="material-symbols-outlined">
 	                                forum
 	                            </span>
-	                            <span>000</span>
+	                            <span>
+	                            <%=s.getReadCount() %>
+	                            </span>
 	                        </div>
 	                        <div class="story-date">
-	                            2023-03-14
+	                            <%=s.getStoryTime() %>
 	                        </div>
 	                    </div><!--스토리 하나-->
                     
-                    
+                <%} %>    
                     
                 </div><!--book-story-->
 
