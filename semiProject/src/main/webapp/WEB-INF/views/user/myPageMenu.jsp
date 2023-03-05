@@ -10,7 +10,7 @@
 	width: 140px;
 }
 
-.bold {
+.cat .bold {
 	font-family: ns-bold;
 	font-size: 15px;
 	padding-top: 5px;
@@ -63,7 +63,7 @@ ul {
 				<div class="bold">나의 작품</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/uploadBookCheck.do?reqPage=1">투고한 작품 확인</a></li>
+				<li><a href="/uploadBookList.do">투고한 작품 확인</a></li>
 			</ul>
 		</li>
 		<li>
@@ -72,8 +72,8 @@ ul {
 				<div class="bold">나의 책갈피</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="#">관심작품 목록</a></li>
-				<li><a href="#">후원작품 목록</a></li>
+				<li><a href="/myPageFavBookList.do">관심작품 목록</a></li>
+				<li><a href="/myPageSupBookList.do">후원작품 목록</a></li>
 			</ul>
 		</li>
 		<li>

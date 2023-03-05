@@ -42,6 +42,7 @@
         margin: 0;
         width: 480px;
         margin-left: 20px;
+        font-size: 14px;
     }
     .profile-file>.upfile{
         width: 100px;
@@ -68,6 +69,9 @@
     .pw-change-notice li{
         padding: 3px 0px 3px 0px;
     }
+    .pw-change-notice>.bold{
+    	font-family: ns-m;
+    }
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
@@ -83,8 +87,8 @@
 	                        <div class="material-icons">account_circle</div>
 	                        <div class="profile-file">
 	                            <div class="upfile-name input-form">파일을 선택해주세요</div>
-	                            <label for="profile-upfile" class="btn bc4 upfile">파일 선택</label>
-	                            <input type="file" name="profile-upfile" id="profile-upfile" style="display:none">
+	                            <label for="profile-upfile" class="btn bc6 upfile">파일 선택</label>
+	                            <input type="file" name="profile-upfile" id="profile-upfile" accept="image/*" style="display:none">
 	                        </div>
 	                    </div>
 	                </div> 
@@ -121,7 +125,7 @@
 	            </div>
 	            <div class="foot-btn">
 	                <a href="#" class="btn bc33">취소</a>
-	                <button type="submit" class="btn bc6">정보 수정</button>
+	                <button type="submit" class="btn bc4">정보 수정</button>
 	            </div>
 	        </form>
 		</div>
