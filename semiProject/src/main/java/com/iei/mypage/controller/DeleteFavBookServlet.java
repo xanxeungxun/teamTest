@@ -47,15 +47,15 @@ public class DeleteFavBookServlet extends HttpServlet {
 		
 		if(result>0) {
 			request.setAttribute("title", "삭제 성공");
-			request.setAttribute("msg", "게시글이 삭제되었습니다.");
+			request.setAttribute("msg", "해당 관심작품이 삭제되었습니다.");
 			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/myPageFavBookList.do?userNo="+userNo);
+			request.setAttribute("loc", "/myPageFavBookList.do?userNo="+userNo+"&reqPage=1");
 			
 		} else {
 			request.setAttribute("title", "삭제 실패");
 			request.setAttribute("msg", "관리자에게 문의하세요");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/myPageFavBookList.do?userNo="+userNo); 
+			request.setAttribute("loc", "/myPageFavBookList.do?userNo="+userNo+"&reqPage=1"); 
 		}
 		
 		view.forward(request, response);

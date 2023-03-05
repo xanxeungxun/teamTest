@@ -75,7 +75,7 @@ ul {
 				<div class="bold">나의 책갈피</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/myPageFavBookList.do?userNo=<%=u.getUserNo()%>">관심작품 목록</a></li>
+				<li><a href="/myPageFavBookList.do?userNo=<%=u.getUserNo()%>&reqPage=1">관심작품 목록</a></li>
 				<li><a href="/myPageSupBookList.do">후원작품 목록</a></li>
 			</ul>
 		</li>

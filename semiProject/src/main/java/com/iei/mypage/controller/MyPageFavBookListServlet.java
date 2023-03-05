@@ -1,7 +1,6 @@
 package com.iei.mypage.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.iei.mypage.service.MyPageService;
-import com.iei.mypage.vo.FavoriteBook;
-import com.iei.user.model.service.UserService;
+import com.iei.mypage.vo.FavBookPageData;
 
 /**
  * Servlet implementation class MyPageFavBookListServlet
@@ -38,15 +36,18 @@ public class MyPageFavBookListServlet extends HttpServlet {
 		
 		//2. 값 추출
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		
 		//3. 비즈니스 로직
 		MyPageService service = new MyPageService();
-		ArrayList<FavoriteBook> favList = service.selectFavList(userNo);
+		FavBookPageData fbpd = service.selectFavList(userNo, reqPage);
 		
 		//4. 결과 처리 ... 페이지 이동
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageFavBookList.jsp");
 		
-		request.setAttribute("favList", favList);
+		request.setAttribute("favList", fbpd.getFavList());
+		request.setAttribute("pageNavi", fbpd.getPageNavi());
+		request.setAttribute("start", fbpd.getStart());
 		
 		view.forward(request, response);
 	}

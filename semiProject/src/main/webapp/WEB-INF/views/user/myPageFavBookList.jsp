@@ -4,7 +4,8 @@
     pageEncoding="UTF-8"%>
     <%
     ArrayList<FavoriteBook> favList = (ArrayList<FavoriteBook>)request.getAttribute("favList");
-    
+    String pageNavi = (String)request.getAttribute("pageNavi");
+    int start = (int)request.getAttribute("start");
     %>
 <!DOCTYPE html>
 <html>
@@ -85,7 +86,8 @@
             <div class="page-title">관심작품 목록</div>
             <div class="content-wrap">
                 <div class="line-content">
-                	<%for(FavoriteBook fb : favList) {  %>
+                	<%for(int i=0; i<favList.size(); i++) { %>
+                		<%FavoriteBook fb = favList.get(i); %>
 	                    <div class="book-box">
 	                        <div style="background-image: url(/upload/cover-image/<%=fb.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></div>
 	                        <div class="book-info">
@@ -108,6 +110,7 @@
                 	<%} %>
                 </div>
             </div>
+            <div id="pageNavi"><%=pageNavi %></div>
         </div>
     </div>
     <%@include file="/WEB-INF/views/common/footer.jsp" %>

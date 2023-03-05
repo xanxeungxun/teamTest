@@ -13,17 +13,19 @@ import common.JDBCTemplate;
 
 public class MyPageDao {
 
-	public ArrayList<FavoriteBook> selectFavList(Connection conn, int userNo) {
+	public ArrayList<FavoriteBook> selectFavList(Connection conn, int userNo, int start, int end) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		ArrayList<FavoriteBook> favList = new ArrayList<>();
 		
-		String query = "select fav_book_no, book_no, genre_code, genre_name, book_title, book_writer, coverpath, book_date from favorite_book join book using(book_no) join genre using(genre_code) where user_no=?";
+		String query = "select * from (select rownum as rnum, fb.* from (select fav_book_no, book_no, genre_code, genre_name, book_title, book_writer, coverpath, book_date from favorite_book join book using(book_no) join genre using(genre_code) where user_no=? order by 1 desc) fb) where rnum between ? and ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			
 			rset = pstmt.executeQuery();
 			
@@ -114,6 +116,33 @@ public class MyPageDao {
 		}
 		
 		return result;
+	}
+
+	public int selectFavBookCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		int totalCount = 0;
+		
+		String query = "select count(*) as cnt from favorite_book"; //별칭 : cnt
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				totalCount = rset.getInt("cnt");
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return totalCount;
 	}
 	
 }
