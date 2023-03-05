@@ -87,16 +87,15 @@
                     
                     
                     
-                    <div class="book-botton">
+                    <div class="book-button">
                     
-                    <!-- 만약 b.get작가아이디가 세션에 있는 작가 아이디랑 다르다면, 같다면 -->
-                        <button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
-                        <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
-                        <button class="btn bc6">관심작품</button>
-                        
-                    
-                    
-                        
+                    <!-- 만약 b.get작가아이디가 세션에 있는 작가 아이디랑 같다면 
+                    <if(loginUser.getUserId().equals(b.getBookWriterId())){%>
+                    	<button class="btn bc66" style="margin-bottom: 10px;">완결작품으로 전환</button>
+                        <button class="btn bc6">글쓰기</button>
+                    <} %> --> 
+                
+                    	
                     </div>
                     
                     
@@ -157,5 +156,19 @@
     </div><!--page-content-->
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+	<script>
+	/*
+	
+	<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
+    <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
+    <button class="btn bc6">관심작품</button> */
+    
+    const a = $("<a>");
+    a.text("이건되나");
+    $(".book-button").append(a);
+	
+	</script>
 </body>
 </html>

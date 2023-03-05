@@ -85,7 +85,7 @@ a{
     line-height: 30px;
 }
 
-.book-botton{
+.book-button{
     display: flex;
     flex-direction: column;
     justify-content: end;
