@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.mypage.service.MyPageService;
 import com.iei.user.model.service.UserService;
 
 /**
@@ -35,7 +36,8 @@ public class DeleteFavBookServlet extends HttpServlet {
 		int favBookNo = Integer.parseInt(request.getParameter("favBookNo"));
 		
 		//3. 비즈니스로직
-		
+		MyPageService service = new MyPageService();
+		int result = service.deleteFavBook(favBookNo);
 		
 		//4. 결과 처리
 		

@@ -1,4 +1,4 @@
-package com.iei.user.controller;
+package com.iei.mypage.controller;
 
 import java.io.IOException;
 

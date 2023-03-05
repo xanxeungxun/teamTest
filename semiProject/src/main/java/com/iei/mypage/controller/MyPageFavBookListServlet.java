@@ -1,4 +1,4 @@
-package com.iei.user.controller;
+package com.iei.mypage.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.mypage.service.MyPageService;
 import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.service.UserService;
 
@@ -39,7 +40,7 @@ public class MyPageFavBookListServlet extends HttpServlet {
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		//3. 비즈니스 로직
-		UserService service = new UserService();
+		MyPageService service = new MyPageService();
 		ArrayList<FavoriteBook> favList = service.selectFavList(userNo);
 		
 		//4. 결과 처리 ... 페이지 이동

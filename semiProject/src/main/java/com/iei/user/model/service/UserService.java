@@ -59,17 +59,6 @@ public class UserService {
 	}
 
 
-	public User selectOneUser(String userId) {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		User u = dao.selectOneUser(conn, userId);
-		
-		JDBCTemplate.close(conn);
-		
-		return u;
-	}
-
-
 	public int updateUser(User u) {
 		Connection conn = JDBCTemplate.getConnection();
 		
@@ -115,14 +104,5 @@ public class UserService {
 	}
 
 
-	public ArrayList<FavoriteBook> selectFavList(int userNo) {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		ArrayList<FavoriteBook> favList = dao.selectFavList(conn, userNo);
-		
-		JDBCTemplate.close(conn);
-		
-		return favList;
-	}
 
 }
