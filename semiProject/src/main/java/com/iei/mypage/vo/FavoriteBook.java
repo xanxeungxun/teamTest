@@ -1,4 +1,4 @@
-package com.iei.user.model.vo;
+package com.iei.mypage.vo;
 
 public class FavoriteBook {
 	

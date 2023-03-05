@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.iei.user.model.vo.FavoriteBook;
+import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.vo.User;
 
 import common.JDBCTemplate;

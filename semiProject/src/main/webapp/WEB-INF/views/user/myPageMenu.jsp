@@ -1,7 +1,9 @@
 <%@page import="com.iei.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	<%
+	User u = (User)session.getAttribute("loginUser");
+	%>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -73,7 +75,7 @@ ul {
 				<div class="bold">나의 책갈피</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/myPageFavBookList.do?userNo=2">관심작품 목록</a></li>
+				<li><a href="/myPageFavBookList.do?userNo=<%=u.getUserNo()%>">관심작품 목록</a></li>
 				<li><a href="/myPageSupBookList.do">후원작품 목록</a></li>
 			</ul>
 		</li>

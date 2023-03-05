@@ -3,8 +3,8 @@ package com.iei.user.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.dao.UserDao;
-import com.iei.user.model.vo.FavoriteBook;
 import com.iei.user.model.vo.User;
 
 
