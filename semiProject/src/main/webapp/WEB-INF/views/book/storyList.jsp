@@ -129,7 +129,7 @@
 	                            <%=s.getRownum() %>화
 	                        </div>
 	                        <div class="story-title">
-	                            <a href="#">
+	                            <a href="/storyView.do?storyNo=<%=s.getStoryNo()%>">
 	                            <%=s.getStoryName() %>
 	                            </a>
 	                        </div>
@@ -159,15 +159,28 @@
 
 
 	<script>
-	/*
-	
-	<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
-    <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
-    <button class="btn bc6">관심작품</button> */
+		/*	
+		<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
+	    <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
+	    <button class="btn bc6">관심작품</button>
+	    */
     
-    const a = $("<a>");
-    a.text("이건되나");
-    $(".book-button").append(a);
+	    const button1 = $("<button>");
+	    const button2 = $("<button>");
+	    const button3 = $("<button>");
+	    button1.text("첫 화 보기");
+	    button1.addClass("btn bc66");
+	    button1.css("margin-bottom","10px");
+	    
+	    button2.text("후원하기");
+	    button2.addClass("btn bc6");
+	    button2.css("margin-bottom","10px");
+	    
+	    button3.text("관심작품");
+	    button3.addClass("btn bc6");
+	    $(".book-button").append(button1);
+	    $(".book-button").append(button2);
+	    $(".book-button").append(button3);
 	
 	</script>
 </body>
