@@ -91,7 +91,7 @@
 	                        <div class="book-info">
 	                            <div class="book-info-head">
 	                                <div class="book-title"><%=fb.getBookTitle() %></div>
-	                                <a href="/deleteFavBook.do?favBookNo=<%=fb.getFavBookNo() %>" class="material-symbols-outlined close-btn">close</a>
+	                                <a href="/deleteFavBook.do?favBookNo=<%=fb.getFavBookNo() %>&userNo=<%=loginUser.getUserNo() %>" class="material-symbols-outlined close-btn">close</a>
 	                            </div>
 	                            <div class="genre"><%=fb.getGenreName() %></div>
 	                            <div class="writer-wrap">

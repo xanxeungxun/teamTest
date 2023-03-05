@@ -1,6 +1,9 @@
 package com.iei.mypage.controller;
 
+import java.io.File;
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.iei.mypage.service.MyPageService;
-import com.iei.user.model.service.UserService;
 
 /**
  * Servlet implementation class DeleteFavBookServlet
@@ -34,13 +36,29 @@ public class DeleteFavBookServlet extends HttpServlet {
 		
 		//2. 값 추출
 		int favBookNo = Integer.parseInt(request.getParameter("favBookNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		//3. 비즈니스로직
 		MyPageService service = new MyPageService();
 		int result = service.deleteFavBook(favBookNo);
 		
 		//4. 결과 처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		
+		if(result>0) {
+			request.setAttribute("title", "삭제 성공");
+			request.setAttribute("msg", "게시글이 삭제되었습니다.");
+			request.setAttribute("icon", "success");
+			request.setAttribute("loc", "/myPageFavBookList.do?userNo="+userNo);
+			
+		} else {
+			request.setAttribute("title", "삭제 실패");
+			request.setAttribute("msg", "관리자에게 문의하세요");
+			request.setAttribute("icon", "error");
+			request.setAttribute("loc", "/myPageFavBookList.do?userNo="+userNo); 
+		}
+		
+		view.forward(request, response);
 		
 	}
 
