@@ -144,7 +144,7 @@ $("[name=userName]").on("change",function(){
 
 //5. 전화번호
 $("[name=userPhone]").on("change",function(){
-    const phoneReg = /^010[0-9]{7,8}$/;
+    const phoneReg = /^010-[0-9]{3,4}-[0-9]{4}$/;
     const check = phoneReg.test($(this).val());
 
     if(check) {
@@ -163,7 +163,7 @@ $("[name=userPhone]").on("change",function(){
 
 //6. 이메일주소
 $("[name=userEmail]").on("change",function(){
-    const emailReg = /^[a-zA-Z0-9]{5,25}$/;
+    const emailReg = /^[a-zA-Z0-9]{5,25}@/;
     const check = emailReg.test($(this).val());
 
     if(check) {

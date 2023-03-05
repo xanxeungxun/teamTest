@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-
+import com.iei.user.model.vo.FavoriteBook;
 import com.iei.user.model.vo.User;
 
 import common.JDBCTemplate;
@@ -155,8 +156,27 @@ public class UserDao {
 		
 		int result = 0;
 		
+		String query = "update user_tbl set user_pw=?, user_nick=?, user_phone=?, user_email=?, user_pic=? where user_id=?";
 		
-		return 0;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, u.getUserPw());
+			pstmt.setString(2, u.getUserNick());
+			pstmt.setString(3, u.getUserPhone());
+			pstmt.setString(4, u.getUserEmail());
+			pstmt.setString(5, u.getUserPic());
+			pstmt.setString(6, u.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 	public int deleteUser(Connection conn, String userId, String checkPw) {
@@ -211,5 +231,45 @@ public class UserDao {
 		}
 		
 		return searchPw;
+	}
+
+	public ArrayList<FavoriteBook> selectFavList(Connection conn, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		ArrayList<FavoriteBook> favList = new ArrayList<>();
+		
+		String query = "select fav_book_no, book_no, genre_code, genre_name, book_title, book_writer, coverpath, book_date from favorite_book join book using(book_no) join genre using(genre_code) where user_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				FavoriteBook fb = new FavoriteBook();
+				
+				fb.setFavBookNo(rset.getInt("fav_book_no"));
+				fb.setBookNo(rset.getInt("book_no"));
+				fb.setGenreCode(rset.getInt("genre_code"));
+				fb.setGenreName(rset.getString("genre_name"));
+				fb.setBookTitle(rset.getString("book_title"));
+				fb.setBookWriter(rset.getString("book_writer"));
+				fb.setCoverPath(rset.getString("coverpath"));
+				fb.setBookDate(rset.getString("book_date"));
+				
+				favList.add(fb);
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return favList;
 	}
 }

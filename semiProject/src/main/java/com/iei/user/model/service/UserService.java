@@ -1,9 +1,10 @@
 package com.iei.user.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.iei.user.model.dao.UserDao;
-
+import com.iei.user.model.vo.FavoriteBook;
 import com.iei.user.model.vo.User;
 
 
@@ -111,6 +112,17 @@ public class UserService {
 		JDBCTemplate.close(conn);
 		
 		return searchPw;
+	}
+
+
+	public ArrayList<FavoriteBook> selectFavList(int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		ArrayList<FavoriteBook> favList = dao.selectFavList(conn, userNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return favList;
 	}
 
 }
