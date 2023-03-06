@@ -14,10 +14,10 @@ import com.iei.question.model.vo.QuestionVo;
 
 // 질문 상세 조회
 @WebServlet(name = "viewQuestion", urlPatterns = { "/question/viewQuestion.do" })
-public class QuestionViewServlet extends HttpServlet {
+public class ViewQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public QuestionViewServlet() {
+	public ViewQuestionServlet() {
 		super();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

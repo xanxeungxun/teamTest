@@ -22,10 +22,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%-- question 용 css --%>
 <link rel="stylesheet" href="/css/question.css">
+<%-- question 용 css --%>
 </head>
 <body>
-
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
 	<div class="page-content">
 		<div class="question-wrap">
@@ -80,7 +81,9 @@
 				<tr class="question-tr">
 					<td class="question-td" colspan="3">
 						<textarea class="input-form" 
-						id="answerContent"style="font-size:18px;"><%=question.getAnswerContent().replace("\r\n","<br>") %></textarea>
+						id="answerContent"style="font-size:18px;">
+						<%=question.getAnswerContent().replace("\r\n","<br>") %>
+						</textarea>
 				<%}else {%>
 					<tr class="question-tr">
 						<td class="question-td">
@@ -94,17 +97,26 @@
 							</div>
 						</td>
 						<td class="question-td">
+						<input class="input-form" 
+						type="hidden"
+						id="answerUserId" value="<%=loginUser.getUserId() %>">
+						</input>
 							<div>관리자 아이디
 							<%=loginUser.getUserId() %>
+						<input class="input-form" 
+						type="hidden"
+						id="answerUserName" value="<%=loginUser.getUserName() %>">
+						</input>
 							<br>관리자 닉네임
 							<%=loginUser.getUserName() %></div>
 						</td>
 					</tr>
 					<tr class="question-tr">
 						<td class="question-td" colspan="3">
-							<textarea class="input-form" 
-							id="answerContent"style="font-size:18px;"><%=question.getAnswerContent().replace("\r\n","<br>") %></textarea>
-					
+						<textarea class="input-form" 
+						id="answerContent"style="font-size:18px;">
+						<%=question.getAnswerContent().replace("\r\n","<br>") %>
+						</textarea>
 				<%} %>
 				
 				<br>
@@ -120,13 +132,16 @@
 </body>
 
 <script>
+	
 	function writeAnswer(){
 		
 		//ajax 통신에 사용 될 객체를 만듬
 		let inputData = {
-			questionNo : "<%=question.getQuestionNo()%>",
+			questionNo : "<%=question.getQuestionNo()%>", 
 			answerTitle : document.querySelector("#answerTitle").value,
-			answerContent : document.querySelector("#answerContent").value
+			answerContent : document.querySelector("#answerContent").value,
+			answerUserId : document.querySelector("#answerUserId").value,
+			answerUserName : document.querySelector("#answerUserName").value
 		};
 		
 		
@@ -136,7 +151,7 @@
 		    dataType:"",
 		    data:inputData,
 		    success: function(result) {
-				alert("답변이 작성되었습니다.");
+		    	alert("답변이 작성되었습니다.");
 				location.href = '/question/viewQuestion.do?questionNo=<%=question.getQuestionNo()%>'
 		    },
 		    error: function(result){

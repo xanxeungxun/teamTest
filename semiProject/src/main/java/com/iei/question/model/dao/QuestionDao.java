@@ -61,10 +61,6 @@ public class QuestionDao {
 		String query = "SELECT * FROM QUESTION WHERE QUESTION_NO = ?";
 		
 		
-		System.out.println("========= EXECUTED QUERY =========");
-		System.out.println("questionNo : " + questionNo);
-		System.out.println(query);
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, Integer.parseInt(questionNo));
@@ -85,8 +81,6 @@ public class QuestionDao {
 				result.setAnswerContent(rset.getString("ANSWER_CONTENT"));
 				result.setAnswerDate(rset.getString("ANSWER_DATE"));
 				
-				System.out.println("========= OUTPUT VALUES =========");
-				System.out.println(result.toString());
 			}
 			
 		} catch (SQLException e) {
@@ -107,7 +101,7 @@ public class QuestionDao {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "Y");
+			pstmt.setString(1, "y");
 			pstmt.setString(2, paramVo.getAnswerTitle());
 			pstmt.setString(3, paramVo.getAnswerContent());
 			pstmt.setString(4, paramVo.getAnswerUserName());
@@ -131,7 +125,7 @@ public class QuestionDao {
 	public int insertQuestion(Connection conn, QuestionVo q) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into question values(question_seq.nextval,?,?,?,?,?,to_char(sysdate,'yy-mm-dd'),?,?,?,?,?,?)";
+		String query = "insert into question values(question_seq.nextval,?,?,?,?,?,to_char(sysdate,'yy/mm/dd'),?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, q.getQuestionUserId());//아이디

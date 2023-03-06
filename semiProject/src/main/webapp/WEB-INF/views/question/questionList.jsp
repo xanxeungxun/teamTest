@@ -75,22 +75,26 @@ int start = (int)request.getAttribute("start");
 					<%
 					QuestionVo q = list.get(i);
 					%>
-						<% String y = "y"; %>
-						<% String n = "n"; %>
 						
 					<tr class="question-tr">
 						<td class="question-td"><%=i+start %></td>
-						<%--- --%>
 						<td class="question-td">
 						<% if(q.getQuestionType() == 1 ){%>이용안내
 						<%}else if(q.getQuestionType() == 2 ){%>시스템오류
 						<%}else if(q.getQuestionType() == 3 ){%>결제
 						<%}else if(q.getQuestionType() == 4 ){%>건의사항
 						<%}else if(q.getQuestionType() == 5 ){%>기타
-						<%}else if(q.getQuestionType() == 6 ){%>신고<%} %>
+						<%}else if(q.getQuestionType() == 6 ){%>신고
+						<%} %>
 						</td>
-						<td class="question-td"><a
-							href="/question/viewQuestion.do?questionNo=<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a></td>
+						<%-- 게시물 제목 --%>
+						<td class="question-td">
+						<% if(loginUser !=null && loginUser.getUserLevel() == 2||loginUser !=null && loginUser.getUserLevel() == 1) {%>
+						<a href="/question/viewQuestion.do?questionNo=
+							<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a>
+						<%}%>
+						<%=q.getQuestionTitle()%>
+						</td>
 						<td class="question-td"><%=q.getQuestionName()%></td><%-- 작성자 --%>
 						<td class="question-td">
 						

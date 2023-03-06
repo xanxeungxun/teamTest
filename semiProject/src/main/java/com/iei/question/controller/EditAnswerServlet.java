@@ -29,8 +29,8 @@ public class EditAnswerServlet extends HttpServlet {
 		QuestionVo paramVo = new QuestionVo();
 		
 		// 답변 등록자 아이디, 이름은 나중에 로그인 기능 완성 되면 세션에서 가져올 것
-		paramVo.setAnswerUserId("ADMIN_ID");
-		paramVo.setAnswerUserName("ADMIN_NAME");
+		paramVo.setAnswerUserId(request.getParameter("answerUserId"));
+		paramVo.setAnswerUserName(request.getParameter("answerUserName"));
 		paramVo.setQuestionNo(Integer.parseInt(request.getParameter("questionNo")));
 		paramVo.setAnswerTitle(request.getParameter("answerTitle"));
 		paramVo.setAnswerContent(request.getParameter("answerContent"));
