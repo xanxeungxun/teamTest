@@ -5,7 +5,7 @@ public class QuestionVo {
 	private String questionUserId;
 	private String questionName;
 	private String questionTitle;
-	private String questionType;
+	private int questionType;
 	private String questionContent;
 	private String enrollDate;
 	private String answerYn;
@@ -17,9 +17,45 @@ public class QuestionVo {
 	
 	
 	
+	
+
+	public QuestionVo(int questionNo, String questionUserId, String questionName, String questionTitle,
+			int questionType, String questionContent, String enrollDate, String answerYn, String answerUserName,
+			String answerUserId, String answerTitle, String answerContent, String answerDate) {
+		super();
+		this.questionNo = questionNo;
+		this.questionUserId = questionUserId;
+		this.questionName = questionName;
+		this.questionTitle = questionTitle;
+		this.questionType = questionType;
+		this.questionContent = questionContent;
+		this.enrollDate = enrollDate;
+		this.answerYn = answerYn;
+		this.answerUserName = answerUserName;
+		this.answerUserId = answerUserId;
+		this.answerTitle = answerTitle;
+		this.answerContent = answerContent;
+		this.answerDate = answerDate;
+	}
+
+
+
+
+
+	public QuestionVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
 	public int getQuestionNo() {
 		return questionNo;
 	}
+
+
 
 
 
@@ -29,9 +65,13 @@ public class QuestionVo {
 
 
 
+
+
 	public String getQuestionUserId() {
 		return questionUserId;
 	}
+
+
 
 
 
@@ -41,9 +81,13 @@ public class QuestionVo {
 
 
 
+
+
 	public String getQuestionName() {
 		return questionName;
 	}
+
+
 
 
 
@@ -53,9 +97,13 @@ public class QuestionVo {
 
 
 
+
+
 	public String getQuestionTitle() {
 		return questionTitle;
 	}
+
+
 
 
 
@@ -65,15 +113,21 @@ public class QuestionVo {
 
 
 
-	public String getQuestionType() {
+
+
+	public int getQuestionType() {
 		return questionType;
 	}
 
 
 
-	public void setQuestionType(String questionType) {
+
+
+	public void setQuestionType(int questionType) {
 		this.questionType = questionType;
 	}
+
+
 
 
 
@@ -83,9 +137,13 @@ public class QuestionVo {
 
 
 
+
+
 	public void setQuestionContent(String questionContent) {
 		this.questionContent = questionContent;
 	}
+
+
 
 
 
@@ -95,9 +153,13 @@ public class QuestionVo {
 
 
 
+
+
 	public void setEnrollDate(String enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+
+
 
 
 
@@ -107,9 +169,13 @@ public class QuestionVo {
 
 
 
+
+
 	public void setAnswerYn(String answerYn) {
 		this.answerYn = answerYn;
 	}
+
+
 
 
 
@@ -119,9 +185,13 @@ public class QuestionVo {
 
 
 
+
+
 	public void setAnswerUserName(String answerUserName) {
 		this.answerUserName = answerUserName;
 	}
+
+
 
 
 
@@ -131,9 +201,13 @@ public class QuestionVo {
 
 
 
+
+
 	public void setAnswerUserId(String answerUserId) {
 		this.answerUserId = answerUserId;
 	}
+
+
 
 
 
@@ -143,9 +217,13 @@ public class QuestionVo {
 
 
 
+
+
 	public void setAnswerTitle(String answerTitle) {
 		this.answerTitle = answerTitle;
 	}
+
+
 
 
 
@@ -155,9 +233,13 @@ public class QuestionVo {
 
 
 
+
+
 	public void setAnswerContent(String answerContent) {
 		this.answerContent = answerContent;
 	}
+
+
 
 
 
@@ -167,9 +249,13 @@ public class QuestionVo {
 
 
 
+
+
 	public void setAnswerDate(String answerDate) {
 		this.answerDate = answerDate;
 	}
+
+
 
 
 
@@ -181,6 +267,10 @@ public class QuestionVo {
 				+ ", answerUserName=" + answerUserName + ", answerUserId=" + answerUserId + ", answerTitle="
 				+ answerTitle + ", answerContent=" + answerContent + ", answerDate=" + answerDate + "]";
 	}
+
+
+
+
 	
 	
 }
