@@ -14,7 +14,7 @@
 <title><%=b.getBookTitle() %></title>
 	
 	<link rel="stylesheet" href="/css/storyList.css">
-	
+	<link rel="stylesheet" href="/css/assist.css">
 	
 	<style>
         .material-symbols-outlined {
@@ -99,6 +99,10 @@
                     </div>
                     
                     
+                   
+                    
+                    
+                    
                     
                 </div><!--book-content-->
 
@@ -155,6 +159,35 @@
         </div><!--book-wrap-->
     </div><!--page-content-->
 
+
+					 <div id="test-modal" class="modal-bg">
+				      <div class="modal-wrap">
+				        <div class="modal-head">
+				          <h2>후원하기</h2>
+				          <span class="material-icons close-icon modal-close">close</span>
+				        </div>
+				        <div class="point-wrap">
+				        	<table>
+				        		<tr>
+				        			<td>보유포인트</td>
+				        			<td>사용할 포인트</td>
+				        			<td>남은 포인트</td>
+				        		</tr>
+				        		<tr>
+				        			<td>1000</td>
+				        			<td>
+				        			</td>
+				        		</tr>
+				        	</table>
+				        </div>
+				        <div class="modal-foot">
+				          <button class="btn bc6 btn-pill">후원</button>
+				          <button class="btn bc33 modal-close btn-pill">취소</button>
+				        </div>
+				      </div>
+				    </div>
+				    
+				    
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 
@@ -166,18 +199,24 @@
 	    */
     
 	    const button1 = $("<button>");
-	    const button2 = $("<button>");
+	    const button2 = $("<button target='#test-modal'>");
 	    const button3 = $("<button>");
+	    
 	    button1.text("첫 화 보기");
 	    button1.addClass("btn bc44");
 	    button1.css("margin-bottom","10px");
 	    
 	    button2.text("후원하기");
-	    button2.addClass("btn bc4");
+	    button2.addClass("btn bc4 modal-open-btn");
 	    button2.css("margin-bottom","10px");
+	    
+	    
 	    
 	    button3.text("관심작품");
 	    button3.addClass("btn bc4");
+	    
+	    
+	    
 	    $(".book-button").append(button1);
 	    $(".book-button").append(button2);
 	    $(".book-button").append(button3);
