@@ -102,9 +102,8 @@ public class BookService {
 		if(result==0) {
 			JDBCTemplate.rollback(conn);
 		}else {
-			JDBCTemplate.commit(conn);
-			b = dao.selectOneBook(conn, b.getBookNo());
-			result = dao.insertStory(conn,b,s);
+			int bookNo = dao.selectBookNo(conn);
+			result = dao.insertStory(conn,bookNo,s);
 				if(result==0) {
 					JDBCTemplate.rollback(conn);
 				}else {

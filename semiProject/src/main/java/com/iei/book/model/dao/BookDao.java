@@ -172,14 +172,14 @@ public class BookDao {
 		return result;
 	}
 
-	public int insertStory(Connection conn, Book b, Story s) {
+	public int insertStory(Connection conn, int bookNo, Story s) {
 		PreparedStatement pstmt = null;
 		int result=0;
 		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,?,sysdate,default)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, b.getBookNo());
+			pstmt.setInt(1, bookNo);
 			pstmt.setString(2, s.getStoryName());
 			pstmt.setString(3, s.getStoryContent());
 			pstmt.setString(4, s.getStoryAfter());
@@ -193,6 +193,29 @@ public class BookDao {
 		}
 		
 		return result;
+	}
+
+	public int selectBookNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int bookNo = 0;
+		String query ="select max(book_no)as book_no from book";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				bookNo = rset.getInt("book_no");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return bookNo;
 	}
 
 	

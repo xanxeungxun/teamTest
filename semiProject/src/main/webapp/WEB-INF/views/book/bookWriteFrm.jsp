@@ -9,7 +9,7 @@
 
 <title>새로운 작품 등록</title>
 <link rel="stylesheet" href="/css/bookWriteFrm.css">
-
+<link rel = "stylesheet" href="/summernote/summernote-lite.css">
 
 </head>
 
@@ -18,7 +18,6 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <script src="/summernote/summernote-lite.js"></script>
 <script src="/summernote/lang/summernote-ko-KR.js"></script>
-<link rel = "stylesheet" href="/summernote/summernote-lite.css">
 
 
 <div class="page-content">
@@ -116,7 +115,7 @@
 		   			<tr class="tr-1">
 		   				<th>스토리 제목</th>
 		   				<td>
-		   					<input type="text" name="stroyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스">
+		   					<input type="text" name="storyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스">
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
@@ -138,7 +137,7 @@
 		   					<button type="button" id="backFrmBtn" onclick="backFrm()">이전</button>
 		   				</td>
 		   				<td>
-		   					<button type="button" id="submit">첫 작품 등록하기</button>
+		   					<button id="submit">첫 작품 등록하기</button>
 		   				</td>
 		   			</tr>
 		   		</table>
@@ -169,8 +168,8 @@
 	
 	
 	$("#storyContent").summernote({
-	      height : 500,
-	      lang : "ko-KR",
+	      height : 400,
+	      lang : "ko-KR"
 	})
 	
 
