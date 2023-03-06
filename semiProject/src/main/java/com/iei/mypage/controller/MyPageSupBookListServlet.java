@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.mypage.service.MyPageService;
+import com.iei.mypage.vo.SupBookPageData;
+
 /**
  * Servlet implementation class MyPageSupBookListServlet
  */
@@ -28,9 +31,26 @@ public class MyPageSupBookListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//페이지 이동
+		//1. 인코딩
+		request.setCharacterEncoding("utf-8");
+		
+		//2. 값 추출
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		
+		//3. 비즈니스 로직
+		MyPageService service = new MyPageService();
+		SupBookPageData sbpd = service.selectSupList(userNo, reqPage);
+		
+		//4. 결과 처리 ... 페이지 이동
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageSupBookList.jsp");
+		
+		request.setAttribute("supList", sbpd.getSupList());
+		request.setAttribute("pageNavi", sbpd.getPageNavi());
+		request.setAttribute("start", sbpd.getStart());
+		
 		view.forward(request, response);
+		
 	}
 
 	/**

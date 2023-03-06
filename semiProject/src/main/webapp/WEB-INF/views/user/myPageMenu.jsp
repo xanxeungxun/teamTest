@@ -13,6 +13,10 @@
 	width: 140px;
 }
 
+.mypage-menu-wrap>.page-title{
+	font-size: 28px;
+}
+
 .cat .bold {
 	font-family: ns-bold;
 	font-size: 15px;
@@ -21,8 +25,9 @@
 	color: #3a4f7a;
 }
 
-.icon {
+div>.icon {
 	color: #3a4f7a;
+	margin: 0;
 }
 
 .cat-title {
@@ -76,7 +81,7 @@ ul {
 			</div>
 			<ul class="cat-detail">
 				<li><a href="/myPageFavBookList.do?userNo=<%=u.getUserNo()%>&reqPage=1">관심작품 목록</a></li>
-				<li><a href="/myPageSupBookList.do">후원작품 목록</a></li>
+				<li><a href="/myPageSupBookList.do?userNo=<%=u.getUserNo()%>&reqPage=1">후원작품 목록</a></li>
 			</ul>
 		</li>
 		<li>
