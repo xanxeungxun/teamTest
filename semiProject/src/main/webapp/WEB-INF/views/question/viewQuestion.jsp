@@ -27,7 +27,8 @@
 						<div><%=question.getEnrollDate() %></div>
 					</td>
 					<td class="question-td">
-						<div>아이디<%=question.getQuestionUserId() %> <br>닉네임 <%=question.getQuestionName() %></div>
+						<div>아이디 <%=question.getQuestionUserId() %> <br>
+						닉네임 <%=question.getQuestionName() %></div>
 					</td>
 				</tr>
 				<tr class="question-tr">
