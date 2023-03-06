@@ -190,7 +190,7 @@
 				    
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 <%
-if(loginUser==null){%>
+if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 	<script>
 			/*	
 			<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
@@ -236,10 +236,12 @@ if(loginUser==null){%>
 		    
 		    button2.text("글쓰기");
 		    button2.addClass("btn bc4");
+		    button2.attr("onclick","location.href='/writeStoryFrm.do'");
 		    
 		    $(".book-button").append(button1);
 		    $(".book-button").append(button2);
 		    
+
 	</script>
 <%
 }
