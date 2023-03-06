@@ -1,5 +1,9 @@
+<%@page import="com.iei.book.model.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	int bookNo = (int)request.getAttribute("bookNo");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +29,8 @@
 	    
 	    <div class="book-content-box">
 	    
-		    <form action="/storyWrite.do" method="post" enctype="multipart/form-data">
+		    <form action="/storyWrite.do" method="post">
+		    <input type="hidden" name="bookNo" value="<%=bookNo%>">
 			   		<table class="board-write-frm tbl" id="boardWriteFrm2">
 			   			<tr class="tr-1">
 			   				<th>스토리 제목</th>
