@@ -1,9 +1,10 @@
 package com.iei.user.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
+import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.dao.UserDao;
-
 import com.iei.user.model.vo.User;
 
 
@@ -58,17 +59,6 @@ public class UserService {
 	}
 
 
-	public User selectOneUser(String userId) {
-		Connection conn = JDBCTemplate.getConnection();
-		
-		User u = dao.selectOneUser(conn, userId);
-		
-		JDBCTemplate.close(conn);
-		
-		return u;
-	}
-
-
 	public int updateUser(User u) {
 		Connection conn = JDBCTemplate.getConnection();
 		
@@ -112,5 +102,7 @@ public class UserService {
 		
 		return searchPw;
 	}
+
+
 
 }

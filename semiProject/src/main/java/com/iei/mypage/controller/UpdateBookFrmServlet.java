@@ -1,4 +1,4 @@
-package com.iei.user.controller;
+package com.iei.mypage.controller;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MyPageFavBookListServlet
+ * Servlet implementation class UpdateBookFrmServlet
  */
-@WebServlet(name = "MyPageFavBookList", urlPatterns = { "/myPageFavBookList.do" })
-public class MyPageFavBookListServlet extends HttpServlet {
+@WebServlet(name = "UpdateBookFrm", urlPatterns = { "/updateBookFrm.do" })
+public class UpdateBookFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageFavBookListServlet() {
+    public UpdateBookFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,7 @@ public class MyPageFavBookListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//페이지 이동
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageFavBookList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateBookFrm.jsp");
 		view.forward(request, response);
 	}
 

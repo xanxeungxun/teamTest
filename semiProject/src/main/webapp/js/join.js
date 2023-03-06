@@ -1,6 +1,6 @@
 /*
-1. 아이디 : 5~25자 영어소문자,숫자 입력
-2-1. 비번 : 8~25자 영어대소문자,숫자 입력
+1. 아이디 : 5~25자 영어소문자,숫자 입력 / 비빈과 달라야함
+2-1. 비번 : 8~25자 영어대소문자,숫자 입력 / 아이디와 달라야함
 2-2. 비번 확인 : 비밀번호와 값 같은지 확인
 3. 닉네임 : 영어대소문자, 한글 최소 1글자 이상 ... 10글자 이내
 4. 이름 : 한글 최소 1글자 이상 ... 15글자 이내
@@ -32,45 +32,57 @@ function falseDesign(i){
     $(".reg-msg").eq(i).addClass("active-reg-msg");
     $(".input-form").eq(i).addClass("active-reg-input");
 }
-//값을 입력하지 않았을때
-function noAllInput(){
-    $(".reg-msg").eq(0).text("아이디를 입력");
-}
+
 
 //1. 아이디
 $("[name=userId]").on("change",function(){
     const idReg = /^[a-z0-9]{5,25}$/;
     const check = idReg.test($(this).val());
 
-    if(check) {
-        //true
-        trueDesign(0);
-        result[0] = true;
-
+    if($("[name=userId]").val() == $("[name=userPw]").val()) {
+        idDifferPw(0);
+        return;
     } else {
-        //false
-        $(".reg-msg").eq(0).text("5~25자의 영문 소문자와 숫자로만 입력해주세요.");
-        falseDesign(0);
-        result[0] = false;
+        if(check) {
+            //true
+            trueDesign(0);
+            result[0] = true;
+    
+        } else {
+            //false
+            $(".reg-msg").eq(0).text("5~25자의 영문 소문자/숫자로만 입력해주세요.");
+            falseDesign(0);
+            result[0] = false;
+        }
     }
 });
 
+//1-2. 아이디, 비번 같으면 안됨
+function idDifferPw(i){
+    $(".reg-msg").eq(i).text("아이디와 같은 비밀번호는 사용할 수 없습니다.");
+    falseDesign(i);
+}
 
 //2-1. 비밀번호
 $("[name=userPw]").on("change",function(){
     const pwReg = /^[a-zA-Z0-9]{8,25}$/;
     const check = pwReg.test($(this).val());
 
-    if(check) {
-        //true
-        trueDesign(1);
-        result[1] = true;
-
+    if($("[name=userId]").val() == $("[name=userPw]").val()) {
+        idDifferPw(1);
+        return;
     } else {
-        //false
-        $(".reg-msg").eq(1).text("8~25자의 영문 대소문자와 숫자로만 입력해주세요.");
-        falseDesign(1);
-        result[1] = false;
+        if(check) {
+            //true
+            trueDesign(1);
+            result[1] = true;
+    
+        } else {
+            //false
+            $(".reg-msg").eq(1).text("8~25자의 영문 대소문자/숫자로만 입력해주세요.");
+            falseDesign(1);
+            result[1] = false;
+        }
     }
 });
 
@@ -104,7 +116,7 @@ $("[name=userNick]").on("change",function(){
 
     } else {
         //false
-        $(".reg-msg").eq(3).text("10글자 이내로 영문 대소문자와 한글로만 입력해주세요.");
+        $(".reg-msg").eq(3).text("10글자 이내로 영문 대소문자/한글로만 입력해주세요.");
         falseDesign(3);
         result[3] = false;
     }
@@ -161,7 +173,7 @@ $("[name=userEmail]").on("change",function(){
 
     } else {
         //false
-        $(".reg-msg").eq(6).text("5~25자의 영문 대소문자와 숫자로만 입력해주세요.");
+        $(".reg-msg").eq(6).text("5~25자의 영문 대소문자/숫자로만 입력해주세요.");
         falseDesign(6);
         result[6] = false;
     }

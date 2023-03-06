@@ -1,6 +1,9 @@
 <%@page import="com.iei.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+	User u = (User)session.getAttribute("loginUser");
+	%>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -10,7 +13,11 @@
 	width: 140px;
 }
 
-.bold {
+.mypage-menu-wrap>.page-title{
+	font-size: 28px;
+}
+
+.cat .bold {
 	font-family: ns-bold;
 	font-size: 15px;
 	padding-top: 5px;
@@ -18,8 +25,9 @@
 	color: #3a4f7a;
 }
 
-.icon {
+div>.icon {
 	color: #3a4f7a;
+	margin: 0;
 }
 
 .cat-title {
@@ -63,7 +71,7 @@ ul {
 				<div class="bold">나의 작품</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/uploadBookCheck.do?reqPage=1">투고한 작품 확인</a></li>
+				<li><a href="/uploadBookList.do">투고한 작품 확인</a></li>
 			</ul>
 		</li>
 		<li>
@@ -72,8 +80,8 @@ ul {
 				<div class="bold">나의 책갈피</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="#">관심작품 목록</a></li>
-				<li><a href="#">후원작품 목록</a></li>
+				<li><a href="/myPageFavBookList.do?userNo=<%=u.getUserNo()%>&reqPage=1">관심작품 목록</a></li>
+				<li><a href="/myPageSupBookList.do?userNo=<%=u.getUserNo()%>&reqPage=1">후원작품 목록</a></li>
 			</ul>
 		</li>
 		<li>

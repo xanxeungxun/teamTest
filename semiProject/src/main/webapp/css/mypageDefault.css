@@ -2,6 +2,7 @@
     border-top: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
     padding: 10px;
+    margin-bottom: 20px;
 }
 .mypage-content{
 	display: flex;
