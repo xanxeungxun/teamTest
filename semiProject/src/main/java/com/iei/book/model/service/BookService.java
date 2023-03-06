@@ -94,6 +94,26 @@ public class BookService {
 		JDBCTemplate.close(conn);
 		return storyList;
 	}
+
+	public int insertBook(Book b, Story s) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.insertBook(conn,b);
+		if(result==0) {
+			JDBCTemplate.rollback(conn);
+		}else {
+			JDBCTemplate.commit(conn);
+			b = dao.selectOneBook(conn, b.getBookNo());
+			result = dao.insertStory(conn,b,s);
+				if(result==0) {
+					JDBCTemplate.rollback(conn);
+				}else {
+					JDBCTemplate.commit(conn);
+				}//story등록성공
+		}//book등록성공
+		
+		return result;
+	}
 	
 	
 	

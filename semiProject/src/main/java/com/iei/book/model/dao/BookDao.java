@@ -148,6 +148,53 @@ public class BookDao {
 		return storyList;
 	}
 
+	public int insertBook(Connection conn, Book b) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String query ="insert into book values(BOOK_SEQ.NEXTVAL,?,?,?,?,?,default,sysdate)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b.getGenreCode());
+			pstmt.setString(2, b.getBookTitle());
+			pstmt.setString(3, b.getBookWriterId());
+			pstmt.setString(4, b.getBookExp());
+			pstmt.setString(5, b.getCoverpath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertStory(Connection conn, Book b, Story s) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,?,sysdate,default)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b.getBookNo());
+			pstmt.setString(2, s.getStoryName());
+			pstmt.setString(3, s.getStoryContent());
+			pstmt.setString(4, s.getStoryAfter());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
 	
 }//BookDao

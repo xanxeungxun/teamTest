@@ -12,8 +12,14 @@
 
 
 </head>
+
+
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<script src="/summernote/summernote-lite.js"></script>
+<script src="/summernote/lang/summernote-ko-KR.js"></script>
+<link rel = "stylesheet" href="/summernote/summernote-lite.css">
+
 
 <div class="page-content">
 	<div class="book-wrap">
@@ -25,9 +31,10 @@
 	    <div class="book-content-box">
 	    	
 	    	
-	   		<form action="" method="post" enctype="multipart/form-data">
+	   		<form action="/bookWrite.do" method="post" enctype="multipart/form-data">
+	   		<input type="hidden" name="bookWriter" value="<%=loginUser.getUserId()%>">
 	   		<!-- ★★★ 첨부파일이 있으면 method는 무조건 post , enctype="multipart/form-data" 를 꼭 써줘야함-->
-		   		<table class="board-write-frm tbl" id="boardWriteFrm">
+		   		<table class="board-write-frm tbl" id="boardWriteFrm1">
 		   			<tr class="tr-1">
 		   				<th>작품명</th>
 		   				<td>
@@ -94,13 +101,44 @@
 		   			<tr class="tr-1">
 		   				<th>작품 표지</th>
 		   				<td>
-		   					<input type="file" name="upfile">
-		   					<span>작품 표지는 어쩌구 저쩌구 안 하면 기본 표지로 설정됩니다</span>
+		   					<input type="file" name="coverpath">
+		   					<span>작품 표지는 어쩌구 저쩌구 안 하면 기본 표지로 설정됩니다. 최대 10MB</span>
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
 		   				<td colspan="2">
-		   					<button type="button">다음</button>
+		   					<button type="button" id="nextFrmBtn" onclick="nextFrm()">다음</button>
+		   				</td>
+		   			</tr>
+		   		</table>
+		   		<!-- =========================================================================================================== -->
+		   		<table class="board-write-frm tbl" id="boardWriteFrm2">
+		   			<tr class="tr-1">
+		   				<th>스토리 제목</th>
+		   				<td>
+		   					<input type="text" name="stroyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스">
+		   				</td>
+		   			</tr>
+		   			<tr class="tr-1">
+		   				<th colspan="2">내용</th>
+		   			</tr>
+		   			<tr class="tr-1">
+		   				<td colspan="2" style="text-align: left;">
+		   					<textarea name="storyContent" id="storyContent" class="input-form"></textarea>
+		   				</td>
+		   			</tr>
+		   			<tr class="tr-1">
+		   				<th>작가후기</th>
+		   				<td>
+		   					<textarea cols="30" rows="3" name="storyAfter" class="input-form" placeholder="작품의 전체 내용을 간단하게 소개해주세요."></textarea>
+		   				</td>
+		   			</tr>
+		   			<tr class="tr-1">
+		   				<td>
+		   					<button type="button" id="backFrmBtn" onclick="backFrm()">이전</button>
+		   				</td>
+		   				<td>
+		   					<button type="button" id="submit">첫 작품 등록하기</button>
 		   				</td>
 		   			</tr>
 		   		</table>
@@ -112,6 +150,32 @@
 	</div><!-- book-wrap -->
 </div><!-- page-content -->
 
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+
+<script type="text/javascript">
+	
+	$("#boardWriteFrm2").hide();
+	
+	function nextFrm(){
+		$("#boardWriteFrm1").hide();
+		$("#boardWriteFrm2").show();
+	}
+	
+	function backFrm(){
+		$("#boardWriteFrm2").hide();
+		$("#boardWriteFrm1").show();
+	}
+	
+	
+	
+	$("#storyContent").summernote({
+	      height : 500,
+	      lang : "ko-KR",
+	})
+	
+
+</script>
+
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
