@@ -24,12 +24,16 @@
     	overflow: hidden;
     }
     .book-box{
-    	width: 400px;
-    	height: 170px;
-        margin: 20px;
+    	width: 420px;
+    	height: 190px;
+        margin: 10px;
+        padding: 10px;
         float: left;
         display: flex;
         justify-content: space-between;
+        border : 1px solid #EEEEEE;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
     .book-img{
         width: 130px;

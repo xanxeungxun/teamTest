@@ -21,12 +21,16 @@
         overflow: hidden;
     }
     .book-box{
-    	width: 400px;
-    	height: 170px;
+    	width: 420px;
+    	height: 190px;
         display: flex;
         float: left;
-        margin: 20px;
+        margin: 10px;
+        padding: 10px;
         justify-content: space-between;
+        border : 1px solid #EEEEEE;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
     .book-img{
         width: 130px;
@@ -77,7 +81,7 @@
     }
     div>.sup-btn{
     	padding: 0;
-		width: 260px;
+		width: 250px;
 	    height: 50px;
 	    text-align: center;
 	    font-size: 15px;

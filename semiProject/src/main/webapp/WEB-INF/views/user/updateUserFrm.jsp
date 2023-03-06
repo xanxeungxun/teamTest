@@ -209,7 +209,7 @@
 		        } else {
 		            var filename = $(this).val().split('/').pop().split('\\').pop();
 		            $("#previewImg").css({"background-image":"url(/upload/profile/"+filename+")"}); //input upload-name 에 파일명 설정해주기
-	
+					
 		            readImage($(this)[0]); //미리보기
 	
 		            //파일 이름 표시
