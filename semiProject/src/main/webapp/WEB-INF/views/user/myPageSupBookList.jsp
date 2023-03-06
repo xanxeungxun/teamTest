@@ -22,7 +22,7 @@
     }
     .book-box{
     	width: 400px;
-    	height: 180px;
+    	height: 170px;
         display: flex;
         float: left;
         margin: 20px;
@@ -30,9 +30,10 @@
     }
     .book-img{
         width: 130px;
-        background-color: #a7a7a7;
+        background-color: #fff;
         border-radius: 4px;
         margin-right: 10px;
+        border : 1px solid #EEEEEE;
     }
     .book-info>div, .book-info>div>div{
         padding: 3px 0px 3px 0px;
@@ -75,14 +76,16 @@
         bottom: 0;
     }
     div>.sup-btn{
-        width: 260px;
-        text-align: center;
-        font-size: 16px;
-
+    	padding: 0;
+		width: 260px;
+	    height: 50px;
+	    text-align: center;
+	    font-size: 15px;
+	    line-height: 50px;
     }
     .sup-money{
         color: #ffc6d3;
-        font-size: 18px;
+        font-size: 15px;
 
     }
 </style>
@@ -97,7 +100,7 @@
                 	<%for(int i=0; i<supList.size(); i++) { %>
                 		<%SupportBook sb = supList.get(i); %>
 	                    <div class="book-box">
-	                        <div class="book-img"></div>
+	                        <div style="background-image: url(/upload/cover-image/<%=sb.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></div>
 	                        <div class="book-info">
 	                            <div class="book-info-head">
 	                                <div class="book-title"><%=sb.getBookTitle() %></div>

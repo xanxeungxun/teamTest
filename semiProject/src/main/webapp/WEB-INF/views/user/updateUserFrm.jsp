@@ -17,6 +17,7 @@
     }
     .content-wrap>div:first-child{
         padding-top: 20px;
+        padding-bottom: 15px;
     }
 
 
@@ -41,7 +42,6 @@
         height: 44px;
         margin: 0;
         width: 480px;
-        margin-left: 20px;
         font-size: 14px;
     }
     .profile-file>.upfile{
@@ -95,6 +95,16 @@
         margin-bottom: 2px;
         outline: 2px solid #f86697;
     }
+    
+    .book-img{
+        width: 120px;
+        height: 120px;
+        background-color: #fff;
+        
+        border : 1px solid #EEEEEE;
+        border-radius: 4px;
+        margin-right: 20px;
+    }
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
@@ -107,9 +117,12 @@
 	                <div>
 	                    <label for="profilePic" class="bold user-bold">프로필 사진</label>
 	                    <div class="profile">
-                            <img id="previewImg" style="width:80px; height:80px; display:none">
-	                        <div class="material-icons no-profilePic">account_circle</div>
-	                        <%=loginUser.getUserPic() %>
+	                        <%if(loginUser.getUserPic()==null){ %>
+		                        <div class="material-icons no-profilePic">account_circle</div>
+	                        <%} else { %>
+	                        	<div style="background-image: url(/upload/profile/<%=loginUser.getUserPic()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="previewImg" class="book-img"></div>
+	                            <%--<img src="/upload/profile/<%=loginUser.getUserPic()%>" id="previewImg" style="width:80px; height:80px"> --%>
+	                        <%} %>
 	                        <div class="profile-file">
 	                            <div class="upfile-name input-form">파일을 선택해주세요</div>
 	                            <label for="profile-upfile" class="btn bc6 upfile">파일 선택</label>
@@ -153,6 +166,7 @@
                             <div>
                                 <span class="material-symbols-outlined check-circle">check_circle</span>
                                 <input type="password" name="userPw" id="userPw" placeholder="현재 비밀번호" class="input-form input-update">
+                                <input type="password" name="currentUserPw" id="currentUserPw"class="input-hidden" value="<%=loginUser.getUserPw()%>" style="display:none">
                                 <span class="reg-msg"></span>
                             </div>
                             <div>
@@ -187,20 +201,16 @@
 		/*1. 프로필 이미지 업로드*/
 		$(document).ready(function(){
 		    //파일첨부 이벤트
-		    $('.profile-file .upload-hidden').on('change', function(){  	
+		    $('.profile-file>.upload-hidden').on('change', function(){  	
 		        
 		        if(!validFileSize($(this)[0].files[0])){
 		            alert("파일 사이즈가 10MB를 초과합니다.");
 		            return false;
 		        } else {
 		            var filename = $(this).val().split('/').pop().split('\\').pop();
-		            $(this).prev().val(filename); //input upload-name 에 파일명 설정해주기
+		            $("#previewImg").css({"background-image":"url(/upload/profile/"+filename+")"}); //input upload-name 에 파일명 설정해주기
 	
 		            readImage($(this)[0]); //미리보기
-	
-		            //기본이미지 삭제 / 업로드 이미지 보이기
-		            $('.no-profilePic').css("display","none");
-		            $('#previewImg').css("display","inline-block");
 	
 		            //파일 이름 표시
 		            $('.upfile-name').text(filename);

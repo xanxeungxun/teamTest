@@ -363,7 +363,19 @@ public class MyPageService {
 			JDBCTemplate.rollback(conn);
 		}
 		
-		System.out.println(result);
+		return result;
+	}
+
+	public int deleteUploadBook(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.deleteUploadBook(conn, bookNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else { 
+			JDBCTemplate.rollback(conn);
+		}
 		
 		return result;
 	}
