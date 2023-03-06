@@ -21,6 +21,7 @@
     }
     .book-box{
         display: flex;
+        height: 160px;
         margin: 10px;
         border: 1px solid lightgray;
         border-radius: 4px;
@@ -40,7 +41,14 @@
         border-radius: 4px;
         margin-right: 20px;
     }
-    .book-info>div{
+    .book-info{
+    	position: relative;
+    }
+    .box{
+    	position: absolute;
+    	bottom: 0;
+    }
+    .book-info>div>div{
         padding: 3px 0px 3px 0px;
     }
     .book-info-head{
@@ -54,8 +62,9 @@
         font-size: 18px;
         font-family: ns-m;
     }
+
     .genre{
-        font-size: 14px;
+        font-size: 12px;
     }
     .book-date{
         font-size: 12px;
@@ -64,7 +73,8 @@
     .writer-wrap{
         display: flex;
     }
-    .material-symbols-outlined{
+    .writer-wrap>.material-symbols-outlined{
+    	margin: 0;
         font-size: 18px;
         margin-right: 3px;
     }
@@ -74,6 +84,12 @@
     .book-btn{
         width: 120px;
         text-align: center;
+    }
+    
+    .modal-wrap>.modal-content{
+    	padding: 1.2rem 1.2rem;
+    	padding-top: 30px;
+    	padding-bottom: 30px;
     }
 </style>
 <body>
@@ -93,15 +109,18 @@
 	                            <div class="book-info-head">
 	                                <div class="book-title"><%=ub.getBookTitle() %></div>
 	                            </div>
-	                            <div class="genre"><%=ub.getGenreName() %></div>
-	                            <div class="writer-wrap">
-	                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
-	                                <div class="writer"><%=ub.getBookWriter() %></div>
-	                            </div>
-	                            <div class="book-date">작품 등록일 : <span class="book-date"><%=ub.getBookDate() %></span></div>
-	                            <div>
-	                                <a href="/updateBookFrm.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">수정</a>
-	                                <button class="btn bc33 book-btn modal-open-btn" target="#delBook-modal">작품 삭제</button>
+	                            <div class="box">
+		                            <div class="genre"><%=ub.getGenreName() %></div>
+		                            <div class="writer-wrap">
+		                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
+		                                <div class="writer"><%=ub.getBookWriter() %></div>
+		                            </div>
+		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=ub.getBookDate() %></span></div>
+		                            <div>
+		                                <a href="/updateBookFrm.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">수정</a>
+		                                <button class="btn bc33 book-btn modal-open-btn" target="#test-modal" onclick="deleteUploadBook(this, <%=ub.getBookNo()%>, <%=ub.getBookWriter()%>);">작품 삭제</button>
+		                                <%--<a href="/deleteUploadBook.do?bookNo=<%=ub.getBookNo() %>&bookWriter=<%=ub.getBookWriter() %>" class="btn bc33 book-btn modal-open-btn">작품 삭제</a> --%>
+		                            </div>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -111,20 +130,26 @@
           <div id="pageNavi"><%=pageNavi %></div>
         </div>
     </div>
-        <div id="delBook-modal" class="modal-bg">
-	      <div class="modal-wrap">
-	        <div class="modal-head">
-	          <h2>확인</h2>
-	          <span class="material-icons close-icon modal-close">close</span>
-	        </div>
-	        <div class="modal-content">
-	          <p>작성하신 작품을 삭제하시겠습니까?</p>
-	        </div>
-	        <div class="modal-foot">
-	          <button class="btn bc6 btn-pill">확인</button>
-	          <button class="btn bc33 modal-close btn-pill">취소</button>
-	        </div>
-	    </div>
-	  </div>
+    <div id="test-modal" class="modal-bg">
+      <div class="modal-wrap">
+        <div class="modal-head">
+          <h2>확인</h2>
+          <span class="material-icons close-icon modal-close">close</span>
+        </div>
+        <div class="modal-content">
+          <p>작성하신 작품을 정말로 삭제하시겠습니까?</p>
+        </div>
+        <div class="modal-foot">
+          <a href="/deleteUploadBook.do" class="btn bc6 btn-pill">확인</a>
+          <button class="btn bc33 modal-close btn-pill">취소</button>
+        </div>
+      </div>
+      
+      <script>
+			function deleteUploadBook(obj, bookNo, bookWriter) {
+				location.href="/deleteUploadBook.do?bookNo="+bookNo+"&bookWriter="+bookWriter;
+			}	
+      
+      </script>
 </body>
 </html>

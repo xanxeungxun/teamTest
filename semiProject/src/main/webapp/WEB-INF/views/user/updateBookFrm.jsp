@@ -20,12 +20,20 @@
         background-color: #EEEEEE;
         border-radius: 4px;
 	}
-    .book-img-file{
+    /*.book-img-file{
         width: 200px;
         height: 260px;
         background-color: #fff;
         border : 1px solid #EEEEEE;
         border-radius: 4px;
+    }*/
+    .book-img{
+        width: 200px;
+        height: 260px;
+        background-color: #fff;
+        border : 1px solid #EEEEEE;
+        border-radius: 4px;
+        margin-right: 20px;
     }
     .bold{
         font-family: ns-m;
@@ -98,7 +106,8 @@
                     	<%if(book.getCoverpath()==null){ %>
 	                    	<div class="no-cover"></div>
                     	<%} else { %>
-	                        <img src="/upload/cover-image/<%=book.getCoverpath()%>" id="cover-img" class="book-img-file">
+                    		<div style="background-image: url(/upload/cover-image/<%=book.getCoverpath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="cover-img" class="book-img"></div>
+	                        <%-- <img src="/upload/cover-image/<%=book.getCoverpath()%>" id="cover-img" class="book-img-file">--%>
                     	<%} %>
                         <div class="notice-msg">600*800 픽셀 이상</div>
                         <div class="upfile">
