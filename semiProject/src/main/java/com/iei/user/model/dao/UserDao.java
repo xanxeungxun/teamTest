@@ -247,6 +247,67 @@ public class UserDao {
 		return result;
 	}
 
+	public int selectWriterPoint(Connection conn, String bookWriter) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int writerPoint = 0;
+		String query = "select user_point from user_tbl where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bookWriter);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				writerPoint = rset.getInt("user_point");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return writerPoint;
+	}
+
+	public int updateLoginUserPoint(Connection conn, String loginUser, int inputPoint, int userPoint) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update user_tbl set user_point=?-? where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userPoint);
+			pstmt.setInt(2, inputPoint);
+			pstmt.setString(3, loginUser);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateWriterPoint(Connection conn, String bookWriter, int inputPoint, int writerPoint) {
+		PreparedStatement pstmt = null;
+		int result2 = 0;
+		String query = "update user_tbl set user_point=?+? where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, writerPoint);
+			pstmt.setInt(2, inputPoint);
+			pstmt.setString(3, bookWriter);
+			result2 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result2;
+	}
+
 	
 
 }

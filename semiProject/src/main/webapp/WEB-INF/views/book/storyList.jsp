@@ -166,6 +166,8 @@
 				          <h2>후원하기</h2>
 				          <span class="material-icons close-icon modal-close">close</span>
 				        </div>
+				        <input type="hidden" name="bookWriter" value="<%=b.getBookWriterId() %>">
+				        <input type="hidden" name="bookNo" value="<%=b.getBookNo() %>">
 		        	<form action="/assistPoint.do" method="post">
 				        <div class="point-wrap">
 					        	<table class="point-tbl">
@@ -177,14 +179,15 @@
 					        			<td class="point-td1">
 					        				<%if(loginUser != null) {%>
 					        					<%=loginUser.getUserPoint() %>
+					        					<input type="hidden" name="userPoint" value="<%=loginUser.getUserPoint()%>">
+					        					<input type="hidden" name="loginUser" value="<%=loginUser.getUserId()%>">
 					        				<%}else {%>
 					        					0
 					        				<%} %>
 					        			</td>
 					        			<td class="input-td">
-					        				<input type="text" name="input-point" id="input-point">
+					        				<input type="text" name="inputPoint" id="inputPoint">
 					        			</td>
-					        			
 					        		</tr>
 					        		<tr class="point-tr3">
 					        			<td colspan="2">부족한 포인트를 충전하고 포스트를 감상해보세요.</td>

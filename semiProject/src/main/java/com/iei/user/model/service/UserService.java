@@ -104,25 +104,40 @@ public class UserService {
 	}
 
 
-	public User selectOneUserCal(String userId) {
-		Connection conn = JDBCTemplate.getConnection();
-		User u = dao.selectOneUserCal(conn, userId);
-		JDBCTemplate.close(conn);
-		return u;
-	}
+	
 
 
 	public int updateUserPoint(String userId, int userPoint) {
 		Connection conn = JDBCTemplate.getConnection();
+		
 		int result = dao.updateUserPoint(conn, userId, userPoint);
 		if(result > 0) {
 			JDBCTemplate.commit(conn);
 		}else {
-			JDBCTemplate.close(conn);
+			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+
+	public int updateAssistPoint(String loginUser, String bookWriter, int inputPoint, int userPoint) {
+		Connection conn = JDBCTemplate.getConnection();
+		int writerPoint = dao.selectWriterPoint(conn, bookWriter);
+		int result = dao.updateLoginUserPoint(conn, loginUser, inputPoint, userPoint);
+		if(result > 0) {
+			int result2 = dao.updateWriterPoint(conn, bookWriter, inputPoint, writerPoint);
+			if(result2 > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		return result;
+	}
+
 
 
 

@@ -91,7 +91,7 @@
 								<textarea name="boardCommentContent" class="input-form"></textarea>
 							</li>
 							<li>
-								<button type="submit" class="btn bc1 bs4">등록</button>
+								<button type="submit" class="btn bc1 bs2">등록</button>
 							</li>
 						</ul>
 					</form>
