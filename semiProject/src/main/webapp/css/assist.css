@@ -4,7 +4,7 @@
 
 
 .point-tr1>td{
-	width: 200px;
+	width: 300px;
 	padding-bottom: 20px;
 	text-align: center;
 }
@@ -33,4 +33,7 @@
 .text-td{
 	font-size: 12px;
 	color: #a8a8a8;
+}
+.point-tbl{
+	border-spacing: 0;
 }
