@@ -8,9 +8,6 @@
 <link rel="stylesheet" href="/css/mypageDefault.css">
 </head>
 <style>
-	.mypage-content{
-		display: flex;
-	}
     .check-content{
         padding-left: 10px;
     }
@@ -41,11 +38,15 @@
         padding: 30px;
         padding-top: 50px;
     }
+    .userId{
+    	color: #e98ead;
+    	font-family: ns-bold;
+    }
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
     <div class="page-content mypage-content">
-    	<%@include file="/WEB-INF/views/common/myPageMenu.jsp" %>
+    	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
     	<div class="mypage-detail">
     		<div class="mypage-title page-title">회원 탈퇴</div>
 	        <form action="/deleteUser.do" method="post">
@@ -61,19 +62,19 @@
 	                    <label><input type="checkbox" name="quit-reason" id="quit-reason7" value="7">기타</label>
 	                </div>
 	                <div class="check-pw">
-	                    <div class="detail-title">본인 확인을 위해 (회원아이디) 계정의 비밀번호를 입력해주세요.</div>
+	                    <div class="detail-title">본인 확인을 위해 <span class="userId"><%=loginUser.getUserId() %></span> 계정의 비밀번호를 입력해주세요.</div>
 	                    <div>
-	                        <input type="password" name="checkPw" id="checkPw" placeholder="비밀번호 입력" class="input-form">
+	                        <input type="password" name="checkPw" id="checkPw" placeholder="비밀번호 입력" class="input-form" required>
 	                    </div>
 	                    <div class="check-notice">※ 탈퇴가 완료된 계정은 다시 복구할 수 없습니다.</div>
 	                </div>
 	                <div class="check-agree">
-	                    <label><input type="checkbox" name="quit-agreement" id="quit-agreement" value="agree">위 내용을 이해했으며, 모두 동의합니다.</label>
+	                    <label><input type="checkbox" name="quit-agreement" id="quit-agreement" value="agree" required>위 내용을 이해했으며, 모두 동의합니다.</label>
 	                </div>
 	            </div>
 	            <div class="foot-btn">
 	                <a href="#" class="btn bc33">취소</a>
-	                <button type="submit" class="btn bc6">회원 탈퇴</button>
+	                <button type="submit" class="btn bc4">회원 탈퇴</button>
 	            </div>
 	        </form>
     	</div>

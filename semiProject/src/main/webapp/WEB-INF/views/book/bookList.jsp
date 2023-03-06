@@ -100,11 +100,11 @@
   						 background-position: center;
   						 background-repeat: no-repeat;
   						 cursor : pointer;"
-  						 onclick="location.href='/bookView.do?bookNo=<%=b.getBookNo()%>';">
+  						 onclick="location.href='/storyList.do?bookNo=<%=b.getBookNo()%>';">
                     </div>
                     <div class="book-one-etc">	
                         <div class="book-one-title">
-	                        <a href="/bookView.do?bookNo=<%=b.getBookNo()%>">
+	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
 	                        	<%=b.getBookTitle() %>
 	                        </a>
                         </div>
@@ -115,11 +115,11 @@
                         </div>
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
-	                        <a href="/bookView.do?bookNo=<%=b.getBookNo()%>">
+	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
 		                        <%int total = b.getBookExp().length();
-		                        	if(88 < total){
+		                        	if(86 < total){
 		                        		char[] arrayExp = b.getBookExp().toCharArray();
-		                        		for(int j=0 ; j<89 ; j++){
+		                        		for(int j=0 ; j<86 ; j++){
 		                        			result = result + arrayExp[j];		
 		                         		}//for문
 		                        %>

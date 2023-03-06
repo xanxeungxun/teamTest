@@ -38,7 +38,9 @@
 			<div class="notice-wrap">
 				<div class="notice-header">
 					<span>공지사항</span>
+					<%if(loginUser!=null && loginUser.getUserLevel()==1) {%>
 					<a href="/noticeWriteFrm.do" class="news-btn btn1">공지사항 작성</a>
+					<%} %>
 				</div>
 				<table class="notice-tbl">
 					<%for(int i=0;i<list.size();i++) {%>

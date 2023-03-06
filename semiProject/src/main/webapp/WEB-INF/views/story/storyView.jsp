@@ -1,15 +1,18 @@
+<%@page import="com.iei.story.model.vo.Story"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    	int bookNo = (int)request.getAttribute("bookNo");
-    %>    
+    Story s = (Story)request.getAttribute("s");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title><%=bookNo %></title>
+<title><%=s.getStoryName() %></title>
 </head>
 <body>
-	<h1><%=bookNo %></h1>
+
+<%=s.getStoryName() %>
+
 </body>
 </html>

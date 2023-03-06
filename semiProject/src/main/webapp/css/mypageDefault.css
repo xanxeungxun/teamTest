@@ -2,12 +2,18 @@
     border-top: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
     padding: 10px;
+    margin-bottom: 20px;
+}
+.mypage-content{
+	display: flex;
 }
 .mypage-content>.mypage-title{
     font-size: 22px;
 }
 .mypage-detail{
 	width:900px;
+	margin-top: 40px;
+	margin-bottom: 150px
 }
 .detail-title{
     font-family: ns-bold;

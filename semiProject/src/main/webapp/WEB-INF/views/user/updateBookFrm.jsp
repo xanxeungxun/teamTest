@@ -6,13 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <link rel="stylesheet" href="/css/default.css">
-    <link rel="stylesheet" href="/css/mypage.css">
+    <link rel="stylesheet" href="/css/mypageDefault.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <style>
-    body>.mypage-detail{
-        width: 700px;
-    }
     .book-img-file{
         width: 200px;
         height: 260px;
@@ -30,7 +27,7 @@
     .upfile{
         text-align: right;
     }
-    .bc4{
+    .upfile>.bc4{
         font-size: 14px;
         padding: 12px 15px;
     }
@@ -78,7 +75,9 @@
   }
 </style>
 <body>
-    <div class="page-content">
+	<%@include file="/WEB-INF/views/common/header.jsp" %>
+    <div class="page-content mypage-content">
+    	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
             <div class="page-title">작품 정보 수정</div>
             <form action="/updateUser.do" method="post">
@@ -143,5 +142,6 @@
             </form>
         </div>
     </div>
+    <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>

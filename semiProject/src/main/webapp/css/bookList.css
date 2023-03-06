@@ -16,12 +16,11 @@ a{
     margin: 0 auto;
 }
 .book-list-header{
-    background-color: aquamarine;
     height: 50px;
     border-bottom: 1px solid #ccc;
     overflow: hidden;
-    padding: 10px 30px;
-    margin: 50px 0;
+    padding: 50px 0;
+    margin-bottom: 50px;
 }
 .book-list-header div{
     float: left;
@@ -124,6 +123,7 @@ a{
     padding:10px;
     font-size:16px;
     border-radius: 5px;
+    width: 93%;
 }
 .book-one-etc .book-one-exp{
     display: flex;

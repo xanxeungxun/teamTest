@@ -1,5 +1,5 @@
 .join-wrap{
-    width: 340px;
+    margin: 0 auto;
 }
 /*
 .loginJoin-title{
@@ -9,19 +9,20 @@
 }
 */
 /*회원가입 frm*/
-.join-input-wrap>input{
+.join-input-wrap>div>input{
     padding-left: 10px;
     margin-bottom: 10px;
+    margin-top: 5px;
     box-sizing: border-box;
 }
 
-.join-input-wrap>input::placeholder{
+.join-input-wrap>div>input::placeholder{
     font-size: 14px;
 }
 
-.join-input-wrap>input:focus {
+.join-input-wrap>div>input:focus {
 
-    outline: 3px solid #ffc6d3;
+    outline: 2px solid #ffc6d3;
     box-sizing: border-box;
 }
 
@@ -29,6 +30,31 @@
     margin-bottom: 2px;
 }
 
+/*check-circle*/
+.join-input-wrap>div{
+    position: relative;
+}
+div>.check-circle{
+    color: #ffc6d3;
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    top: 12px;
+    display: none;
+}
+
+div>.active-check-circle{
+    display: block;
+}
+
+.join-input-wrap>div>.active-reg-msg{
+    color: #f86697;
+    font-size: 12px;
+}
+.join-input-wrap>div>.active-reg-input{
+    margin-bottom: 2px;
+    outline: 2px solid #f86697;
+}
 
 /*약관 동의*/
 .join-agree-wrap{
@@ -48,7 +74,7 @@
     border-bottom: 1px solid lightgray;
 }
 
-[name="agreement"]{
+[name="agreement"],[id="allAgreement"]{
     margin-right: 7px;
 }
 

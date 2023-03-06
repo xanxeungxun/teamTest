@@ -1,6 +1,8 @@
-package com.iei.user.controller;
+package com.iei.mypage.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class UploadBookCheckServlet
+ * Servlet implementation class UpdateBookFrmServlet
  */
-@WebServlet(name = "UploadBookCheck", urlPatterns = { "/uploadBookCheck.do" })
-public class UploadBookCheckServlet extends HttpServlet {
+@WebServlet(name = "UpdateBookFrm", urlPatterns = { "/updateBookFrm.do" })
+public class UpdateBookFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UploadBookCheckServlet() {
+    public UpdateBookFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,17 +28,9 @@ public class UploadBookCheckServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 인코딩
-		request.setCharacterEncoding("utf-8");
-		
-		//2. 값 추출
-		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
-		
-		//3. 비즈니스 로직
-		
-		
-		//4. 결과 처리
-		
+		//페이지 이동
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateBookFrm.jsp");
+		view.forward(request, response);
 	}
 
 	/**

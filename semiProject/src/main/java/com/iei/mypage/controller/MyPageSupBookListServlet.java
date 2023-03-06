@@ -1,4 +1,4 @@
-package com.iei.book.controller;
+package com.iei.mypage.controller;
 
 import java.io.IOException;
 
@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.mypage.service.MyPageService;
+import com.iei.mypage.vo.SupBookPageData;
+
 /**
- * Servlet implementation class BookViewServlet
+ * Servlet implementation class MyPageSupBookListServlet
  */
-@WebServlet(name = "BookView", urlPatterns = { "/bookView.do" })
-public class BookViewServlet extends HttpServlet {
+@WebServlet(name = "MyPageSupBookList", urlPatterns = { "/myPageSupBookList.do" })
+public class MyPageSupBookListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookViewServlet() {
+    public MyPageSupBookListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,18 +31,26 @@ public class BookViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1인코딩
+		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		//2값추출
-		int bookNo = Integer.parseInt(request.getParameter("bookNo")) ;
+		//2. 값 추출
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		
-		//3비즈니스로직
+		//3. 비즈니스 로직
+		MyPageService service = new MyPageService();
+		SupBookPageData sbpd = service.selectSupList(userNo, reqPage);
 		
-		//4결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/bookView.jsp");
-		request.setAttribute("bookNo", bookNo); //<--테스트용이라 나중에지우든가하셈!!!!!!!
+		//4. 결과 처리 ... 페이지 이동
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageSupBookList.jsp");
+		
+		request.setAttribute("supList", sbpd.getSupList());
+		request.setAttribute("pageNavi", sbpd.getPageNavi());
+		request.setAttribute("start", sbpd.getStart());
+		
 		view.forward(request, response);
+		
 	}
 
 	/**
