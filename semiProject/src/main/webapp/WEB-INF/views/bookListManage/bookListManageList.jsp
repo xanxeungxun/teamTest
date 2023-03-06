@@ -15,9 +15,7 @@ int start = (int)request.getAttribute("start");
 <meta charset="UTF-8">
 <title>작품 관리</title>
 <link rel="stylesheet" href="/css/bookListManage.css">
-<script>
 
-</script>
 </head>
 <body>
 
@@ -76,7 +74,7 @@ int start = (int)request.getAttribute("start");
 						<%} %>
 						
 						</td>
-						<td class="bookListManage-td"><button id="delBtn">삭제하기</button></td>
+						<td class="bookListManage-td"><button class="delBtn">삭제하기</button></td>
 					</tr>
 					<%
 					}
@@ -91,5 +89,16 @@ int start = (int)request.getAttribute("start");
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+<script>
+	$(".delBtn").on("click",function(){
+		//해당 테이블의 해당 게시물을 제거하는 쿼리 불러옴
+		const test = $(this).parent().prev().prev().prev().prev().prev().text();
+		console.log(test);
+		location.href="/deleteBook.do?delBook="+test;
+		//무조건 서블릿으로 보내야 한다
+		
+	});
+
+</script>
 </body>
 </html>

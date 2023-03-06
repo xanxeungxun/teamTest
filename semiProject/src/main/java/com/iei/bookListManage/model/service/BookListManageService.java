@@ -84,6 +84,20 @@ public class BookListManageService {
 
 		return result;
 	}
+
+
+	public int deleteBookListManage(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteBookListManage(conn, bookNo);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
 	
 
 
