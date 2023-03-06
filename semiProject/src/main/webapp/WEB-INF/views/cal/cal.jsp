@@ -201,9 +201,9 @@
     			dataType : "Json",
     			success : function(data) {
 					if(data == null){
-						today.css("color","blue");
+						today.css("background-color","blue");
 					}else{
-						today.css("color","red");
+						today.css("background-color","red");
 					}
 				},
     			error : function() {
