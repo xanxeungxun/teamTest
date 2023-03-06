@@ -59,8 +59,9 @@ $(document).ready(function(){
 						<td>
 						<%-- 로그인 제작 완료시 해당 주석 풀고 적용 할 것 --%>
 						<%--<%=loginUser.getUserId()%>--%>
-							<input type="hidden" name="questionId" value="<%=loginUser.getUserId()%>">
-							<%=loginUser.getUserId()%>/
+							<input type="hidden" name="questionId" 
+							value="<%=loginUser.getUserId()%>">
+							<%=loginUser.getUserId()%>
 							<input type="hidden" name="questionName" value="<%=loginUser.getUserName()%>">
 							<%=loginUser.getUserName()%>
 						</td>
