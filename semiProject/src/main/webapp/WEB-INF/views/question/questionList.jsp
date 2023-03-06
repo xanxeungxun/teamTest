@@ -89,7 +89,7 @@ int start = (int)request.getAttribute("start");
 						</td>
 						<%-- 게시물 제목 --%>
 						<td class="question-td">
-						<% if(loginUser !=null && loginUser.getUserLevel() == 2||loginUser.getUserLevel() ==1) {%>
+						<% if(loginUser !=null && loginUser.getUserLevel() == 2||loginUser !=null && loginUser.getUserLevel() == 1) {%>
 						<a href="/question/viewQuestion.do?questionNo=
 							<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a>
 						<%}%>
