@@ -24,6 +24,19 @@ public class StoryService {
 		JDBCTemplate.close(conn);
 		return s;
 	}
+
+	public int insertStory(int bookNo,Story s) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insetStory(conn,bookNo,s);
+		
+		if(result==0) {
+			JDBCTemplate.rollback(conn);
+		}else {
+			JDBCTemplate.commit(conn);
+		}//story등록성공
+		
+		return result;
+	}
 	
 	
 	

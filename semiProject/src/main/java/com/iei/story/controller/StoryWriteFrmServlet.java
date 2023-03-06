@@ -31,9 +31,11 @@ public class StoryWriteFrmServlet extends HttpServlet {
 		//1인코딩
 		request.setCharacterEncoding("utf-8");
 		//2값추출
+		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 		//3비즈니스로직
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyWriteFrm.jsp");
+		request.setAttribute("bookNo", bookNo);
 		view.forward(request, response);
 	}
 
