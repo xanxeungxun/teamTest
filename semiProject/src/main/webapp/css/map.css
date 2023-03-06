@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+.map-header{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 50px;
+}
+.map-header>span{
+	font-size: 40px;
+	font-weight: 900;
+	margin-right: 20px;
+}
+.map-title>h2{
+	text-align: center;
+}
+.map-title>h4{
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.transport-way{
+	width : 800px;
+	padding-top : 10px;
+	margin : 0 auto;
+	border-top:1px solid #222;
+	border-bottom:1px solid #222;
+}
+
+.transport-way>table>tbody>tr>th{
+	width : 150px;
+	padding-top:20px;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.addr{
+	float: left;
+}
+.bus{
+	float: left;
+}
+
+.subway{
+	float: left;
+}
+#map{
+	margin : 0 auto;
+}

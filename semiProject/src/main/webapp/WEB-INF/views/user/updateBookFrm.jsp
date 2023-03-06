@@ -80,7 +80,7 @@
     	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
             <div class="page-title">작품 정보 수정</div>
-            <form action="/updateUser.do" method="post">
+            <form action="/updateBook.do" method="post">
                 <div class="content-wrap">
                     <div class="book-img">
                         <div class="book-img-file"></div>
