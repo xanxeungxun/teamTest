@@ -56,14 +56,15 @@ QuestionVo question = (QuestionVo) request.getAttribute("questionResult");
 				<tr class="question-tr">
 
 					<td class="question-td">
-						<%-- 관리자 게시물 제목 --%> <span><%=question.getAnswerTitle()%></span>
+						<%-- 관리자 게시물 제목 --%> <span>
+						<%=question.getAnswerTitle()%></span>
 					</td>
 					<td class="question-td">
 						<div><%=question.getAnswerDate()%></div>
 					</td>
 					<td class="question-td">
 						<div>
-							관리자 아이디<%=question.getAnswerUserId()%>
+							관리자 아이디 <%=question.getAnswerUserId()%>
 							<br>관리자 닉네임
 							<%=question.getAnswerUserName()%></div>
 					</td>
@@ -75,11 +76,13 @@ QuestionVo question = (QuestionVo) request.getAttribute("questionResult");
 				</tr>
 				<%}%>
 			</table>
+			<br>
 			<%-- 답변 입력 및 수정 --%>
 			<%if (loginUser.getUserLevel() == 1) {%>
 			<div class="btn-position">
 				<button class="btn bc1 bs1" id="editBtn"
-					onclick="location.href = '/question/editAnswerView.do?questionNo=<%=question.getQuestionNo()%>'">
+					onclick="location.href = 
+'/question/editAnswerView.do?questionNo=<%=question.getQuestionNo()%>'">
 					답변 입력/수정</button>
 			</div>
 			<%}%>

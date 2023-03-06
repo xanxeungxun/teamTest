@@ -15,7 +15,14 @@ int start = (int)request.getAttribute("start");
 <meta charset="UTF-8">
 <title>작품 관리</title>
 <link rel="stylesheet" href="/css/bookListManage.css">
-
+<style>
+.bookListManage-tr{
+text-align:center; 
+}
+.text td{
+font-size:14px;
+}
+</style>
 </head>
 <body>
 
@@ -40,9 +47,9 @@ int start = (int)request.getAttribute("start");
 					<tr class="bookListManage-tr">
 					
 						<td class="bookListManage-td" style="width:6%">순번</td>
-						<td class="bookListManage-td" style="width:6%">작품번호</td>
-						<td class="bookListManage-td" style="width:6%">장르코드</td>
-						<td class="bookListManage-td" style="width:57%">작품명</td>
+						<td class="bookListManage-td" style="width:6%">품번</td>
+						<td class="bookListManage-td" style="width:10%">장르코드</td>
+						<td class="bookListManage-td" style="width:50%">작품명</td>
 						<td class="bookListManage-td" style="width:8%">작가명</td>
 						<td class="bookListManage-td" style="width:9%">연재상태</td>
 						<td class="bookListManage-td" style="width:10%">삭제하기</td>
@@ -55,7 +62,7 @@ int start = (int)request.getAttribute("start");
 					<%
 					BookListManageVo q = list.get(i);
 					%>
-					<tr class="bookListManage-tr">
+					<tr class="bookListManage-tr text">
 						<td class="bookListManage-td"><%=i+start %></td>
 						<td class="bookListManage-td"><%=q.getBookNo() %></td>
 						<td class="bookListManage-td"><%=q.getGenreName() %>
@@ -74,7 +81,7 @@ int start = (int)request.getAttribute("start");
 						<%} %>
 						
 						</td>
-						<td class="bookListManage-td"><button class="delBtn">삭제하기</button></td>
+						<td class="bookListManage-td"><button class="btn bc1 bs1 delBtn" style="font-size:14px;">삭제하기</button></td>
 					</tr>
 					<%
 					}
