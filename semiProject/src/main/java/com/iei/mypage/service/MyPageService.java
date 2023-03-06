@@ -3,6 +3,7 @@ package com.iei.mypage.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.iei.book.model.vo.Book;
 import com.iei.mypage.dao.MyPageDao;
 import com.iei.mypage.vo.FavBookPageData;
 import com.iei.mypage.vo.FavoriteBook;
@@ -258,14 +259,14 @@ public class MyPageService {
 		int end = numPerPage * reqPage; //마지막 페이지
 		int start = end - numPerPage + 1; //시작 페이지 ... 한 페이지당 시작하는 게시물번호
 		
-		ArrayList<UploadBook> supList = dao.selectUpList(conn, bookWriter, start, end);
+		ArrayList<UploadBook> upList = dao.selectUpList(conn, bookWriter, start, end);
 		
 		/*<페이징 제작 시작>*/
 		/*한페이지당 게시물 수 : 10
 		총 게시물 수 : 222
 		→ 총 23개 페이지 필요*/
 		//전체 페이지 수를 계산하려면 -> 먼저 총 게시물 수 조회 필요
-		int totalCount = dao.selectSupBookCount(conn);
+		int totalCount = dao.selectUploadBookCount(conn, bookWriter);
 		
 		//전체 페이지 수 계산
 		/*한페이지 당 게시물 수 : 10
@@ -299,7 +300,7 @@ public class MyPageService {
 		//이전버튼 
 		if(pageNo != 1) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/myPageSupBookList.do?userNo="+userNo+"&reqPage="+(pageNo-1)+"'>";
+			pageNavi += "<a class='page-item' href='/uploadBookList.do?userId="+bookWriter+"&reqPage="+(pageNo-1)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>"; //구글 아이콘 ... <
 			pageNavi += "</a></li>";
 		}
@@ -309,12 +310,12 @@ public class MyPageService {
 			if(pageNo == reqPage) {
 				pageNavi += "<li>";
 				//현재 페이지는 active-page 클래스 추가 ... 색 다르게 적용
-				pageNavi += "<a class='page-item active-page' href='/myPageSupBookList.do?userId="+bookWriter+"&reqPage="+(pageNo)+"'>";
+				pageNavi += "<a class='page-item active-page' href='/uploadBookList.do?userId="+bookWriter+"&reqPage="+(pageNo)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a></li>";
 			} else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/myPageSupBookList.do?userId="+bookWriter+"&reqPage="+(pageNo)+"'>";
+				pageNavi += "<a class='page-item' href='/uploadBookList.do?userId="+bookWriter+"&reqPage="+(pageNo)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a></li>";
 			}
@@ -328,7 +329,7 @@ public class MyPageService {
 		//다음버튼
 		if(pageNo <= totalPage) { //다음버튼이 만들어지는 조건
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/myPageSupBookList.do?userId="+bookWriter+"&reqPage="+(pageNo)+"'>";
+			pageNavi += "<a class='page-item' href='/uploadBookList.do?userId="+bookWriter+"&reqPage="+(pageNo)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span>"; //구글 아이콘 ... >
 			pageNavi += "</a></li>";
 		}
@@ -336,9 +337,19 @@ public class MyPageService {
 		pageNavi += "</ul>";
 		
 		JDBCTemplate.close(conn);
-		SupBookPageData sbpd = new SupBookPageData(supList, pageNavi, start);
+		UploadBookPageData ubpd = new UploadBookPageData(upList, pageNavi, start);
 		
-		return sbpd;
+		return ubpd;
+	}
+
+	public Book selectOneBook(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		Book book = dao.selectOneBook(conn, bookNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return book;
 	}
 
 
