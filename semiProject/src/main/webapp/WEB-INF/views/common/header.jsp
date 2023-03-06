@@ -59,7 +59,7 @@
 					<div class="top-menu">
 						<ul>
 							<li class="top-menu-button">
-								<a href="/bookWrite.do">
+								<a href="/bookWriteFrm.do">
 									<span class="material-symbols-outlined write-icon">drive_file_rename_outline</span>
 									작품등록
 								</a>
