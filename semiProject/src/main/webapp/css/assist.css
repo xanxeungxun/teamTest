@@ -13,7 +13,7 @@
 	text-align: center;
 }
 .input-td>input{
-	width: 80%;
+	width: 60%;
 	height: 30px;
 }
 .point-tr3{
@@ -22,13 +22,14 @@
 .point-tr3>td{
 	padding-top: 20px;
 	padding-bottom: 20px;
+	padding-left: 20px;
 }
 .point-tr4{
 	background-color: #f7f7f7;
 }
 .point-tr4>td{
 	padding-bottom: 20px;
-	padding-top: 20xp;
+	padding-left: 20px;
 }
 .text-td{
 	font-size: 12px;

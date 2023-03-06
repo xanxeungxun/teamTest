@@ -24,11 +24,16 @@
     	overflow: hidden;
     }
     .book-box{
-    	width: 400px;
-        margin: 20px;
+    	width: 420px;
+    	height: 190px;
+        margin: 10px;
+        padding: 10px;
         float: left;
         display: flex;
         justify-content: space-between;
+        border : 1px solid #EEEEEE;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
     .book-img{
         width: 130px;
@@ -40,8 +45,13 @@
     }
     .book-info{
     	width: 280px;
+    	position: relative;
     }
-    .book-info>div{
+    .box{
+    	position: absolute;
+    	bottom: 0;
+    }
+    .book-info>div>div{
         padding: 3px 0px 3px 0px;
     }
     .book-info-head{
@@ -106,7 +116,6 @@
 		                                <a href="#" class="btn bc6 read-btn">보기</a>
 		                                <a href="#" class="btn bc000 bc444 sup-btn">후원하기</a>
 		                            </div>
-	                            
 	                            </div>
 	                        </div>
 	                    </div>
