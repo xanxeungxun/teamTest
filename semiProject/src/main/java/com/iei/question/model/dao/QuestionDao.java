@@ -139,12 +139,12 @@ public class QuestionDao {
 			pstmt.setString(3, q.getQuestionTitle());//3
 			pstmt.setInt(4, q.getQuestionType());//4
 			pstmt.setString(5, q.getQuestionContent());//5
-			pstmt.setString(6, "y");
-			pstmt.setString(7, "빈값");
-			pstmt.setString(8, "빈값");
-			pstmt.setString(9, "빈값");
-			pstmt.setString(10, "빈값");
-			pstmt.setString(11, "빈값");
+			pstmt.setString(6, "n");
+			pstmt.setString(7, "n");
+			pstmt.setString(8, "n");
+			pstmt.setString(9, " ");
+			pstmt.setString(10, " ");
+			pstmt.setString(11, " ");
 			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

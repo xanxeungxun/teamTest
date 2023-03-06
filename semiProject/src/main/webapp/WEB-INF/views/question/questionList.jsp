@@ -29,6 +29,16 @@ int start = (int)request.getAttribute("start");
 				<%
 				if (list.size() < 1) {
 				%>
+				<%
+				if(loginUser !=null && loginUser.getUserLevel() ==2) {
+				%>
+				<div class="write-btd-wrap">
+					<button id="write-btn1" class="btn bc1 bs1">
+					문의 게시물 작성</button>
+				</div>
+				<%}%>
+					<button id="write-btn1" class="btn bc1 bs1" style="visibility:hidden;">
+					문의 게시물 작성</button>
 				<tr class="question-tr">
 					<td class="question-td">문의사항이 없습니다.</td>
 				</tr>
@@ -36,17 +46,22 @@ int start = (int)request.getAttribute("start");
 				} else {
 				%>
 				
+				<%
+				if(loginUser !=null && loginUser.getUserLevel() ==2) {
+				%>
 				<div class="write-btd-wrap">
-				
 				<%-- 문의 게시물 작성 버튼 --%>
-					<button id="write-btn1" class="btn bc1 bs1">
+				<button id="write-btn1" class="btn bc1 bs1">
 					문의 게시물 작성</button>
 				</div>
+					<%}%>
+					<button id="write-btn1" class="btn bc1 bs1" style="visibility:hidden;">
+					문의 게시물 작성</button>
 				<thead>
 					<tr class="question-tr">
 						<td class="question-td" style="width:6%">번호</td>
-						<td class="question-td" style="width:6%">종류</td>
-						<td class="question-td" style="width:57%">제목</td>
+						<td class="question-td" style="width:10%">종류</td>
+						<td class="question-td" style="width:40%">제목</td>
 						<td class="question-td" style="width:8%">작성자</td>
 						<td class="question-td" style="width:10%">작성일</td>
 						<td class="question-td" style="width:9%">답변여부</td>
@@ -60,6 +75,9 @@ int start = (int)request.getAttribute("start");
 					<%
 					QuestionVo q = list.get(i);
 					%>
+						<% String y = "y"; %>
+						<% String n = "n"; %>
+						
 					<tr class="question-tr">
 						<td class="question-td"><%=i+start %></td>
 						<%--- --%>
@@ -74,10 +92,26 @@ int start = (int)request.getAttribute("start");
 						<td class="question-td"><a
 							href="/question/viewQuestion.do?questionNo=<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a></td>
 						<td class="question-td"><%=q.getQuestionName()%></td><%-- 작성자 --%>
-						<td class="question-td"><%=q.getEnrollDate()%></td>
-						<td class="question-td">&emsp;<%=q.getAnswerYn()%>&emsp;</td>
+						<td class="question-td">
 						
-						<td class="question-td"><%=q.getAnswerDate()%></td>
+						<%=q.getEnrollDate()%>
+					
+						</td>
+						<td class="question-td">
+						<%if(q.getAnswerYn().equals("y")) {%>
+						답변완료
+						<%}else if(q.getAnswerYn().equals("n")){ %>
+						미답변
+						<%} %>
+						</td>
+						
+						<td class="question-td">
+						<%if(q.getAnswerDate().equals("n")){ %>
+						답변 대기중
+						<%}else{ %>
+						<%=q.getAnswerDate()%>
+						<%} %>
+						</td>
 					</tr>
 					<%
 					}
