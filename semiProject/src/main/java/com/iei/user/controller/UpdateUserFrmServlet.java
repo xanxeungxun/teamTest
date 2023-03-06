@@ -31,13 +31,6 @@ public class UpdateUserFrmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 인코딩
-		request.setCharacterEncoding("utf-8");
-		
-		//2. 값 추출
-		
-		//3. 비즈니스 로직
-		
 		//4. 화면 처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateUserFrm.jsp");
 		view.forward(request, response);

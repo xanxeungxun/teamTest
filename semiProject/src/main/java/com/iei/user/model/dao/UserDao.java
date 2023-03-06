@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-
+import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.vo.User;
 
 import common.JDBCTemplate;
@@ -110,43 +111,89 @@ public class UserDao {
 		return result;
 	}
 
-	public User selectOneUser(Connection conn, String userId) {
+
+
+	public int updateUser(Connection conn, User u) {
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 		
-		User u = null;
+		int result = 0;
 		
-		String query = "select * from user_tbl where user_id=?";
+		String query = "update user_tbl set user_pw=?, user_nick=?, user_phone=?, user_email=?, user_pic=? where user_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, u.getUserPw());
+			pstmt.setString(2, u.getUserNick());
+			pstmt.setString(3, u.getUserPhone());
+			pstmt.setString(4, u.getUserEmail());
+			pstmt.setString(5, u.getUserPic());
+			pstmt.setString(6, u.getUserId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteUser(Connection conn, String userId, String checkPw) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = "update user_tbl set user_level=4 where user_id=? and user_pw=?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, userId);
+			pstmt.setString(2, checkPw);
 			
-			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				u = new User();
-				
-				u.setUserEnroll(rset.getString("user_enroll"));
-				u.setUserId(rset.getString("user_id"));
-				u.setUserLevel(rset.getInt("user_level"));
-				u.setUserName(rset.getString("user_name"));
-				u.setUserNick(rset.getString("user_nick"));
-				u.setUserNo(rset.getInt("user_no"));
-				u.setUserPhone(rset.getString("user_phone"));
-				u.setUserPic(rset.getString("user_pic"));
-				u.setUserPoint(rset.getInt("user_point"));
-				u.setUserPw(rset.getString("user_pw"));
-				u.setUserEmail(rset.getString("user_email"));
-			}
+			result = pstmt.executeUpdate();
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
-			JDBCTemplate.close(rset);
 		}
 		
-		return u;
+		return result;
 	}
+
+	public String selectUserPw(Connection conn, String inputId, String inputEmail) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String searchPw = null;
+		
+		String query = "select user_pw from user_tbl where user_id=? and user_email=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, inputId);
+			pstmt.setString(2, inputEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				searchPw = rset.getString("user_pw");
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return searchPw;
+	}
+
+
 }

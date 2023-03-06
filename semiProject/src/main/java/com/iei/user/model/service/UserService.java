@@ -1,9 +1,10 @@
 package com.iei.user.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
+import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.dao.UserDao;
-
 import com.iei.user.model.vo.User;
 
 
@@ -58,14 +59,50 @@ public class UserService {
 	}
 
 
-	public User selectOneUser(String userId) {
+	public int updateUser(User u) {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		User u = dao.selectOneUser(conn, userId);
+		int result = dao.updateUser(conn, u);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.close(conn);
+		}
 		
 		JDBCTemplate.close(conn);
 		
-		return u;
+		return result;
 	}
+
+
+	public int deleteUser(String userId, String checkPw) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.deleteUser(conn, userId, checkPw);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.close(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+
+	public String selectUserPw(String inputId, String inputEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		String searchPw = dao.selectUserPw(conn, inputId, inputEmail);
+		
+		JDBCTemplate.close(conn);
+		
+		return searchPw;
+	}
+
+
 
 }

@@ -77,7 +77,7 @@
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
     <div class="page-content mypage-content">
-    	<%@include file="/WEB-INF/views/common/myPageMenu.jsp" %>
+    	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
             <div class="page-title">작품 정보 수정</div>
             <form action="/updateUser.do" method="post">

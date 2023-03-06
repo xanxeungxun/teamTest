@@ -116,6 +116,24 @@ public class BookListManageDao {
 		return totalCount;
 	}
 
+	// 북 하나 제거
+
+	public int deleteBookListManage(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from book where book_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 
 	
 

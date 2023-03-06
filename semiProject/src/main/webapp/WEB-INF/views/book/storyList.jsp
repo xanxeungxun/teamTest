@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
     <%
     	Book b = (Book)request.getAttribute("b");
-    	ArrayList<Story> storyList = (ArrayList<Story>)request.getAttribute("list");
+    	ArrayList<Story> storyList = (ArrayList<Story>)request.getAttribute("storyList");
     %>    
 <!DOCTYPE html>
 <html>
@@ -84,11 +84,22 @@
                             <%=b.getBookExp() %>
                         </div>
                     </div>
-                    <div class="book-botton">
-                        <button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
-                        <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
-                        <button class="btn bc6">관심작품</button>
+                    
+                    
+                    
+                    <div class="book-button">
+                    
+                    <!-- 만약 b.get작가아이디가 세션에 있는 작가 아이디랑 같다면 
+                    <if(loginUser.getUserId().equals(b.getBookWriterId())){%>
+                    	<button class="btn bc66" style="margin-bottom: 10px;">완결작품으로 전환</button>
+                        <button class="btn bc6">글쓰기</button>
+                    <} %> --> 
+                
+                    	
                     </div>
+                    
+                    
+                    
                 </div><!--book-content-->
 
                 <div class="switch-zone">
@@ -98,8 +109,14 @@
                     </div><!--author-menu-->
                 </div>
 
+
+			<!-- 여기서부턴 스토리리스트 ================================================= -->
+
                 <div class="book-story">
                 
+                <%for(int i=0 ; i < storyList.size() ; i++){ 
+                		Story s = storyList.get(i);
+                %>
                 
 	                    <div class="one-story">
 	                        <div class="icon-or-box">
@@ -109,25 +126,27 @@
 	                            <input type="checkbox" id="check" name="check">
 	                        </div>
 	                        <div class="story-scene">
-	                            0000화
+	                            <%=s.getRownum() %>화
 	                        </div>
 	                        <div class="story-title">
-	                            <a href="#">
-	                            100바이트 다 채운 소설제목?? 공백포함 100바이트 몇글자정도 cERA di CUPra
+	                            <a href="/storyView.do?storyNo=<%=s.getStoryNo()%>">
+	                            <%=s.getStoryName() %>
 	                            </a>
 	                        </div>
 	                        <div class="story-coment">
 	                            <span class="material-symbols-outlined">
 	                                forum
 	                            </span>
-	                            <span>000</span>
+	                            <span>
+	                            <%=s.getReadCount() %>
+	                            </span>
 	                        </div>
 	                        <div class="story-date">
-	                            2023-03-14
+	                            <%=s.getStoryTime() %>
 	                        </div>
 	                    </div><!--스토리 하나-->
                     
-                    
+                <%} %>    
                     
                 </div><!--book-story-->
 
@@ -137,5 +156,32 @@
     </div><!--page-content-->
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+	<script>
+		/*	
+		<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
+	    <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
+	    <button class="btn bc6">관심작품</button>
+	    */
+    
+	    const button1 = $("<button>");
+	    const button2 = $("<button>");
+	    const button3 = $("<button>");
+	    button1.text("첫 화 보기");
+	    button1.addClass("btn bc66");
+	    button1.css("margin-bottom","10px");
+	    
+	    button2.text("후원하기");
+	    button2.addClass("btn bc6");
+	    button2.css("margin-bottom","10px");
+	    
+	    button3.text("관심작품");
+	    button3.addClass("btn bc6");
+	    $(".book-button").append(button1);
+	    $(".book-button").append(button2);
+	    $(".book-button").append(button3);
+	
+	</script>
 </body>
 </html>

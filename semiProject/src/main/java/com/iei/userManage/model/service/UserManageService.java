@@ -2,6 +2,7 @@ package com.iei.userManage.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import com.iei.userManage.model.dao.UserManageDao;
 import com.iei.userManage.model.vo.UserManagePageData;
@@ -95,6 +96,35 @@ public class UserManageService {
 		UserManageVo result = dao.selectOneUserManage(conn, userManageNo);
 		JDBCTemplate.close(conn);
 
+		return result;
+	}
+
+
+	public int blockUser(String blockUser) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.blockUser(conn, blockUser);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+
+
+
+	public int changeUserLevel(int no, int level) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.changeUserLevel(conn,no,level);
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
 		return result;
 	}
 	

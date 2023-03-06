@@ -1,4 +1,4 @@
-package com.iei.user.controller;
+package com.iei.mypage.controller;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MyPageSupBookListServlet
+ * Servlet implementation class UploadBookListSerlvet
  */
-@WebServlet(name = "MyPageSupBookList", urlPatterns = { "/myPageSupBookList.do" })
-public class MyPageSupBookListServlet extends HttpServlet {
+@WebServlet(name = "UploadBookList", urlPatterns = { "/uploadBookList.do" })
+public class UploadBookListSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageSupBookListServlet() {
+    public UploadBookListSerlvet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,7 @@ public class MyPageSupBookListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//페이지 이동
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageSupBookList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/uploadBookList.jsp");
 		view.forward(request, response);
 	}
 

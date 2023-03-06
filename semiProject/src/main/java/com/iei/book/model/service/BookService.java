@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.iei.book.model.dao.BookDao;
 import com.iei.book.model.vo.Book;
 import com.iei.book.model.vo.BookListData;
+import com.iei.story.model.vo.Story;
 
 import common.JDBCTemplate;
 
@@ -83,6 +84,15 @@ public class BookService {
 		
 		JDBCTemplate.close(conn);
 		return b;
+	}
+
+	public ArrayList<Story> selectStoryList(int bookNo) {
+		// 해당 작품이 가지고 있는 Story의 목록을 뽑아주는 서비스
+		
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Story> storyList = dao.selectStoryList(conn,bookNo);
+		JDBCTemplate.close(conn);
+		return storyList;
 	}
 	
 	
