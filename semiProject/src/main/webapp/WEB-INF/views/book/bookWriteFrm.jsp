@@ -42,53 +42,55 @@
 		   			</tr>
 		   			<tr class="tr-1">
 		   				<th>카테고리</th>
-		   				<td>
-		   					<label for="test1">판타지</label>
+		   				<td style="text-align: left; line-height: 46px;">
 		   					<input type="radio" name="genre" value="1" id="test1">
-		   					<label for="test2">로맨스</label>
+		   					<label for="test1">판타지</label>
 		   					<input type="radio" name="genre" value="2" id="test2">
-		   					<label for="test3">로맨스판타지</label>
+		   					<label for="test2">로맨스</label>
 		   					<input type="radio" name="genre" value="3" id="test3">
-		   					<label for="test4">무협</label>
+		   					<label for="test3">로맨스판타지</label>
 		   					<input type="radio" name="genre" value="4" id="test4">
-		   					<label for="test5">퓨전</label>
+		   					<label for="test4">무협</label>
 		   					<input type="radio" name="genre" value="5" id="test5">
-		   					<label for="test6">게임</label>
+		   					<label for="test5">퓨전</label>
 		   					<input type="radio" name="genre" value="6" id="test6">
-		   					<label for="test7">역사</label>
+		   					<label for="test6">게임</label>
 		   					<input type="radio" name="genre" value="7" id="test7">
-		   					<label for="test8">스포츠</label>
+		   					<label for="test7">역사</label>
 		   					<input type="radio" name="genre" value="8" id="test8">
-		   					<label for="test9">라이트노벨</label>
+		   					<label for="test8">스포츠</label>
 		   					<input type="radio" name="genre" value="9" id="test9">
-		   					<label for="test10">BL</label>
+		   					<label for="test9">라이트노벨</label>
 		   					<input type="radio" name="genre" value="10" id="test10">
-		   					<label for="test11">GL</label>
+		   					<label for="test10">BL</label>
 		   					<input type="radio" name="genre" value="11" id="test11">
-		   					<label for="test12">패러디</label>
+		   					<label for="test11">GL</label>
+		   					<br>
+		   					
 		   					<input type="radio" name="genre" value="12" id="test12">
-		   					<label for="test13">팬픽</label>
+		   					<label for="test12">패러디</label>
 		   					<input type="radio" name="genre" value="13" id="test13">
-		   					<label for="test14">SF</label>
+		   					<label for="test13">팬픽</label>
 		   					<input type="radio" name="genre" value="14" id="test14">
-		   					<label for="test15">밀리터리</label>
+		   					<label for="test14">SF</label>
 		   					<input type="radio" name="genre" value="15" id="test15">
-		   					<label for="test16">시</label>
+		   					<label for="test15">밀리터리</label>
 		   					<input type="radio" name="genre" value="16" id="test16">
-		   					<label for="test17">소설</label>
+		   					<label for="test16">시</label>
 		   					<input type="radio" name="genre" value="17" id="test17">
-		   					<label for="test18">수필</label>
+		   					<label for="test17">소설</label>
 		   					<input type="radio" name="genre" value="18" id="test18">
-		   					<label for="test19">공포</label>
+		   					<label for="test18">수필</label>
 		   					<input type="radio" name="genre" value="19" id="test19">
-		   					<label for="test20">추리</label>
+		   					<label for="test19">공포</label>
 		   					<input type="radio" name="genre" value="20" id="test20">
-		   					<label for="test21">아동</label>
+		   					<label for="test20">추리</label>
 		   					<input type="radio" name="genre" value="21" id="test21">
-		   					<label for="test22">시나리오/희곡</label>
+		   					<label for="test21">아동</label>
 		   					<input type="radio" name="genre" value="22" id="test22">
-		   					<label for="test23">비평</label>
+		   					<label for="test22">시나리오/희곡</label>
 		   					<input type="radio" name="genre" value="23" id="test23">
+		   					<label for="test23">비평</label>
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
@@ -101,12 +103,12 @@
 		   				<th>작품 표지</th>
 		   				<td>
 		   					<input type="file" name="coverpath">
-		   					<span>작품 표지는 어쩌구 저쩌구 안 하면 기본 표지로 설정됩니다. 최대 10MB</span>
+		   					<span style="font-size: 14px; color:red;">*작품 표지는 어쩌구 저쩌구 안 하면 기본 표지로 설정됩니다. 최대 10MB</span>
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
-		   				<td colspan="2">
-		   					<button type="button" id="nextFrmBtn" onclick="nextFrm()">다음</button>
+		   				<td colspan="2" style="text-align: right;">
+		   					<button type="button" id="nextFrmBtn" onclick="nextFrm()" class="btn bc4" style="margin-top: 30px;">다음</button>
 		   				</td>
 		   			</tr>
 		   		</table>
@@ -119,7 +121,7 @@
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
-		   				<th colspan="2">내용</th>
+		   				<th colspan="2" style="text-align: left; padding-left: 27px;">내용</th>
 		   			</tr>
 		   			<tr class="tr-1">
 		   				<td colspan="2" style="text-align: left;">
@@ -129,15 +131,15 @@
 		   			<tr class="tr-1">
 		   				<th>작가후기</th>
 		   				<td>
-		   					<textarea cols="30" rows="3" name="storyAfter" class="input-form" placeholder="작품의 전체 내용을 간단하게 소개해주세요."></textarea>
+		   					<textarea cols="30" rows="3" name="storyAfter" class="input-form"></textarea>
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
-		   				<td>
-		   					<button type="button" id="backFrmBtn" onclick="backFrm()">이전</button>
+		   				<td style="text-align: left;">
+		   					<button type="button" id="backFrmBtn" onclick="backFrm()" class="btn" style="cursor: pointer;margin-top: 30px;">이전</button>
 		   				</td>
-		   				<td>
-		   					<button id="submit">첫 작품 등록하기</button>
+		   				<td style="text-align: right;">
+		   					<button id="submit" class="btn bc4" style="margin-top: 30px;">첫 작품 등록하기</button>
 		   				</td>
 		   			</tr>
 		   		</table>

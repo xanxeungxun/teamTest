@@ -39,7 +39,7 @@
 			   				</td>
 			   			</tr>
 			   			<tr class="tr-1">
-			   				<th colspan="2">내용</th>
+			   				<th colspan="2" style="text-align: left; padding-left: 27px;">내용</th>
 			   			</tr>
 			   			<tr class="tr-1">
 			   				<td colspan="2" style="text-align: left;">
@@ -54,7 +54,7 @@
 			   			</tr>
 			   			<tr class="tr-1">
 			   				<td colspan="2">
-			   					<button id="submit">등록하기</button>
+			   					<button id="submit" class="btn bc4" style="margin-top: 30px;">글쓰기</button>
 			   				</td>
 			   			</tr>
 			   		</table>
