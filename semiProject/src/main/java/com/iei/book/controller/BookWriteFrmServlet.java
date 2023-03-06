@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class BookWriteServlet
  */
-@WebServlet(name = "BookWrite", urlPatterns = { "/bookWrite.do" })
-public class BookWriteServlet extends HttpServlet {
+@WebServlet(name = "BookWrite", urlPatterns = { "/bookWriteFrm.do" })
+public class BookWriteFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookWriteServlet() {
+    public BookWriteFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,7 @@ public class BookWriteServlet extends HttpServlet {
 		//3비즈니스로직
 		
 		//4결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/bookWriteFrm.jsp");
 		view.forward(request, response);
 	}
 

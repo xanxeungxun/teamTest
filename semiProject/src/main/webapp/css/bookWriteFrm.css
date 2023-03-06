@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+
+.book-wrap{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+
+.book-list-header{
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    padding: 50px 0;
+    margin-bottom: 50px;
+}
+.book-list-header div{
+    float: left;
+}
+.book-list-header>div:first-child{
+    font-size: 40px;
+    font-weight: bold;
+    padding-right:30px;
+}
+
+.book-content-box{
+    width: 1000px;
+    margin: 0 auto 80px auto;
+}
+
+.book-content{
+
+    display: flex;
+}

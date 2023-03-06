@@ -169,15 +169,15 @@
 	    const button2 = $("<button>");
 	    const button3 = $("<button>");
 	    button1.text("첫 화 보기");
-	    button1.addClass("btn bc66");
+	    button1.addClass("btn bc44");
 	    button1.css("margin-bottom","10px");
 	    
 	    button2.text("후원하기");
-	    button2.addClass("btn bc6");
+	    button2.addClass("btn bc4");
 	    button2.css("margin-bottom","10px");
 	    
 	    button3.text("관심작품");
-	    button3.addClass("btn bc6");
+	    button3.addClass("btn bc4");
 	    $(".book-button").append(button1);
 	    $(".book-button").append(button2);
 	    $(".book-button").append(button3);
