@@ -30,7 +30,7 @@ public class QuestionDao {
 				n.setQuestionUserId(rset.getString("QUESTION_USER_ID"));
 				n.setQuestionName(rset.getString("QUESTION_USER_ID"));
 				n.setQuestionTitle(rset.getString("QUESTION_TITLE"));
-				n.setQuestionType(rset.getString("QUESTION_TYPE"));
+				n.setQuestionType(rset.getInt("QUESTION_TYPE"));
 				n.setQuestionContent(rset.getString("QUESTION_CONTENT"));
 				n.setEnrollDate(rset.getString("ENROLL_DATE"));
 				n.setAnswerYn(rset.getString("ANSWER_YN"));
@@ -73,9 +73,9 @@ public class QuestionDao {
 			while(rset.next()) {
 				result.setQuestionNo(rset.getInt("QUESTION_NO"));
 				result.setQuestionUserId(rset.getString("QUESTION_USER_ID"));
-				result.setQuestionName(rset.getString("QUESTION_USER_ID"));
+				result.setQuestionName(rset.getString("QUESTION_NAME"));
 				result.setQuestionTitle(rset.getString("QUESTION_TITLE"));
-				result.setQuestionType(rset.getString("QUESTION_TYPE"));
+				result.setQuestionType(rset.getInt("QUESTION_TYPE"));
 				result.setQuestionContent(rset.getString("QUESTION_CONTENT"));
 				result.setEnrollDate(rset.getString("ENROLL_DATE"));
 				result.setAnswerYn(rset.getString("ANSWER_YN"));
@@ -134,10 +134,10 @@ public class QuestionDao {
 		String query = "insert into question values(question_seq.nextval,?,?,?,?,?,to_char(sysdate,'yy-mm-dd'),?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "빈값");
-			pstmt.setString(2, "빈값");
+			pstmt.setString(1, q.getQuestionUserId());//아이디
+			pstmt.setString(2, q.getQuestionName());//네임
 			pstmt.setString(3, q.getQuestionTitle());//3
-			pstmt.setString(4, "1");
+			pstmt.setInt(4, q.getQuestionType());//4
 			pstmt.setString(5, q.getQuestionContent());//5
 			pstmt.setString(6, "y");
 			pstmt.setString(7, "빈값");

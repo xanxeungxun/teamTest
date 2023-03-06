@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.book.model.vo.Book;
+import com.iei.mypage.service.MyPageService;
+import com.iei.mypage.vo.UploadBook;
+
 /**
  * Servlet implementation class UpdateBookFrmServlet
  */
@@ -28,8 +32,22 @@ public class UpdateBookFrmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//페이지 이동
+		//1. 인코딩
+		request.setCharacterEncoding("utf-8");
+		
+		//2. 값 추출
+		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+		
+		//3. 비즈니스 로직
+		MyPageService service = new MyPageService();
+		//해당 작품 불러오기
+		Book book = service.selectOneBook(bookNo);
+		
+		//4. 결과 처리 ... 페이지 이동
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateBookFrm.jsp");
+		
+		request.setAttribute("book", book);
+		
 		view.forward(request, response);
 	}
 

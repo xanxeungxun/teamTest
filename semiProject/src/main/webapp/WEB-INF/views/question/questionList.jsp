@@ -14,6 +14,8 @@ int start = (int)request.getAttribute("start");
 <meta charset="UTF-8">
 <title>문의 게시판</title>
 <link rel="stylesheet" href="/css/question.css">
+
+
 </head>
 <body>
 
@@ -35,8 +37,10 @@ int start = (int)request.getAttribute("start");
 				%>
 				
 				<div class="write-btd-wrap">
-					<%-- 문의 게시물 작성 버튼 --%>
-					<button id="write-btn1" class="btn bc1 bs1" onclick="location.href =  '/questionWriteFrm.do';">문의 게시물 작성</button>
+				
+				<%-- 문의 게시물 작성 버튼 --%>
+					<button id="write-btn1" class="btn bc1 bs1">
+					문의 게시물 작성</button>
 				</div>
 				<thead>
 					<tr class="question-tr">
@@ -58,10 +62,18 @@ int start = (int)request.getAttribute("start");
 					%>
 					<tr class="question-tr">
 						<td class="question-td"><%=i+start %></td>
-						<td class="question-td"></td>
+						<%--- --%>
+						<td class="question-td">
+						<% if(q.getQuestionType() == 1 ){%>이용안내
+						<%}else if(q.getQuestionType() == 2 ){%>시스템오류
+						<%}else if(q.getQuestionType() == 3 ){%>결제
+						<%}else if(q.getQuestionType() == 4 ){%>건의사항
+						<%}else if(q.getQuestionType() == 5 ){%>기타
+						<%}else if(q.getQuestionType() == 6 ){%>신고<%} %>
+						</td>
 						<td class="question-td"><a
 							href="/question/viewQuestion.do?questionNo=<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a></td>
-						<td class="question-td"><%=q.getQuestionName()%></td>
+						<td class="question-td"><%=q.getQuestionName()%></td><%-- 작성자 --%>
 						<td class="question-td"><%=q.getEnrollDate()%></td>
 						<td class="question-td">&emsp;<%=q.getAnswerYn()%>&emsp;</td>
 						
@@ -80,5 +92,13 @@ int start = (int)request.getAttribute("start");
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
+	<script>
+	$("#write-btn1").on("click",function(){
+		const loginUser = $(this).parent().parent().children().find('tr').eq(2).children().eq(1).text();
+		console.log(loginUser);
+		location.href =  '/questionWriteFrm.do';
+	});
+
+</script>
 </body>
 </html>

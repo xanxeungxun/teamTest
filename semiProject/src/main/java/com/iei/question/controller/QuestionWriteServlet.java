@@ -27,9 +27,15 @@ public class QuestionWriteServlet extends HttpServlet {
 		//2 값 추출
 		String questionTitle = request.getParameter("questionTitle");
 		String questionContent = request.getParameter("questionContent");
+		int questionType = Integer.parseInt(request.getParameter("questionType"));
+		String questionId = request.getParameter("questionId");
+		String questionName = request.getParameter("questionName");
 		QuestionVo q = new QuestionVo();
 		q.setQuestionTitle(questionTitle);
 		q.setQuestionContent(questionContent);
+		q.setQuestionType(questionType);
+		q.setQuestionUserId(questionId);
+		q.setQuestionName(questionName);
 		//3 비즈니스 로직
 		QuestionService service = new QuestionService();
 		int result = service.insertQuestion(q);
