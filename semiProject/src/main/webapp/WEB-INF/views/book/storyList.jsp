@@ -199,38 +199,62 @@
 				    
 				    
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-
+<%
+if(loginUser==null){%>
 	<script>
-		/*	
-		<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
-	    <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
-	    <button class="btn bc6">관심작품</button>
-	    */
-    
-	    const button1 = $("<button>");
-	    const button2 = $("<button target='#test-modal'>");
-	    const button3 = $("<button>");
-	    
-	    button1.text("첫 화 보기");
-	    button1.addClass("btn bc44");
-	    button1.css("margin-bottom","10px");
-	    
-	    button2.text("후원하기");
-	    button2.addClass("btn bc4 modal-open-btn");
-	    button2.css("margin-bottom","10px");
-	    
-	    
-	    
-	    button3.text("관심작품");
-	    button3.addClass("btn bc4");
-	    
-	    
-	    
-	    $(".book-button").append(button1);
-	    $(".book-button").append(button2);
-	    $(".book-button").append(button3);
-	
+			/*	
+			<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
+			<button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
+			<button class="btn bc6">관심작품</button>
+			*/
+			const button1 = $("<button>");
+			const button2 = $("<button target='#test-modal'>");
+			const button3 = $("<button>");
+			
+			button1.text("첫 화 보기");
+			button1.addClass("btn bc44");
+			button1.css("margin-bottom","10px");
+			
+			button2.text("후원하기");
+			button2.addClass("btn bc4 modal-open-btn");
+			button2.css("margin-bottom","10px");
+			
+			
+			button3.text("관심작품");
+			button3.addClass("btn bc4");
+			
+			
+			$(".book-button").append(button1);
+			$(".book-button").append(button2);
+			$(".book-button").append(button3);
 	</script>
+<% 
+}else if(loginUser.getUserId().equals(b.getBookWriterId())){
+	//세션 기록된 유저아이디랑 작품의 작가랑 동일할 때 -->> 작가본인일때
+%>	
+	<script>
+	    	/*
+		    	<button class="btn bc66" style="margin-bottom: 10px;">완결작품으로 전환</button>
+	            <button class="btn bc6">글쓰기</button>
+	    	*/
+	    	const button1 = $("<button>");
+	    	const button2 = $("<button>");
+	    	
+	    	button1.text("완결작으로 전환");
+		    button1.addClass("btn bc44");
+		    button1.css("margin-bottom","10px");
+		    
+		    button2.text("글쓰기");
+		    button2.addClass("btn bc4");
+		    
+		    $(".book-button").append(button1);
+		    $(".book-button").append(button2);
+		    
+	</script>
+<%
+}
+%>
+
+
 </body>
 </html>
