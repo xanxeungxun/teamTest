@@ -38,7 +38,7 @@ public class CalEventServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		//3. 비즈니스로직
 		UserService service = new UserService();
-		User u = service.selectOneUser(userId);
+		User u = service.selectOneUserCal(userId);
 		//4. 결과처리
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
