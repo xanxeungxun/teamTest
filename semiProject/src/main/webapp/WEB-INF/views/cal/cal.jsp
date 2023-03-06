@@ -186,24 +186,28 @@
     </div>
     <div class="chk-btn-div">
     	<input type="hidden" name="userId" class="userId" value="<%=loginUser.getUserId() %>">
+    	<input type="hidden" name="userPoint" class="userPoint" value="<%=loginUser.getUserPoint() %>">
     	<button class="chk-btn bc6" id="chk-btn">출석체크</button>
     </div>
     
     <script>
     	$("#chk-btn").on("click",function(){
     		const userId = $(".userId").val();
+    		const userPoint = $(".userPoint").val();
     		const today = $(".fc-day-today");
+    		
     		today.empty();
     		$.ajax({
     			url : "/calEvent.do",
     			type : "post",
-    			data : {userId : userId},
+    			data : {userId : userId, userPoint : userPoint},
     			dataType : "Json",
     			success : function(data) {
 					if(data == null){
-						today.css("background-color","blue");
+						console.log("x");
 					}else{
 						today.css("background-color","red");
+						location.href = "/calView.do";
 					}
 				},
     			error : function() {
