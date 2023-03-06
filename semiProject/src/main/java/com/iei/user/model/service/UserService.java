@@ -104,6 +104,31 @@ public class UserService {
 	}
 
 
+	public User selectOneUserCal(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		User u = dao.selectOneUserCal(conn, userId);
+		JDBCTemplate.close(conn);
+		return u;
+	}
+
+
+	public int updateUserPoint(String userId, int userPoint) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateUserPoint(conn, userId, userPoint);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.close(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+
+
+
+
 	
 
 

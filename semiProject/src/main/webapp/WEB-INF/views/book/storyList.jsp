@@ -14,7 +14,7 @@
 <title><%=b.getBookTitle() %></title>
 	
 	<link rel="stylesheet" href="/css/storyList.css">
-	
+	<link rel="stylesheet" href="/css/assist.css">
 	
 	<style>
         .material-symbols-outlined {
@@ -84,7 +84,7 @@
                             <%=b.getBookExp() %>
                         </div>
                     </div>
-                    
+                    <input type="hidden" id="bookNo" value="<%=b.getBookNo()%>">
                     
                     
                     <div class="book-button">
@@ -97,6 +97,10 @@
                 
                     	
                     </div>
+                    
+                    
+                   
+                    
                     
                     
                     
@@ -155,33 +159,117 @@
         </div><!--book-wrap-->
     </div><!--page-content-->
 
+
+					 <div id="test-modal" class="modal-bg">
+				      <div class="modal-wrap">
+				        <div class="modal-head">
+				          <h2>후원하기</h2>
+				          <span class="material-icons close-icon modal-close">close</span>
+				        </div>
+		        	<form action="/assistPoint.do" method="post">
+				        <div class="point-wrap">
+					        	<table class="point-tbl">
+					        		<tr class="point-tr1">
+					        			<td>보유포인트</td>
+					        			<td>사용할 포인트</td>
+					        		</tr>
+					        		<tr class="point-tr2">
+					        			<td class="point-td1">
+					        				<%if(loginUser != null) {%>
+					        					<%=loginUser.getUserPoint() %>
+					        				<%}else {%>
+					        					0
+					        				<%} %>
+					        			</td>
+					        			<td class="input-td">
+					        				<input type="text" name="input-point" id="input-point">
+					        			</td>
+					        			
+					        		</tr>
+					        		<tr class="point-tr3">
+					        			<td colspan="2">부족한 포인트를 충전하고 포스트를 감상해보세요.</td>
+					        		</tr>
+					        		<tr class="point-tr4">
+					        			<td colspan="2">
+					        				<a href="#" class="btn bc6">포인트 충전</a>
+					        			</td>
+					        		</tr>
+					        		<tr>
+					        			<td colspan="2" class="text-td">주식회사 에브리데이는 회원 상호 간 콘텐츠 거래를 위한 중개 시스템을 제공할 뿐, 회원을 대리하지 않습니다. 환급,취소 등 회원 간 성립된 거래에 대한 모든 책임은 회원이 직접 부담합니다. 자세한 내용은 서비스 이용 전 동의하신 이용약관을 참고해주세요.</td>
+					        		</tr>
+					        	</table>
+					        </div>
+					        <div class="modal-foot">
+					          <button type="submit" class="btn bc6 btn-pill">후원</button>
+					          <button type="button" class="btn bc33 modal-close btn-pill">취소</button>
+					        </div>
+			        	</form>
+				      </div>
+				    </div>
+				    
+				    
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-
+<%
+if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 	<script>
-		/*	
-		<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
-	    <button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
-	    <button class="btn bc6">관심작품</button>
-	    */
-    
-	    const button1 = $("<button>");
-	    const button2 = $("<button>");
-	    const button3 = $("<button>");
-	    button1.text("첫 화 보기");
-	    button1.addClass("btn bc44");
-	    button1.css("margin-bottom","10px");
-	    
-	    button2.text("후원하기");
-	    button2.addClass("btn bc4");
-	    button2.css("margin-bottom","10px");
-	    
-	    button3.text("관심작품");
-	    button3.addClass("btn bc4");
-	    $(".book-button").append(button1);
-	    $(".book-button").append(button2);
-	    $(".book-button").append(button3);
-	
+			/*	
+			<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
+			<button class="btn bc6" style="margin-bottom: 10px;">후원하기</button>
+			<button class="btn bc6">관심작품</button>
+			*/
+			const button1 = $("<button>");
+			const button2 = $("<button target='#test-modal'>");
+			const button3 = $("<button>");
+			
+			button1.text("첫 화 보기");
+			button1.addClass("btn bc44");
+			button1.css("margin-bottom","10px");
+			
+			button2.text("후원하기");
+			button2.addClass("btn bc4 modal-open-btn");
+			button2.css("margin-bottom","10px");
+			
+			
+			button3.text("관심작품");
+			button3.addClass("btn bc4");
+			
+			
+			$(".book-button").append(button1);
+			$(".book-button").append(button2);
+			$(".book-button").append(button3);
 	</script>
+<% 
+}else if(loginUser.getUserId().equals(b.getBookWriterId())){
+	//세션 기록된 유저아이디랑 작품의 작가랑 동일할 때 -->> 작가본인일때
+%>	
+	<script>
+	    	/*
+		    	<button class="btn bc66" style="margin-bottom: 10px;">완결작품으로 전환</button>
+	            <button class="btn bc6">글쓰기</button>
+	    	*/
+	    	const button1 = $("<button>");
+	    	const button2 = $("<button>");
+	    	const bookNo = $("#bookNo").val();
+	    	
+	    	button1.text("완결작으로 전환");
+		    button1.addClass("btn bc44");
+		    button1.css("margin-bottom","10px");
+		    
+		    button2.text("글쓰기");
+		    button2.addClass("btn bc4");
+		    button2.attr("onclick","location.href='/storyWriteFrm.do?bookNo="+bookNo+"'");
+		    
+		    $(".book-button").append(button1);
+		    $(".book-button").append(button2);
+		    
+
+	</script>
+<%
+}
+%>
+
+
+
+
 </body>
 </html>

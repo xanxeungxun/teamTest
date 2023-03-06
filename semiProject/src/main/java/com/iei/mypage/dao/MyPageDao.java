@@ -329,5 +329,34 @@ public class MyPageDao {
 		
 		return book;
 	}
+
+	public int updateBook(Connection conn, Book updateBook, int bookNo) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = "update book set coverpath=?, book_status=?, book_title=?, book_exp=?, genre_code=? where book_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, updateBook.getCoverpath());
+			pstmt.setInt(2, updateBook.getBookStatusNum());
+			pstmt.setString(3, updateBook.getBookTitle());
+			pstmt.setString(4, updateBook.getBookExp());
+			pstmt.setInt(5, updateBook.getGenreCode());
+			pstmt.setInt(6, bookNo);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
+	}
 	
 }
