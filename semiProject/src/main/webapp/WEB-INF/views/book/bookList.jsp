@@ -6,7 +6,8 @@
 	ArrayList<Book> list = (ArrayList<Book>)request.getAttribute("bookList");
 	String naviCode = (String)request.getAttribute("naviCode");
 	int start = (int)request.getAttribute("start");
-	String result="";
+	String result1="";
+	String result2="";
 %>    
 <!DOCTYPE html>
 <html lang="ko">
@@ -105,7 +106,17 @@
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                        	<%=b.getBookTitle() %>
+	                        	<%int total1 = b.getBookTitle().length();
+		                        	if(38 < total1){
+		                        		char[] arrayTitle = b.getBookTitle().toCharArray();
+		                        		for(int j=0 ; j<38 ; j++){
+		                        			result1 = result1 + arrayTitle[j];		
+		                         		}//for문
+		                        %>
+		                        	<%=result1+" ..."%>
+		                        <%}else{//공백포함 20글자가 안넘는다면%>
+		                        	<%=b.getBookTitle() %>
+		                        <%} %>
 	                        </a>
                         </div>
                         <div class="book-one-subTitle">
@@ -116,14 +127,14 @@
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		                        <%int total = b.getBookExp().length();
-		                        	if(86 < total){
+		                        <%int total2 = b.getBookExp().length();
+		                        	if(86 < total2){
 		                        		char[] arrayExp = b.getBookExp().toCharArray();
-		                        		for(int j=0 ; j<86 ; j++){
-		                        			result = result + arrayExp[j];		
+		                        		for(int k=0 ; k<86 ; k++){
+		                        			result2 = result2 + arrayExp[k];		
 		                         		}//for문
 		                        %>
-		                        	<%=result+" ...."%>
+		                        	<%=result2+" ..."%>
 		                        <%}else{//공백포함 89글자가 안넘는다면%>
 		                        	<%=b.getBookExp() %>
 		                        <%} %>

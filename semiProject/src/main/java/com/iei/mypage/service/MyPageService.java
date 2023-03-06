@@ -352,6 +352,22 @@ public class MyPageService {
 		return book;
 	}
 
+	public int updateBook(Book updateBook, int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.updateBook(conn, updateBook, bookNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else { 
+			JDBCTemplate.rollback(conn);
+		}
+		
+		System.out.println(result);
+		
+		return result;
+	}
+
 
 
 }

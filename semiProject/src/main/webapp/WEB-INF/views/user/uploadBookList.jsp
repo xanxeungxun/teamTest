@@ -101,15 +101,30 @@
 	                            <div class="book-date">작품 등록일 : <span class="book-date"><%=ub.getBookDate() %></span></div>
 	                            <div>
 	                                <a href="/updateBookFrm.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">수정</a>
-	                                <a href="#" class="btn bc33 book-btn">작품 삭제</a>
+	                                <button class="btn bc33 book-btn modal-open-btn" target="#delBook-modal">작품 삭제</button>
 	                            </div>
 	                        </div>
 	                    </div>
                     <%} %>
                 </div>
             </div>
-            <div id="pageNavi"><%=pageNavi %></div>
+          <div id="pageNavi"><%=pageNavi %></div>
         </div>
     </div>
+        <div id="delBook-modal" class="modal-bg">
+	      <div class="modal-wrap">
+	        <div class="modal-head">
+	          <h2>확인</h2>
+	          <span class="material-icons close-icon modal-close">close</span>
+	        </div>
+	        <div class="modal-content">
+	          <p>작성하신 작품을 삭제하시겠습니까?</p>
+	        </div>
+	        <div class="modal-foot">
+	          <button class="btn bc6 btn-pill">확인</button>
+	          <button class="btn bc33 modal-close btn-pill">취소</button>
+	        </div>
+	    </div>
+	  </div>
 </body>
 </html>

@@ -33,7 +33,7 @@ public class UpdateBookFrmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. 인코딩
-		request.setCharacterEncoding("uft-8");
+		request.setCharacterEncoding("utf-8");
 		
 		//2. 값 추출
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
@@ -45,6 +45,9 @@ public class UpdateBookFrmServlet extends HttpServlet {
 		
 		//4. 결과 처리 ... 페이지 이동
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/updateBookFrm.jsp");
+		
+		request.setAttribute("book", book);
+		
 		view.forward(request, response);
 	}
 

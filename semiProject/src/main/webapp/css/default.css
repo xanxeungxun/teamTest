@@ -594,7 +594,6 @@ color: #fff;
     height: 100vh;
     display: none;
     align-items: center;
-    flex-direction: column;
 
 }
 .modal-wrap {
