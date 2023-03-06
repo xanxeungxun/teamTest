@@ -246,7 +246,7 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 		    
 		    button2.text("글쓰기");
 		    button2.addClass("btn bc4");
-		    button2.attr("onclick","location.href='/writeStoryFrm.do'");
+		    button2.attr("onclick","location.href='/storyWriteFrm.do'");
 		    
 		    $(".book-button").append(button1);
 		    $(".book-button").append(button2);
