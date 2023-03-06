@@ -166,34 +166,39 @@
 				          <h2>후원하기</h2>
 				          <span class="material-icons close-icon modal-close">close</span>
 				        </div>
+		        	<form action="/assistPoint.do" method="post">
 				        <div class="point-wrap">
-				        	<table>
-				        		<tr class="point-tr1">
-				        			<td>보유포인트</td>
-				        			<td>사용할 포인트</td>
-				        			<td>남은 포인트</td>
-				        		</tr>
-				        		<tr class="point-tr2">
-				        			<td>1000</td>
-				        			<td class="input-td">
-				        				<input type="text">
-				        			</td>
-				        			<td>0</td>
-				        		</tr>
-				        		<tr class="point-tr3">
-				        			<td colspan="3">부족한 포인트를 충전하고 포스트를 감상해보세요</td>
-				        		</tr>
-				        		<tr>
-				        			<td colspan="3">
-				        				<a href="#" class="btn bc6"></a>
-				        			</td>
-				        		</tr>
-				        	</table>
-				        </div>
-				        <div class="modal-foot">
-				          <button class="btn bc6 btn-pill">후원</button>
-				          <button class="btn bc33 modal-close btn-pill">취소</button>
-				        </div>
+					        	<table>
+					        		<tr class="point-tr1">
+					        			<td>보유포인트</td>
+					        			<td>사용할 포인트</td>
+					        			<td>남은 포인트</td>
+					        		</tr>
+					        		<tr class="point-tr2">
+					        			<td>1000</td>
+					        			<td class="input-td">
+					        				<input type="text">
+					        			</td>
+					        			<td>0</td>
+					        		</tr>
+					        		<tr class="point-tr3">
+					        			<td colspan="3">부족한 포인트를 충전하고 포스트를 감상해보세요.</td>
+					        		</tr>
+					        		<tr class="point-tr4">
+					        			<td colspan="3">
+					        				<a href="#" class="btn bc6">포인트 충전</a>
+					        			</td>
+					        		</tr>
+					        		<tr>
+					        			<td colspan="3" class="text-td">주식회사 에브리데이는 회원 상호 간 콘텐츠 거래를 위한 중개 시스템을 제공할 뿐, 회원을 대리하지 않습니다. 환급,취소 등 회원 간 성립된 거래에 대한 모든 책임은 회원이 직접 부담합니다. 자세한 내용은 서비스 이용 전 동의하신 이용약관을 참고해주세요.</td>
+					        		</tr>
+					        	</table>
+					        </div>
+					        <div class="modal-foot">
+					          <button type="submit" class="btn bc6 btn-pill">후원</button>
+					          <button type="button" class="btn bc33 modal-close btn-pill">취소</button>
+					        </div>
+			        	</form>
 				      </div>
 				    </div>
 				    
