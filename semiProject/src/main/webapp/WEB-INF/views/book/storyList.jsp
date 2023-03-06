@@ -168,14 +168,24 @@
 				        </div>
 				        <div class="point-wrap">
 				        	<table>
-				        		<tr>
+				        		<tr class="point-tr1">
 				        			<td>보유포인트</td>
 				        			<td>사용할 포인트</td>
 				        			<td>남은 포인트</td>
 				        		</tr>
-				        		<tr>
+				        		<tr class="point-tr2">
 				        			<td>1000</td>
-				        			<td>
+				        			<td class="input-td">
+				        				<input type="text">
+				        			</td>
+				        			<td>0</td>
+				        		</tr>
+				        		<tr class="point-tr3">
+				        			<td colspan="3">부족한 포인트를 충전하고 포스트를 감상해보세요</td>
+				        		</tr>
+				        		<tr>
+				        			<td colspan="3">
+				        				<a href="#" class="btn bc6"></a>
 				        			</td>
 				        		</tr>
 				        	</table>

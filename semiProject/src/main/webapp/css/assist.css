@@ -1,0 +1,13 @@
+.point-tr1>td{
+	width: 200px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.point-tr2>td{
+	padding-bottom: 20px;
+	text-align: center;
+}
+.input-td>input{
+	width: 80%;
+	height: 30px;
+}
