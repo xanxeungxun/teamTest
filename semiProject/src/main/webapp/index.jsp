@@ -19,7 +19,6 @@
 	<button onclick="gotoTop()" id="gototop" title="맨 위로">＾</button>
 	<div class="content-wrap">
 		<div class="content-title">
-
 			<div class="autoplay">
 				<div>
 					<img src="/slideimg/slideimg1.png">
@@ -363,9 +362,16 @@
 			</div>
 		</div>
 	</div>
-
-
-	<a href="/adminMain.do">관리자 페이지 바로가기</a>
+	
+	<%
+	if(loginUser !=null&&loginUser.getUserLevel()==1){%>
+	<input type="hidden" id="userLevel" value="<%=loginUser.getUserLevel() %>">
+	<%}%>
+<%-- 관리자 페이지 시작 --%><%
+	if(loginUser !=null&&loginUser.getUserLevel()==1){%>
+	<a class="adminBtn" style="cursor:pointer;padding-left:50px;">관리자 페이지 바로가기</a>
+	<%}%>
+	<%-- 관리자 페이지 끝 --%>
 	<script src="/js/slick.js"></script>
 	<script>
         $(function () {
@@ -381,6 +387,16 @@
 
     </script>
     <link rel="stylesheet" href="/css/slick.css">
+    
+    <script>
+	$(".adminBtn").on("click",function(){
+		//해당 테이블의 해당 게시물을 제거하는 쿼리 불러옴
+		const userLevel = $("#userLevel").val();
+		console.log(userLevel);
+		location.href="/adminMain.do?userLevel="+userLevel;
+	});
+</script>
+    
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

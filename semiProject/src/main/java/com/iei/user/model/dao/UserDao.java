@@ -270,15 +270,14 @@ public class UserDao {
 		return writerPoint;
 	}
 
-	public int updateLoginUserPoint(Connection conn, String loginUser, int inputPoint, int userPoint) {
+	public int updateLoginUserPoint(Connection conn, String loginUser, int inputPoint) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "update user_tbl set user_point=?-? where user_id=?";
+		String query = "update user_tbl set user_point=user_point - ? where user_id=?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, userPoint);
-			pstmt.setInt(2, inputPoint);
-			pstmt.setString(3, loginUser);
+			pstmt.setInt(1, inputPoint);
+			pstmt.setString(2, loginUser);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -289,15 +288,14 @@ public class UserDao {
 		return result;
 	}
 
-	public int updateWriterPoint(Connection conn, String bookWriter, int inputPoint, int writerPoint) {
+	public int updateWriterPoint(Connection conn, String bookWriter, int inputPoint) {
 		PreparedStatement pstmt = null;
 		int result2 = 0;
-		String query = "update user_tbl set user_point=?+? where user_id=?";
+		String query = "update user_tbl set user_point=user_point+? where user_id=?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, writerPoint);
-			pstmt.setInt(2, inputPoint);
-			pstmt.setString(3, bookWriter);
+			pstmt.setInt(1, inputPoint);
+			pstmt.setString(2, bookWriter);
 			result2 = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -306,6 +304,30 @@ public class UserDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result2;
+	}
+
+	public int updateUserPoint(Connection conn, int updatePrice, int userNo) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = "update user_tbl set user_point=? where user_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, updatePrice);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

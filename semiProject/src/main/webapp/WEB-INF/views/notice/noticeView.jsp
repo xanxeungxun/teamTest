@@ -22,6 +22,9 @@
 	.title-span{
 		font-size: 17px;
 	}
+	.noticeContentDiv{
+		min-height: 400px;
+	}
 	
 </style>
 </head>
@@ -45,7 +48,7 @@
 				</tr>
 				<tr class="notice-tr">
 					<td class="notice-td">
-						<div><%=n.getNoticeContent() %></div>
+						<div class="noticeContentDiv"><%=n.getNoticeContent() %></div>
 					</td>					
 				</tr>
 			</table>
