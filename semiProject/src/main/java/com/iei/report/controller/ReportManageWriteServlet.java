@@ -1,4 +1,4 @@
-package com.iei.reportManage.controller;
+package com.iei.report.controller;
 
 import java.io.IOException;
 
@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.reportManage.model.service.ReportManageService;
-import com.iei.reportManage.model.vo.ReportManageVo;
+import com.iei.report.model.service.ReportService;
+import com.iei.report.model.vo.ReportVo;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
-@WebServlet(name = "ReportManageWrite", urlPatterns = { "/reportManageWrite.do" })
-public class ReportManageWriteServlet extends HttpServlet {
+@WebServlet(name = "ReportWrite", urlPatterns = { "/reportWrite.do" })
+public class ReportWriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ReportManageWriteServlet() {
+    public ReportWriteServlet() {
         super();
     }
 
@@ -29,7 +29,7 @@ public class ReportManageWriteServlet extends HttpServlet {
 				request.setCharacterEncoding("utf-8");
 				//2 값 추출
 				String root = getServletContext().getRealPath("/");
-				String saveDirectory = root+"upload/reportManage";
+				String saveDirectory = root+"upload/report";
 				//2-2. 파일 업로드 최대용량 설정(일반적으로 웹은 10MB)
 				int maxSize = 10*1024*1024;
 				//2-3. multipart/form-data에서 데이터를 꺼내기 위한 객체 변환 작업
@@ -41,14 +41,14 @@ public class ReportManageWriteServlet extends HttpServlet {
 				//request -> MultipartRequest로 변환 완료
 				//- > 파일업로드가 완료되는 시점
 				// 입력 정보를 추출 (MultipartRequest에서 추출)
-				String reportManageTitle = mRequest.getParameter("reportManageTitle");
+				String reportTitle = mRequest.getParameter("reportTitle");
 				//제목
-				String reportManageId = mRequest.getParameter("reportManageId");
+				String reportId = mRequest.getParameter("reportId");
 				//작성자 아이디 전송
-				String reportManageName = mRequest.getParameter("reportManageName");
+				String reportName = mRequest.getParameter("reportName");
 				//작성자 닉네임 전송
 				
-				String reportManageContent = mRequest.getParameter("reportManageContent");
+				String reportContent = mRequest.getParameter("reportContent");
 				//글 전송
 				
 				String filename = mRequest.getOriginalFileName("upfile");
@@ -56,8 +56,8 @@ public class ReportManageWriteServlet extends HttpServlet {
 				
 				String filepath = mRequest.getFilesystemName("upfile");
 				//실제 서버에 업로드된 파일 이름(중복처리 후 파일명)
-				ReportManageVo r = new ReportManageVo();
-				r.setReportTitle(reportManageTitle);
+				ReportVo r = new ReportVo();
+				r.setReportTitle(reportTitle);
 				r.setreport(noticeWriter);
 				r.setNoticeContent(noticeContent);
 				r.setFilename(filename);

@@ -1,4 +1,4 @@
-package com.iei.reportManage.controller;
+package com.iei.report.controller;
 
 import java.io.IOException;
 
@@ -9,29 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.reportManage.model.service.ReportManageService;
-import com.iei.reportManage.model.vo.ReportManageVo;
+import com.iei.report.model.service.ReportService;
+import com.iei.report.model.vo.ReportVo;
 
 
 // 신고 상세 조회
-@WebServlet(name = "viewReportManage", urlPatterns = { "/reportManage/viewReportManage.do" })
-public class ViewReportManageServlet extends HttpServlet {
+@WebServlet(name = "viewReport", urlPatterns = { "/report/viewReport.do" })
+public class ViewReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ViewReportManageServlet() {
+	public ViewReportServlet() {
 		super();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		ReportManageService service = new ReportManageService();
+		ReportService service = new ReportService();
 		
-		String reportManageNo = request.getParameter("reportManageNo");
+		String reportNo = request.getParameter("reportNo");
 		
-		ReportManageVo result = service.selectOneReportManage(reportManageNo);
+		ReportVo result = service.selectOneReport(reportNo);
 		
-		request.setAttribute("reportManageResult", result);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/reportManage/viewReportManage.jsp");
+		request.setAttribute("reportResult", result);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/report/viewReport.jsp");
 		view.forward(request, response);
 	}
 	

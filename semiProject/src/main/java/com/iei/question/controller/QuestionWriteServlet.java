@@ -8,9 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iei.question.model.service.QuestionService;
 import com.iei.question.model.vo.QuestionVo;
+import com.iei.user.model.vo.User;
 
 @WebServlet(name = "QuestionWrite", urlPatterns = { "/questionWrite.do" })
 public class QuestionWriteServlet extends HttpServlet {
@@ -39,16 +41,23 @@ public class QuestionWriteServlet extends HttpServlet {
 		//3 비즈니스 로직
 		QuestionService service = new QuestionService();
 		int result = service.insertQuestion(q);
-		System.out.println("q :"+q);
-		//4 결과 처리
+		//4결과처리
+		HttpSession session = request.getSession();  
+		User loginUser = (User)session.getAttribute("loginUser");
+		
+		if(loginUser!=null&&loginUser.getUserLevel()==2) {
 		RequestDispatcher view =
 				request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result>0) {
 			request.setAttribute("title", "게시글 작성 완료");
 			request.setAttribute("msg", "게시글이 작성되었습니다.");
 			request.setAttribute("icon", "success");
-		}
 		request.setAttribute("loc", "/question/questionList.do?reqPage=1");
+		view.forward(request, response);
+		}
+		}
+		RequestDispatcher view =
+		request.getRequestDispatcher("/");
 		view.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

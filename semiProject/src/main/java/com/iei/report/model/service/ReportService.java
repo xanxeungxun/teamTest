@@ -1,25 +1,25 @@
-package com.iei.reportManage.model.service;
+package com.iei.report.model.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.iei.reportManage.model.dao.ReportManageDao;
-import com.iei.reportManage.model.vo.ReportManagePageData;
-import com.iei.reportManage.model.vo.ReportManageVo;
+import com.iei.report.model.dao.ReportDao;
+import com.iei.report.model.vo.ReportPageData;
+import com.iei.report.model.vo.ReportVo;
 
 import common.JDBCTemplate;
 
-public class ReportManageService {
-	private ReportManageDao dao;
+public class ReportService {
+	private ReportDao dao;
 
-	public ReportManageService() {
+	public ReportService() {
 		super();
-		dao = new ReportManageDao();
+		dao = new ReportDao();
 	}
 	
 	
 	// 신고 전체 목록 확인
-	public ReportManagePageData selectAllReportManageList(int reqPage){
+	public ReportPageData selectAllReportList(int reqPage){
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
@@ -27,8 +27,8 @@ public class ReportManageService {
 		int end = numPerPage*reqPage;
 		int start = end - numPerPage + 1;
 		
-		ArrayList<ReportManageVo> list = dao.selectAllReportManageList(conn,start,end);
-		int totalCount = dao.selectReportManageCount(conn);
+		ArrayList<ReportVo> list = dao.selectAllReportList(conn,start,end);
+		int totalCount = dao.selectReportCount(conn);
 		int totalPage = 0;
 		if(totalCount%numPerPage == 0) {
 			totalPage = totalCount/numPerPage;
@@ -40,19 +40,19 @@ public class ReportManageService {
 		String pageNavi = "<ul class='pagination circle-style'>";
 		if(pageNo != 1) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/reportManageList.do?reqPage="+(pageNo-1)+"'>";
+			pageNavi += "<a class='page-item' href='/reportList.do?reqPage="+(pageNo-1)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</a></li>";
 		}
 		for(int i=0;i<pageNaviSize;i++) {
 			if(pageNo == reqPage) {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item active-page' href='/reportManage/reportManageList.do?reqPage="+(pageNo)+"'>";
+				pageNavi += "<a class='page-item active-page' href='/report/reportList.do?reqPage="+(pageNo)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a></li>";
 			}else {
 				pageNavi += "<li>";
-				pageNavi += "<a class='page-item' href='/reportManage/reportManageList.do?reqPage="+(pageNo)+"'>";
+				pageNavi += "<a class='page-item' href='/report/reportList.do?reqPage="+(pageNo)+"'>";
 				pageNavi += pageNo;
 				pageNavi += "</a></li>";
 			}
@@ -64,29 +64,29 @@ public class ReportManageService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<hr>";
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item' href='/reportManage/reportManageList.do?reqPage="+(pageNo)+"'>";
+			pageNavi += "<a class='page-item' href='/report/reportList.do?reqPage="+(pageNo)+"'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span>";
 			pageNavi += "</a></li>";
 		}
 		pageNavi += "</ul>";
 		JDBCTemplate.close(conn);
-		ReportManagePageData npd = new ReportManagePageData(list, pageNavi, start);
+		ReportPageData npd = new ReportPageData(list, pageNavi, start);
 		return npd;
 	}
 	
 	
 	// 신고 상세 보기
-	public ReportManageVo selectOneReportManage(String questionNo) {
+	public ReportVo selectOneReport(String questionNo) {
 		
 		Connection conn = JDBCTemplate.getConnection();
-		ReportManageVo result = dao.selectOneReportManage(conn, questionNo);
+		ReportVo result = dao.selectOneReport(conn, questionNo);
 		JDBCTemplate.close(conn);
 
 		return result;
 	}
 	
 	// 답변 등록, 수정
-	public int updateReportManage(ReportManageVo paramVo) {
+	public int updateReport(ReportVo paramVo) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateAnswer(conn, paramVo);
 		if(result >0)
@@ -99,9 +99,9 @@ public class ReportManageService {
 	}
 
 	// 문의 게시물 작성
-	public int insertReportManage(ReportManageVo q) {
+	public int insertReport(ReportVo q) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.insertReportManage(conn, q);
+		int result = dao.insertReport(conn, q);
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		}else {

@@ -1,6 +1,5 @@
 <%@page import="com.iei.bookListManage.model.vo.BookListManageVo"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.iei.question.model.vo.QuestionVo"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -25,7 +24,6 @@ font-size:14px;
 </style>
 </head>
 <body>
-
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-content">
 		<div class="bookListManage-wrap">
@@ -42,7 +40,6 @@ font-size:14px;
 				<%
 				} else {
 				%>
-				
 				<thead>
 					<tr class="bookListManage-tr">
 					

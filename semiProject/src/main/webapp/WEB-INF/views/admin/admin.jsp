@@ -54,8 +54,8 @@
 				<button type="button" onclick="location.href='/userManage/userManageList.do?reqPage=1'">회원관리</button>
 				<button type="button" onclick="location.href='/bookListManage/bookListManageList.do?reqPage=1'">작품관리</button>
 				<button type="button" onclick="location.href='/question/questionList.do?reqPage=1'">문의사항</button>
-				<button type="button" onclick="location.href='/reportManage/reportManageList.do?reqPage=1'">신고접수</button>
-				<button type="button" onclick="location.href='/reportManage/reportManageWriteFrm.do'">신고작성</button>
+				<button type="button" onclick="location.href='/report/reportList.do?reqPage=1'">신고접수</button>
+				<button type="button" onclick="location.href='/report/reportWriteFrm.do'">신고작성</button>
 			</div>
 		</div>
 	</div>
