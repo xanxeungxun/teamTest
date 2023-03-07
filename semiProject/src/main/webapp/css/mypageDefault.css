@@ -1,3 +1,7 @@
+body>.page-content{
+	padding-top : 50px;
+}
+
 .line{
 	border-top: 2px solid lightgray;
 }
@@ -29,6 +33,7 @@
     font-size: 22px;
 }
 .mypage-detail{
+	margin: 0;
 	width:900px;
 	margin-top: 20px;
 	margin-bottom: 150px
