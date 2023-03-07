@@ -114,7 +114,19 @@ public class BookService {
 		
 		return result;
 	}
-	
+	public int updateEndBook(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateEndBook(conn,bookNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return result;
+	}
+
 	
 	
 	
@@ -140,19 +152,19 @@ public class BookService {
 		String naviCode = "<ul class='pagination circle-style'>";
 		if (naviStart != 1) {// 네비시작숫자가 1이상(5,11,16...)생겨야함
 			naviCode += "<li>";
-			naviCode += "<a class='page-item' href='/search.do?reqPage=" + (naviStart - 1) + "'>";
+			naviCode += "<a class='page-item' href='/search.do?reqPage=" + (naviStart - 1) + "&searchKeyword=" + searchKeyword + "'>";
 			naviCode += "<span class='material-icons'>chevron_left";
 			naviCode += "</span></a></li>";
 		}
 		for (int i = 0; i < naviSize; i++) {
 			if (naviStart == reqPage) { // 요청한 페이지가 1,6,11..일때
 				naviCode += "<li>";
-				naviCode += "<a class='page-item active-page' href='/search.do?reqPage=" + naviStart + "'>";
+				naviCode += "<a class='page-item active-page' href='/search.do?reqPage=" + naviStart + "&searchKeyword=" + searchKeyword + "'>";
 				naviCode += naviStart;
 				naviCode += "</a></li>";
 			} else {
 				naviCode += "<li>";
-				naviCode += "<a class='page-item' href='/search.do?reqPage=" + naviStart + "'>";
+				naviCode += "<a class='page-item' href='/search.do?reqPage=" + naviStart + "&searchKeyword=" + searchKeyword + "'>";
 				naviCode += naviStart;
 				naviCode += "</a></li>";
 			}
@@ -163,7 +175,7 @@ public class BookService {
 		} // 숫자넣기for문
 		if (naviStart <= searchPage) {
 			naviCode += "<li>";
-			naviCode += "<a class='page-item' href='/search.do?reqPage=" + (naviStart) + "'>";
+			naviCode += "<a class='page-item' href='/search.do?reqPage=" + (naviStart) + "&searchKeyword=" + searchKeyword + "'>";
 			naviCode += "<span class='material-icons'>chevron_right";
 			naviCode += "</span></a></li>";
 		}
@@ -176,19 +188,7 @@ public class BookService {
 		
 	}
 
-	public int updateEndBook(int bookNo) {
-		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.updateEndBook(conn,bookNo);
-		
-		if(result>0) {
-			JDBCTemplate.commit(conn);
-		}else {
-			JDBCTemplate.rollback(conn);
-		}
-		
-		return result;
-	}
-
+	
 
 	
 	
