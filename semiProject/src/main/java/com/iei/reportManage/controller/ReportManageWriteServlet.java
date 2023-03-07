@@ -57,8 +57,8 @@ public class ReportManageWriteServlet extends HttpServlet {
 				String filepath = mRequest.getFilesystemName("upfile");
 				//실제 서버에 업로드된 파일 이름(중복처리 후 파일명)
 				ReportManageVo r = new ReportManageVo();
-				r.setReportTitle(noticeTitle);
-				r.setNoticeWriter(noticeWriter);
+				r.setReportTitle(reportManageTitle);
+				r.setreport(noticeWriter);
 				r.setNoticeContent(noticeContent);
 				r.setFilename(filename);
 				r.setFilepach(filepath);
