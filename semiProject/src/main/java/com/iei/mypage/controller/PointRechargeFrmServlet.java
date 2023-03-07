@@ -35,16 +35,11 @@ public class PointRechargeFrmServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//2. 값 추출
-		String userId = request.getParameter("userNo");
 		
 		//3. 비즈니스 로직
-		MyPageService service = new MyPageService();
-		User payUser = service.selectOneUser(userId);//유저 1명 조회
 		
 		//4. 결과 처리 ... 페이지 이동
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/pointRechargeFrm.jsp");
-		
-		request.setAttribute("payUser", payUser);
 		
 		view.forward(request, response);
 	}

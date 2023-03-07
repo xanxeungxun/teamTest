@@ -3,11 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%	
-	ArrayList<Book> list = (ArrayList<Book>)request.getAttribute("bookList");
+	ArrayList<Book> searchList = (ArrayList<Book>)request.getAttribute("searchList");
 	String naviCode = (String)request.getAttribute("naviCode");
-	int start = (int)request.getAttribute("start");
-	String result1="";
-	String result2="";
+	int begin = (int)request.getAttribute("begin");
+	String result="";
 %>    
 <!DOCTYPE html>
 <html lang="ko">
@@ -91,8 +90,8 @@
                     </div>
                 </div><!--작품하나..-->
             
-            <%for(int i=0 ; i<list.size() ; i++){ %>
-            <%		Book b = list.get(i);		  %>
+            <%for(int i=0 ; i<searchList.size() ; i++){ %>
+            <%		Book b = searchList.get(i);		  %>
             	
             	<div class="book-one">
                     <div class="book-one-cover"
@@ -106,21 +105,7 @@
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                        	<%int total1 = b.getBookTitle().length();
-		                        	if(36 < total1){		                        		
-		                        		//System.out.println(arrayTitle);
-		                        		result1 = b.getBookTitle().substring(0,36);
-		                        		/*
-		                        		for(int j=0 ; j<36 ; j++){
-		                        			result1 = result1 + b.getBookTitle().charAt(j);		
-		                         		}//for문
-		                        		System.out.println(result1);
-		                         		*/
-		                        %>
-		                        	<%=result1+" ..."%>
-		                        <%}else{//공백포함 20글자가 안넘는다면%>
-		                        	<%=b.getBookTitle() %>
-		                        <%} %>
+	                        	<%=b.getBookTitle() %>
 	                        </a>
                         </div>
                         <div class="book-one-subTitle">
@@ -129,18 +114,8 @@
                             <span>총 <%=b.getStoryCount()%>화</span>
                         </div>
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
-                        <div class="book-one-syn">
-	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		                        <%int total2 = b.getBookExp().length();
-		                        	if(86 < total2){
-		                        		result2 = b.getBookExp().substring(0,86);
-		                        %>
-		                        	<%=result2+" ..."%>
-		                        <%}else{//공백포함 89글자가 안넘는다면%>
-		                        	<%=b.getBookExp() %>
-		                        <%} %>
-	                        </a>
-                        </div>
+                        
+                        
                         <div class="book-one-exp">
                             <span class="material-symbols-outlined">
                                 visibility

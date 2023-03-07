@@ -116,7 +116,7 @@ public class BookDao {
 		PreparedStatement pstmt = null;
 		ArrayList<Story> storyList = new ArrayList<Story>();
 		ResultSet rset = null;
-		String query ="select * from (select rownum, a.* from (select s.STORY_NO, s.BOOK_NO , s.STORY_NAME,s.STORY_CONTENT,s.STORY_AFTER,s.STORY_TIME,s.READ_COUNT from story s, book b where s.book_no = b.BOOK_NO order by 1)a where a.book_no = ?) order by 1 desc";
+		String query ="select rownum, a.* from (select s.STORY_NO, s.BOOK_NO , s.STORY_NAME,s.STORY_CONTENT,s.STORY_AFTER,s.STORY_TIME,s.READ_COUNT from story s, book b where s.book_no = b.BOOK_NO)a where a.book_no = ? order by 1 desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -148,6 +148,7 @@ public class BookDao {
 		return storyList;
 	}
 
+
 	public int insertBook(Connection conn, Book b) {
 		PreparedStatement pstmt = null;
 		int result=0;
@@ -175,14 +176,15 @@ public class BookDao {
 	public int insertStory(Connection conn, int bookNo, Story s) {
 		PreparedStatement pstmt = null;
 		int result=0;
-		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,?,sysdate,default)";
+		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,sysdate,default,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bookNo);
 			pstmt.setString(2, s.getStoryName());
-			pstmt.setString(3, s.getStoryContent());
-			pstmt.setString(4, s.getStoryAfter());
+			pstmt.setString(3, s.getStoryAfter());
+			pstmt.setString(4, s.getStoryContent());
+			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -195,28 +197,66 @@ public class BookDao {
 		return result;
 	}
 
-	public int selectBookNo(Connection conn) {
+
+	public ArrayList<Book> selectSearchBook(Connection conn, String searchKeyword, int end, int begin) {
+
 		PreparedStatement pstmt = null;
+		ArrayList<Book> searchList = new ArrayList<Book>();
 		ResultSet rset = null;
-		int bookNo = 0;
-		String query ="select max(book_no)as book_no from book";
-		
+		//String query = "select book_title from book where book_title like ?";
+		String query = "select * from (select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id order by 1 desc)n) where rnum between ? and ?) where book_title like ?";
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, begin);
+			pstmt.setInt(2, end);
+			pstmt.setString(3, "%"+searchKeyword+"%");
 			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				bookNo = rset.getInt("book_no");
+			while(rset.next()){
+				Book b = new Book();
+				b.setBookDate(rset.getString("book_date"));
+				b.setBookExp(rset.getString("book_exp"));
+				b.setBookNo(Integer.parseInt(rset.getString("book_no")));
+				b.setBookStatus(rset.getString("book_status"));
+				b.setBookTitle(rset.getString("book_title"));
+				b.setBookWriterId(rset.getString("book_writer"));
+				b.setBookWriterNick(rset.getString("user_nick"));
+				b.setCoverpath(rset.getString("coverpath"));
+				b.setGenreCode(Integer.parseInt(rset.getString("genre_code")));
+				b.setGenreName(rset.getString("genre_name"));
+				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
+				
+				searchList.add(b);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
-		return bookNo;
+		return searchList;
 	}
+
+	public int updateEndBook(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update book set book_status=2 where book_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
 
 	
 	

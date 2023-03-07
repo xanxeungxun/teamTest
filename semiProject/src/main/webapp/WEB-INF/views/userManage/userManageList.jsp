@@ -62,21 +62,21 @@ int start = (int)request.getAttribute("start");
 					%>
 					<td>
 					<tr class="userManage-tr">
-						<td class="userManage-td"style="font-size:14px;"><%=i+start %></td>
-						<td class="userManage-td kk"style="font-size:14px;"><%=u.getUserNo() %></td>
-						<td class="userManage-td"style="font-size:14px;"><%=u.getUserId() %></td>
-						<td class="userManage-td"style="font-size:14px;"><%=u.getUserName() %>
-						<td class="userManage-td"style="font-size:14px;"><%=u.getUserNick() %></td>
-						<td class="userManage-td" style="font-size:14px;"><%=u.getUserPhone() %></td>
-						<td class="userManage-td"style="font-size:14px;"><%=u.getUserEmail() %></td>
-						<td class="userManage-td"style="font-size:14px;"><%=u.getUserEnroll() %></td>
-						<td class="userManage-td"style="font-size:14px;">
+						<td rowspan="2"class="userManage-td"style="font-size:14px;"><%=i+start %></td>
+						<td rowspan="2"class="userManage-td kk"style="font-size:14px;"><%=u.getUserNo() %></td>
+						<td rowspan="2"class="userManage-td"style="font-size:14px;"><%=u.getUserId() %></td>
+						<td rowspan="2"class="userManage-td"style="font-size:14px;"><%=u.getUserName() %>
+						<td rowspan="2"class="userManage-td"style="font-size:14px;"><%=u.getUserNick() %></td>
+						<td rowspan="2"class="userManage-td" style="font-size:14px;"><%=u.getUserPhone() %></td>
+						<td rowspan="2"class="userManage-td"style="font-size:14px;"><%=u.getUserEmail() %></td>
+						<td rowspan="2"class="userManage-td"style="font-size:14px;"><%=u.getUserEnroll() %></td>
+						<td rowspan="2"class="userManage-td"style="font-size:14px;">
 						<% if(u.getUserLevel() == 1 ){%>관리자
 						<%}else if(u.getUserLevel() == 2 ){%>일반
 						<%}else if(u.getUserLevel() == 3 ){%>블락
 						<%}else if(u.getUserLevel() == 4 ){%>탈퇴<%} %>
 						</td>
-						<td class="userManage-td"style="font-size:14px;">
+						<td rowspan="2" colspan="2"class="userManage-td"style="font-size:14px;">
     			<%if(u.getUserLevel()==1){ %>
     			<select class="input-form"style="font-size:14px;">
     					<option value="1" selected>관리자</option>
@@ -96,10 +96,10 @@ int start = (int)request.getAttribute("start");
     					<option value="3" selected>블락</option>
     				</select>
     			<%} %>
-    			</td>
-    			<td colspan="2">
 						<button type="button" class="btn bc1 bs1 delBtn"style="font-size:14px;border-radius:0;border:0px;">등급변경</button>
-    			</td>
+    				</td>
+    			</tr>
+					<tr class="userManage-tr"></tr>
 					<%
 					}
 					}
@@ -116,9 +116,9 @@ int start = (int)request.getAttribute("start");
 <script>
 	$(".delBtn").on("click",function(){
 		//해당 테이블의 해당 게시물을 제거하는 쿼리 불러옴
-		const userNo = $(this).parent().parent().children().eq(1).text();
+		const userNo = $(this).parent().parent().children().prev().eq(1).text();
 		console.log(userNo);
-		const userLevel = $(this).parent().prev().children().val();
+		const userLevel = $(this).prev().val();
 		console.log(userLevel);
 		location.href="/changeUserLevel.do?userNo="+userNo+"&userLevel="+userLevel;
 	});

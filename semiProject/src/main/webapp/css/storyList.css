@@ -84,6 +84,17 @@ a{
     padding: 10px;
     line-height: 30px;
 }
+.book-exp .book-synop::-webkit-scrollbar{
+	width: 10px;
+}
+.book-exp .book-synop::-webkit-scrollbar-thumb {
+    background-color: #ffc6d3;
+    border-radius: 10px;
+}
+.book-exp .book-synop::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
 
 .book-button{
     display: flex;

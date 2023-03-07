@@ -24,13 +24,13 @@
 	display: flex;
 }
 
-.mypage-box>.material-icons {
+.mypage-box>.profile>.material-icons {
 	font-size: 140px;
 	color: #ccc;
 }
 
 .mypage-info {
-	padding: 20px;
+	padding: 15px;
 	width: 65%;
 }
 
@@ -76,7 +76,7 @@
 
 .logout-btn {
 	height: 55px;
-	margin-top: 100px;
+	margin-top: 80px;
 }
 
 .myPoint {
@@ -97,10 +97,8 @@
         width: 120px;
         height: 120px;
         background-color: #fff;
-        
         border : 1px solid #EEEEEE;
-        border-radius: 4px;
-        margin-right: 20px;
+        border-radius: 60px;
     }
 </style>
 <body>
@@ -123,13 +121,13 @@
 					</div>
 					<div class="line"></div>
 					<div class="link">
-						<div>
+						<%-- <div>
 							<div class="material-symbols-outlined icon">mail</div>
 							<a href="#" class="message">쪽지함</a>
-						</div>
+						</div>--%>
 						<div>
 							<div class="material-symbols-outlined icon">savings</div>
-							<a href="/pointRechargeFrm.do?userId=<%=user.getUserId() %>" class="point">포인트 충전</a>
+							<a href="/pointRechargeFrm.do" class="point">포인트 충전</a>
 						</div>
 					</div>
 				</div>
