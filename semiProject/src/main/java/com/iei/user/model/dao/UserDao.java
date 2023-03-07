@@ -306,6 +306,28 @@ public class UserDao {
 		return result2;
 	}
 
+	public int insertSupportBook(Connection conn, int inputPoint, int userNo, int bookNo) {
+		PreparedStatement pstmt = null;
+		int result3 = 0;
+		String query = "insert into support_book values(support_book_seq.nextval,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			pstmt.setInt(2, userNo);
+			pstmt.setInt(3, inputPoint);
+			result3 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result3;
+	}
+
+	
+
 	public int updateUserPoint(Connection conn, int updatePrice, int userNo) {
 		PreparedStatement pstmt = null;
 		

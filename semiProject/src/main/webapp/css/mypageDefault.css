@@ -1,3 +1,21 @@
+.line{
+	border-top: 2px solid lightgray;
+}
+.inform-wrap{
+    width: 300px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 130px;
+}
+.inform-wrap>.book-icon{
+    font-size: 80px;
+    color: #e6e8eb;
+}
+.inform-wrap>.msg{
+    color: #59516e;
+    font-size: 14px;
+}
+
 .content-wrap{
     border-top: 2px solid lightgray;
     border-bottom: 2px solid lightgray;

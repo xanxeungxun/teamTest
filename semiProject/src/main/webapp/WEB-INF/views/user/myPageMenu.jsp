@@ -63,7 +63,7 @@ ul {
 }
 </style>
 <div class="mypage-menu-wrap">
-	<a href="/myPageMain.do" class="page-title">마이페이지</a>
+	<a href="/myPageMain.do?userId=<%=u.getUserId()%>" class="page-title">마이페이지</a>
 	<ul class="cat">
 		<li>
 			<div class="cat-title">

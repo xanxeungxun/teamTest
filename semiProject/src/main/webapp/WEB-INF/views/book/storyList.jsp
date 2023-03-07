@@ -186,6 +186,7 @@
 					        					<%=loginUser.getUserPoint() %>
 					        					<input type="hidden" name="userPoint" value="<%=loginUser.getUserPoint()%>">
 					        					<input type="hidden" name="loginUser" value="<%=loginUser.getUserId()%>">
+					        					<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
 					        				<%}else {%>
 					        					0
 					        				<%} %>
@@ -194,6 +195,7 @@
 					        				<input type="text" name="inputPoint" id="inputPoint">
 					        				<input type="hidden" name="bookWriter" value="<%=b.getBookWriterId() %>">
 				        					<input type="hidden" name="bookNo" value="<%=b.getBookNo() %>">
+				        					
 					        			</td>
 					        		</tr>
 					        		<tr class="point-tr3">
@@ -201,7 +203,7 @@
 					        		</tr>
 					        		<tr class="point-tr4">
 					        			<td colspan="2">
-					        				<a href="#" class="btn bc6">포인트 충전</a>
+					        				<a href="/pointRechargeFrm.do" class="btn bc6">포인트 충전</a>
 					        			</td>
 					        		</tr>
 					        		<tr>

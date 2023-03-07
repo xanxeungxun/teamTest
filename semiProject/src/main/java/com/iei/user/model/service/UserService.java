@@ -121,13 +121,19 @@ public class UserService {
 	}
 
 
-	public int updateAssistPoint(String loginUser, String bookWriter, int inputPoint) {
+	public int updateAssistPoint(String loginUser, String bookWriter, int inputPoint, int userNo, int bookNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateLoginUserPoint(conn, loginUser, inputPoint);
 		if(result > 0) {
 			result = dao.updateWriterPoint(conn, bookWriter, inputPoint);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
+				result = dao.insertSupportBook(conn, inputPoint, userNo, bookNo);
+				if(result > 0) {
+					JDBCTemplate.commit(conn);
+				}else {
+					JDBCTemplate.rollback(conn);
+				}
 			}else {
 				JDBCTemplate.rollback(conn);
 			}

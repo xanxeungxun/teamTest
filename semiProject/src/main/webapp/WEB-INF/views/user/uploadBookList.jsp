@@ -14,6 +14,7 @@
 <title>Insert title here</title>
     <link rel="stylesheet" href="/css/mypageDefault.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <script src="/js/sweetalert.min.js"></script>
 </head>
 <style>
     .line-content{
@@ -98,6 +99,15 @@
     	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
             <div class="page-title">투고한 작품 확인</div>
+           	<%if(upList.size() == 0) { %>
+           	<div class="line"></div>
+			<div class="inform-wrap">
+				<span class="material-symbols-outlined book-icon">import_contacts</span>
+				<div class="msg">투고한 작품이 없습니다.</div>
+			</div>
+			<%
+			} else {
+			%>
             <div class="content-wrap">
                 <div class="line-content">
                 	<%for(int i=0; i<upList.size(); i++) { %>
@@ -118,7 +128,7 @@
 		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=ub.getBookDate() %></span></div>
 		                            <div>
 		                                <a href="/updateBookFrm.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">수정</a>
-		                                <button class="btn bc33 book-btn modal-open-btn" target="#test-modal" onclick="deleteUploadBook(this, <%=ub.getBookNo()%>, <%=ub.getBookWriter()%>);">작품 삭제</button>
+		                                <button class="btn bc33 book-btn modal-open-btn" onclick="deleteUploadBook(<%=ub.getBookNo()%>, '<%=ub.getBookWriter()%>');">작품 삭제</button>
 		                                <%--<a href="/deleteUploadBook.do?bookNo=<%=ub.getBookNo() %>&bookWriter=<%=ub.getBookWriter() %>" class="btn bc33 book-btn modal-open-btn">작품 삭제</a> --%>
 		                            </div>
 	                            </div>
@@ -128,10 +138,11 @@
                 </div>
             </div>
           <div id="pageNavi"><%=pageNavi %></div>
+          <%} %>
         </div>
     </div>
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
-    <div id="test-modal" class="modal-bg">
+<%--    <div id="test-modal" class="modal-bg">
       <div class="modal-wrap">
         <div class="modal-head">
           <h2>확인</h2>
@@ -144,13 +155,25 @@
           <a href="/deleteUploadBook.do" class="btn bc6 btn-pill">확인</a>
           <button class="btn bc33 modal-close btn-pill">취소</button>
         </div>
-      </div>
+      </div> --%>
       
       <script>
-			function deleteUploadBook(obj, bookNo, bookWriter) {
-				location.href="/deleteUploadBook.do?bookNo="+bookNo+"&bookWriter="+bookWriter;
-			}	
-      
+	      function deleteUploadBook(bookNo, bookWriter) {
+	          swal({
+	              title: '작품 삭제',
+	              text: "작품을 삭제하시겠습니까?",
+	              icon: 'warning',
+	              showCancelButton: true,
+	              /*confirmButtonColor: '#AACB73',
+	              cancelButtonColor: '#ccc',*/
+	              confirmButtonText: '확인',
+	              cancelButtonText: '취소'
+	          }).then(function(result) {
+	              if (result) {
+	                  location.href="/deleteUploadBook.do?bookNo="+bookNo+"&bookWriter="+bookWriter;
+	              }
+	          })
+	      }
       </script>
 </body>
 </html>
