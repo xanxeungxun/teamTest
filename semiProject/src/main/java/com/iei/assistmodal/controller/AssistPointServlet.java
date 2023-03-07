@@ -35,6 +35,7 @@ public class AssistPointServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		String loginUser = request.getParameter("loginUser");
 		String bookWriter = request.getParameter("bookWriter");
 		int userPoint = Integer.parseInt(request.getParameter("userPoint"));
@@ -44,7 +45,7 @@ public class AssistPointServlet extends HttpServlet {
 		u.setUserPoint(userPoint-inputPoint);
 		
 		UserService service = new UserService();
-		int result = service.updateAssistPoint(loginUser, bookWriter, inputPoint);
+		int result = service.updateAssistPoint(loginUser, bookWriter, inputPoint, userNo, bookNo);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result>0) {
 			
