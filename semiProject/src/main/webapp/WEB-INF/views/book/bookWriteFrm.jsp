@@ -105,11 +105,11 @@
 		   				<th>작품 표지</th>
 		   				<td>
 		   					<input type="file" name="coverpath">
-		   					<span style="font-size: 14px; color:red;">*작품 표지는 어쩌구 저쩌구 안 하면 기본 표지로 설정됩니다. 최대 10MB</span>
+		   					<span style="font-size: 14px; color:red;width: 500px;">*작품 표지는 180x240에 최적화되어 있습니다. 등록하지 않을시 기본 표지로 설정됩니다. 최대 10MB</span>
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
-		   				<td colspan="2" style="text-align: right;">
+		   				<td colspan="2" style="text-align: right;" >
 		   					<button type="button" id="nextFrmBtn" onclick="nextFrm()" class="btn bc4" style="margin-top: 30px;">다음</button>
 		   				</td>
 		   			</tr>
@@ -118,8 +118,9 @@
 		   		<table class="board-write-frm tbl" id="boardWriteFrm2">
 		   			<tr class="tr-1">
 		   				<th>스토리 제목</th>
-		   				<td>
-		   					<input type="text" name="storyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스">
+		   				<td style="text-align: left; height: 135px;">
+		   					<input type="text" name="storyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스 (최대 300Byte)">
+		   					<span id="storyTitleChk" style="font-size:14px; color:red; display:none;">*스토리 제목이 300Byte를 초과해 등록할 수 없습니다.</span>
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
@@ -179,12 +180,23 @@
 	
 	$("[name=bookTitle]").on("keyup",function(){
 		let titleByte =byteCheck($(this));
-		if(titleByte>100){
+		if(titleByte>300){
 			$(this).css("border","1px solid red")
 			$("#titleChk").css("display","block");
 		}else{
 			$(this).css("border","1px solid #ccc")
 			$("#titleChk").css("display","none");
+		}
+	})
+	
+	$("[name=storyName]").on("keyup",function(){
+		let storyTitleByte = byteCheck($(this));
+		if(storyTitleByte>300){
+			$(this).css("border","1px solid red")
+			$("#storyTitleChk").css("display","block");
+		}else{
+			$(this).css("border","1px solid #ccc")
+			$("#storyTitleChk").css("display","none");
 		}
 	})
 	
@@ -199,6 +211,9 @@
 			$("#expChk").css("display","none");
 		}
 	})
+	
+	
+	
 	
 
 	function byteCheck(el){
