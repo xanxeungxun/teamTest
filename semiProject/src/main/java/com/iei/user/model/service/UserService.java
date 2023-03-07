@@ -121,20 +121,41 @@ public class UserService {
 	}
 
 
-	public int updateAssistPoint(String loginUser, String bookWriter, int inputPoint, int userPoint) {
+	public int updateAssistPoint(String loginUser, String bookWriter, int inputPoint, int userNo, int bookNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		int writerPoint = dao.selectWriterPoint(conn, bookWriter);
-		int result = dao.updateLoginUserPoint(conn, loginUser, inputPoint, userPoint);
+		int result = dao.updateLoginUserPoint(conn, loginUser, inputPoint);
 		if(result > 0) {
-			int result2 = dao.updateWriterPoint(conn, bookWriter, inputPoint, writerPoint);
-			if(result2 > 0) {
+			result = dao.updateWriterPoint(conn, bookWriter, inputPoint);
+			if(result > 0) {
 				JDBCTemplate.commit(conn);
+				result = dao.insertSupportBook(conn, inputPoint, userNo, bookNo);
+				if(result > 0) {
+					JDBCTemplate.commit(conn);
+				}else {
+					JDBCTemplate.rollback(conn);
+				}
 			}else {
 				JDBCTemplate.rollback(conn);
 			}
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+	public int updateUserPoint(int updatePrice, int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.updateUserPoint(conn, updatePrice, userNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
 		return result;
 	}
 

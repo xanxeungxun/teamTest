@@ -116,7 +116,7 @@ public class BookDao {
 		PreparedStatement pstmt = null;
 		ArrayList<Story> storyList = new ArrayList<Story>();
 		ResultSet rset = null;
-		String query ="select rownum, a.* from (select s.STORY_NO, s.BOOK_NO , s.STORY_NAME,s.STORY_CONTENT,s.STORY_AFTER,s.STORY_TIME,s.READ_COUNT from story s, book b where s.book_no = b.BOOK_NO)a where a.book_no = ? order by 1 desc";
+		String query ="select * from (select rownum, a.* from (select s.STORY_NO, s.BOOK_NO , s.STORY_NAME,s.STORY_CONTENT,s.STORY_AFTER,s.STORY_TIME,s.READ_COUNT from story s, book b where s.book_no = b.BOOK_NO order by 1)a where a.book_no = ?) order by 1 desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

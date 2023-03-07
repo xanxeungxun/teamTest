@@ -1,4 +1,4 @@
-package com.iei.story.controller;
+package com.iei.mypage.controller;
 
 import java.io.IOException;
 
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.book.model.vo.Book;
-import com.iei.story.model.service.StoryService;
-import com.iei.story.model.vo.Story;
+import com.iei.mypage.service.MyPageService;
+import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class StoryViewServlet
+ * Servlet implementation class PointRechargeFrmServlet
  */
-@WebServlet(name = "StoryView", urlPatterns = { "/storyView.do" })
-public class StoryViewServlet extends HttpServlet {
+@WebServlet(name = "PointRechargeFrm", urlPatterns = { "/pointRechargeFrm.do" })
+public class PointRechargeFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StoryViewServlet() {
+    public PointRechargeFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +31,21 @@ public class StoryViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1인코딩
+		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		//2값추출
-		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
-		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+		//2. 값 추출
+		String userId = request.getParameter("userNo");
 		
-		//3비즈니스로직
-		StoryService service = new StoryService();
-		Book b = service.selectOneBook(bookNo);
-		Story s = service.selectOneStory(storyNo);
+		//3. 비즈니스 로직
+		MyPageService service = new MyPageService();
+		User payUser = service.selectOneUser(userId);//유저 1명 조회
 		
-		//4결과처리
-		request.setAttribute("s", s);
-		request.setAttribute("b", b);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyView.jsp");
+		//4. 결과 처리 ... 페이지 이동
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/pointRechargeFrm.jsp");
+		
+		request.setAttribute("payUser", payUser);
+		
 		view.forward(request, response);
 	}
 

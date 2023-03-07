@@ -70,6 +70,26 @@ public class StoryDao {
 		return result;
 	}
 
+	public int deleteStory(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query ="delete story where story_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1,no);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		return result;
+	}
+
 	
 	
 }

@@ -121,16 +121,18 @@ public class MyPageDao {
 		return result;
 	}
 
-	public int selectFavBookCount(Connection conn) {
+	public int selectFavBookCount(Connection conn, int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		int totalCount = 0;
 		
-		String query = "select count(*) as cnt from favorite_book"; //별칭 : cnt
+		String query = "select count(*) as cnt from favorite_book where user_no=?"; //별칭 : cnt
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+				
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -191,16 +193,18 @@ public class MyPageDao {
 		return supList;
 	}
 
-	public int selectSupBookCount(Connection conn) {
+	public int selectSupBookCount(Connection conn, int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		int totalCount = 0;
 		
-		String query = "select count(*) as cnt from support_book"; //별칭 : cnt
+		String query = "select count(*) as cnt from support_book where user_no=?"; //별칭 : cnt
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {

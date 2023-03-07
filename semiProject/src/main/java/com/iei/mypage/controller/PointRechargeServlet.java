@@ -1,4 +1,4 @@
-package com.iei.assistmodal.controller;
+package com.iei.mypage.controller;
 
 import java.io.IOException;
 
@@ -14,16 +14,16 @@ import com.iei.user.model.service.UserService;
 import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class AssistPointServlet
+ * Servlet implementation class PointRechargeServlet
  */
-@WebServlet(name = "AssistPoint", urlPatterns = { "/assistPoint.do" })
-public class AssistPointServlet extends HttpServlet {
+@WebServlet(name = "PointRecharge", urlPatterns = { "/pointRecharge.do" })
+public class PointRechargeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AssistPointServlet() {
+    public PointRechargeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,40 +32,41 @@ public class AssistPointServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+		//2. 값 추출
+		int updatePrice = Integer.parseInt(request.getParameter("myPointPlusPrice"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		String loginUser = request.getParameter("loginUser");
-		String bookWriter = request.getParameter("bookWriter");
-		int userPoint = Integer.parseInt(request.getParameter("userPoint"));
-		int inputPoint = Integer.parseInt(request.getParameter("inputPoint"));
 		
-		User u = new User();
-		u.setUserPoint(userPoint-inputPoint);
-		
+		//3. 비즈니스 로직
 		UserService service = new UserService();
-		int result = service.updateAssistPoint(loginUser, bookWriter, inputPoint, userNo, bookNo);
+		//update user_tbl set user_point=? where user_no=?
+		int result = service.updateUserPoint(updatePrice, userNo);
+		
+		//4. 결과 처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		
 		if(result>0) {
-			
+			//session 정보 수정
 			HttpSession session = request.getSession();
-			User userSession = (User)session.getAttribute("loginUser");
-			userSession.setUserPoint(userPoint-inputPoint);
+			User loginUser = (User)session.getAttribute("loginUser");
+			loginUser.setUserPoint(updatePrice);
 			
-			request.setAttribute("title", "후원성공");
-			request.setAttribute("msg", "작가에게 후원하셨습니다.");
+			request.setAttribute("title", "결제 성공");
+			request.setAttribute("msg", "포인트가 수정되었습니다.");
 			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/storyList.do?bookNo="+bookNo);
-		}else {
-			request.setAttribute("title", "후원실패");
-			request.setAttribute("msg", "로그인 후 이용 가능합니다.");
+			request.setAttribute("loc", "/myPageMain.do?userNo="+userNo);
+			
+		} else {
+			request.setAttribute("title", "결제 실패");
+			request.setAttribute("msg", "관리자에게 문의하세요");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/loginFrm.do");
+			request.setAttribute("loc", "/myPageMain.do?userNo="+userNo); 
 		}
+		
 		view.forward(request, response);
-		
-		
+	
 	}
 
 	/**
