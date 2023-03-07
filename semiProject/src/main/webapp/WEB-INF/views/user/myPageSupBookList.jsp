@@ -99,6 +99,15 @@
     	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
             <div class="page-title">후원작품 목록</div>
+            <%if(supList.size() == 0) { %>
+           	<div class="line"></div>
+			<div class="inform-wrap">
+				<span class="material-symbols-outlined book-icon">import_contacts</span>
+				<div class="msg">후원한 작품이 없습니다.</div>
+			</div>
+			<%
+			} else {
+			%>
             <div class="content-wrap">
                 <div class="line-content">
                 	<%for(int i=0; i<supList.size(); i++) { %>
@@ -126,7 +135,9 @@
             	</div>
        		</div>
        		<div id="pageNavi"><%=pageNavi %></div>
+       		<%} %>
        	</div>
     </div>
+    <%@include file="/WEB-INF/views/common/footer.jsp" %>
 </body>
 </html>
