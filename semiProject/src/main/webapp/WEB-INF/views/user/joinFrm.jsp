@@ -42,7 +42,7 @@
                     </div>
                     <div>
                         <span class="material-symbols-outlined check-circle">check_circle</span>
-                        <input type="text" name="userPhone" id="userPhone" placeholder="전화번호('-' 제외)" class="input-form">
+                        <input type="text" name="userPhone" id="userPhone" placeholder="전화번호('-' 포함)" class="input-form">
                         <span class="reg-msg"></span>
                     </div>
                     <div>
