@@ -101,14 +101,14 @@ public class BookService {
 		int numPerPage = 10; //한 페이지당 보여줄 작품 개수
 		
 		//end : 해당 페이지(reqPage)에서 보여줄 작품의 마지막 번호
-		//start : 해당 페이지(reqPage)보여줄 작품의 시작 번호
+		//begin : 해당 페이지(reqPage)보여줄 작품의 시작 번호
 		int end = numPerPage * reqPage; // 보여줄작품개수*요청페이지
 		int begin = (end - numPerPage) + 1;
 		ArrayList<Book> searchList = dao.selectSearchBook(conn,searchKeyword, end, begin);
 		
 		// 페이징 제작
 		// 필요한 전체 페이지수 구하기 <-- 일단 전체 작품 수 알아야함
-		int searchCount = dao.selectBookCount(conn); // 전체 작품수
+		int searchCount = dao.selectSearchBookCount(conn,searchKeyword); // 전체 작품수
 		int searchPage = (int) Math.ceil((double) searchCount / numPerPage); // 네비게이터 전체 페이지수
 		int naviSize = 5;
 		int naviStart = (((reqPage - 1) / naviSize) * naviSize) + 1;
@@ -117,19 +117,19 @@ public class BookService {
 		String naviCode = "<ul class='pagination circle-style'>";
 		if (naviStart != 1) {// 네비시작숫자가 1이상(5,11,16...)생겨야함
 			naviCode += "<li>";
-			naviCode += "<a class='page-item' href='/bookList.do?reqPage=" + (naviStart - 1) + "'>";
+			naviCode += "<a class='page-item' href='/search.do?reqPage=" + (naviStart - 1) + "'>";
 			naviCode += "<span class='material-icons'>chevron_left";
 			naviCode += "</span></a></li>";
 		}
 		for (int i = 0; i < naviSize; i++) {
 			if (naviStart == reqPage) { // 요청한 페이지가 1,6,11..일때
 				naviCode += "<li>";
-				naviCode += "<a class='page-item active-page' href='/bookList.do?reqPage=" + naviStart + "'>";
+				naviCode += "<a class='page-item active-page' href='/search.do?reqPage=" + naviStart + "'>";
 				naviCode += naviStart;
 				naviCode += "</a></li>";
 			} else {
 				naviCode += "<li>";
-				naviCode += "<a class='page-item' href='/bookList.do?reqPage=" + naviStart + "'>";
+				naviCode += "<a class='page-item' href='/search.do?reqPage=" + naviStart + "'>";
 				naviCode += naviStart;
 				naviCode += "</a></li>";
 			}
@@ -140,7 +140,7 @@ public class BookService {
 		} // 숫자넣기for문
 		if (naviStart <= searchPage) {
 			naviCode += "<li>";
-			naviCode += "<a class='page-item' href='/bookList.do?reqPage=" + (naviStart) + "'>";
+			naviCode += "<a class='page-item' href='/search.do?reqPage=" + (naviStart) + "'>";
 			naviCode += "<span class='material-icons'>chevron_right";
 			naviCode += "</span></a></li>";
 		}

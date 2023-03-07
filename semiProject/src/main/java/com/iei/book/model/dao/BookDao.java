@@ -148,6 +148,30 @@ public class BookDao {
 		return storyList;
 	}
 
+	//검색창(승훈)
+	public int selectSearchBookCount(Connection conn, String searchKeyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query ="select count(*) as count from book where book_title like ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+searchKeyword+"%");
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 	public ArrayList<Book> selectSearchBook(Connection conn, String searchKeyword, int end, int begin) {
 		PreparedStatement pstmt = null;
 		ArrayList<Book> searchList = new ArrayList<Book>();
