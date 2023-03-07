@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
-.reportManage-header{
+.report-header{
 	padding-top: 50px;
 	padding-bottom: 50px;
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 50px;
 }
-.reportManage-header>span{
+.report-header>span{
 	font-size: 40px;
 	font-weight: 900;
 	margin-right: 20px;
@@ -17,21 +17,21 @@
 	font-size: 20px;
 	padding: 10px;
 }
-.reportManage-a{
+.report-a{
 	border-right: 1px solid #000;
 }
-.reportManage-tbl{
+.report-tbl{
 	width: 100%;
 	border-spacing: 0px;
 	border-collapse: collapse;
 }
-.reportManage-td{
+.report-td{
 	width: 1200px;
 	height: 50px;
 	padding: 1rem;
 	border: 1px solid #ccc;	
 }
-.reportManage-td-2{
+.report-td-2{
 	width: 1200px;
 	padding-top:30px;
 	padding-left:10px;
@@ -52,10 +52,10 @@
  		color: #fff;
  		border: 2px solid black;
 }
-#reportManageWrite-tbl{
+#reportWrite-tbl{
 	border: 1px solid #ccc;
 }
-.reportManage-input{
+.report-input{
 	width: 99%;
 	height: 90%;
 	font-size: 20px;
@@ -63,7 +63,7 @@
 .sub-btn-td{
 	text-align: center;
 }
-.reportManage-sub-btn{
+.report-sub-btn{
 	width: 20%;
 	height: 50px;
 	margin-top: 15px;
@@ -74,7 +74,7 @@
 	font-size: 18px;
 	border-radius: 5px;
 }
-.reportManage-td>textarea{
+.report-td>textarea{
 	resize: none;
 	height: 500px;
 }

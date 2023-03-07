@@ -1,4 +1,4 @@
-package com.iei.reportManage.model.dao;
+package com.iei.report.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,39 +6,37 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.iei.reportManage.model.vo.ReportManageVo;
+import com.iei.report.model.vo.ReportVo;
 
 import common.JDBCTemplate;
 
-public class ReportManageDao {
+public class ReportDao {
 	
 	
 	// 전체 목록 조회
-	public ArrayList<ReportManageVo> selectAllReportManageList(Connection conn,int start,int end) {
+	public ArrayList<ReportVo> selectAllReportList(Connection conn,int start,int end) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ArrayList<ReportManageVo> list = new ArrayList<ReportManageVo>();
-		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_no,sus_no,report_content,report_file,report_style,report_date,story_comment_no,book_no,board_comment_no,board_no,file_name,file_patch from report order by 1 desc)n)where rnum between ? and ?";
+		ArrayList<ReportVo> list = new ArrayList<ReportVo>();
+		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,sus_no,report_title,report_content,report_style,report_date,book_no,board_no,file_name,file_patch from report order by 1 desc)n)where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				ReportManageVo n = new ReportManageVo();
+				ReportVo n = new ReportVo();
 				n.setReportNo(rset.getInt("report_no"));
-				n.setReporterNo(rset.getInt("reporter_no"));
+				n.setReporterId(rset.getInt("reporter_id"));
 				n.setSusNo(rset.getInt("sus_no"));
+				n.setReportTitle(rset.getString("report_title"));
 				n.setReportContent(rset.getString("report_content"));
-				n.setReportFile(rset.getString("report_file"));
-				n.setReportStyle(rset.getInt("report_file"));
+				n.setReportStyle(rset.getInt("report_style"));
 				n.setReportDate(rset.getString("report_date"));
-				n.setStoryCommentNo(rset.getInt("story_comment_no"));
 				n.setBookNo(rset.getInt("book_no"));
-				n.setBoardCommentNo(rset.getInt("board_comment_no"));
 				n.setBoardNo(rset.getInt("board_no"));
-				n.setFilename(rset.getString("file_name"));
-				n.setFilepatch(rset.getString("filepatch"));
+				n.setFileName(rset.getString("file_name"));
+				n.setFilePatch(rset.getString("file_patch"));
 				list.add(n);
 			}
 		} catch (SQLException e) {
@@ -52,10 +50,10 @@ public class ReportManageDao {
 	
 	
 	// 문의 상세 조회
-	public ReportManageVo selectOneReportManage(Connection conn, String reportManageNo) {
+	public ReportVo selectOneReport(Connection conn, String reportNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ReportManageVo result = new ReportManageVo();
+		ReportVo result = new ReportVo();
 		String query = "SELECT * FROM QUESTION WHERE QUESTION_NO = ?";
 		
 		
@@ -91,7 +89,7 @@ public class ReportManageDao {
 	}
 	
 	// 답변 수정 등록
-	public int updateAnswer(Connection conn, ReportManageVo paramVo) {
+	public int updateAnswer(Connection conn, ReportVo paramVo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "UPDATE QUESTION SET ANSWER_YN = ? , ANSWER_TITLE = ? , ANSWER_CONTENT = ? , ANSWER_USER_NAME = ? , ANSWER_USER_ID = ? , ANSWER_DATE = SYSDATE WHERE QUESTION_NO = ?";
@@ -118,7 +116,7 @@ public class ReportManageDao {
 	}
 
 	//신고 게시물 작성
-	public int insertReportManage(Connection conn, ReportManageVo q) {
+	public int insertReport(Connection conn, ReportVo q) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "insert into report values(report_seq.nextval,?,?,?,?,?,to_char(sysdate,'yy/mm/dd'),?,?,?,?)";
@@ -143,7 +141,7 @@ public class ReportManageDao {
 		return result;
 	}
 // 게시물수가 몇개인지 세어주는 dao
-	public int selectReportManageCount(Connection conn) {
+	public int selectReportCount(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int totalCount = 0;

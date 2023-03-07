@@ -9,7 +9,7 @@ QuestionVo question = (QuestionVo) request.getAttribute("questionResult");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/reportManage.css">
+<link rel="stylesheet" href="/css/report.css">
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -82,7 +82,7 @@ QuestionVo question = (QuestionVo) request.getAttribute("questionResult");
 			<div class="btn-position">
 				<button class="btn bc1 bs1" id="editBtn"
 					onclick="location.href = 
-'/reportManage/editAnswerView.do?questionNo=<%=question.getQuestionNo()%>'">
+'/report/editAnswerView.do?questionNo=<%=question.getQuestionNo()%>'">
 					답변 입력/수정</button>
 			</div>
 			<%}%>

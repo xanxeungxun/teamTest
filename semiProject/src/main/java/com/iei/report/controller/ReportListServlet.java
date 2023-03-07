@@ -1,4 +1,4 @@
-package com.iei.reportManage.controller;
+package com.iei.report.controller;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.reportManage.model.service.ReportManageService;
-import com.iei.reportManage.model.vo.ReportManagePageData;
+import com.iei.report.model.service.ReportService;
+import com.iei.report.model.vo.ReportPageData;
 
 
 // 질문 목록 조회
-@WebServlet(name = "ReportManageList", urlPatterns = { "/reportManage/reportManageList.do" })
-public class ReportManageListServlet extends HttpServlet {
+@WebServlet(name = "ReportList", urlPatterns = { "/report/reportList.do" })
+public class ReportListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public ReportManageListServlet() {
+	public ReportListServlet() {
 		super();
 	}
 
@@ -30,10 +30,10 @@ public class ReportManageListServlet extends HttpServlet {
 		//2값추출
 		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		//3비즈니스 로직
-		ReportManageService service = new ReportManageService();
-		ReportManagePageData qpd = service.selectAllReportManageList(reqPage);
+		ReportService service = new ReportService();
+		ReportPageData qpd = service.selectAllReportList(reqPage);
 		//4 결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/reportManage/reportManageList.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/report/reportList.jsp");
 		request.setAttribute("list", qpd.getList());
 		request.setAttribute("pageNavi", qpd.getPageNavi());
 		request.setAttribute("start", qpd.getStart());

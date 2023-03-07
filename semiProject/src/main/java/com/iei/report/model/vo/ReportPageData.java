@@ -1,24 +1,24 @@
-package com.iei.reportManage.model.vo;
+package com.iei.report.model.vo;
 
 import java.util.ArrayList;
 
-public class ReportManagePageData {
-	private ArrayList<ReportManageVo> list;
+public class ReportPageData {
+	private ArrayList<ReportVo> list;
 	private String pageNavi;
 	private int start;
-	public ReportManagePageData() {
+	public ReportPageData() {
 		super();
 	}
-	public ReportManagePageData(ArrayList<ReportManageVo> list, String pageNavi, int start) {
+	public ReportPageData(ArrayList<ReportVo> list, String pageNavi, int start) {
 		super();
 		this.list = list;
 		this.pageNavi = pageNavi;
 		this.start = start;
 	}
-	public ArrayList<ReportManageVo> getList() {
+	public ArrayList<ReportVo> getList() {
 		return list;
 	}
-	public void setList(ArrayList<ReportManageVo> list) {
+	public void setList(ArrayList<ReportVo> list) {
 		this.list = list;
 	}
 	public String getPageNavi() {

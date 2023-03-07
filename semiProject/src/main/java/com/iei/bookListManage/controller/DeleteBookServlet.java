@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iei.bookListManage.model.service.BookListManageService;
+import com.iei.user.model.vo.User;
 
 
 @WebServlet(name = "DeleteBook", urlPatterns = { "/deleteBook.do" })
@@ -31,6 +33,11 @@ public class DeleteBookServlet extends HttpServlet {
 		//비즈니스 로직
 		BookListManageService service = new BookListManageService();
 		int result = service.deleteBookListManage(bookNo);
+		HttpSession session = request.getSession();  
+		User loginUser = (User)session.getAttribute("loginUser");
+		//4결과처리
+		
+		if(loginUser!=null&&loginUser.getUserLevel()==1) {
 		
 		//결과처리
 		RequestDispatcher view
@@ -47,8 +54,12 @@ public class DeleteBookServlet extends HttpServlet {
 			request.setAttribute("loc", "/bookListManage/bookListManageList.do?reqPage=1");
 		}
 		view.forward(request, response);
-			
 		}
+	
+		RequestDispatcher view =
+			request.getRequestDispatcher("/");
+			view.forward(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
