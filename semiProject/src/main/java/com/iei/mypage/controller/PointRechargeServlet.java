@@ -1,13 +1,17 @@
 package com.iei.mypage.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.iei.user.model.service.UserService;
+import com.iei.user.model.vo.User;
 
 /**
  * Servlet implementation class PointRechargeServlet
@@ -32,15 +36,36 @@ public class PointRechargeServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//2. 값 추출
-		int price = Integer.parseInt(request.getParameter("paymentMoney"));
+		int updatePrice = Integer.parseInt(request.getParameter("myPointPlusPrice"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
 		//3. 비즈니스 로직
 		UserService service = new UserService();
 		//update user_tbl set user_point=? where user_no=?
-		int result = service.updateUserPoint(price, userNo);
+		int result = service.updateUserPoint(updatePrice, userNo);
 		
 		//4. 결과 처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		
+		if(result>0) {
+			//session 정보 수정
+			HttpSession session = request.getSession();
+			User loginUser = (User)session.getAttribute("loginUser");
+			loginUser.setUserPoint(updatePrice);
+			
+			request.setAttribute("title", "결제 성공");
+			request.setAttribute("msg", "포인트가 수정되었습니다.");
+			request.setAttribute("icon", "success");
+			request.setAttribute("loc", "/myPageMain.do?userNo="+userNo);
+			
+		} else {
+			request.setAttribute("title", "결제 실패");
+			request.setAttribute("msg", "관리자에게 문의하세요");
+			request.setAttribute("icon", "error");
+			request.setAttribute("loc", "/myPageMain.do?userNo="+userNo); 
+		}
+		
+		view.forward(request, response);
 	
 	}
 

@@ -44,7 +44,7 @@
                 <div>작품상세</div>
             </div>
 
-            <div class="book-content-box">
+            <div class="book-content-box">	
 
                 <div class="book-content">
                     <div class="book-cover"
@@ -108,8 +108,8 @@
 
                 <div class="switch-zone">
                     <div class="author-menu">
-                        <button class="all-check btn bc3">전체선택</button>
-                        <button class="btn bc3">삭제하기</button>
+                        <button class="all-check btn bc3" onclick="allCheck();">전체선택</button>
+                        <button class="btn bc3 modal-open-btn" target="#del-modal">삭제하기</button>
                     </div><!--author-menu-->
                 </div>
 
@@ -127,13 +127,19 @@
 	                            <span id="none">
 	                            	new
 	                            </span>
-	                            <input type="checkbox" id="check" name="check">
+	                            <%
+	                            if(loginUser!=null && loginUser.getUserId().equals(b.getBookWriterId())){
+	                            %>
+	                            <input type="checkbox" id="check" name="check" style="display:block;" value="<%=s.getStoryNo()%>">
+	                            <%
+	                            }
+	                            %>
 	                        </div>
 	                        <div class="story-scene">
 	                            <%=s.getRownum() %>화
 	                        </div>
 	                        <div class="story-title">
-	                            <a href="/storyView.do?storyNo=<%=s.getStoryNo()%>">
+	                            <a href="/storyView.do?storyNo=<%=s.getStoryNo()%>&bookNo=<%=b.getBookNo()%>">
 	                            <%=s.getStoryName() %>
 	                            </a>
 	                        </div>
@@ -214,6 +220,23 @@
 				    </div>
 				    
 				    
+				    <div id="del-modal" class="modal-bg">
+				    	<div class="modal-wrap">
+					        <div class="modal-head">
+						        <h2>확인</h2>
+						        <span class="material-icons close-icon modal-close">close</span>
+					        </div>
+					        <div class="modal-content">
+					          	<p>작성하신 작품을 정말로 삭제하시겠습니까?</p>
+					        </div>
+					        <div class="modal-foot">
+						        <a onclick="deleteStory();" class="btn bc6 btn-pill">확인</a>
+						        <button class="btn bc33 modal-close btn-pill">취소</button>
+					        </div>
+				    	</div>
+				    </div>
+      
+      
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 <%
 if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
@@ -268,7 +291,42 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 		    $(".book-button").append(button1);
 		    $(".book-button").append(button2);
 		    
-
+		    
+		    $(".author-menu").css("display","flex");
+		    
+		    
+		    function allCheck(){
+		    	
+		    	if($("#check").is(':checked')){
+		    		$("input[type=checkbox]").prop("checked",false);
+		    	}else{
+		    		$("input[type=checkbox]").prop("checked",true);
+		    	}
+		    	
+		    }
+		    
+		    function deleteStory(){
+		    	const check = $("#check:checked");
+		    	const bookNo = $("#bookNo").val();
+		    	
+		    	if(check.length==0){
+		    		alert("선택된 스토리가 없습니다");
+		    		return;
+		    	}else{
+		    		
+		    		const storyNo = new Array();
+		    		
+		    		check.each(function(index,item){
+		    			const no = $(item).val();
+		    			storyNo.push(no);
+		    			location.href="/deleteStory.do?storyNo="+storyNo.join("/")+"&bookNo="+bookNo;
+		    			//storyNo배열에 있는 요소들을 구분자로 다 하나로 만들어줌
+		    		})
+		    		
+		    	}
+		    }
+		    
+		    
 	</script>
 <%
 }

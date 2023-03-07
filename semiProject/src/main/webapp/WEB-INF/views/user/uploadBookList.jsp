@@ -98,6 +98,15 @@
     	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
             <div class="page-title">투고한 작품 확인</div>
+           	<%if(upList.size() == 0) { %>
+           	<div class="line"></div>
+			<div class="inform-wrap">
+				<span class="material-symbols-outlined book-icon">import_contacts</span>
+				<div class="msg">투고한 작품이 없습니다.</div>
+			</div>
+			<%
+			} else {
+			%>
             <div class="content-wrap">
                 <div class="line-content">
                 	<%for(int i=0; i<upList.size(); i++) { %>
@@ -128,6 +137,7 @@
                 </div>
             </div>
           <div id="pageNavi"><%=pageNavi %></div>
+          <%} %>
         </div>
     </div>
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
