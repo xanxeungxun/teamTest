@@ -126,7 +126,7 @@
 		                            </div>
 		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=sb.getBookDate() %></span></div>
 		                            <div>
-		                                <div class="btn bc4 sup-btn">총 후원금액 : <span class="sup-money"><%=sb.getTotalSupportMoney() %></span> P</div>
+		                                <div class="btn bc4 sup-btn">후원금액 : <span class="sup-money"><%=sb.getTotalSupportMoney() %></span> P</div>
 		                            </div>
 	                            </div>
 	                        </div>
