@@ -10,11 +10,19 @@
 	#questionWrite td, #questionWrite th{
 		border : 1px solid #ccc;
 	}
+	.input-form{
+		padding-left: 10px;
+		
+	
+	}
+	
 </style>
 <link rel="stylesheet" href="/css/question.css">
 </head>
 <body>
-<script>	
+<script>
+
+
 
 $(document).ready(function(){ 
 	$("#submitBtn").click(function(){
@@ -27,7 +35,7 @@ $(document).ready(function(){
 <%@include file="/WEB-INF/views/common/header.jsp"%>
 		<div class="page-content">
 			<div class="page-title">문의 게시글 작성</div>
-			<form action="/questionWrite.do" method="post" enctype="form-data">
+			<form action="/questionWrite.do" method="post">
 				<table class="tbl" id="questionWrite">
 					<tr class="tr-1">
 						<th class="td-3">제목</th>
@@ -36,16 +44,26 @@ $(document).ready(function(){
 						</td> 
 					</tr>
 					<tr class="tr-1">
-						<th class="td-3">작성자</th>
+						<th class="td-3">종류</th>
+						<td colsan="2">
+					<select class="input-form" id="questionType" name="questionType">
+    					<option value="0" selected>-- 문의사항선택 --</option>
+    					<option value="1">이용안내</option>
+    					<option value="2">시스템오류</option>
+    					<option value="3">결제</option>
+    					<option value="4">건의사항</option>
+    					<option value="5">기타</option>
+    					<option value="6">신고</option>
+    				</select></td>
+						<td class="td-3">작성자</td>
 						<td>
-						<%-- --%>
-						<h3>아이디1(수정할것)</h3>
-						<%-- <%=m.getMemberId() %>--%>
-							
-							<%-- 사람 눈에 보일 것 --%>
-							<input type="hidden" name="questionWriter" value="<%--<%=m.getMemberId() %>--%>">
-							<%-- 데이터 전송용 --%>
-							
+						<%-- 로그인 제작 완료시 해당 주석 풀고 적용 할 것 --%>
+						<%--<%=loginUser.getUserId()%>--%>
+							<input type="hidden" name="questionId" 
+							value="<%=loginUser.getUserId()%>">
+							<%=loginUser.getUserId()%>
+							<input type="hidden" name="questionName" value="<%=loginUser.getUserName()%>">
+							<%=loginUser.getUserName()%>
 						</td>
 					</tr>
 					<tr class="tr-1">

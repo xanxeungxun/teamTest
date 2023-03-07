@@ -35,15 +35,16 @@ public class CalEventServlet extends HttpServlet {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
+		int userPoint = Integer.parseInt(request.getParameter("userPoint"));
 		String userId = request.getParameter("userId");
 		//3. 비즈니스로직
 		UserService service = new UserService();
-		User u = service.selectOneUser(userId);
+		int result = service.updateUserPoint(userId, userPoint);
 		//4. 결과처리
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();
-		gson.toJson(u,out);
+		gson.toJson(result,out);
 		
 	}
 

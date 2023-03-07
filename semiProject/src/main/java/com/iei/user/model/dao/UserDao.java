@@ -195,5 +195,163 @@ public class UserDao {
 		return searchPw;
 	}
 
+	public User selectOneUserCal(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		User u = null;
+		String query = "select * from user_tbl where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				u = new User();
+				
+				u.setUserEnroll(rset.getString("user_enroll"));
+				u.setUserId(rset.getString("user_id"));
+				u.setUserLevel(rset.getInt("user_level"));
+				u.setUserName(rset.getString("user_name"));
+				u.setUserNick(rset.getString("user_nick"));
+				u.setUserNo(rset.getInt("user_no"));
+				u.setUserPhone(rset.getString("user_phone"));
+				u.setUserPic(rset.getString("user_pic"));
+				u.setUserPoint(rset.getInt("user_point"));
+				u.setUserPw(rset.getString("user_pw"));
+				u.setUserEmail(rset.getString("user_email"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return u;
+	}
+
+	public int updateUserPoint(Connection conn, String userId, int userPoint) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update user_tbl set user_point=?+50 where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userPoint);
+			pstmt.setString(2, userId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int selectWriterPoint(Connection conn, String bookWriter) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int writerPoint = 0;
+		String query = "select user_point from user_tbl where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, bookWriter);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				writerPoint = rset.getInt("user_point");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return writerPoint;
+	}
+
+	public int updateLoginUserPoint(Connection conn, String loginUser, int inputPoint) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update user_tbl set user_point=user_point - ? where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, inputPoint);
+			pstmt.setString(2, loginUser);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateWriterPoint(Connection conn, String bookWriter, int inputPoint) {
+		PreparedStatement pstmt = null;
+		int result2 = 0;
+		String query = "update user_tbl set user_point=user_point+? where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, inputPoint);
+			pstmt.setString(2, bookWriter);
+			result2 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result2;
+	}
+
+	public int insertSupportBook(Connection conn, int inputPoint, int userNo, int bookNo) {
+		PreparedStatement pstmt = null;
+		int result3 = 0;
+		String query = "insert into support_book values(support_book_seq.nextval,?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			pstmt.setInt(2, userNo);
+			pstmt.setInt(3, inputPoint);
+			result3 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result3;
+	}
+
+	
+
+	public int updateUserPoint(Connection conn, int updatePrice, int userNo) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = "update user_tbl set user_point=? where user_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, updatePrice);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
 
 }

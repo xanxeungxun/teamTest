@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.book.model.vo.Book;
 import com.iei.story.model.service.StoryService;
 import com.iei.story.model.vo.Story;
 
@@ -35,14 +36,17 @@ public class StoryViewServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//2값추출
-		int storyNo = Integer.parseInt(request.getParameter("storyNo")); 
+		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
+		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 		
 		//3비즈니스로직
 		StoryService service = new StoryService();
+		Book b = service.selectOneBook(bookNo);
 		Story s = service.selectOneStory(storyNo);
 		
 		//4결과처리
 		request.setAttribute("s", s);
+		request.setAttribute("b", b);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyView.jsp");
 		view.forward(request, response);
 	}

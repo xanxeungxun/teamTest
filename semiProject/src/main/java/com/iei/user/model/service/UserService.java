@@ -104,5 +104,68 @@ public class UserService {
 	}
 
 
+	
+
+
+	public int updateUserPoint(String userId, int userPoint) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.updateUserPoint(conn, userId, userPoint);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+	public int updateAssistPoint(String loginUser, String bookWriter, int inputPoint, int userNo, int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateLoginUserPoint(conn, loginUser, inputPoint);
+		if(result > 0) {
+			result = dao.updateWriterPoint(conn, bookWriter, inputPoint);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+				result = dao.insertSupportBook(conn, inputPoint, userNo, bookNo);
+				if(result > 0) {
+					JDBCTemplate.commit(conn);
+				}else {
+					JDBCTemplate.rollback(conn);
+				}
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+	public int updateUserPoint(int updatePrice, int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.updateUserPoint(conn, updatePrice, userNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return result;
+	}
+
+
+
+
+
+
+
+	
+
 
 }

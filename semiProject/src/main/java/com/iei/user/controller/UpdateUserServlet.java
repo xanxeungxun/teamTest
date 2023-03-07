@@ -55,6 +55,7 @@ public class UpdateUserServlet extends HttpServlet {
 		String userNick = mRequest.getParameter("userNick");
 		String userPhone = mRequest.getParameter("userPhone");
 		String userEmail = mRequest.getParameter("userEmail");
+		String currentUserPw = mRequest.getParameter("currentUserPw");
 		String userPw = mRequest.getParameter("newPw");
 		
 		u.setUserId(userId);
@@ -62,7 +63,12 @@ public class UpdateUserServlet extends HttpServlet {
 		u.setUserNick(userNick);
 		u.setUserPhone(userPhone);
 		u.setUserEmail(userEmail);
-		u.setUserPw(userPw);
+		
+		if(userPw.equals("")) { //input에서 받아올때 아무것도 입력안하면 빈 문자열
+			u.setUserPw(currentUserPw);
+		} else {
+			u.setUserPw(userPw);
+		}
 		
 		//3. 비즈니스 로직
 		UserService service = new UserService();

@@ -24,11 +24,16 @@
     	overflow: hidden;
     }
     .book-box{
-    	width: 400px;
-        margin: 20px;
+    	width: 420px;
+    	height: 190px;
+        margin: 10px;
+        padding: 10px;
         float: left;
         display: flex;
         justify-content: space-between;
+        border : 1px solid #EEEEEE;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
     .book-img{
         width: 130px;
@@ -40,8 +45,13 @@
     }
     .book-info{
     	width: 280px;
+    	position: relative;
     }
-    .book-info>div{
+    .box{
+    	position: absolute;
+    	bottom: 0;
+    }
+    .book-info>div>div{
         padding: 3px 0px 3px 0px;
     }
     .book-info-head{
@@ -84,6 +94,15 @@
 		<%@include file="/WEB-INF/views/user/myPageMenu.jsp"%>
         <div class="mypage-detail">
             <div class="page-title">관심작품 목록</div>
+            <%if(favList.size() == 0) { %>
+           	<div class="line"></div>
+			<div class="inform-wrap">
+				<span class="material-symbols-outlined book-icon">import_contacts</span>
+				<div class="msg">관심작품이 없습니다.</div>
+			</div>
+			<%
+			} else {
+			%>
             <div class="content-wrap">
                 <div class="line-content">
                 	<%for(int i=0; i<favList.size(); i++) { %>
@@ -95,15 +114,17 @@
 	                                <div class="book-title"><%=fb.getBookTitle() %></div>
 	                                <a href="/deleteFavBook.do?favBookNo=<%=fb.getFavBookNo() %>&userNo=<%=loginUser.getUserNo() %>" class="material-symbols-outlined close-btn">close</a>
 	                            </div>
-	                            <div class="genre"><%=fb.getGenreName() %></div>
-	                            <div class="writer-wrap">
-	                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
-	                                <div class="writer"><%=fb.getBookWriter() %></div>
-	                            </div>
-	                            <div class="book-date">작품 등록일 : <span class="book-date"><%=fb.getBookDate() %></span></div>
-	                            <div>
-	                                <a href="#" class="btn bc6 read-btn">보기</a>
-	                                <a href="#" class="btn bc000 bc444 sup-btn">후원하기</a>
+	                            <div class="box">
+		                            <div class="genre"><%=fb.getGenreName() %></div>
+		                            <div class="writer-wrap">
+		                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
+		                                <div class="writer"><%=fb.getBookWriter() %></div>
+		                            </div>
+		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=fb.getBookDate() %></span></div>
+		                            <div>
+		                                <a href="#" class="btn bc6 read-btn">보기</a>
+		                                <a href="#" class="btn bc000 bc444 sup-btn">후원하기</a>
+		                            </div>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -111,6 +132,7 @@
                 </div>
             </div>
             <div id="pageNavi"><%=pageNavi %></div>
+            <%} %>
         </div>
     </div>
     <%@include file="/WEB-INF/views/common/footer.jsp" %>

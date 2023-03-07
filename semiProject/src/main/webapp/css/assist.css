@@ -1,0 +1,40 @@
+.modal-bg>.modal-wrap{
+	margin-top: 0; 
+}
+
+
+.point-tr1>td{
+	width: 300px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.point-tr2>td{
+	padding-bottom: 20px;
+	text-align: center;
+}
+.input-td>input{
+	width: 60%;
+	height: 30px;
+}
+.point-tr3{
+	background-color: #f7f7f7;
+}
+.point-tr3>td{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+.point-tr4{
+	background-color: #f7f7f7;
+}
+.point-tr4>td{
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+.text-td{
+	font-size: 12px;
+	color: #a8a8a8;
+}
+.point-tbl{
+	border-spacing: 0;
+}

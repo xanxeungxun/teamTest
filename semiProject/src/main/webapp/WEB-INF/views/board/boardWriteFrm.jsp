@@ -29,7 +29,9 @@
 						</tr>
 						<tr class="board-tr">
 							<th class="board-td">작성자</th>
-							<td class="board-td">작성자</td>
+							<td class="board-td"><%=loginUser.getUserId() %>
+								<input type="hidden" name="boardWriter" value="<%=loginUser.getUserId()%>">
+							</td>
 							<th class="board-td">첨부파일</th>
 							<td class="board-td"><input type="file" name="upfile"></td>
 						</tr>

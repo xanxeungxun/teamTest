@@ -594,11 +594,10 @@ color: #fff;
     height: 100vh;
     display: none;
     align-items: center;
-    flex-direction: column;
 
 }
 .modal-wrap {
-    margin-top: 150px;
+    margin-top: 300px;
     width: 600px;
     background: #fff;
     height: auto;

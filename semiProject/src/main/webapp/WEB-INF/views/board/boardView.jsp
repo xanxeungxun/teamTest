@@ -30,6 +30,9 @@
 		width: 90%;
 		height: 30px;
 	}
+	.boardContentDiv{
+		min-height: 400px;
+	}
 	
 	
 	
@@ -67,7 +70,7 @@
 					<%} %>
 					<tr class="board-tr">
 						<td class="board-td" colspan="2">
-							<div><%=b.getBoardContent() %></div>
+							<div class="boardContentDiv"><%=b.getBoardContent() %></div>
 						</td>					
 						<a class="news-btn btn1" id="list-btn" href="/boardList.do?reqPage=1">목록보기</a>
 					</tr>
@@ -91,7 +94,7 @@
 								<textarea name="boardCommentContent" class="input-form"></textarea>
 							</li>
 							<li>
-								<button type="submit" class="btn bc1 bs4">등록</button>
+								<button type="submit" class="btn bc1 bs2">등록</button>
 							</li>
 						</ul>
 					</form>
@@ -126,6 +129,7 @@
 		              </ul>
 		              
 		             <%for(BoardComment bcc : reCommentList) {%>
+		             	<%if(bcc.getBoardCommentRef()==bc.getBoardCommentNo()) {%>
 		              <ul class="posting-comment reply">
 		                <li>
 		                  <span class="material-icons">account_circle</span>
@@ -148,6 +152,7 @@
 		                </li>
 		              </ul>
 		              <%} %>
+	              <%} %>
         		
 				 
 				

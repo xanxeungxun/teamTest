@@ -118,9 +118,9 @@ a{
     width: 3%;
     display: flex;
 }
-.book-story .one-story .icon-or-box #check{
-   	display:none;
-}
+
+
+
 .book-story .one-story #none{
     display: none;
     font-size: 10px;

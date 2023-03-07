@@ -19,10 +19,16 @@ public class AdminMainServlet extends HttpServlet {
 		//1인코딩
 		request.setCharacterEncoding("utf-8");
 		//2값 추출
+		int userLevel = Integer.parseInt(request.getParameter("userLevel"));
 		//3비즈니스로직
 		//4결과처리
+		if(userLevel == 1) {
 		RequestDispatcher view
 		= request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp");
+		view.forward(request, response);
+		}
+		RequestDispatcher view
+		= request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	
 	}

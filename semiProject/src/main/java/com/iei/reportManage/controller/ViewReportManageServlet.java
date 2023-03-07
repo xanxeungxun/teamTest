@@ -1,4 +1,4 @@
-package com.iei.question.controller;
+package com.iei.reportManage.controller;
 
 import java.io.IOException;
 
@@ -9,28 +9,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.question.model.service.QuestionService;
-import com.iei.question.model.vo.QuestionVo;
+import com.iei.reportManage.model.service.ReportManageService;
+import com.iei.reportManage.model.vo.ReportManageVo;
 
-// 질문 상세 조회
-@WebServlet(name = "viewQuestion", urlPatterns = { "/question/viewQuestion.do" })
-public class QuestionViewServlet extends HttpServlet {
+
+// 신고 상세 조회
+@WebServlet(name = "viewReportManage", urlPatterns = { "/reportManage/viewReportManage.do" })
+public class ViewReportManageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public QuestionViewServlet() {
+	public ViewReportManageServlet() {
 		super();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		QuestionService service = new QuestionService();
+		ReportManageService service = new ReportManageService();
 		
-		String questionNo = request.getParameter("questionNo");
+		String reportManageNo = request.getParameter("reportManageNo");
 		
-		QuestionVo result = service.selectOneQuestion(questionNo);
+		ReportManageVo result = service.selectOneReportManage(reportManageNo);
 		
-		request.setAttribute("questionResult", result);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/question/viewQuestion.jsp");
+		request.setAttribute("reportManageResult", result);
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/reportManage/viewReportManage.jsp");
 		view.forward(request, response);
 	}
 	

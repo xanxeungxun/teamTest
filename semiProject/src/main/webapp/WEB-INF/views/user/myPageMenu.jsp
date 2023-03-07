@@ -10,7 +10,7 @@
 	rel="stylesheet">
 <style>
 .mypage-menu-wrap {
-	width: 140px;
+	width: 150px;
 }
 
 .mypage-menu-wrap>.page-title{
@@ -63,7 +63,7 @@ ul {
 }
 </style>
 <div class="mypage-menu-wrap">
-	<a href="/myPageMain.do" class="page-title">마이페이지</a>
+	<a href="/myPageMain.do?userId=<%=u.getUserId()%>" class="page-title">마이페이지</a>
 	<ul class="cat">
 		<li>
 			<div class="cat-title">
@@ -71,7 +71,7 @@ ul {
 				<div class="bold">나의 작품</div>
 			</div>
 			<ul class="cat-detail">
-				<li><a href="/uploadBookList.do">투고한 작품 확인</a></li>
+				<li><a href="/uploadBookList.do?userId=<%=u.getUserId()%>&reqPage=1">투고한 작품 확인</a></li>
 			</ul>
 		</li>
 		<li>

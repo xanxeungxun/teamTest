@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class AssistModalServlet
+ * Servlet implementation class AssistLoginServlet
  */
-@WebServlet(name = "AssistModal", urlPatterns = { "/assistModal.do" })
-public class AssistModalServlet extends HttpServlet {
+@WebServlet(name = "AssistLogin", urlPatterns = { "/assistLogin.do" })
+public class AssistLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AssistModalServlet() {
+    public AssistLoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,12 @@ public class AssistModalServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/assistModal/assistModal.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			request.setAttribute("title", "후원실패");
+			request.setAttribute("msg", "로그인 후 이용 가능합니다.");
+			request.setAttribute("icon", "error");
+			
+		request.setAttribute("loc", "/loginFrm.do");
 		view.forward(request, response);
 	}
 

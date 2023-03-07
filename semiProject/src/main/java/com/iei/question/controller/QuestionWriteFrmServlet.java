@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet(name = "QuestionWriteFrm", urlPatterns = { "/questionWriteFrm.do" })
@@ -24,6 +25,7 @@ public class QuestionWriteFrmServlet extends HttpServlet {
 		//2값추출
 		//3비즈니스 로직
 		//4결과처리
+		
 		RequestDispatcher view =
 				request.getRequestDispatcher("/WEB-INF/views/question/questionWriteFrm.jsp");
 		view.forward(request, response);

@@ -18,6 +18,16 @@ public class Book {
 	private String bookStatus;
 	private String bookDate;
 	
+	private int bookStatusNum;
+	
+	public int getBookStatusNum() {
+		return bookStatusNum;
+	}
+
+	public void setBookStatusNum(int bookStatusNum) {
+		this.bookStatusNum = bookStatusNum;
+	}
+
 	public Book() {
 		super();
 		// TODO Auto-generated constructor stub

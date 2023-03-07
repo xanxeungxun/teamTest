@@ -30,7 +30,7 @@ public class QuestionDao {
 				n.setQuestionUserId(rset.getString("QUESTION_USER_ID"));
 				n.setQuestionName(rset.getString("QUESTION_USER_ID"));
 				n.setQuestionTitle(rset.getString("QUESTION_TITLE"));
-				n.setQuestionType(rset.getString("QUESTION_TYPE"));
+				n.setQuestionType(rset.getInt("QUESTION_TYPE"));
 				n.setQuestionContent(rset.getString("QUESTION_CONTENT"));
 				n.setEnrollDate(rset.getString("ENROLL_DATE"));
 				n.setAnswerYn(rset.getString("ANSWER_YN"));
@@ -61,10 +61,6 @@ public class QuestionDao {
 		String query = "SELECT * FROM QUESTION WHERE QUESTION_NO = ?";
 		
 		
-		System.out.println("========= EXECUTED QUERY =========");
-		System.out.println("questionNo : " + questionNo);
-		System.out.println(query);
-		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, Integer.parseInt(questionNo));
@@ -73,9 +69,9 @@ public class QuestionDao {
 			while(rset.next()) {
 				result.setQuestionNo(rset.getInt("QUESTION_NO"));
 				result.setQuestionUserId(rset.getString("QUESTION_USER_ID"));
-				result.setQuestionName(rset.getString("QUESTION_USER_ID"));
+				result.setQuestionName(rset.getString("QUESTION_NAME"));
 				result.setQuestionTitle(rset.getString("QUESTION_TITLE"));
-				result.setQuestionType(rset.getString("QUESTION_TYPE"));
+				result.setQuestionType(rset.getInt("QUESTION_TYPE"));
 				result.setQuestionContent(rset.getString("QUESTION_CONTENT"));
 				result.setEnrollDate(rset.getString("ENROLL_DATE"));
 				result.setAnswerYn(rset.getString("ANSWER_YN"));
@@ -85,8 +81,6 @@ public class QuestionDao {
 				result.setAnswerContent(rset.getString("ANSWER_CONTENT"));
 				result.setAnswerDate(rset.getString("ANSWER_DATE"));
 				
-				System.out.println("========= OUTPUT VALUES =========");
-				System.out.println(result.toString());
 			}
 			
 		} catch (SQLException e) {
@@ -107,7 +101,7 @@ public class QuestionDao {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "Y");
+			pstmt.setString(1, "y");
 			pstmt.setString(2, paramVo.getAnswerTitle());
 			pstmt.setString(3, paramVo.getAnswerContent());
 			pstmt.setString(4, paramVo.getAnswerUserName());
@@ -131,20 +125,20 @@ public class QuestionDao {
 	public int insertQuestion(Connection conn, QuestionVo q) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into question values(question_seq.nextval,?,?,?,?,?,to_char(sysdate,'yy-mm-dd'),?,?,?,?,?,?)";
+		String query = "insert into question values(question_seq.nextval,?,?,?,?,?,to_char(sysdate,'yy/mm/dd'),?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "빈값");
-			pstmt.setString(2, "빈값");
+			pstmt.setString(1, q.getQuestionUserId());//아이디
+			pstmt.setString(2, q.getQuestionName());//네임
 			pstmt.setString(3, q.getQuestionTitle());//3
-			pstmt.setString(4, "1");
+			pstmt.setInt(4, q.getQuestionType());//4
 			pstmt.setString(5, q.getQuestionContent());//5
-			pstmt.setString(6, "y");
-			pstmt.setString(7, "빈값");
-			pstmt.setString(8, "빈값");
-			pstmt.setString(9, "빈값");
-			pstmt.setString(10, "빈값");
-			pstmt.setString(11, "빈값");
+			pstmt.setString(6, "n");
+			pstmt.setString(7, "n");
+			pstmt.setString(8, "n");
+			pstmt.setString(9, " ");
+			pstmt.setString(10, " ");
+			pstmt.setString(11, " ");
 			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

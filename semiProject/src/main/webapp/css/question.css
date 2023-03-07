@@ -31,7 +31,13 @@
 	padding: 1rem;
 	border: 1px solid #ccc;	
 }
-
+.question-td-2{
+	width: 1200px;
+	padding-top:30px;
+	padding-left:10px;
+	height: 50px;
+	border: none;
+}
 .news-btn{
 	 border: none;
 	 padding: 1rem;
