@@ -92,6 +92,16 @@
 .myPoint-num {
 	color: #ffc6d3;
 }
+
+    .book-img{
+        width: 120px;
+        height: 120px;
+        background-color: #fff;
+        
+        border : 1px solid #EEEEEE;
+        border-radius: 4px;
+        margin-right: 20px;
+    }
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -99,7 +109,13 @@
 		<%@include file="/WEB-INF/views/user/myPageMenu.jsp"%>
 		<div class="mypage-main-wrap mypage-detail">
 			<div class="mypage-box">
-				<div class="material-icons">account_circle</div>
+				<div class="profile">
+					<%if(loginUser.getUserPic()==null){ %>
+						<div class="material-icons">account_circle</div>
+					<%} else { %>
+						<div style="background-image: url(/upload/profile/<%=loginUser.getUserPic()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="previewImg" class="book-img"></div>
+					<%} %>
+				</div>
 				<div class="mypage-info">
 					<div class="user-info">
 						<div class="nick"><%=user.getUserNick() %></div>
