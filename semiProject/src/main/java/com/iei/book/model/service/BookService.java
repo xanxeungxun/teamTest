@@ -95,6 +95,29 @@ public class BookService {
 		JDBCTemplate.close(conn);
 		return storyList;
 	}
+	
+	public int insertBook(Book b, Story s) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.insertBook(conn,b);
+		if(result==0) {
+			JDBCTemplate.rollback(conn);
+		}else {
+			int bookNo = dao.selectBookNo(conn);
+			result = dao.insertStory(conn,bookNo,s);
+				if(result==0) {
+					JDBCTemplate.rollback(conn);
+				}else {
+					JDBCTemplate.commit(conn);
+				}//story등록성공
+		}//book등록성공
+		
+		return result;
+	}
+	
+	
+	
+	
 	//검색창(승훈)
 	public SearchPageData selectSearchBook(String searchKeyword, int reqPage) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -165,6 +188,8 @@ public class BookService {
 		
 		return result;
 	}
+
+
 	
 	
 	
