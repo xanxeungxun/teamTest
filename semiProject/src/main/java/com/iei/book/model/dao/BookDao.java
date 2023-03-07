@@ -196,8 +196,27 @@ public class BookDao {
 		
 		return result;
 	}
+	public int updateEndBook(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update book set book_status=2 where book_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
 
 
+	//검색창(승훈)
 	public ArrayList<Book> selectSearchBook(Connection conn, String searchKeyword, int end, int begin) {
 
 		PreparedStatement pstmt = null;
@@ -236,25 +255,29 @@ public class BookDao {
 		}
 		return searchList;
 	}
-
-	public int updateEndBook(Connection conn, int bookNo) {
+	public int selectSearchBookCount(Connection conn, String searchKeyword) {
 		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		int result = 0;
-		String query = "update book set book_status=2 where book_no=?";
-		
+		String query ="select count(book_title) as count from book where book_title like ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, bookNo);
-			result = pstmt.executeUpdate();
+			pstmt.setString(1, "%"+searchKeyword+"%");
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
+			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
 		
 		return result;
 	}
+
 
 	
 
