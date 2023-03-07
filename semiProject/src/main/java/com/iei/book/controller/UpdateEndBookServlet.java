@@ -34,8 +34,7 @@ public class UpdateEndBookServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//2값추출
-		int bookNo = Integer.getInteger(request.getParameter("bookNo"));
-		System.out.println(bookNo);
+		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 		
 		//3비즈니스로직
 		BookService service = new BookService();
@@ -47,7 +46,7 @@ public class UpdateEndBookServlet extends HttpServlet {
 			request.setAttribute("title", "완결작품 전환");
 			request.setAttribute("msg", "완결작품으로 전환하였습니다");
 			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/bookList.do?reqPage=1");
+			request.setAttribute("loc", "/storyList.do?bookNo="+bookNo);
 			view.forward(request, response);
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");

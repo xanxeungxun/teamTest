@@ -80,7 +80,7 @@
                         <div class="book-writer">
                             <%=b.getBookWriterNick() %>
                         </div>
-                        <div class="book-synop">
+                        <div class="book-synop" style="overflow: auto;">
                             <%=b.getBookExp() %>
                         </div>
                     </div>
@@ -285,7 +285,7 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 			$(".book-button").append(button3);
 	</script>
 <% 
-}else if(loginUser.getUserId().equals(b.getBookWriterId())){
+}else if(loginUser.getUserId().equals(b.getBookWriterId()) && b.getBookStatus().equals("연재중")){
 	//세션 기록된 유저아이디랑 작품의 작가랑 동일할 때 -->> 작가본인일때
 %>	
 	<script>
@@ -353,9 +353,54 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 		    
 	</script>
 <%
+}else if(loginUser.getUserId().equals(b.getBookWriterId()) && b.getBookStatus().equals("완결")){
+%>
+	<script>
+			const div = $("<div>");
+			
+			div.text("완결작품입니다.");
+		    div.addClass("btn bc4");
+		    div.css("cursor","default");
+		    div.css("text-align","center")
+		    $(".book-button").append(div);
+	
+			$(".author-menu").css("display","flex");
+		    
+		    
+		    function allCheck(){
+		    	
+		    	if($("#check").is(':checked')){
+		    		$("input[type=checkbox]").prop("checked",false);
+		    	}else{
+		    		$("input[type=checkbox]").prop("checked",true);
+		    	}
+		    	
+		    }
+		    
+		    function deleteStory(){
+		    	const check = $("#check:checked");
+		    	const bookNo = $("#bookNo").val();
+		    	
+		    	if(check.length==0){
+		    		alert("선택된 스토리가 없습니다");
+		    		return;
+		    	}else{
+		    		
+		    		const storyNo = new Array();
+		    		
+		    		check.each(function(index,item){
+		    			const no = $(item).val();
+		    			storyNo.push(no);
+		    			location.href="/deleteStory.do?storyNo="+storyNo.join("/")+"&bookNo="+bookNo;
+		    			//storyNo배열에 있는 요소들을 구분자로 다 하나로 만들어줌
+		    		})
+		    		
+		    	}
+		    }
+	</script>
+<%
 }
 %>
-
 <%if(loginUser != null) {%>
 	<script>
 		const result = [false];

@@ -107,11 +107,15 @@
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
 	                        	<%int total1 = b.getBookTitle().length();
-		                        	if(38 < total1){
-		                        		char[] arrayTitle = b.getBookTitle().toCharArray();
-		                        		for(int j=0 ; j<38 ; j++){
-		                        			result1 = result1 + arrayTitle[j];		
+		                        	if(36 < total1){		                        		
+		                        		//System.out.println(arrayTitle);
+		                        		result1 = b.getBookTitle().substring(0,36);
+		                        		/*
+		                        		for(int j=0 ; j<36 ; j++){
+		                        			result1 = result1 + b.getBookTitle().charAt(j);		
 		                         		}//for문
+		                        		System.out.println(result1);
+		                         		*/
 		                        %>
 		                        	<%=result1+" ..."%>
 		                        <%}else{//공백포함 20글자가 안넘는다면%>
@@ -129,10 +133,7 @@
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
 		                        <%int total2 = b.getBookExp().length();
 		                        	if(86 < total2){
-		                        		char[] arrayExp = b.getBookExp().toCharArray();
-		                        		for(int k=0 ; k<86 ; k++){
-		                        			result2 = result2 + arrayExp[k];		
-		                         		}//for문
+		                        		result2 = b.getBookExp().substring(0,86);
 		                        %>
 		                        	<%=result2+" ..."%>
 		                        <%}else{//공백포함 89글자가 안넘는다면%>

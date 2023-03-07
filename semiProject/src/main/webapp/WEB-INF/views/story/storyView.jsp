@@ -49,7 +49,7 @@
 			<%
 			}
 			%>	
-				<div class="text" style="padding-top: 100px;">
+				<div class="text" style="padding: 100px 0 50px 0;">
 					<%=s.getStoryContent()%>
 				</div>
 				
