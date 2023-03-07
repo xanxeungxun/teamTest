@@ -139,6 +139,21 @@ public class UserService {
 	}
 
 
+	public int updateUserPoint(int updatePrice, int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.updateUserPoint(conn, updatePrice, userNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return result;
+	}
+
+
 
 
 

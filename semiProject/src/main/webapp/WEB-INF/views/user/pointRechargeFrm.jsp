@@ -228,6 +228,10 @@
     	/*결제하기*/
     	$("#payBtn").on("click",function(){
 			const price = Number($(".payment-money-num").text());
+			const currentUserPoint = <%=loginUser.getUserPoint()%>;
+			const myPointPlusPrice = price + currentUserPoint;
+			
+			console.log(myPointPlusPrice);
 			
 			const d = new Date();
 			//문자열 덧셈을 위해 "" 빈 문자열 추가
@@ -255,7 +259,7 @@
 					$.ajax({
 						url : "/pointRecharge.do",
 						type : "post",
-						data : {paymentMoney:price, userNo:<%=loginUser.getUserNo()%>}
+						data : {myPointPlusPrice:myPointPlusPrice, userNo:<%=loginUser.getUserNo()%>},
 						success : function(data){
 							console.log("결재 정보 DB UPDATE 성공");
 						},

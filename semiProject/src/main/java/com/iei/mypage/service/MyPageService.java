@@ -46,7 +46,7 @@ public class MyPageService {
 		총 게시물 수 : 222
 		→ 총 23개 페이지 필요*/
 		//전체 페이지 수를 계산하려면 -> 먼저 총 게시물 수 조회 필요
-		int totalCount = dao.selectFavBookCount(conn);
+		int totalCount = dao.selectFavBookCount(conn, userNo);
 		
 		//전체 페이지 수 계산
 		/*한페이지 당 게시물 수 : 10
@@ -168,7 +168,7 @@ public class MyPageService {
 		총 게시물 수 : 222
 		→ 총 23개 페이지 필요*/
 		//전체 페이지 수를 계산하려면 -> 먼저 총 게시물 수 조회 필요
-		int totalCount = dao.selectSupBookCount(conn);
+		int totalCount = dao.selectSupBookCount(conn,userNo);
 		
 		//전체 페이지 수 계산
 		/*한페이지 당 게시물 수 : 10
