@@ -38,7 +38,7 @@ public class ViewQuestionServlet extends HttpServlet {
 		User loginUser = (User)session.getAttribute("loginUser");
 		//4결과처리
 		
-		if(loginUser!=null&&loginUser.getUserLevel()==2) {
+		if(loginUser!=null&&loginUser.getUserLevel()==2||loginUser!=null&&loginUser.getUserLevel()==1) {
 		request.setAttribute("questionResult", result);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/question/viewQuestion.jsp");
 		view.forward(request, response);

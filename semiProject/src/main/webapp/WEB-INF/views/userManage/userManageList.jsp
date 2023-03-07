@@ -78,25 +78,25 @@ int start = (int)request.getAttribute("start");
 						</td>
 						<td rowspan="2" colspan="2"class="userManage-td"style="font-size:14px;">
     			<%if(u.getUserLevel()==1){ %>
-    			<select class="input-form"style="font-size:14px;">
+    			<select class="input-form"style="font-size:14px;height:30px;padding:0;width:78px;margin-left:3.5px;border-radius:0;">
     					<option value="1" selected>관리자</option>
     					<option value="2">일반</option>
     					<option value="3">블락</option>
     				</select>
     			<%}else if(u.getUserLevel()==2){ %>
-    			<select class="input-form"style="font-size:14px;">
+    			<select class="input-form"style="font-size:14px;height:30px;padding:0;width:78px;margin-left:3.5px;border-radius:0;">
     					<option value="1">관리자</option>
     					<option value="2" selected>일반</option>
     					<option value="3">블락</option>
     				</select>
     			<%}else if(u.getUserLevel()==3){ %>
-    			<select class="input-form"style="font-size:14px;">
+    			<select class="input-form"style="font-size:14px;height:30px;padding:0;width:78px;margin-left:3.5px;border-radius:0;">
     					<option value="1">관리자</option>
     					<option value="2">일반</option>
     					<option value="3" selected>블락</option>
     				</select>
     			<%} %>
-						<button type="button" class="btn bc1 bs1 delBtn"style="font-size:14px;border-radius:0;border:0px;">등급변경</button>
+						<button type="button" class="btn bc1 bs1 delBtn"style="font-size:12px;border-radius:0;border:0px;width:78px;">등급변경</button>
     				</td>
     			</tr>
 					<tr class="userManage-tr"></tr>
