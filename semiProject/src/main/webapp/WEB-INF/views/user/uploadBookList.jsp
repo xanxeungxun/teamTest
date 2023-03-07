@@ -130,6 +130,7 @@
           <div id="pageNavi"><%=pageNavi %></div>
         </div>
     </div>
+    <%@include file="/WEB-INF/views/common/footer.jsp" %>
     <div id="test-modal" class="modal-bg">
       <div class="modal-wrap">
         <div class="modal-head">

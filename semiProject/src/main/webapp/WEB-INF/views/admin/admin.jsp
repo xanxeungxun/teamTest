@@ -44,6 +44,8 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%if(loginUser!=null&&loginUser.getUserLevel() == 1){ %>
+<%} %>
 	<div class="page-content">
 		<div class="page-title">
 			<h3>관리자 페이지</h3>
