@@ -36,8 +36,8 @@
 				<a href="/" class="logo-text"><h4>Every Universe</h4></a>
                 
                 <div class="please">
-	                <form>
-	                <input id="integrated-search" class="search-bar" type="text" name="search" value=""
+	                <form action="/search.do?reqPage=1" method="post">
+	                <input id="integrated-search" class="search-bar" type="text" name="searchKeyword" value=""
 	                    placeholder="포스트, 시리즈, 채널 검색" maxlength="50">
 	                    <button type="submit" id="search-icon" class="material-symbols-outlined search-icon">search</button>
 	                </form>

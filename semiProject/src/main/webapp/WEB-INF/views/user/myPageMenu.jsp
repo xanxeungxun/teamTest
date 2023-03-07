@@ -10,16 +10,18 @@
 	rel="stylesheet">
 <style>
 .mypage-menu-wrap {
-	width: 150px;
+	margin: 0;
+	width: 170px;
+	margin-right: 100px;
 }
 
 .mypage-menu-wrap>.page-title{
-	font-size: 28px;
+	font-size: 34px;
 }
 
 .cat .bold {
 	font-family: ns-bold;
-	font-size: 15px;
+	font-size: 20px;
 	padding-top: 5px;
 	padding-left: 5px;
 	color: #3a4f7a;
@@ -28,6 +30,7 @@
 div>.icon {
 	color: #3a4f7a;
 	margin: 0;
+	font-size: 28px;
 }
 
 .cat-title {
@@ -43,7 +46,7 @@ ul {
 }
 
 .cat>li {
-	padding-top: 30px;
+	padding-top: 40px;
 }
 
 .cat-detail>li {
@@ -57,7 +60,7 @@ ul {
 }
 
 .mypage-menu-wrap a:not(.page-title) {
-	font-size: 14px;
+	font-size: 16px;
 	font-family: ns-m;
 	color: #6f6b7a;
 }

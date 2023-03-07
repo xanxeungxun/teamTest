@@ -44,6 +44,7 @@
     }
     .book-info{
     	position: relative;
+    	width: 700px;
     }
     .box{
     	position: absolute;
