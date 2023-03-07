@@ -50,14 +50,15 @@ public class StoryDao {
 	public int insetStory(Connection conn, int bookNo,Story s) {
 		PreparedStatement pstmt = null;
 		int result=0;
-		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,?,sysdate,default)";
+		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,sysdate,default,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bookNo);
 			pstmt.setString(2, s.getStoryName());
-			pstmt.setString(3, s.getStoryContent());
-			pstmt.setString(4, s.getStoryAfter());
+			pstmt.setString(3, s.getStoryAfter());
+			pstmt.setString(4, s.getStoryContent());
+			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

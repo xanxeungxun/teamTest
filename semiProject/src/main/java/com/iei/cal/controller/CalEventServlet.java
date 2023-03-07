@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.iei.user.model.service.UserService;
@@ -35,12 +36,23 @@ public class CalEventServlet extends HttpServlet {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
 		//2. 값추출
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		int userPoint = Integer.parseInt(request.getParameter("userPoint"));
 		String userId = request.getParameter("userId");
+		
+		User u = new User();
+		u.setUserPoint(userPoint+50);
 		//3. 비즈니스로직
 		UserService service = new UserService();
-		int result = service.updateUserPoint(userId, userPoint);
+		int result = service.updateUserCheckPoint(userId, userPoint, userNo);
 		//4. 결과처리
+		
+		HttpSession session = request.getSession();
+		User userSession = (User)session.getAttribute("loginUser");
+		userSession.setUserPoint(userPoint+50);
+		
+		
+		
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		Gson gson = new Gson();

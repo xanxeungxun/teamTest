@@ -107,12 +107,17 @@ public class UserService {
 	
 
 
-	public int updateUserPoint(String userId, int userPoint) {
+	public int updateUserCheckPoint(String userId, int userPoint, int userNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		
-		int result = dao.updateUserPoint(conn, userId, userPoint);
+		int result = dao.updateUserCheckPoint(conn, userId, userPoint);
 		if(result > 0) {
 			JDBCTemplate.commit(conn);
+			result = dao.insertCalCheck(conn, userNo);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
 		}else {
 			JDBCTemplate.rollback(conn);
 		}
