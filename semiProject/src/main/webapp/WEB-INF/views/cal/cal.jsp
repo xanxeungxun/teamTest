@@ -1,5 +1,10 @@
+<%@page import="com.iei.cal.model.vo.Cal"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	ArrayList<Cal> list = (ArrayList<Cal>)request.getAttribute("list");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -187,26 +192,30 @@
     <div class="chk-btn-div">
     	<input type="hidden" name="userId" class="userId" value="<%=loginUser.getUserId() %>">
     	<input type="hidden" name="userPoint" class="userPoint" value="<%=loginUser.getUserPoint() %>">
+    	<input type="hidden" name="userNo" class="userNo" value="<%=loginUser.getUserNo() %>">
     	<button class="chk-btn bc6" id="chk-btn">출석체크</button>
     </div>
+    
+   
+    
     
     <script>
     	$("#chk-btn").on("click",function(){
     		const userId = $(".userId").val();
     		const userPoint = $(".userPoint").val();
     		const today = $(".fc-day-today");
+    		const userNo = $(".userNo").val();
     		
     		today.empty();
     		$.ajax({
     			url : "/calEvent.do",
     			type : "post",
-    			data : {userId : userId, userPoint : userPoint},
+    			data : {userId : userId, userPoint : userPoint, userNo : userNo},
     			dataType : "Json",
     			success : function(data) {
 					if(data == null){
 						console.log("x");
 					}else{
-						today.css("background-color","red");
 						location.href = "/calView.do";
 					}
 				},
@@ -214,6 +223,15 @@
 					console.log("에러");
 				}
     		})
+    	});
+    	$(function(){
+    		const userNo = $(".userNo").val(); 
+    		
+    		$.ajax({
+    			url : "calSelectMonth.do",
+    			type : "post",
+    			data : {}
+    		});
     	});
     </script>
     

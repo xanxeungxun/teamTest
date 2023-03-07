@@ -95,18 +95,29 @@ public class BookService {
 		JDBCTemplate.close(conn);
 		return storyList;
 	}
-	public int updateEndBook(int bookNo) {
+	
+	public int insertBook(Book b, Story s) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.updateEndBook(conn,bookNo);
 		
-		if(result>0) {
-			JDBCTemplate.commit(conn);
-		}else {
+		int result = dao.insertBook(conn,b);
+		if(result==0) {
 			JDBCTemplate.rollback(conn);
-		}
+		}else {
+			int bookNo = dao.selectBookNo(conn);
+			result = dao.insertStory(conn,bookNo,s);
+				if(result==0) {
+					JDBCTemplate.rollback(conn);
+				}else {
+					JDBCTemplate.commit(conn);
+				}//story등록성공
+		}//book등록성공
 		
 		return result;
 	}
+	
+	
+	
+	
 	//검색창(승훈)
 	public SearchPageData selectSearchBook(String searchKeyword, int reqPage) {
 		Connection conn = JDBCTemplate.getConnection();
@@ -133,26 +144,26 @@ public class BookService {
 			naviCode += "<span class='material-icons'>chevron_left";
 			naviCode += "</span></a></li>";
 		}
-		for(int i=0 ; i<naviSize ; i++) {
-			if(naviStart == reqPage) { //요청한 페이지가 1,6,11..일때
+		for (int i = 0; i < naviSize; i++) {
+			if (naviStart == reqPage) { // 요청한 페이지가 1,6,11..일때
 				naviCode += "<li>";
-				naviCode += "<a class='page-item active-page' href='/search.do?reqPage="+naviStart+ "&searchKeyword=" + searchKeyword + "'>";
+				naviCode += "<a class='page-item active-page' href='/search.do?reqPage=" + naviStart + "'>";
 				naviCode += naviStart;
 				naviCode += "</a></li>";
-			}else {
+			} else {
 				naviCode += "<li>";
-				naviCode += "<a class='page-item' href='/search.do?reqPage="+naviStart+ "&searchKeyword=" + searchKeyword + "'>";
+				naviCode += "<a class='page-item' href='/search.do?reqPage=" + naviStart + "'>";
 				naviCode += naviStart;
 				naviCode += "</a></li>";
 			}
 			naviStart++;
-			if(searchCount < naviStart) {
+			if (searchPage < naviStart) {
 				break;
 			}
-		}//숫자넣기for문
-		if(naviStart <= searchCount) {
+		} // 숫자넣기for문
+		if (naviStart <= searchPage) {
 			naviCode += "<li>";
-			naviCode += "<a class='page-item' href='/search.do?reqPage="+(naviStart)+ "&searchKeyword=" + searchKeyword + "'>";
+			naviCode += "<a class='page-item' href='/search.do?reqPage=" + (naviStart) + "'>";
 			naviCode += "<span class='material-icons'>chevron_right";
 			naviCode += "</span></a></li>";
 		}
@@ -165,7 +176,20 @@ public class BookService {
 		
 	}
 
-	
+	public int updateEndBook(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateEndBook(conn,bookNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return result;
+	}
+
+
 	
 	
 	

@@ -229,7 +229,7 @@ public class UserDao {
 		return u;
 	}
 
-	public int updateUserPoint(Connection conn, String userId, int userPoint) {
+	public int updateUserCheckPoint(Connection conn, String userId, int userPoint) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "update user_tbl set user_point=?+50 where user_id=?";
@@ -350,6 +350,23 @@ public class UserDao {
 		}
 		
 		return result;
+	}
+
+	public int insertCalCheck(Connection conn, int userNo) {
+		PreparedStatement pstmt = null;
+		int result1 = 0;
+		String query = "insert into cal_check values(cal_check_seq.nextval,sysdate,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			result1 = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result1;
 	}
 
 	

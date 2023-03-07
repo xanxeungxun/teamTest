@@ -77,6 +77,29 @@ public class BookDao {
 		return result;
 	}
 
+	public int selectBookNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int bookNo = 0;
+		String query ="select max(book_no)as book_no from book";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				bookNo = rset.getInt("book_no");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return bookNo;
+	}
+	
 	public Book selectOneBook(Connection conn, int bookNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -278,6 +301,8 @@ public class BookDao {
 		return result;
 	}
 
+
+	
 
 	
 
