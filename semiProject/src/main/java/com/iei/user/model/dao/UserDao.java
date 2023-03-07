@@ -308,6 +308,30 @@ public class UserDao {
 		return result2;
 	}
 
+	public int updateUserPoint(Connection conn, int updatePrice, int userNo) {
+		PreparedStatement pstmt = null;
+		
+		int result = 0;
+		
+		String query = "update user_tbl set user_point=? where user_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, updatePrice);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
 
 }
