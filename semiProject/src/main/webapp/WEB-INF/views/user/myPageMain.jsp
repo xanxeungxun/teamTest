@@ -113,7 +113,7 @@
 						</div>
 						<div>
 							<div class="material-symbols-outlined icon">savings</div>
-							<a href="#" class="point">포인트 충전</a>
+							<a href="/pointRechargeFrm.do?userId=<%=user.getUserId() %>" class="point">포인트 충전</a>
 						</div>
 					</div>
 				</div>
