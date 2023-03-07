@@ -113,6 +113,19 @@ public class BookService {
 		
 		return result;
 	}
+
+	public int updateEndBook(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateEndBook(conn,bookNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return result;
+	}
 	
 	
 	

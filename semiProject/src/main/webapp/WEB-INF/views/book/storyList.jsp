@@ -233,6 +233,22 @@
 					        </div>
 				    	</div>
 				    </div>
+				    
+				    <div id="end-modal" class="modal-bg">
+				    	<div class="modal-wrap">
+					        <div class="modal-head">
+						        <h2>확인</h2>
+						        <span class="material-icons close-icon modal-close">close</span>
+					        </div>
+					        <div class="modal-content">
+					          	<p>완결작품으로 전환 후에는 다시 연재중으로 변경할 수 없습니다.</p>
+					        </div>
+					        <div class="modal-foot">
+						        <a onclick="updateEndBook();" class="btn bc6 btn-pill">예, 완결작품으로 전환합니다.</a>
+						        <button class="btn bc33 modal-close btn-pill">전환 취소</button>
+					        </div>
+				    	</div>
+				    </div>
       
       
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
@@ -251,6 +267,7 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 			button1.text("첫 화 보기");
 			button1.addClass("btn bc44");
 			button1.css("margin-bottom","10px");
+			button1.attr("onclick","location.href='#'");
 			
 			button2.text("후원하기");
 			button2.addClass("btn bc4 modal-open-btn");
@@ -279,8 +296,9 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 	    	const bookNo = $("#bookNo").val();
 	    	
 	    	button1.text("완결작으로 전환");
-		    button1.addClass("btn bc44");
+		    button1.addClass("btn bc44 modal-open-btn");
 		    button1.css("margin-bottom","10px");
+		    button1.attr("target","#end-modal");
 		    
 		    button2.text("글쓰기");
 		    button2.addClass("btn bc4");
@@ -322,6 +340,12 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 		    		})
 		    		
 		    	}
+		    }
+		    
+		    
+		    function updateEndBook(){
+		    	const bookNo = $("#bookNo").val();
+		    	location.href="/updateEndBook.do?bookNo="+bookNo;
 		    }
 		    
 		    

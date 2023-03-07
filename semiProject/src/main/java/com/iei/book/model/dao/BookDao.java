@@ -175,14 +175,15 @@ public class BookDao {
 	public int insertStory(Connection conn, int bookNo, Story s) {
 		PreparedStatement pstmt = null;
 		int result=0;
-		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,?,sysdate,default)";
+		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,sysdate,default,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bookNo);
 			pstmt.setString(2, s.getStoryName());
-			pstmt.setString(3, s.getStoryContent());
-			pstmt.setString(4, s.getStoryAfter());
+			pstmt.setString(3, s.getStoryAfter());
+			pstmt.setString(4, s.getStoryContent());
+			
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -216,6 +217,25 @@ public class BookDao {
 		}
 		
 		return bookNo;
+	}
+
+	public int updateEndBook(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update book set book_status=2 where book_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 	
