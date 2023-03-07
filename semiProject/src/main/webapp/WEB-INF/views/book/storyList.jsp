@@ -158,7 +158,7 @@
 
         </div><!--book-wrap-->
     </div><!--page-content-->
-
+					
 
 					 <div id="test-modal" class="modal-bg">
 				      <div class="modal-wrap">
@@ -166,9 +166,8 @@
 				          <h2>후원하기</h2>
 				          <span class="material-icons close-icon modal-close">close</span>
 				        </div>
-				        <input type="hidden" name="bookWriter" value="<%=b.getBookWriterId() %>">
-				        <input type="hidden" name="bookNo" value="<%=b.getBookNo() %>">
 		        	<form action="/assistPoint.do" method="post">
+		        	
 				        <div class="point-wrap">
 					        	<table class="point-tbl">
 					        		<tr class="point-tr1">
@@ -187,6 +186,8 @@
 					        			</td>
 					        			<td class="input-td">
 					        				<input type="text" name="inputPoint" id="inputPoint">
+					        				<input type="hidden" name="bookWriter" value="<%=b.getBookWriterId() %>">
+				        					<input type="hidden" name="bookNo" value="<%=b.getBookNo() %>">
 					        			</td>
 					        		</tr>
 					        		<tr class="point-tr3">
@@ -203,7 +204,7 @@
 					        	</table>
 					        </div>
 					        <div class="modal-foot">
-					          <button type="submit" class="btn bc6 btn-pill">후원</button>
+					          <button type="submit" class="btn bc6 btn-pill" id="assist-btn">후원</button>
 					          <button type="button" class="btn bc33 modal-close btn-pill">취소</button>
 					        </div>
 			        	</form>
@@ -271,8 +272,35 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 }
 %>
 
-
-
+<%if(loginUser != null) {%>
+	<script>
+		const result = [false];
+		
+		$("#inputPoint").on("change",function(){
+			const userPoint = Number($("[name=userPoint]").val());
+			const inputPoint = Number($(this).val());
+			if(userPoint < inputPoint){
+				$(this).css("color","red");
+				result[0] =  false;
+			}else{
+				$(this).css("color","green");
+				result[0] = true;
+			}
+		});
+		
+		$("#assist-btn").on("click",function(){
+			if(result[0] == false){
+				return false;
+			}
+		});
+	</script>
+<%}else { %>
+	<script>
+		$("#assist-btn").on("click",function(){
+			return false;
+		});
+	</script>
+<%} %>
 
 </body>
 </html>

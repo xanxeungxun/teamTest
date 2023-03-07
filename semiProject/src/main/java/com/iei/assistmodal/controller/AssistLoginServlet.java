@@ -8,22 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.iei.user.model.service.UserService;
-import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class AssistPointServlet
+ * Servlet implementation class AssistLoginServlet
  */
-@WebServlet(name = "AssistPoint", urlPatterns = { "/assistPoint.do" })
-public class AssistPointServlet extends HttpServlet {
+@WebServlet(name = "AssistLogin", urlPatterns = { "/assistLogin.do" })
+public class AssistLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AssistPointServlet() {
+    public AssistLoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,37 +30,13 @@ public class AssistPointServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
-		String loginUser = request.getParameter("loginUser");
-		String bookWriter = request.getParameter("bookWriter");
-		int userPoint = Integer.parseInt(request.getParameter("userPoint"));
-		int inputPoint = Integer.parseInt(request.getParameter("inputPoint"));
-		
-		User u = new User();
-		u.setUserPoint(userPoint-inputPoint);
-		
-		UserService service = new UserService();
-		int result = service.updateAssistPoint(loginUser, bookWriter, inputPoint);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if(result>0) {
-			
-			HttpSession session = request.getSession();
-			User userSession = (User)session.getAttribute("loginUser");
-			userSession.setUserPoint(userPoint-inputPoint);
-			
-			request.setAttribute("title", "후원성공");
-			request.setAttribute("msg", "작가에게 후원하셨습니다.");
-			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/storyList.do?bookNo="+bookNo);
-		}else {
 			request.setAttribute("title", "후원실패");
 			request.setAttribute("msg", "로그인 후 이용 가능합니다.");
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/loginFrm.do");
-		}
+			
+		request.setAttribute("loc", "/loginFrm.do");
 		view.forward(request, response);
-		
-		
 	}
 
 	/**

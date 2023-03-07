@@ -34,6 +34,9 @@
 	.best-view:hover{
 		color: #f85f73;
 	}
+	.readCountSpan{
+		font-size: 13px;
+	}
 </style>
 </head>
 <body>
@@ -56,7 +59,7 @@
 						<div><span class="writer-span"><%=b.getBoardWriter() %></span> <span class="date-span"><%=b.getboardDate() %></span></div>
 					</td>
 					<td class="board-td read-td">
-						조회수 : <%=b.getReadCount() %>
+						<span class="readCountSpan">조회수 : <%=b.getReadCount() %></span>
 					</td>
 				</tr>
 			<%} %>
