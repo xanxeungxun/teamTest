@@ -38,7 +38,7 @@ public class SelectCalCheckServlet extends HttpServlet {
 		ArrayList<Cal> list = service.selectAllCalCheck();
 		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/cal/cal.jsp");
-		request.setAttribute("c", list);
+		request.setAttribute("list", list);
 		view.forward(request, response);
 		
 	}

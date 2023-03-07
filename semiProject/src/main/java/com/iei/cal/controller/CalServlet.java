@@ -31,6 +31,8 @@ public class CalServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		
+		
+		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/cal/cal.jsp");
 		view.forward(request, response);
 	}

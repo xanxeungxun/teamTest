@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    	ArrayList<Cal> c = (ArrayList<Cal>)request.getAttribute("c");
+    	ArrayList<Cal> list = (ArrayList<Cal>)request.getAttribute("list");
     %>
 <!DOCTYPE html>
 <html>
@@ -195,6 +195,9 @@
     	<input type="hidden" name="userNo" class="userNo" value="<%=loginUser.getUserNo() %>">
     	<button class="chk-btn bc6" id="chk-btn">출석체크</button>
     </div>
+    
+   
+    
     
     <script>
     	$("#chk-btn").on("click",function(){
