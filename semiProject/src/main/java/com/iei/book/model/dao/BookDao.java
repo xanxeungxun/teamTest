@@ -148,31 +148,58 @@ public class BookDao {
 		return storyList;
 	}
 
-	//검색창(승훈)
-	public int selectSearchBookCount(Connection conn, String searchKeyword) {
+
+	public int insertBook(Connection conn, Book b) {
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		int result = 0;
-		String query ="select count(*) as count from book where book_title like ?";
+		int result=0;
+		String query ="insert into book values(BOOK_SEQ.NEXTVAL,?,?,?,?,?,default,sysdate)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "%"+searchKeyword+"%");
-			rset = pstmt.executeQuery();
-			if(rset.next()) {
-				result = rset.getInt("count");
-			}
+			pstmt.setInt(1, b.getGenreCode());
+			pstmt.setString(2, b.getBookTitle());
+			pstmt.setString(3, b.getBookWriterId());
+			pstmt.setString(4, b.getBookExp());
+			pstmt.setString(5, b.getCoverpath());
+			
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
 		
 		return result;
 	}
+
+	public int insertStory(Connection conn, int bookNo, Story s) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String query ="insert into story values(story_SEQ.NEXTVAL,?,?,?,sysdate,default,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			pstmt.setString(2, s.getStoryName());
+			pstmt.setString(3, s.getStoryAfter());
+			pstmt.setString(4, s.getStoryContent());
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
+
 	public ArrayList<Book> selectSearchBook(Connection conn, String searchKeyword, int end, int begin) {
+
 		PreparedStatement pstmt = null;
 		ArrayList<Book> searchList = new ArrayList<Book>();
 		ResultSet rset = null;
@@ -208,6 +235,25 @@ public class BookDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return searchList;
+	}
+
+	public int updateEndBook(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update book set book_status=2 where book_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 	
