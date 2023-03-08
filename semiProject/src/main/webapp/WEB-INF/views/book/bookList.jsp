@@ -106,7 +106,7 @@
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                        	<%int total1 = b.getBookTitle().length();
+	                  	<!--   <%int total1 = b.getBookTitle().length();
 		                        	if(36 < total1){		                        		
 		                        		//System.out.println(arrayTitle);
 		                        		result1 = b.getBookTitle().substring(0,36);
@@ -120,7 +120,9 @@
 		                        	<%=result1+" ..."%>
 		                        <%}else{//공백포함 20글자가 안넘는다면%>
 		                        	<%=b.getBookTitle() %>
-		                        <%} %>
+		                        <%} %>  -->	
+		                        
+		                        <%=b.getBookTitle() %>
 	                        </a>
                         </div>
                         <div class="book-one-subTitle">
@@ -131,14 +133,16 @@
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		                        <%int total2 = b.getBookExp().length();
+		             <!--       <%int total2 = b.getBookExp().length();
 		                        	if(86 < total2){
 		                        		result2 = b.getBookExp().substring(0,86);
 		                        %>
 		                        	<%=result2+" ..."%>
 		                        <%}else{//공백포함 89글자가 안넘는다면%>
 		                        	<%=b.getBookExp() %>
-		                        <%} %>
+		                        <%} %> -->
+		                        
+		                        <%=b.getBookExp() %>
 	                        </a>
                         </div>
                         <div class="book-one-exp">
