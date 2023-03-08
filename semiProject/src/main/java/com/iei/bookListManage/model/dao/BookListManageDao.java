@@ -135,6 +135,33 @@ public class BookListManageDao {
 	}
 
 
+	public BookListManageVo selectAllBook(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		BookListManageVo result = null;
+		String query = "select book_no,genre_code,book_title,book_writer from book where book_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1,bookNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				result = new BookListManageVo();
+				result.setBookNo(rset.getInt("book_no"));
+				result.setGenreCode(rset.getInt("genre_code"));
+				result.setBookTitle(rset.getString("book_title"));
+				result.setBookWriter(rset.getString("book_writer"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return result;
+	}
+
+
 	
 
 }
