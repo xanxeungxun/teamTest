@@ -266,11 +266,14 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 			const button1 = $("<button>");
 			const button2 = $("<button target='#test-modal'>");
 			const button3 = $("<button>");
+			const bookNo2 = $("#bookNo").val();
+			
+			const url = "location.href='/selectFirstStory.do?bookNo="+bookNo2+"'";
 			
 			button1.text("첫 화 보기");
 			button1.addClass("btn bc44");
 			button1.css("margin-bottom","10px");
-			button1.attr("onclick","location.href='#'");
+			button1.attr("onclick",url);
 			
 			button2.text("후원하기");
 			button2.addClass("btn bc4 modal-open-btn");

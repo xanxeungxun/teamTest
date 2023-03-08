@@ -1,7 +1,6 @@
 package com.iei.story.controller;
 
 import java.io.IOException;
-import java.security.Provider.Service;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,21 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
 import com.iei.story.model.service.StoryService;
 
 /**
- * Servlet implementation class InsertStoryCommentServlet
+ * Servlet implementation class DeleteStoryCommentServlet
  */
-@WebServlet(name = "InsertStoryComment", urlPatterns = { "/insertStoryComment.do" })
-public class InsertStoryCommentServlet extends HttpServlet {
+@WebServlet(name = "DeleteStoryComment", urlPatterns = { "/deleteStoryComment.do" })
+public class DeleteStoryCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertStoryCommentServlet() {
+    public DeleteStoryCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,28 +30,27 @@ public class InsertStoryCommentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//인코딩
+		//1인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		//값추출
+		//2값추출
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
-		String userId = request.getParameter("userId");
-		String commentCnt = request.getParameter("commentCnt");
-
-		//비즈니스로직
-		StoryService service = new StoryService();
-		int result = service.insertStoryComment(bookNo,storyNo,userId,commentCnt);
+		int storyCommentNo = Integer.parseInt(request.getParameter("storyCommentNo"));
 		
-		//결과처리
+		//3비즈니스로직
+		StoryService service = new StoryService();
+		int result = service.deleteStoryComment(storyNo,bookNo,storyCommentNo);
+		
+		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if(result>0) { //입력성공
+		if(result>0) { //성공
 			request.setAttribute("title", "성공");
-			request.setAttribute("msg", "댓글 작성 완료");
+			request.setAttribute("msg", "댓글 삭제 완료");
 			request.setAttribute("icon", "success");
-		}else{ //입력실패
+		}else{ //실패
 			request.setAttribute("title", "실패");
-			request.setAttribute("msg", "댓글 작성 실패");
+			request.setAttribute("msg", "댓글 삭제 실패");
 			request.setAttribute("icon", "error");
 		}
 		

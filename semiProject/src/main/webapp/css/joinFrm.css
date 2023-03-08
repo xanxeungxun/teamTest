@@ -108,3 +108,8 @@ div>.active-check-circle{
 .agree-box a:hover{
     color: #978faa;
 }
+
+.join-input-wrap>div>.email-btn{
+	padding:0;
+	width: 110px;
+}

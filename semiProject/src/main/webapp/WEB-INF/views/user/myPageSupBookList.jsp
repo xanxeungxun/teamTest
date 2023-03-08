@@ -53,10 +53,7 @@
     .close-btn{
         cursor: pointer;
     }
-    .book-title{
-        font-size: 18px;
-        font-family: ns-m;
-    }
+
     .genre{
         font-size: 12px;
     }

@@ -26,7 +26,16 @@ public class StoryService {
 	public Story selectOneStory(int storyNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		Story s = dao.selectOneStory(conn,storyNo);
+		int result = dao.plusView(conn,storyNo);
+		
+		Story s = null;
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+			s = dao.selectOneStory(conn,storyNo);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
 		
 		JDBCTemplate.close(conn);
 		return s;
@@ -111,6 +120,42 @@ public class StoryService {
 		}
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public int updateStoryComment(int storyNo, int bookNo, int storyCommentNo, String storyCommentContent) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateStoryComment(conn,storyNo,bookNo,storyCommentNo, storyCommentContent);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int deleteStoryComment(int storyNo, int bookNo, int storyCommentNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteStoryComment(conn, storyCommentNo,storyNo,bookNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int selectFirstStory(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int storyNo = dao.selectFirstStory(conn,bookNo);
+		
+		JDBCTemplate.close(conn);
+		return storyNo;
 	}
 	
 	

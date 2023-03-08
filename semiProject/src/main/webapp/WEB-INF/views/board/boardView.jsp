@@ -58,6 +58,21 @@
         border : 1px solid #EEEEEE;
         border-radius: 60px;
     }
+    .comment-ul{
+    	display: flex;
+   		list-style-type: none;
+    	margin-top: 50px;
+    	margin-bottom: 50px;
+    }
+    textarea.input-form {
+	    resize: none;
+	    min-height: 100px;
+	    width: 1000px;
+	}
+	.btn{
+		width: 100px;
+		height: 100px;
+	}
 	
 	
 </style>
@@ -113,9 +128,9 @@
 				<%if(loginUser != null) {%>
 				<div class="inputCommentBox">
 					<form action="/insertBoardComment.do" method="post">
-						<ul>
+						<ul class="comment-ul">
 							<li>
-								<span class="material-icons">account_box</span>
+								<span class="material-icons" style="font-size:100px;">account_box</span>
 							</li>
 							<li>
 								<input type="hidden" name="boardCommentWriter" value="<%=loginUser.getUserId() %>">
@@ -199,18 +214,18 @@
 					<%if(loginUser != null) {%>
 						<div class="inputCommentBox inputRecommentBox">
 							<form action="/insertBoardComment.do" method="post">
-								<ul>
+								<ul class="comment-ul">
 									<li>
-										<span class="material-icons">subdirectory_arrow_right</span>
+										<span class="material-icons" style="font-size:100px;">subdirectory_arrow_right</span>
 									</li>
 									<li>
 										<input type="hidden" name="boardCommentWriter" value="<%=loginUser.getUserId() %>"> 
 										<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>">
 										<input type="hidden" name="boardCommentRef" value="<%=bc.getBoardCommentNo() %>">
-										<textarea name="boardCommentContent" class="input-form" style="min-height: 85px;" placeholder="댓글을 입력해주세요"></textarea>
+										<textarea name="boardCommentContent" class="input-form" style="min-height: 100px;" placeholder="댓글을 입력해주세요"></textarea>
 									</li>
 									<li>
-										<button type="submit" class="btn bc4" style="width:100%; height:100%; cursor: pointer;">등록</button>
+										<button type="submit" class="btn bc1 bs2">등록</button>
 									</li>
 								</ul>
 							</form>
@@ -278,7 +293,7 @@
 			const boardNoInput = $("<input type='text' name='boardNo'>");
 			boardNoInput.val(boardNo);
 			//3. textarea
-			const boardCommentContent = $(".hide-textarea").clone();
+			const boardCommentContent = $(obj).parents("li").eq(0).find("textarea").clone();
 			//4. form태그에 input, textarea를 모두 포함
 			form.append(boardCommentNoInput).append(boardNoInput).append(boardCommentContent);
 			//5. 생성된 form태그를 body태그에 추가
