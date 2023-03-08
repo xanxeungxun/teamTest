@@ -245,7 +245,7 @@
 		            return false;
 		        } else {
 		            var filename = $(this).val().split('/').pop().split('\\').pop();
-		            $("#previewImg").css({"background-image":"url(/upload/profile/"+filename+")"}); //input upload-name 에 파일명 설정해주기
+		            //$("#previewImg").css({"background-image":"url(/upload/profile/"+filename+")"}); //input upload-name 에 파일명 설정해주기
 					
 		            loadImg($(this)[0]); //미리보기
 	

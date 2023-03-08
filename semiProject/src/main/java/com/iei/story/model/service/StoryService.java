@@ -157,6 +157,19 @@ public class StoryService {
 		JDBCTemplate.close(conn);
 		return storyNo;
 	}
+
+	public int updateStory(Story s) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateStory(conn, s);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		} else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		return result;
+	}
 	
 	
 	
