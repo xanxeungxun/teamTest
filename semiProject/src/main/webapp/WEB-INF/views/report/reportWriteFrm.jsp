@@ -51,7 +51,7 @@ $(document).ready(function(){
 	<link rel="stylesheet" href="/summernote/summernote-lite.css">
 		<div class="page-content">
 			<div class="page-title">신고 사항 작성</div>
-			<form action="/reportWrite.do" method="post">
+			<form action="/reportWrite.do" method="post" enctype="multipart/form-data">
 				<table class="tbl" id="reportWrite">
 					<tr class="tr-1">
 						<th class="td-3" style="height:50px;">신고 게시물</th>
@@ -59,16 +59,16 @@ $(document).ready(function(){
 					
 					<%-- 제목 (소설) --%>
 					<% if(list !=null){%>
-							<input type="hidden" id="noGo1" name="bookTitle" value="(소설게시판)">
-							<input type="hidden" id="noGo2" name="bookTitle" value="<%=list.getBookNo() %>">
-							<input type="hidden" id="noGo3" name="bookTitle" value="<%=list.getBookTitle() %>">
+							<input type="hidden" id="noGo1" name="bobType" value="(소설게시판)">
+							<input type="hidden" id="noGo2" name="bobNo" value="<%=list.getBookNo() %>">
+							<input type="hidden" id="noGo3" name="bobTitle" value="<%=list.getBookTitle() %>">
 							<%=list.getBookTitle() %>
 							<%}else if(list2 != null){%>
 							
 					<%-- 제목 (자유) --%>
-							<input type="hidden" id="noGo1" name="boardTitle" value="(자유게시판)">
-							<input type="hidden" id="noGo2" name="boardTitle" value="<%=list2.getBoardNo() %>">
-							<input type="hidden" id="noGo3" name="boardTitle" value="<%=list2.getBoardTitle() %>">
+							<input type="hidden" id="noGo1" name="bobType" value="(자유게시판)">
+							<input type="hidden" id="noGo2" name="bobNo" value="<%=list2.getBoardNo() %>">
+							<input type="hidden" id="noGo3" name="bobTitle" value="<%=list2.getBoardTitle() %>">
 							<%=list2.getBoardTitle() %>
 							<%} %>
 							
@@ -93,7 +93,7 @@ $(document).ready(function(){
 						<th class="td-3">작성자</td>
 						<td style="width:200px;text-align:right;padding-right:50px;">
 							<span>아이디</span>
-							<input type="hidden" name="reporterId" 
+							<input type="hidden" name="reporterId" id="reporterId"
 							value="<%=loginUser.getUserId()%>">
 							<%=loginUser.getUserId()%>
 							<br><span>닉네임</span>
@@ -123,14 +123,22 @@ $(document).ready(function(){
 			$("#submitBtn").on("click",function(){
 				const reporterId = $("#reporterId").val();
 				const bobType = $("#noGo1").val();
-				const bobTitle = $("#noGo2").val();
-				const bobNo = $("#noGo3").val();
-				const reportType = $("#reportType").text();
-				location.href="/report/reportList.do?reporterId="+reporterId+
-								"?reportType="+reportType+
-										"?bobType="+bobType+
-												"?bobTitle"+bobTitle+
-														"?bobNo"+bobNo;
+				const bobNo = $("#noGo2").val();
+				const bobTitle = $("#noGo3").val();
+				const reportType = $("#reportType").val();
+				const reportTitle = $("#reportTitle").val();
+				
+				let url = "/report/reportWrite.do?reporterId="+reporterId+
+							"?reportType="+reportType+
+							"?bobType="+bobType+
+							"?bobTitle="+bobTitle+
+							"?reportTitle="+reportTitle+
+							"?bobNo="+bobNo
+							;
+															
+															;
+				
+				location.href = url;
 			});
 			
 			$("#reportContent").summernote({
