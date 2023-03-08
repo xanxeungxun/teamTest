@@ -10,12 +10,11 @@ public class UploadBook {
 	private String bookWriter;
 	private String coverPath;
 	private String bookDate;
-	public UploadBook() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
+	private String userNick;
+	
 	public UploadBook(int bookNo, int userNo, int genreCode, String genreName, String bookTitle, String bookWriter,
-			String coverPath, String bookDate) {
+			String coverPath, String bookDate, String userNick) {
 		super();
 		this.bookNo = bookNo;
 		this.userNo = userNo;
@@ -25,6 +24,18 @@ public class UploadBook {
 		this.bookWriter = bookWriter;
 		this.coverPath = coverPath;
 		this.bookDate = bookDate;
+		this.userNick = userNick;
+	}
+	public UploadBook() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getUserNick() {
+		return userNick;
+	}
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
 	}
 	public int getBookNo() {
 		return bookNo;

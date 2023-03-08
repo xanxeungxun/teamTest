@@ -13,13 +13,10 @@ public class SupportBook {
 	private String coverPath;
 	private String bookDate;
 	
-	public SupportBook() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
+	private String userNick;
+	
 	public SupportBook(int supportNo, int bookNo, int userNo, int totalSupportMoney, int genreCode, String genreName,
-			String bookTitle, String bookWriter, String coverPath, String bookDate) {
+			String bookTitle, String bookWriter, String coverPath, String bookDate, String userNick) {
 		super();
 		this.supportNo = supportNo;
 		this.bookNo = bookNo;
@@ -31,6 +28,20 @@ public class SupportBook {
 		this.bookWriter = bookWriter;
 		this.coverPath = coverPath;
 		this.bookDate = bookDate;
+		this.userNick = userNick;
+	}
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
+
+	public SupportBook() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getSupportNo() {
