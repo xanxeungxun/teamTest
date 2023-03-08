@@ -48,6 +48,7 @@
                     <div>
                         <span class="material-symbols-outlined check-circle">check_circle</span>
                         <input type="text" name="userEmail" id="userEmail" placeholder="이메일 주소" class="input-form">
+                        <button type="button" name="emailCheck" id="emailCheck" class="btn bc6 email-btn">이메일 인증</button>
                         <span class="reg-msg"></span>
                     </div>
 	            </div>
