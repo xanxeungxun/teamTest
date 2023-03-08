@@ -3,6 +3,7 @@ package com.iei.user.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.iei.cal.model.vo.CalCheck;
 import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.dao.UserDao;
 import com.iei.user.model.vo.User;
@@ -109,19 +110,26 @@ public class UserService {
 
 	public int updateUserCheckPoint(String userId, int userPoint, int userNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.updateUserCheckPoint(conn, userId, userPoint);
-		if(result > 0) {
-			JDBCTemplate.commit(conn);
-			result = dao.insertCalCheck(conn, userNo);
+		
+		int result = dao.selectCheck(conn, userNo);
+		if(result == 0) {			
+			result = dao.updateUserCheckPoint(conn, userId, userPoint);
 			if(result > 0) {
-				JDBCTemplate.commit(conn);
+				result = dao.insertCalCheck(conn, userNo);
+				if(result > 0) {
+					JDBCTemplate.commit(conn);
+				}else {
+					JDBCTemplate.rollback(conn);
+				}
 			}else {
 				JDBCTemplate.rollback(conn);
 			}
 		}else {
-			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return -1;
 		}
 		JDBCTemplate.close(conn);
+
 		return result;
 	}
 

@@ -40,16 +40,21 @@ public class CalEventServlet extends HttpServlet {
 		int userPoint = Integer.parseInt(request.getParameter("userPoint"));
 		String userId = request.getParameter("userId");
 		
-		User u = new User();
-		u.setUserPoint(userPoint+50);
+		
 		//3. 비즈니스로직
 		UserService service = new UserService();
 		int result = service.updateUserCheckPoint(userId, userPoint, userNo);
 		//4. 결과처리
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			User userSession = (User)session.getAttribute("loginUser");
+			userSession.setUserPoint(userPoint+50);
+		}else {
+			HttpSession session = request.getSession();
+			User userSession = (User)session.getAttribute("loginUser");
+			userSession.setUserPoint(userPoint);
+		}
 		
-		HttpSession session = request.getSession();
-		User userSession = (User)session.getAttribute("loginUser");
-		userSession.setUserPoint(userPoint+50);
 		
 		
 		
