@@ -43,18 +43,16 @@ public class EmailCheckServlet extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		
 		if(email == null) {
-			//비번 찾기 실패
-			request.setAttribute("title", "메일을 전송하지 못했습니다.");
-			request.setAttribute("msg", "이메일 주소를 다시 입력해주세요.");
-			request.setAttribute("icon", "warning");
-			request.setAttribute("loc", "/searchPwFrm.do");
+			request.setAttribute("title", "인증번호 전송 성공");
+			request.setAttribute("msg", "회원님의 인증번호가 전송되었습니다.");
+			request.setAttribute("icon", "success");
+			request.setAttribute("loc", "/joinFrm.do");
 			
 		} else {
-			//비번 찾기 성공
-			request.setAttribute("title", "이메일이 성공적으로 전송되었습니다.");
-			request.setAttribute("msg", "이메일을 확인해주세요.");
-			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/");
+			request.setAttribute("title", "인증번호 전송 실패");
+			request.setAttribute("msg", "회원님의 인증번호 전송이 실패되었습니다.");
+			request.setAttribute("icon", "wraning");
+			request.setAttribute("loc", "/joinFrm.do");
 			
 		}
 		

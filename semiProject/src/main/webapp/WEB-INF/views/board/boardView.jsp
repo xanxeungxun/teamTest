@@ -293,7 +293,7 @@
 			const boardNoInput = $("<input type='text' name='boardNo'>");
 			boardNoInput.val(boardNo);
 			//3. textarea
-			const boardCommentContent = $(".hide-textarea").clone();
+			const boardCommentContent = $(obj).parents("li").eq(0).find("textarea").clone();
 			//4. form태그에 input, textarea를 모두 포함
 			form.append(boardCommentNoInput).append(boardNoInput).append(boardCommentContent);
 			//5. 생성된 form태그를 body태그에 추가

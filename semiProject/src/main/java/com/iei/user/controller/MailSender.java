@@ -130,7 +130,7 @@ public class MailSender {
 		Session session = Session.getDefaultInstance(prop,
 				new Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						PasswordAuthentication pa = new PasswordAuthentication("eunahchung0417","lqpq urpr jwcg jsem");
+						PasswordAuthentication pa = new PasswordAuthentication("khsp1989","ictvttehzrduhwbf");
 						
 						return pa;
 					}
@@ -175,13 +175,13 @@ public class MailSender {
 		UserService service = new UserService();
 		String sameEmail = service.selectEmail(inputEmail);
 		
-		if(sameEmail != null) {
+		if(sameEmail == null) {
 			try {
 				//이메일 작성
 				msg.setSentDate(new Date());
 				
 				//보내는 사람 정보 설정
-				msg.setFrom(new InternetAddress("eunahchung0417@gmail.com","Every Universe"));
+				msg.setFrom(new InternetAddress("khsp1989@gmail.com","Every Universe"));
 				
 				//받는 사람 정보
 				InternetAddress to = new InternetAddress(inputEmail);
@@ -231,7 +231,7 @@ public class MailSender {
 
 		
 		if(result) {
-			return sameEmail; //뭘 리턴해줘야하지?
+			return sb.toString(); //뭘 리턴해줘야하지?
 		} else {
 			return null;
 		}
