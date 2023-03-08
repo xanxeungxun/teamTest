@@ -113,16 +113,16 @@
                 	<%for(int i=0; i<supList.size(); i++) { %>
                 		<%SupportBook sb = supList.get(i); %>
 	                    <div class="book-box">
-	                        <div style="background-image: url(/upload/cover-image/<%=sb.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></div>
+	                        <a href="/storyList.do?bookNo=<%=sb.getBookNo() %>" style="background-image: url(/upload/cover-image/<%=sb.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></a>
 	                        <div class="book-info">
 	                            <div class="book-info-head">
-	                                <div class="book-title"><%=sb.getBookTitle() %></div>
+	                                <a href="/storyList.do?bookNo=<%=sb.getBookNo() %>" class="book-title"><%=sb.getBookTitle() %></a>
 	                            </div>
 	                            <div class=box>
 		                            <div class="genre"><%=sb.getGenreName() %></div>
 		                            <div class="writer-wrap">
 		                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
-		                                <div class="writer"><%=sb.getBookWriter() %></div>
+		                                <div class="writer"><%=sb.getUserNick() %></div>
 		                            </div>
 		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=sb.getBookDate() %></span></div>
 		                            <div>

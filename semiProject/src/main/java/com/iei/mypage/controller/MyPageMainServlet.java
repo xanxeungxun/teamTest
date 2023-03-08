@@ -43,9 +43,25 @@ public class MyPageMainServlet extends HttpServlet {
 		User u = service.selectOneUser(userId);
 		
 		//4. 페이지 이동
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageMain.jsp");
-		request.setAttribute("u", u);
-		view.forward(request, response);
+		if(u != null) {
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/myPageMain.jsp");
+			request.setAttribute("u", u);
+			
+			view.forward(request, response);
+			
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+			
+			request.setAttribute("title", "접근 제한");
+			request.setAttribute("msg", "로그인한 회원만 마이페이지를 조회할 수 있습니다.");
+			request.setAttribute("icon", "info");
+			request.setAttribute("loc", "/");
+			
+			view.forward(request, response);
+			
+			return;
+		}
+
 	}
 
 	/**
