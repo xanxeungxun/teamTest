@@ -12,16 +12,11 @@ public class FavoriteBook {
 	private String bookWriter;
 	private String coverPath;
 	private String bookDate;
+	private String userNick;
 	
 	
-	public FavoriteBook() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-
 	public FavoriteBook(int favBookNo, int bookNo, int userNo, int genreCode, String genreName, String bookTitle,
-			String bookWriter, String coverPath, String bookDate) {
+			String bookWriter, String coverPath, String bookDate, String userNick) {
 		super();
 		this.favBookNo = favBookNo;
 		this.bookNo = bookNo;
@@ -32,6 +27,23 @@ public class FavoriteBook {
 		this.bookWriter = bookWriter;
 		this.coverPath = coverPath;
 		this.bookDate = bookDate;
+		this.userNick = userNick;
+	}
+
+
+	public FavoriteBook() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public String getUserNick() {
+		return userNick;
+	}
+
+
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
 	}
 
 

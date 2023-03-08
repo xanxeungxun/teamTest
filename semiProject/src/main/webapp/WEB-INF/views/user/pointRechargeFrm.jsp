@@ -73,14 +73,16 @@
     .recharge-wrap>table .my-point-td{
         border: none;
     }
-    .my-point{
+    .recharge-wrap>table td>.my-point{
         text-align: center;
         height: 80px;
         line-height: 80px;
+        color: #3a4f7a;
     }
     .my-point-num{
         font-family: ns-m;
         margin-left: 5px;
+        color: #fea1bf;
     }
     .border-round-start{
         border-top-left-radius: 4px;
@@ -207,7 +209,7 @@
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
     <script>
         $(".tbl td>label").click(function(){
-	    	//포인트 클릭하면 배경색 변환
+	    	//충전할 포인트 클릭하면 배경색 변환
             $(".tbl td>label").removeClass("active-label");
             $(this).addClass("active-label");
             
@@ -230,8 +232,6 @@
 			const price = Number($(".payment-money-num").text());
 			const currentUserPoint = <%=loginUser.getUserPoint()%>;
 			const myPointPlusPrice = price + currentUserPoint;
-			
-			console.log(myPointPlusPrice);
 			
 			const d = new Date();
 			//문자열 덧셈을 위해 "" 빈 문자열 추가
