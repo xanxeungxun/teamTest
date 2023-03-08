@@ -50,12 +50,10 @@ public class ReportWriteServlet extends HttpServlet {
 				
 				// 받아와서 넣어줄 객체값 추출
 				
-				int bookNo = Integer.getInteger(mRequest.getParameter("bookNo"));
-				//신고 게시물 번호 (소설게시판)
-				
-				//int reportNo = Integer.getInteger(mRequest.getParameter("reportNo"));
-				//신고번호
-				
+				/*신고게시물*/String bobTitle = mRequest.getParameter("bobTitle");
+				/*신고게시물*/int bobNo = Integer.getInteger(mRequest.getParameter("bobNo"));
+				/*신고게시물*/String bobType = mRequest.getParameter("bobType");
+				//신고 게시물 제목 (소설게시판/자유게시판)
 				
 				String reportTitle = mRequest.getParameter("reportTitle");
 				//제목
@@ -72,9 +70,13 @@ public class ReportWriteServlet extends HttpServlet {
 				String filePath = mRequest.getFilesystemName("upfile");
 				//실제 서버에 업로드된 파일 이름(중복처리 후 파일명)
 				ReportVo r = new ReportVo();
+				r.setBobTitle(bobTitle);
+				r.setBobNo(bobNo);
+				r.setBobType(bobType);
 				r.setReporterId(reporterId);
 				r.setReportTitle(reportTitle);
 				r.setReportContent(reportContent);
+				r.setReportType(reportType);
 				r.setFileName(fileName);
 				r.setFilePatch(filePath);
 				//3 비즈니스 로직
@@ -95,7 +97,7 @@ public class ReportWriteServlet extends HttpServlet {
 					request.setAttribute("icon", "error");
 				}
 				//보내줄 경로 위치
-				request.setAttribute("loc", "/noticeList.do?reqPage=1");
+				request.setAttribute("loc", "/report/reportList.do?reqPage=1");
 				view.forward(request, response);
 			}
 			protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

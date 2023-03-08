@@ -20,6 +20,13 @@ public class BookListData {
 		this.pageNavi = pageNavi;
 		this.start = start;
 	}
+	
+
+	public BookListData(ArrayList<Book> bookList, int start) {
+		super();
+		this.bookList = bookList;
+		this.start = start;
+	}
 
 	public ArrayList<Book> getBookList() {
 		return bookList;

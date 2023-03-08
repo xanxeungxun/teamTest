@@ -7,12 +7,17 @@ public class ReportVo {
 	private String reportContent;  //신고내용
 	private int reportType;  //신고 종류
 	private String reportDate; //신고 일자
-	private String bookNo;  // 신고 게시물 (소설게시판) - (게시물신고)
-	private String boardNo; // 신고 게시물 (자유게시판) - (게시물신고)
+	private	String bobType; //신고 게시판 명
+	private int bobNo;	//신고 게시물 넘버
+	private String bobTitle; //신고 게시물 타이틀
 	private String fileName; //보여질 파일 이름
 	private String filePatch; //저장될 파일 이름
+	public ReportVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public ReportVo(int reportNo, String reporterId, String reportTitle, String reportContent, int reportType,
-			String reportDate, String bookNo, String boardNo, String fileName, String filePatch) {
+			String reportDate, String bobType, int bobNo, String bobTitle, String fileName, String filePatch) {
 		super();
 		this.reportNo = reportNo;
 		this.reporterId = reporterId;
@@ -20,14 +25,11 @@ public class ReportVo {
 		this.reportContent = reportContent;
 		this.reportType = reportType;
 		this.reportDate = reportDate;
-		this.bookNo = bookNo;
-		this.boardNo = boardNo;
+		this.bobType = bobType;
+		this.bobNo = bobNo;
+		this.bobTitle = bobTitle;
 		this.fileName = fileName;
 		this.filePatch = filePatch;
-	}
-	public ReportVo() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 	public int getReportNo() {
 		return reportNo;
@@ -65,17 +67,23 @@ public class ReportVo {
 	public void setReportDate(String reportDate) {
 		this.reportDate = reportDate;
 	}
-	public String getBookNo() {
-		return bookNo;
+	public String getBobType() {
+		return bobType;
 	}
-	public void setBookNo(String bookNo) {
-		this.bookNo = bookNo;
+	public void setBobType(String bobType) {
+		this.bobType = bobType;
 	}
-	public String getBoardNo() {
-		return boardNo;
+	public int getBobNo() {
+		return bobNo;
 	}
-	public void setBoardNo(String boardNo) {
-		this.boardNo = boardNo;
+	public void setBobNo(int bobNo) {
+		this.bobNo = bobNo;
+	}
+	public String getBobTitle() {
+		return bobTitle;
+	}
+	public void setBobTitle(String bobTitle) {
+		this.bobTitle = bobTitle;
 	}
 	public String getFileName() {
 		return fileName;
@@ -93,10 +101,9 @@ public class ReportVo {
 	public String toString() {
 		return "ReportVo [reportNo=" + reportNo + ", reporterId=" + reporterId + ", reportTitle=" + reportTitle
 				+ ", reportContent=" + reportContent + ", reportType=" + reportType + ", reportDate=" + reportDate
-				+ ", bookNo=" + bookNo + ", boardNo=" + boardNo + ", fileName=" + fileName + ", filePatch=" + filePatch
-				+ "]";
+				+ ", bobType=" + bobType + ", bobNo=" + bobNo + ", bobTitle=" + bobTitle + ", fileName=" + fileName
+				+ ", filePatch=" + filePatch + "]";
 	}
-	
 	
 	
 	

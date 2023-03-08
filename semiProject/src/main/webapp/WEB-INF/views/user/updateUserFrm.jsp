@@ -70,6 +70,13 @@
     	font-family: ns-m;
     }
 
+	#previewImg{
+		width: 80px;
+		height: 80px;
+		border: 1px solid #EEEEEE;
+		border-radius: 4px;
+		margin-right: 10px;
+	}
     /*check-circle*/
     .update-input-wrap>div>div{
         position: relative;
@@ -120,13 +127,13 @@
 	                        <%if(loginUser.getUserPic()==null){ %>
 		                        <div class="material-icons no-profilePic">account_circle</div>
 	                        <%} else { %>
-	                        	<div style="background-image: url(/upload/profile/<%=loginUser.getUserPic()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="previewImg" class="book-img"></div>
-	                            <%--<img src="/upload/profile/<%=loginUser.getUserPic()%>" id="previewImg" style="width:80px; height:80px"> --%>
+	                        	<%-- <div style="background-image: url(/upload/profile/<%=loginUser.getUserPic()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="previewImg" class="book-img"></div>--%>
+	                            <img src="/upload/profile/<%=loginUser.getUserPic()%>" id="previewImg">
 	                        <%} %>
 	                        <div class="profile-file">
 	                            <div class="upfile-name input-form">파일을 선택해주세요</div>
 	                            <label for="profile-upfile" class="btn bc6 upfile">파일 선택</label>
-	                            <input type="file" name="profile-upfile" id="profile-upfile" class="upload-hidden" accept="image/*" style="display:none">
+	                            <input type="file" name="profile-upfile" id="profile-upfile" class="upload-hidden" accept=".jap,.png,.jpeg" style="display:none" onchange="loadImg(this);">
 	                        </div>
 	                    </div>
 	                </div> 
@@ -199,6 +206,36 @@
 	<%@include file="/WEB-INF/views/common/footer.jsp" %>
 	<script>
 		/*1. 프로필 이미지 업로드*/
+		//파일 용량 10MB 제한
+		function validFileSize(file){
+		    if(file.size > 10000000){ //10MB
+		        return false;
+		    }else{
+		        return true;
+		    }
+		}
+	
+		//이미지 띄우기
+		function loadImg(f){
+			//첨부파일이 여러개일 수 있어서 항상 배열로 처리
+			//console.log(f.files); //우리가 첨부한 파일 볼 수 있음
+			
+			//파일 개수가 0개가 아니고 && 첫번째파일이 정상파일이면
+			if(f.files.length != 0 && f.files[0] != 0){
+				const reader = new FileReader(); //파일정보를 얻어올 수 있는 객체
+				
+				//선택한 파일 정보를 읽어옴
+				reader.readAsDataURL(f.files[0]);
+				
+				//파일리더가 정보를 다 읽어오면 동작할 함수
+				reader.onload = function(e){ //e : 읽어온 결과가 있음
+					$("#previewImg").attr("src",e.target.result);
+				}
+			} else { //이미지 선택 취소한 경우
+				$("#previewImg").attr("src",""); //src 속성값 비움
+			}
+		}
+		
 		$(document).ready(function(){
 		    //파일첨부 이벤트
 		    $('.profile-file>.upload-hidden').on('change', function(){  	
@@ -217,28 +254,6 @@
 		        }
 		    });
 		});
-	
-		//파일 용량 10MB 제한
-		function validFileSize(file){
-		    if(file.size > 10000000){ //10MB
-		        return false;
-		    }else{
-		        return true;
-		    }
-		}
-	
-		//이미지 띄우기
-		function readImage(input) {
-		    if(input.files && input.files[0]) {
-		        const reader = new FileReader();
-		        reader.onload = function(e){
-		            const previewImage = document.getElementById("previewImg");
-		            previewImage.src = e.target.result;
-		        }
-		        // reader가 이미지 읽도록 하기
-		        reader.readAsDataURL(input.files[0]);
-		    }
-		}
 	
 		/*2. 닉네임, 전화번호, 이메일 정규표현식*/
 		//true일 때 CSS
