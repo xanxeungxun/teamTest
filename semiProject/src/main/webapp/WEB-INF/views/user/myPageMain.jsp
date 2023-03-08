@@ -114,7 +114,7 @@
 					<%if(loginUser.getUserPic()==null){ %>
 						<div class="material-icons">account_circle</div>
 					<%} else { %>
-						<div style="background-image: url(/upload/profile/<%=loginUser.getUserPic()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="previewImg" class="book-img"></div>
+						<div style="background-image: url(/upload/profile/<%=loginUser.getUserPic()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
 					<%} %>
 				</div>
 				<div class="mypage-info">
