@@ -204,6 +204,89 @@ $("[name=userEmail]").on("change",function(){
     }
 });
 
+//6-2. 이메일 인증
+let mailCode;
+
+$("#emailCheck").on("click",function(){
+	const userEmail = $("#userEmail").val();
+	$.ajax({
+		url : "/emailCheck.do",
+		data : {userEmail : userEmail},
+		type : "post",
+		success : function(data) {
+			//console.log(data); ... 배포하기 전엔 console.log() 숨겨야함
+			if(data == "null") {
+				alert("이메일 주소를 확인해주세요.");
+			} else {
+				mailCode = data; //정상적으로 데이터를 보내면 data를 mailCode에 대입
+				$("#auth").slideDown();
+				authTime();
+			}
+		},
+		error : function() {
+			console.log("에러 발생");
+		}
+	});
+});
+
+let intervalId;
+function authTime(){
+	$("#timeZone").html("<span id='min'>3</span> : <span id='sec'>00</span>");
+	intervalId = window.setInterval(function(){
+		timeCount();
+	},1000); //1초마다
+}
+
+function timeCount(){
+	const min = $("#min").text();
+	const sec = $("#sec").text();
+	if(sec == "00") {
+		if(min != "0"){
+			const newMin = Number(min) - 1;
+			$("#min").text(newMin);
+			$("#sec").text(59);
+		} else {
+			//끝난 시점
+			window.clearInterval(intervalId);
+			mailCode = null;
+			
+			//시간 만료되면 메세지 뜸
+			$("#authMsg").text("인증시간 만료");
+			$("#authcMsg").css("color","red");
+		}
+		
+	} else {
+		const newSec = Number(sec) - 1;
+		if(newSec < 10) {
+			$("#sec").text("0"+newSec); //09, 08, 07 ...
+		} else {
+			$("#sec").text(newSec);
+		}
+	}
+}
+
+$("#authBtn").on("click",function(){
+	if(mailCode == null) {
+		$("#authMsg").text("인증시간 만료");
+		$("#authMsg").css("color","red");
+		
+	} else {
+		const authCode = $("#authCode").val();
+		if(authCode == mailCode){
+			$("#authCode").prop("readonly",true);
+			$("#authMsg").text("인증 완료");
+			$("#authMsg").css("color","blue");
+			
+			window.clearInterval(intervalId);//인증 완료되면 시간도 멈춤
+			
+		} else {
+			$("#authMsg").text("인증 실패");
+			$("#authMsg").css("color","red");
+		}
+	}
+	
+});
+
 //값들을 모두 입력해야함
 $("[type=submit]").on("click",function(event){
     if( !(result[0] && result[1] && result [2] && result [3] && result [4] && result [5]) ) {

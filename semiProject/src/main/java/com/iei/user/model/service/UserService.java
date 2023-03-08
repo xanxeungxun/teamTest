@@ -184,6 +184,17 @@ public class UserService {
 	}
 
 
+	public String selectEmail(String inputEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		String sameEmail = dao.selectEmail(conn, inputEmail);
+		
+		JDBCTemplate.close(conn);
+		
+		return sameEmail;
+	}
+
+
 
 
 
