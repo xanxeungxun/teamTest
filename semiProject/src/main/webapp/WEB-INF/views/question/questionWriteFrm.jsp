@@ -34,7 +34,11 @@ $(document).ready(function(){
 </script>
 <%@include file="/WEB-INF/views/common/header.jsp"%>
 		<div class="page-content">
+		<br><br>
 			<div class="page-title">문의 게시글 작성</div>
+			<br>
+			<hr>
+			<br><br>
 			<form action="/questionWrite.do" method="post">
 				<table class="tbl" id="questionWrite">
 					<tr class="tr-1">
@@ -68,7 +72,7 @@ $(document).ready(function(){
 					</tr>
 					<tr class="tr-1">
 						<td colspan="4" style="text-align:left;">
-							<textarea id="questionContent" name="questionContent" class="input-form"></textarea>
+							<textarea id="questionContent" name="questionContent" class="input-form" style="height:600px;"></textarea>
 						</td>
 					</tr>
 					<tr class="tr-1">

@@ -63,8 +63,9 @@ font-size:14px;
 						<td class="bookListManage-td"><%=i+start %></td>
 						<td class="bookListManage-td"><%=q.getBookNo() %></td>
 						<td class="bookListManage-td"><%=q.getGenreName() %>
-						<td class="bookListManage-td"><a
-							href="/bookView.do?bookNo=<%=q.getBookNo()%>"><%=q.getBookTitle()%></a></td>
+						<td class="bookListManage-td">
+						<a href="/storyList.do?bookNo=<%=q.getBookNo()%>">
+						<%=q.getBookTitle()%></a></td>
 						<td class="bookListManage-td"><%=q.getBookWriter() %></td>
 						<td class="bookListManage-td">
 						<%
@@ -102,6 +103,7 @@ font-size:14px;
 		//무조건 서블릿으로 보내야 한다
 		
 	});
+	
 
 </script>
 </body>
