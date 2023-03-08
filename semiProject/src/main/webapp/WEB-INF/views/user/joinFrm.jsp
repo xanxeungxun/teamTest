@@ -48,7 +48,14 @@
                     <div>
                         <span class="material-symbols-outlined check-circle">check_circle</span>
                         <input type="text" name="userEmail" id="userEmail" placeholder="이메일 주소" class="input-form">
+                        <button type="button" name="emailCheck" id="emailCheck" class="btn bc6 email-btn">이메일 인증</button>
                         <span class="reg-msg"></span>
+                        <div id="auth" style="display:none;">
+							<input type="text" id="authCode" placeholder="인증번호입력">
+							<button class="btn bc1" id="authBtn">인증하기</button>
+							<span id="timeZone"></span>
+							<span id="authMsg"></span>
+						</div>
                     </div>
 	            </div>
 	            <div class="join-agree-wrap">

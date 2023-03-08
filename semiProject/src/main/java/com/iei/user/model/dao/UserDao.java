@@ -435,6 +435,33 @@ public class UserDao {
 		
 	}
 
+	public String selectEmail(Connection conn, String inputEmail) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sameEmail = null;
+		
+		String query = "select user_email from user_tbl";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				sameEmail = rset.getString("user_email");
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return sameEmail;
+	}
+
 	
 
 }
