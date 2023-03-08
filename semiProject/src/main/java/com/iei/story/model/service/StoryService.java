@@ -26,7 +26,16 @@ public class StoryService {
 	public Story selectOneStory(int storyNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		Story s = dao.selectOneStory(conn,storyNo);
+		int result = dao.plusView(conn,storyNo);
+		
+		Story s = null;
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+			s = dao.selectOneStory(conn,storyNo);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
 		
 		JDBCTemplate.close(conn);
 		return s;

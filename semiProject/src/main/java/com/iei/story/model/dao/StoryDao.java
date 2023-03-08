@@ -253,6 +253,25 @@ public class StoryDao {
 		return storyNo;
 	}
 
+	public int plusView(Connection conn, int storyNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query="update story set read_count = read_count+1 where story_no =?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, storyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
 	
 }
