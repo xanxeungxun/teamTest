@@ -55,10 +55,10 @@
                 </div>
 				
 			</div>
-			<div class="header-bottom">
+			<div style="margin:0 auto;" class="header-bottom">
 				<div class="menu-wrap">
 					<div class="top-menu">
-						<ul>
+						<ul style="margin:0 auto;">
 							<li class="top-menu-button">
 								<a href="/bookWriteFrm.do">
 									<span class="material-symbols-outlined write-icon">drive_file_rename_outline</span>
