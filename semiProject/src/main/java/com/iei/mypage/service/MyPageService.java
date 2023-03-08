@@ -41,6 +41,14 @@ public class MyPageService {
 		
 		ArrayList<FavoriteBook> favList = dao.selectFavList(conn, userNo, start, end);
 		
+		//recv_user_nick 조회
+		for(FavoriteBook fb : favList) {
+			String writerUserId = fb.getBookWriter();
+			String writerUserNick = dao.selectUserNick(conn, writerUserId);
+			
+			fb.setUserNick(writerUserNick);
+		}
+		
 		/*<페이징 제작 시작>*/
 		/*한페이지당 게시물 수 : 10
 		총 게시물 수 : 222
@@ -166,7 +174,7 @@ public class MyPageService {
 		//recv_user_nick 조회
 		for(SupportBook sb : supList) {
 			String recvUserId = sb.getBookWriter();
-			String recvUserNick = dao.selectRecvUserNick(conn, recvUserId);
+			String recvUserNick = dao.selectUserNick(conn, recvUserId);
 			
 			sb.setRecvUserNick(recvUserNick);
 		}
