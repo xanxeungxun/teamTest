@@ -135,7 +135,7 @@ public class StoryDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<StoryComment> StoryComment = new ArrayList<StoryComment>();
-		String query = "select * from Story_Comment where story_no=? ";
+		String query = "select * from Story_Comment where story_no=? order by 1 desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -157,7 +157,8 @@ public class StoryDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {	JDBCTemplate.close(rset);
+		}finally {	
+			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
 		
@@ -187,6 +188,69 @@ public class StoryDao {
 		}
 		
 		return checkLike;
+	}
+
+	public int updateStoryComment(Connection conn, int storyCommentNo,int storyNo, int bookNo, String storyCommentContent) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update story_comment set story_comment_content = ? where story_comment_no =?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, storyCommentContent);
+			pstmt.setInt(2, storyCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+				
+		return result;
+	}
+
+	public int deleteStoryComment(Connection conn, int storyCommentNo, int storyNo, int bookNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from story_comment where story_comment_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, storyCommentNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+				
+		return result;
+	}
+
+	public int selectFirstStory(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int storyNo = 0;
+		String query = "select min(story_no)as story_No from story where book_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				storyNo = rset.getInt("story_no");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return storyNo;
 	}
 
 	

@@ -112,6 +112,42 @@ public class StoryService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
+
+	public int updateStoryComment(int storyCommentNo, int storyNo, int bookNo, String storyCommentContent) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.updateStoryComment(conn, storyCommentNo,storyNo,bookNo, storyCommentContent);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int deleteStoryComment(int storyNo, int bookNo, int storyCommentNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.deleteStoryComment(conn, storyCommentNo,storyNo,bookNo);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public int selectFirstStory(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int storyNo = dao.selectFirstStory(conn,bookNo);
+		
+		JDBCTemplate.close(conn);
+		return storyNo;
+	}
 	
 	
 	
