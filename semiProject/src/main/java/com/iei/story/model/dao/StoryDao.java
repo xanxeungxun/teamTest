@@ -91,6 +91,24 @@ public class StoryDao {
 		return result;
 	}
 
+	public int insertFavoriteBook(Connection conn, int bookNo, int userNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into favorite_book values(favorite_book_seq.nextval,?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			pstmt.setInt(2, userNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 	
 	
 }
