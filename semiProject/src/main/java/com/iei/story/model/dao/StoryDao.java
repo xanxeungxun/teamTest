@@ -162,6 +162,7 @@ public class StoryDao {
 		}
 		
 		return StoryComment;
+	}
 			
 	public int selectLikeBook(Connection conn, int bookNo, int userNo) {
 		PreparedStatement pstmt = null;
