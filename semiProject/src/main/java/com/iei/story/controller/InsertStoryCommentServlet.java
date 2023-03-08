@@ -1,29 +1,29 @@
 package com.iei.story.controller;
 
 import java.io.IOException;
+import java.security.Provider.Service;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import com.iei.story.model.service.StoryService;
-import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class LikeStoryServlet
+ * Servlet implementation class InsertStoryCommentServlet
  */
-@WebServlet(name = "LikeStory", urlPatterns = { "/likeStory.do" })
-public class LikeStoryServlet extends HttpServlet {
+@WebServlet(name = "InsertStoryComment", urlPatterns = { "/insertStoryComment.do" })
+public class InsertStoryCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LikeStoryServlet() {
+    public InsertStoryCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,27 +32,25 @@ public class LikeStoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//인코딩
 		request.setCharacterEncoding("utf-8");
 		
+		//값추출
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		
+		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
+		String userId = request.getParameter("userId");
+		String commentCnt = request.getParameter("commentCnt");
+
+		//비즈니스로직
 		StoryService service = new StoryService();
-		int result = service.insertFavoriteBook(bookNo, userNo);
+		int result = service.insertStoryComment(bookNo,storyNo,userId,commentCnt);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if(result > 0) {
-			request.setAttribute("title", "관심작품 등록");
-			request.setAttribute("msg", "관식작품으로 등록하셨습니다.");
-			request.setAttribute("icon", "success");
-		}else {
-			request.setAttribute("title", "등록실패");
-			request.setAttribute("msg", "이미 등록된 관심작품입니다.");
-			request.setAttribute("icon", "warning");
+		if(result>0) { //입력성공
+			
+		}else{ //입력실패
+			
 		}
-		request.setAttribute("loc", "/storyList.do?bookNo="+bookNo);
-		view.forward(request, response);
-		
+		//결과처리
 		
 	}
 

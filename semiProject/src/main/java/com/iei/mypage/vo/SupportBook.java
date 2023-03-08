@@ -13,10 +13,22 @@ public class SupportBook {
 	private String coverPath;
 	private String bookDate;
 	
-	private String userNick;
+	private String recvUserId;
+	private String recvUserNick;
 	
+	public String getRecvUserNick() {
+		return recvUserNick;
+	}
+
+
+	public void setRecvUserNick(String recvUserNick) {
+		this.recvUserNick = recvUserNick;
+	}
+
+
 	public SupportBook(int supportNo, int bookNo, int userNo, int totalSupportMoney, int genreCode, String genreName,
-			String bookTitle, String bookWriter, String coverPath, String bookDate, String userNick) {
+			String bookTitle, String bookWriter, String coverPath, String bookDate, String recvUserId,
+			String recvUserNick) {
 		super();
 		this.supportNo = supportNo;
 		this.bookNo = bookNo;
@@ -28,16 +40,20 @@ public class SupportBook {
 		this.bookWriter = bookWriter;
 		this.coverPath = coverPath;
 		this.bookDate = bookDate;
-		this.userNick = userNick;
+		this.recvUserId = recvUserId;
+		this.recvUserNick = recvUserNick;
 	}
 
-	public String getUserNick() {
-		return userNick;
+
+	public String getRecvUserId() {
+		return recvUserId;
 	}
 
-	public void setUserNick(String userNick) {
-		this.userNick = userNick;
+
+	public void setRecvUserId(String recvUserId) {
+		this.recvUserId = recvUserId;
 	}
+
 
 	public SupportBook() {
 		super();

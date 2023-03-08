@@ -134,7 +134,8 @@
 		   			<tr class="tr-1">
 		   				<th>작가후기</th>
 		   				<td>
-		   					<textarea cols="30" rows="3" name="storyAfter" class="input-form"></textarea>
+		   					<textarea cols="30" rows="3" name="storyAfter" class="input-form" placeholder="소설 작성 후기를 작성해주세요.(최대 2000Byte)"></textarea>
+		   					<span id="afterChk" style="font-size:14px; color:red; display:none; text-align: left;">*작가 후기가 2000Byte를 초과해 등록할 수 없습니다.</span>
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
@@ -142,7 +143,7 @@
 		   					<button type="button" id="backFrmBtn" onclick="backFrm()" class="btn" style="cursor: pointer;margin-top: 30px;">이전</button>
 		   				</td>
 		   				<td style="text-align: right;">
-		   					<button id="submit" class="btn bc4" style="margin-top: 30px;">첫 작품 등록하기</button>
+		   					<button class="btn bc4" style="margin-top: 30px;">첫 작품 등록하기</button>
 		   				</td>
 		   			</tr>
 		   		</table>
@@ -183,35 +184,57 @@
 		if(titleByte>300){
 			$(this).css("border","1px solid red")
 			$("#titleChk").css("display","block");
+			checkArr[1] = false;
 		}else{
 			$(this).css("border","1px solid #ccc")
 			$("#titleChk").css("display","none");
+			checkArr[1] = true;
 		}
 	})
-	
-	$("[name=storyName]").on("keyup",function(){
-		let storyTitleByte = byteCheck($(this));
-		if(storyTitleByte>300){
-			$(this).css("border","1px solid red")
-			$("#storyTitleChk").css("display","block");
-		}else{
-			$(this).css("border","1px solid #ccc")
-			$("#storyTitleChk").css("display","none");
-		}
-	})
-	
 	
 	$("[name=bookExp]").on("keyup",function(){
 		let expByte =byteCheck($(this));
 		if(expByte>2000){
 			$(this).css("border","1px solid red")
 			$("#expChk").css("display","block");
+			checkArr[2] = false;
 		}else{
 			$(this).css("border","1px solid #ccc")
 			$("#expChk").css("display","none");
+			checkArr[2] = true;
 		}
 	})
 	
+	
+	$("[name=storyName]").on("keyup",function(){
+		let storyTitleByte = byteCheck($(this));
+		if(storyTitleByte>300){
+			$(this).css("border","1px solid red")
+			$("#storyTitleChk").css("display","block");
+			checkArr[3] = false;
+		}else{
+			$(this).css("border","1px solid #ccc")
+			$("#storyTitleChk").css("display","none");
+			checkArr[3] = true;
+		}
+	})
+	
+	
+	
+	
+	
+	$("[name=storyAfter]").on("keyup",function(){
+		let afterByte =byteCheck($(this));
+		if(afterByte>2000){
+			$(this).css("border","1px solid red")
+			$("#afterChk").css("display","block");
+			checkArr[4] = false;
+		}else{
+			$(this).css("border","1px solid #ccc")
+			$("#afterChk").css("display","none");
+			checkArr[4] = true;
+		}
+	})
 	
 	
 	
@@ -231,6 +254,25 @@
 	    return codeByte;
 	}
 
+	let checkArr = [false,false,false,false];
+	
+	function reqCheck(){
+		
+		let check = false;
+		for(let i=0 ; i<checkArr.lengt ; i++){
+			if(checkArr[i] == true){
+				check = true;
+			}else if(checkArr[i] == false){
+				check = false;
+			}
+			
+			if(check == true){
+				alert("gg");
+			}
+		}
+		
+		
+	}
 
 </script>
 

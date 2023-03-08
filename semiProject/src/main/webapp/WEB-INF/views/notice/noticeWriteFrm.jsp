@@ -6,6 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/notice.css">
+<style>
+	.notice-tbl tr{
+		background-color: #eeeeee;
+	}
+	.notice-input{
+		border: 1px soild #ccc;
+	}
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
