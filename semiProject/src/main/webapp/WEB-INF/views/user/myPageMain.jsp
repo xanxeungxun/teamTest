@@ -22,6 +22,8 @@
 	box-shadow: 0 0 0 0.1rem #eee;
 	border-radius: 10px;
 	display: flex;
+	
+	position: relative;
 }
 
 .mypage-box>.profile>.material-icons {
@@ -74,10 +76,12 @@
 
 .logout-btn {
 	height: 55px;
-	margin-top: 80px;
+	position: absolute;
+	right: 40px;
+	bottom: 40px;
 }
 
-.myPoint {
+.mypage-main-wrap>div>.myPoint {
 	display: block;
 	height: 50px;
 	text-align: center;
@@ -85,6 +89,7 @@
 	margin: 10px 0px 10px 0px;
 	border-radius: 4px;
 	box-shadow: 0 0 0 0.1rem #eee;
+	cursor: default;
 }
 
 .myPoint-num {
@@ -120,8 +125,8 @@
 					<div class="line"></div>
 					<div class="link">
 						<div>
-							<div class="material-symbols-outlined">calendar_month</div>
-							<a href="#" class="message">출석체크</a>
+							<div class="material-symbols-outlined icon">calendar_month</div>
+							<a href="/cal.do" class="cal">출석체크</a>
 						</div>
 						<div>
 							<div class="material-symbols-outlined icon">savings</div>
@@ -133,7 +138,7 @@
 			</div>
 			<div>
 				<div class="myPoint bc4">
-					나의 포인트 : <span class="myPoint-num"><%=user.getUserPoint() %></span> P</a>
+					나의 포인트 : <span class="myPoint-num"><%=user.getUserPoint() %></span> P
 				</div>
 			</div>
 		</div>
