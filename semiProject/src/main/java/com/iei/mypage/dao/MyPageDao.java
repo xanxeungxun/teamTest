@@ -157,7 +157,7 @@ public class MyPageDao {
 		
 		ArrayList<SupportBook> supList = new ArrayList<>();
 		
-		String query = "select * from (select rownum as rnum, sb.* from (select support_no, book_no, total_support_money, genre_code, genre_name, book_title, book_writer, coverpath, book_date, user_nick from support_book join book using(book_no) join genre using(genre_code) join user_tbl using(user_no) where user_no=? order by 1 desc) sb) where rnum between ? and ?";
+		String query = "select * from (select rownum as rnum, sb.* from (select support_no, book_no, total_support_money, recv_user_id, genre_code, genre_name, book_title, book_writer, coverpath, book_date from support_book join book using(book_no) join genre using(genre_code) join user_tbl using(user_no) where user_no=? order by 1 desc) sb) where rnum between ? and ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -173,13 +173,13 @@ public class MyPageDao {
 				sb.setSupportNo(rset.getInt("support_no"));
 				sb.setBookNo(rset.getInt("book_no"));
 				sb.setGenreCode(rset.getInt("genre_code"));
+				sb.setRecvUserId(rset.getString("recv_user_id"));
 				sb.setGenreName(rset.getString("genre_name"));
 				sb.setBookTitle(rset.getString("book_title"));
 				sb.setBookWriter(rset.getString("book_writer"));
 				sb.setCoverPath(rset.getString("coverpath"));
 				sb.setBookDate(rset.getString("book_date"));
 				sb.setTotalSupportMoney(rset.getInt("total_support_money"));
-				sb.setUserNick(rset.getString("user_nick"));
 				
 				supList.add(sb);
 			}
