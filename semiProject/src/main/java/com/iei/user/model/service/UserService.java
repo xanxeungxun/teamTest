@@ -141,7 +141,7 @@ public class UserService {
 			result = dao.updateWriterPoint(conn, bookWriter, inputPoint);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
-				result = dao.insertSupportBook(conn, inputPoint, userNo, bookNo);
+				result = dao.insertSupportBook(conn, inputPoint, userNo, bookNo, bookWriter);
 				if(result > 0) {
 					JDBCTemplate.commit(conn);
 				}else {
