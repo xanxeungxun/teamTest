@@ -1,12 +1,14 @@
 package com.iei.story.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import com.iei.book.model.dao.BookDao;
 import com.iei.book.model.vo.Book;
 import com.iei.story.model.dao.StoryDao;
 import com.iei.story.model.vo.Story;
+import com.iei.story.model.vo.StoryComment;
 
 import common.JDBCTemplate;
 
@@ -84,6 +86,14 @@ public class StoryService {
 		
 		JDBCTemplate.close(conn);
 		return result;
+	}
+
+	public ArrayList<StoryComment> selectAllComment(int storyNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<StoryComment> StoryComment = dao.selectAllComment(conn,storyNo);
+		
+		JDBCTemplate.close(conn);
+		return StoryComment;
 	}
 	
 	

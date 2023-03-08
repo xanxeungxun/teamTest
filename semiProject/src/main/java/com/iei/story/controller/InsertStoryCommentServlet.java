@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.iei.story.model.service.StoryService;
 
 /**
@@ -43,8 +45,13 @@ public class InsertStoryCommentServlet extends HttpServlet {
 		StoryService service = new StoryService();
 		int result = service.insertStoryComment(bookNo,storyNo,userId,commentCnt);
 		
-		
+		if(result>0) { //입력성공
+			
+		}else{ //입력실패
+			
+		}
 		//결과처리
+		
 	}
 
 	/**

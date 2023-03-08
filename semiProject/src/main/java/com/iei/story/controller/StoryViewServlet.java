@@ -1,6 +1,7 @@
 package com.iei.story.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.iei.book.model.vo.Book;
 import com.iei.story.model.service.StoryService;
 import com.iei.story.model.vo.Story;
+import com.iei.story.model.vo.StoryComment;
 
 /**
  * Servlet implementation class StoryViewServlet
@@ -43,10 +45,12 @@ public class StoryViewServlet extends HttpServlet {
 		StoryService service = new StoryService();
 		Book b = service.selectOneBook(bookNo);
 		Story s = service.selectOneStory(storyNo);
+		ArrayList<StoryComment> storyCommentList = service.selectAllComment(storyNo);
 		
 		//4결과처리
 		request.setAttribute("s", s);
 		request.setAttribute("b", b);
+		request.setAttribute("cl", storyCommentList);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyView.jsp");
 		view.forward(request, response);
 	}

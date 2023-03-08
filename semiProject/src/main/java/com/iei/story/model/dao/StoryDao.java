@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.iei.story.model.vo.Story;
+import com.iei.story.model.vo.StoryComment;
 
 import common.JDBCTemplate;
 
@@ -110,6 +112,41 @@ public class StoryDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
+	}
+
+	public ArrayList<StoryComment> selectAllComment(Connection conn, int storyNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<StoryComment> StoryComment = new ArrayList<StoryComment>();
+		String query = "select * from Story_Comment where story_no=? ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, storyNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				StoryComment c = new StoryComment();
+				c.setBookNo(rset.getInt("book_no"));
+				c.setCommentDate(rset.getString("story_comment_date"));
+				c.setStoryCommentContent(rset.getString("story_comment_content"));
+				c.setStoryCommentNo(rset.getInt("story_comment_no"));
+				c.setStoryCommentRef(rset.getInt("story_comment_ref"));
+				c.setStoryNo(rset.getInt("story_no"));
+				c.setUserId(rset.getString("user_id"));
+				
+				StoryComment.add(c);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return StoryComment;
 	}
 
 	

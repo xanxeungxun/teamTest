@@ -1,3 +1,5 @@
+<%@page import="com.iei.story.model.vo.StoryComment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.iei.book.model.vo.Book"%>
 <%@page import="com.iei.story.model.vo.Story"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +7,7 @@
     <%
     Book b = (Book)request.getAttribute("b");
     Story s = (Story)request.getAttribute("s");
+    ArrayList<StoryComment> cl = (ArrayList<StoryComment>)request.getAttribute("cl");
     %>
 <!DOCTYPE html>
 <html>
@@ -73,47 +76,47 @@
 		<div class="comment" style="width: 80%; margin: 0 auto;">
 		
 		<%if(loginUser != null) {%>
-			<div class="input-comment">
+			<div class="input-comment" style="display: flex;">
 				<span class="material-icons">account_box</span>
-				<form action="/insertStoryComment.do?bookNo=<%=b.getBookNo() %>&storyNo=<%=s.getStoryNo() %>" method="post" style="display: flex;">
-					<div style="width: 90%;">
-					<input type="hidden" name="userId" value="<%=loginUser.getUserId()%>">
-						<textarea name="commentCnt" class="input-form" style="min-height: 85px;"
-						placeholder="친절한 코멘트는 작가에게 큰 힘이 됩니다"></textarea>
-					</div>
-					<div style="width: 20%;">
-						<button class="btn bc4" style="width:100%; height: 100%; cursor: pointer;">등록</button>
-					</div>
-				</form>			
+				<div style="width: 90%;">
+				<input type="hidden" name="bookNo" value="<%=b.getBookNo()%>">
+				<input type="hidden" name="storyNo" value="<%=s.getStoryNo()%>">
+				<input type="hidden" name="userId" value="<%=loginUser.getUserId()%>">
+					<textarea name="commentCnt" class="input-form" style="min-height: 85px;"
+					placeholder="친절한 코멘트는 작가에게 큰 힘이 됩니다"></textarea>
+				</div>
+				<div style="width: 20%;">
+					<button id="cmtBtn" class="btn bc4" style="width:100%; height: 100%; cursor: pointer;">등록</button>
+				</div>
 			</div>
 		<%}%>
 			<div class="comment-list">
-				
-				<ul class="posting-comment">
-		                <li>
-		                  <span class="material-icons">account_circle</span>
-		                </li>
-		                <li>
-		                  <p class="comment-info">
-		                    <span style="font-size:16px;">작성자</span>
-		                    <span class="comment-link">
-		                    	<%if(loginUser != null && loginUser.getUserId().equals("댓글쓴이")){%>
-		                        <a href="javascript:void(0)" onclick="modifyComment(this,코멘트번호,보드번호)">수정</a>
-		                        <a type="button" href="javascript:void(0)" onclick="deleteComment(this,코멘트번호,보드번호)">삭제</a>
-		                        <%} %>
-		                    </span>
-		                  </p>
-		                  <p class="comment-date">
-		                      <span>작성날짜</span>
-		                  </p>
-		                  <p class="comment-content show-content" style="font-size:16px;">코멘트내용</p>
-		                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;">코멘트내용..?</textarea>
-		                  <%if(loginUser!=null) {%>
-		                  <a href="javascript:void(0)" class="recShow"><span class="material-symbols-outlined">sms</span></a>
-		                  <%} %>
-		                </li>
-		         </ul>
-		         
+				<%for(StoryComment c : cl){ %>
+					<ul class="posting-comment">
+			                <li>
+			                  <span class="material-icons">account_circle</span>
+			                </li>
+			                <li>
+			                  <p class="comment-info">
+			                    <span style="font-size:16px;"><%=c.getUserId() %></span>
+			                    <span class="comment-link">
+			                    <%	if(loginUser != null && loginUser.getUserId().equals(c.getUserId())){ %>
+			                        <a href="javascript:void(0)" onclick="modifyComment(this,코멘트번호,보드번호)">수정</a>
+			                        <a type="button" href="javascript:void(0)" onclick="deleteComment(this,코멘트번호,보드번호)">삭제</a>
+			                     <% } %> 
+			                    </span>
+			                  </p>
+			                  <p class="comment-date">
+			                      <span><%=c.getCommentDate()%></span>
+			                  </p>
+			                  <p class="comment-content show-content" style="font-size:16px;"><%=c.getStoryCommentContent()%></p>
+			                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;"><%=c.getStoryCommentContent()%></textarea>
+			                  <% if(loginUser!=null) { %>
+			                  	<a href="javascript:void(0)" class="recShow"><span class="material-symbols-outlined">sms</span></a>
+			                  <% } %>
+			                </li>
+		         	</ul>
+		         <%} %>
 		         
 		         <%if(loginUser != null) {%>
 						<div class="inputCommentBox inputRecommentBox">
@@ -166,6 +169,69 @@
 	
 	
 	<script>
+	
+	$("#cmtBtn").on("click",function(){
+		const bookNo = $("[name=bookNo]").val();
+		const storyNo = $("[name=storyNo]").val();
+		const commentCnt = $("[name=commentCnt]").val();
+		const userId = $("[name=userId]").val();
+		
+		const commentList = $(".comment-list");
+		$.ajax({
+			url : "/insertStoryComment.do",
+			type : "post",
+			data:{
+				bookNo : bookNo,
+				storyNo : storyNo,
+				commentCnt : commentCnt,
+				userId : userId
+			},
+			dataType: "JSON",
+			success: function(data){
+				if(data==null){
+					commentList.append("작성된 코멘트가 없습니다");
+				}else{
+					/*
+					<ul class="posting-comment">
+		                <li>
+		                  <span class="material-icons">account_circle</span>
+		                </li>
+		                <li>
+		                  <p class="comment-info">
+		                    <span style="font-size:16px;">작성자</span>
+		                    <span class="comment-link">
+		                    	if(loginUser != null && loginUser.getUserId().equals("댓글쓴이")){
+		                        <a href="javascript:void(0)" onclick="modifyComment(this,코멘트번호,보드번호)">수정</a>
+		                        <a type="button" href="javascript:void(0)" onclick="deleteComment(this,코멘트번호,보드번호)">삭제</a>
+		                        } 
+		                    </span>
+		                  </p>
+		                  <p class="comment-date">
+		                      <span>작성날짜</span>
+		                  </p>
+		                  <p class="comment-content show-content" style="font-size:16px;">코멘트내용</p>
+		                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;">코멘트내용..?</textarea>
+		                  if(loginUser!=null) {
+		                  <a href="javascript:void(0)" class="recShow"><span class="material-symbols-outlined">sms</span></a>
+		                  }
+		                </li>
+	         		</ul>
+					*/
+					
+				}
+			},
+			error: function(){
+				alert("시스템 오류. 관리자에게 문의하세요");
+			}
+			
+		})
+	})
+	
+	
+	
+	
+	
+	
 	
 	$(".recShow>span").on("click",function(){
 		const idx = $(".recShow>span").index(this);
