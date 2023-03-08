@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.iei.cal.model.vo.CalCheck;
 import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.vo.User;
 
@@ -355,7 +356,7 @@ public class UserDao {
 	public int insertCalCheck(Connection conn, int userNo) {
 		PreparedStatement pstmt = null;
 		int result1 = 0;
-		String query = "insert into cal_check values(cal_check_seq.nextval,sysdate,?)";
+		String query = "insert into cal_check values(cal_check_seq.nextval,to_char(sysdate,'YYYY-MM-DD'),?)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, userNo);
@@ -367,6 +368,26 @@ public class UserDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result1;
+	}
+
+	public int selectCheck(Connection conn, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int checkDay = 0;
+		String query = "select count(*) as cnt from cal_check where user_no=? and check_day = to_char(sysdate,'YYYY-MM-DD')";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				checkDay = rset.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return checkDay;
 	}
 
 	

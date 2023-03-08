@@ -7,26 +7,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.iei.cal.model.vo.Cal;
+import com.iei.cal.model.vo.CalCheck;
 
 import common.JDBCTemplate;
 
 public class CalDao {
 
-	public ArrayList<Cal> selectAllCalCheck(Connection conn) {
+	public ArrayList<CalCheck> selectAllCalCheck(Connection conn, int userNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		ArrayList<Cal> list = new ArrayList<Cal>();
-		String query = "select * from cal_check";
+		ArrayList<CalCheck> list = new ArrayList<CalCheck>();
+		String query = "select '출석체크' title,to_char(check_day,'YYYY-MM-DD') as start_date from cal_check where user_no=?";
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				Cal c = new Cal();
-				c.setCheckNo(rset.getInt("check_no"));
-				c.setCheckDay(rset.getString("check_day"));
-				c.setUserNo(rset.getInt("user_no"));
-				list.add(c);
-			}
+				CalCheck cc = new CalCheck();
+				cc.setStart(rset.getString("start_date"));
+				cc.setTitle(rset.getString("title"));
+				list.add(cc);
+;			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
