@@ -25,6 +25,32 @@ int start = (int)request.getAttribute("start");
 			<div class="question-header">
 				<span>문의사항</span>
 			</div>
+			<%-- 검색 폼 태그 시작 --%>
+			<form id="searchForm" action="/report/searchReportList.do">
+				<select id="searchType" class="select" name="searchType">
+				<%-- 검색 선택 구간 --%>
+					<option value="1" id="select1">종류</option>
+					<option value="2" id="select2">제목</option>
+					<option value="2" id="select2">작성자</option>
+				</select>
+				<input type="hidden" name="searchValue" id="hiddenSearchValue">
+			</form>
+			<input type="text" id="searchValue" class="select" onkeydown="javascript:if(event.keyCode==13) searchReport()">
+			<button onclick="searchReport()" class="select">검색</button>
+			<br><br><br>
+			<%-- 검색 폼 태그 종료 --%>
+			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
+			<script>
+				function searchReport(){
+					if($("#searchValue").val() == ""){
+						alert("검색어를 입력해 주세요.");
+						return;
+					}
+					$("#hiddenSearchValue").val($("#searchValue").val());
+					$("#searchForm").submit();
+				}
+			</script>
+			<%-- 검색 미 입력시 나올 alert 띄우기 종료 --%>
 			<table class="question-tbl">
 				<%
 				if (list.size() < 1) {
