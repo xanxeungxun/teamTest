@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.iei.board.model.vo.Board;
 import com.iei.bookListManage.model.vo.BookListManageVo;
 
 import common.JDBCTemplate;
@@ -158,6 +159,33 @@ public class BookListManageDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
+		return result;
+	}
+
+
+	public Board selectAllBoard(Connection conn, int boardNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Board result = null;
+		String query = "select board_no,board_title,board_writer from board where board_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				result = new Board();
+				result.setBoardNo(rset.getInt("board_no"));
+				result.setBoardTitle(rset.getString("board_title"));
+				result.setBoardWriter(rset.getString("board_writer"));
+			}
+			System.out.println(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
 		return result;
 	}
 

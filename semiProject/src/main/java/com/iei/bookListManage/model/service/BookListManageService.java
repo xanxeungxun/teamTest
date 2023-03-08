@@ -3,6 +3,7 @@ package com.iei.bookListManage.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.iei.board.model.vo.Board;
 import com.iei.bookListManage.model.dao.BookListManageDao;
 import com.iei.bookListManage.model.vo.BookListManagePageData;
 import com.iei.bookListManage.model.vo.BookListManageVo;
@@ -103,6 +104,14 @@ public class BookListManageService {
 	public BookListManageVo selectAllBook(int bookNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		BookListManageVo result = dao.selectAllBook(conn, bookNo);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+	public Board selectAllBoard(int boardNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		Board result = dao.selectAllBoard(conn, boardNo);
 		JDBCTemplate.close(conn);
 		return result;
 	}

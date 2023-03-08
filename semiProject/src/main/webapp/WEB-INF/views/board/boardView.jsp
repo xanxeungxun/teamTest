@@ -51,7 +51,13 @@
 	    border-radius: 4px;
 	    box-sizing: border-box;
 	}
-	
+	.book-img{
+        width: 80px;
+        height: 80px;
+        background-color: #fff;
+        border : 1px solid #EEEEEE;
+        border-radius: 60px;
+    }
 	
 	
 </style>
@@ -129,7 +135,11 @@
 				<%for(BoardComment bc : commentList) {%>
 		            <ul class="posting-comment">
 		                <li>
-		                  <span class="material-icons">account_circle</span>
+		                  	<%if(bc.getFilePath()==null){ %>
+								<div class="material-icons">account_circle</div>
+							<%} else { %>
+								<div style="background-image: url(/upload/profile/<%=bc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
+							<%} %>
 		                </li>
 		                <li>
 		                  <p class="comment-info">
@@ -145,10 +155,10 @@
 		                      <span><%=bc.getBoardCommentDate() %></span>
 		                  </p>
 		                  <p class="comment-content show-content"><%=bc.getBoardCommentContent() %></p>
-		                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;"><%=bc.getBoardCommentContent() %></textarea>
 		                  <%if(loginUser!=null) {%>
 		                  <a href="javascript:void(0)" class="recShow"><span class="material-symbols-outlined">sms</span></a>
 		                  <%} %>
+		                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;"><%=bc.getBoardCommentContent() %></textarea>
 		                </li>
 		              </ul>
 		              
@@ -156,10 +166,14 @@
 		             	<%if(bcc.getBoardCommentRef()==bc.getBoardCommentNo()) {%>
 		              <ul class="posting-comment reply">
 		                <li>
-		                  <span class="material-icons">account_circle</span>
+		                  	<%if(bcc.getFilePath()==null){ %>
+								<div class="material-icons">account_circle</div>
+							<%} else { %>
+								<div style="background-image: url(/upload/profile/<%=bcc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
+							<%} %>
 		                </li>
 		                <li>
-		                  <p class="comment-info">
+		                  	<p class="comment-info">
 		                      <span><%=bcc.getBoardCommnetWriter() %></span>
 		                      <span class="comment-link">
 		                      	  <%if(loginUser != null && loginUser.getUserId().equals(bcc.getBoardCommnetWriter())) {%>
@@ -229,9 +243,9 @@
 		
 		function modifyComment(obj, boardCommentNo, boardNo){
 			//숨겨놓은 textarea를 화면에 보여줌
-			$(".hide-textarea").show();
+			$(obj).parents("li").eq(0).find("textarea").show();
 			//화면에 있던 댓글내용(p태그)를 숨김
-			$("show-content").hide();
+			$(obj).parent().next().next().hide();
 			//수정 -> 수정완료
 			$(obj).text("수정완료");
 			$(obj).attr("onclick","modifyComplete(this,"+boardCommentNo+","+boardNo+")");

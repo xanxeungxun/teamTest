@@ -60,9 +60,9 @@ int start = (int)request.getAttribute("start");
 						<td class="report-td kk"style="font-size:14px;"><%=u.getReporterId() %></td>
 						<td class="report-td"style="font-size:14px;"><%=u.getReportTitle()%></td>
 						<td class="report-td"style="font-size:14px;">
-						<% if(u.getReportStyle() == 1 ){%>유저
-						<%}else if(u.getReportStyle() == 2 ){%>게시판
-						<%}else if(u.getReportStyle() == 3 ){%>소설<%} %></td>
+						<% if(u.getReportType() == 1 ){%>유저
+						<%}else if(u.getReportType() == 2 ){%>게시판
+						<%}else if(u.getReportType() == 3 ){%>소설<%} %></td>
 						<td class="report-td"style="font-size:14px;"><%=u.getReportDate() %>
 					<%
 					}

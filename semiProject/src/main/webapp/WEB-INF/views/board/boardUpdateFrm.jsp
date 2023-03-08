@@ -10,6 +10,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/board.css">
+<style>
+	.board-tbl tr{
+		background-color: #eeeeee;
+	}
+	.board-input{
+		border: 0.1px solid #ccc;
+	}
+	.note-editor.note-frame .note-editing-area .note-editable, .note-editor.note-airframe .note-editing-area .note-editable {
+	    padding: 10px;
+	    overflow: auto;
+	    word-wrap: break-word;
+	    background-color: #fff;
+	}
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>

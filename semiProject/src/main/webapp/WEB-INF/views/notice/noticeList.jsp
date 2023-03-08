@@ -30,11 +30,9 @@
 		font-size: 17px;
 		cursor: pointer;
 	}
-	.notice-tbl tr{
-		background-color: rgba(131, 115, 138, 0.1);
-	}
+	
 	.notice-tbl tr:hover{
-		background-color: rgba(78, 84, 94, 0.15);
+		background-color: #f8f8f8ee;
 	}
 </style>
 </head>
