@@ -16,6 +16,7 @@
 <style>
 	.title-span{
 		font-size: 17px;
+		cursor: pointer;
 	}
 	.board-td{
 		height: 80px;
@@ -36,6 +37,12 @@
 	}
 	.readCountSpan{
 		font-size: 13px;
+	}
+	.board-tbl tr{
+	    background-color: #ffe4ea;
+	}
+	.board-tbl tr:hover{
+        background-color: #ffd7e4;
 	}
 </style>
 </head>

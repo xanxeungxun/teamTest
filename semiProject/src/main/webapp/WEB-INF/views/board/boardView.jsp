@@ -37,6 +37,20 @@
 		float: right;
 		margin-right: 50px;
 	}
+	.textarea .input-from{
+		resize: none;
+	}
+	.input-form{
+	    width: 100%;
+	    height: 50px;
+	    display: block;
+	    padding: 0.8rem;
+	    background-color: #fff;
+	    outline: none;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	    box-sizing: border-box;
+	}
 	
 	
 	
@@ -101,7 +115,7 @@
 								<input type="hidden" name="boardCommentWriter" value="<%=loginUser.getUserId() %>">
 								<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>">
 								<input type="hidden" name="boardCommentRef" value="0">
-								<textarea name="boardCommentContent" class="input-form"></textarea>
+								<textarea name="boardCommentContent" class="input-form" placeholder="댓글을 입력해주세요"></textarea>
 							</li>
 							<li>
 								<button type="submit" class="btn bc1 bs2">등록</button>
@@ -179,10 +193,10 @@
 										<input type="hidden" name="boardCommentWriter" value="<%=loginUser.getUserId() %>"> 
 										<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>">
 										<input type="hidden" name="boardCommentRef" value="<%=bc.getBoardCommentNo() %>">
-										<textarea name="boardCommentContent" class="input-form"></textarea>
+										<textarea name="boardCommentContent" class="input-form" style="min-height: 85px;" placeholder="댓글을 입력해주세요"></textarea>
 									</li>
 									<li>
-										<button type="submit" class="btn bc1 bs4">등록</button>
+										<button type="submit" class="btn bc4" style="width:100%; height:100%; cursor: pointer;">등록</button>
 									</li>
 								</ul>
 							</form>
