@@ -388,5 +388,34 @@ public class MyPageDao {
 		
 		return result;
 	}
+
+	public String selectRecvUserNick(Connection conn, String recvUserId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String recvUserNick = null;
+		
+		String query = "select user_nick from user_tbl where user_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, recvUserId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				recvUserNick = rset.getString("user_nick");
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return recvUserNick;
+	}
 	
 }
