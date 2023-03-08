@@ -85,7 +85,7 @@ public class UserService {
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		} else {
-			JDBCTemplate.close(conn);
+			JDBCTemplate.rollback(conn);
 		}
 		
 		JDBCTemplate.close(conn);

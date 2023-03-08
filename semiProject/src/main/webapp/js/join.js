@@ -214,7 +214,7 @@ $("#emailCheck").on("click",function(){
 		data : {userEmail : userEmail},
 		type : "post",
 		success : function(data) {
-			//console.log(data); ... 배포하기 전엔 console.log() 숨겨야함
+			console.log(data); //... 배포하기 전엔 console.log() 숨겨야함
 			if(data == "null") {
 				alert("이메일 주소를 확인해주세요.");
 			} else {
