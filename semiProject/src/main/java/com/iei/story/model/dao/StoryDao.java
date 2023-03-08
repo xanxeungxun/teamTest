@@ -272,6 +272,30 @@ public class StoryDao {
 		return result;
 	}
 
+	public int updateStory(Connection conn, Story s) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update story set story_name=?, story_content=?, story_after=? where story_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, s.getStoryName());
+			pstmt.setString(2, s.getStoryContent());
+			pstmt.setString(3, s.getStoryAfter());
+			pstmt.setInt(4, s.getStoryNo());
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally { 
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 	
 	
 }

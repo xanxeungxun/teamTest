@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.story.model.service.StoryService;
+import com.iei.story.model.vo.Story;
+
 /**
  * Servlet implementation class StoryWriteFrmServlet
  */
@@ -32,10 +35,15 @@ public class StoryWriteFrmServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//2값추출
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
 		//3비즈니스로직
+		StoryService service = new StoryService();
+		Story story = service.selectOneStory(storyNo);
+		
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyWriteFrm.jsp");
 		request.setAttribute("bookNo", bookNo);
+		request.setAttribute("story", story);
 		view.forward(request, response);
 	}
 
