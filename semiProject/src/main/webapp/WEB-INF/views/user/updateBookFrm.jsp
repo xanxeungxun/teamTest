@@ -35,7 +35,7 @@
         border-radius: 4px;
         margin-right: 20px;
     }
-    .bold{
+    .book-info .bold{
         font-family: ns-m;
         margin-bottom: 10px;
     }

@@ -173,6 +173,17 @@ public class UserService {
 	}
 
 
+	public User selectOneUser(String userId) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		User user = dao.selectOneUser(conn, userId);
+		
+		JDBCTemplate.close(conn);
+		
+		return user;
+	}
+
+
 
 
 
