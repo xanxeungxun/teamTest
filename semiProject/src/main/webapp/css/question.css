@@ -2,7 +2,7 @@
 .ttd:nth-child(n+1):nth-child(-n+2){
 	text-align:center;
 }
-.ttd:nth-child(n+4):nth-child(-n+7){
+.question-td:nth-child(n+4):nth-child(-n+7){
 	text-align:center;
 
 	}
