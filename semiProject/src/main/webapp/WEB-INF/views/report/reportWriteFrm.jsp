@@ -1,11 +1,17 @@
+<%@page import="com.iei.bookListManage.model.vo.*"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
+    <%
+    BookListManageVo list = (BookListManageVo)request.getAttribute("list");
+    %>
+
 <!DOCTYPE html>
 <html>
 <head>
 
-<meta charset="UTF-8">
-<title>문의 게시글 작성</title>
+<meta `charset="UTF-8">
+<title>신고 게시글 작성</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <style>
@@ -30,6 +36,9 @@ $(document).ready(function(){
 			if($("#reportContent").val().length==0){ alert("내용을 입력하세요."); $("#reportContent").focus(); return false; }
 		});		
 });
+
+
+
 </script>
 <%@include file="/WEB-INF/views/common/header.jsp"%>
 <script src="/summernote/summernote-lite.js"></script>
@@ -42,7 +51,8 @@ $(document).ready(function(){
 					<tr class="tr-1">
 						<th class="td-3" style="height:50px;">신고 게시물</th>
 						<td colspan="3">
-							가져온게시물제목				
+							<input type="hidden" id="bookNoGo" name="bookTitle" value="<%=list.getBookNo() %>">
+							<%=list.getBookTitle() %>
 						</td> 
 					</tr>
 					<tr class="tr-1">
@@ -64,11 +74,11 @@ $(document).ready(function(){
 						<th class="td-3">작성자</td>
 						<td style="width:200px;text-align:right;padding-right:50px;">
 							<span>아이디</span>
-							<input type="hidden" name="reportId" 
+							<input type="hidden" name="reporterId" 
 							value="<%=loginUser.getUserId()%>">
 							<%=loginUser.getUserId()%>
 							<br><span>닉네임</span>
-							<input type="hidden" name="reportName" value="<%=loginUser.getUserName()%>">
+							<input type="hidden" name="reporterName" value="<%=loginUser.getUserName()%>">
 							<%=loginUser.getUserName()%>
 						</td>
 					</tr>
@@ -91,6 +101,15 @@ $(document).ready(function(){
 			</form>
 		</div>
 			<script>
+			$("#submitBtn").on("click",function(){
+				const reporterId = $("#reporterId").val();
+				const bookNo = $("#bookNoGo").val();
+				const reportType = $("#reportType").text();
+				location.href="/report/reportList.do?bookNo="+bookNo+
+						"?reporterId="+reporterId+
+								"?reportType="+reportType;
+			});
+			
 			$("#reportContent").summernote({
 					height: 400,
 					lang: "ko-KR",

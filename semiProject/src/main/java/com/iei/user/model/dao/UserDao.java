@@ -307,15 +307,16 @@ public class UserDao {
 		return result2;
 	}
 
-	public int insertSupportBook(Connection conn, int inputPoint, int userNo, int bookNo) {
+	public int insertSupportBook(Connection conn, int inputPoint, int userNo, int bookNo, String bookWriter) {
 		PreparedStatement pstmt = null;
 		int result3 = 0;
-		String query = "insert into support_book values(support_book_seq.nextval,?,?,?)";
+		String query = "insert into support_book values(support_book_seq.nextval,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bookNo);
 			pstmt.setInt(2, userNo);
 			pstmt.setInt(3, inputPoint);
+			pstmt.setString(4, bookWriter);
 			result3 = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

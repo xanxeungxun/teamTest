@@ -60,7 +60,8 @@
 							<span class="title-span"><%=b.getBoardTitle() %></span>
 							<div>
 								<span class="date-span"><%=b.getboardDate() %></span>
-								<a href="#" class="report-a">
+								<%-- 신고 버튼 --%>
+								<a href="/report/reportWriteFrm.do?boardNo=<%=b.getBoardNo() %>" class="report-a">
 									<span class="report material-symbols-outlined" style="font-size:24px;">e911_emergency</span>
 								</a>
 							</div>
