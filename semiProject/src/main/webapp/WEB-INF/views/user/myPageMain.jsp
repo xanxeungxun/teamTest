@@ -17,7 +17,7 @@
 </head>
 <style>
 .mypage-box {
-	padding: 20px;
+	padding: 40px 40px;
 	border: 1px solid lightgray;
 	box-shadow: 0 0 0 0.1rem #eee;
 	border-radius: 10px;
@@ -31,7 +31,7 @@
 
 .mypage-info {
 	padding: 15px;
-	width: 65%;
+	width: 68%;
 }
 
 .line {
@@ -39,10 +39,8 @@
 	border-bottom: 1px solid lightgray;
 }
 
-.icon {
-	font-size: 20px;
-	color: #59516e;
-	cursor: default;
+.link>div>.icon {
+	font-size: 24px;
 }
 
 .nick {
@@ -67,7 +65,7 @@
 
 .link>div>a {
 	display: block;
-	padding: 2px 0px 0px 3px;
+	padding: 5px 0px 0px 3px;
 }
 
 .link>div>a:hover {
@@ -121,10 +119,10 @@
 					</div>
 					<div class="line"></div>
 					<div class="link">
-						<%-- <div>
-							<div class="material-symbols-outlined icon">mail</div>
-							<a href="#" class="message">쪽지함</a>
-						</div>--%>
+						<div>
+							<div class="material-symbols-outlined">calendar_month</div>
+							<a href="#" class="message">출석체크</a>
+						</div>
 						<div>
 							<div class="material-symbols-outlined icon">savings</div>
 							<a href="/pointRechargeFrm.do" class="point">포인트 충전</a>
