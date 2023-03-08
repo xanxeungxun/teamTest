@@ -29,23 +29,23 @@ int start = (int)request.getAttribute("start");
 			<div class="report-header">
 				<span>신고 관리</span>
 			</div>
-			
 			<form id="searchForm" action="/report/searchReportList.do">
-				<select id="searchType" name="searchType">
-					<option value="1">신고자</option>
-					<option value="2">신고제목</option>
+				<select id="searchType" class="select" name="searchType">
+					<option value="1" id="select1">신고자</option>
+					<option value="2" id="select2">신고제목</option>
 				</select>
 				<input type="hidden" name="searchValue" id="hiddenSearchValue">
 			</form>
-			<input type="text" id="searchValue" onkeydown="javascript:if(event.keyCode==13) searchReport()">
-			<button onclick="searchReport()">검색</button>
+			<input type="text" id="searchValue" class="select" onkeydown="javascript:if(event.keyCode==13) searchReport()">
+			<button onclick="searchReport()" class="select">검색</button>
+			<br><br><br>
+			
 			<script>
 				function searchReport(){
 					if($("#searchValue").val() == ""){
 						alert("검색어를 입력해 주세요.");
 						return;
 					}
-					
 					$("#hiddenSearchValue").val($("#searchValue").val());
 					$("#searchForm").submit();
 				}

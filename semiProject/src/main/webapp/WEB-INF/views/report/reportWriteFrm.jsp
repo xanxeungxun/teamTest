@@ -37,8 +37,10 @@
 <script>
 $(document).ready(function(){ 
 	$("#submitBtn").click(function(){
-			if($("#reportTitle").val().length==0){ alert("제목을 입력하세요."); $("#reportTitle").focus(); return false; }
-			if($("#reportContent").val().length==0){ alert("내용을 입력하세요."); $("#reportContent").focus(); return false; }
+			if($("#reportTitle").val().length==0){ alert("제목을 입력해주세요."); $("#reportTitle").focus(); return false; }
+			if($("#reportContent").val().length==0){ alert("내용을 작성해주세요."); $("#reportContent").focus(); return false; }
+			if($("#reportType").val()==0){ alert("신고 종류를 선택해주세요."); $("#reportContent").focus(); return false; }
+			
 		});		
 });
 
@@ -120,25 +122,35 @@ $(document).ready(function(){
 			</form>
 		</div>
 			<script>
-			$("#submitBtn").on("click",function(){
-				const reporterId = $("#reporterId").val();
-				const bobType = $("#noGo1").val();
-				const bobNo = $("#noGo2").val();
-				const bobTitle = $("#noGo3").val();
-				const reportType = $("#reportType").val();
-				const reportTitle = $("#reportTitle").val();
-				
-				let url = "/report/reportWrite.do?reporterId="+reporterId+
-							"?reportType="+reportType+
-							"?bobType="+bobType+
-							"?bobTitle="+bobTitle+
-							"?reportTitle="+reportTitle+
-							"?bobNo="+bobNo
-							;
-															
-															;
-				
-				location.href = url;
+			
+			$(document).ready(function(){
+			    $("#submitBtn").submit(function(){
+			        var rv = true;
+			        // 유효성 검사
+			        $.each($("reportTitle, reportContent, reportType"), function(){
+			            if($(this).val() === null || $(this).val() === ' ' || $(this).val().length === 0){
+			                alert('입력이 유효하지 않습니다...');
+			                return rv = false;
+			            }else{
+			            	const reporterId = $("#reporterId").val();
+							const bobType = $("#noGo1").val();
+							const bobNo = $("#noGo2").val();
+							const bobTitle = $("#noGo3").val();
+							const reportType = $("#reportType").val();
+							const reportTitle = $("#reportTitle").val();
+							
+							let url = "/report/reportWrite.do?reporterId="+reporterId+
+										"?reportType="+reportType+
+										"?bobType="+bobType+
+										"?bobTitle="+bobTitle+
+										"?reportTitle="+reportTitle+
+										"?bobNo="+bobNo
+										;
+							location.href = url;
+			            }
+			        })
+			        return rv;
+				    });
 			});
 			
 			$("#reportContent").summernote({
