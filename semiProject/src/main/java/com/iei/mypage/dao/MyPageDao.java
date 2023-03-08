@@ -389,7 +389,7 @@ public class MyPageDao {
 		return result;
 	}
 
-	public String selectRecvUserNick(Connection conn, String recvUserId) {
+	public String selectUserNick(Connection conn, String recvUserId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		

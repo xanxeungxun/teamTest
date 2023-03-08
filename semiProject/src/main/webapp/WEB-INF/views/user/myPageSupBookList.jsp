@@ -79,13 +79,14 @@
         position: absolute;
         bottom: 0;
     }
-    div>.sup-btn{
+    .box>div>.sup-btn{
     	padding: 0;
 		width: 250px;
 	    height: 50px;
 	    text-align: center;
 	    font-size: 15px;
 	    line-height: 50px;
+	    cursor: default;
     }
     .sup-money{
         color: #ffc6d3;

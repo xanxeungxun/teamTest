@@ -89,7 +89,7 @@ public class UserDao {
 		
 		int result = 0;
 		
-		String query = "insert into user_tbl values(user_tbl_seq.nextval, ?, ?, ?, ?, ?, 2, null, 0, to_char(sysdate,'yyyy-mm-dd'), ?)";
+		String query = "insert into user_tbl values(user_tbl_seq.nextval, ?, ?, ?, ?, ?, 2, null, 1000, to_char(sysdate,'yyyy-mm-dd'), ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
