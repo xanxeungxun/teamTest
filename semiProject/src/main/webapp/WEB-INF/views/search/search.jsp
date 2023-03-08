@@ -90,6 +90,9 @@
                     </div>
                 </div><!--작품하나..-->
             
+            <%if(!searchList.isEmpty()){ %>
+            	
+            
             <%for(int i=0 ; i<searchList.size() ; i++){ %>
             <%		Book b = searchList.get(i);		  %>
             	
@@ -128,14 +131,17 @@
                         </div>
                     </div>
                 </div><!--작품하나..-->
-            	
-            <%} %>
+            <%}%>
             
             </div><!--book-list-->
             
 			<div id="pageNavi" style="margin-bottom: 50px;">
 			<%=naviCode %>
 			</div>
+			
+			<%}else{ %>
+				<div style="text-align:center; color:#cccccc;">검색 결과가 없습니다.</div>
+            <%}%>
 			
       </div><!-- book-wrap -->
 </div><!-- page-content -->
