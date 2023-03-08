@@ -70,6 +70,21 @@ public class StoryService {
 		
 		return result;
 	}
+
+	public int insertStoryComment(int bookNo, int storyNo, String userId, String commentCnt) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.insertStoryComment(conn,bookNo,storyNo,userId,commentCnt);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 	
 	

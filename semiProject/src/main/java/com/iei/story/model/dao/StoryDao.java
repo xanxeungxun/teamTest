@@ -91,6 +91,27 @@ public class StoryDao {
 		return result;
 	}
 
+	public int insertStoryComment(Connection conn, int bookNo, int storyNo, String userId, String commentCnt) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into story_comment values(STORY_COMMENT_SEQ.nextval,?,?,?,?,sysdate,STORY_COMMENT_SEQ.nextval)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, storyNo);
+			pstmt.setInt(3, bookNo);
+			pstmt.setString(4, commentCnt);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 	
 	
 }
