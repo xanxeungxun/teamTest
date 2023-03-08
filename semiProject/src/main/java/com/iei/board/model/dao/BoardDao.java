@@ -212,7 +212,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<BoardComment> list = new ArrayList<BoardComment>();
-		String query = "select * from board_comment where board_ref=? and board_comment_ref is null order by 1";
+		String query = "select bc.*,(select user_pic from user_tbl where user_id=board_comment_writer) as userPic from board_comment bc where board_ref=? and board_comment_ref is null order by 1";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, boardNo);
@@ -225,6 +225,7 @@ public class BoardDao {
 				bc.setBoardCommentRef(rset.getInt("board_comment_ref"));
 				bc.setBoardCommnetWriter(rset.getString("board_comment_writer"));
 				bc.setBoardRef(rset.getInt("board_ref"));
+				bc.setFilePath(rset.getString("userpic"));
 				list.add(bc);
 			}
 		} catch (SQLException e) {
@@ -241,7 +242,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<BoardComment> list = new ArrayList<BoardComment>();
-		String query = "select * from board_comment where board_ref=? and board_comment_ref is not null order by 1";
+		String query = "select bc.*,(select user_pic from user_tbl where user_id=board_comment_writer) as userPic from board_comment bc where board_ref=? and board_comment_ref is not null order by 1";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, boardNo);
@@ -254,6 +255,7 @@ public class BoardDao {
 				bc.setBoardCommentRef(rset.getInt("board_comment_ref"));
 				bc.setBoardCommnetWriter(rset.getString("board_comment_writer"));
 				bc.setBoardRef(rset.getInt("board_ref"));
+				bc.setFilePath(rset.getString("userpic"));
 				list.add(bc);
 			}
 		} catch (SQLException e) {

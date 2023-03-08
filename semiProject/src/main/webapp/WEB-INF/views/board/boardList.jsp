@@ -38,11 +38,9 @@
 	.readCountSpan{
 		font-size: 13px;
 	}
-	.board-tbl tr{
-	    background-color: #ffe4ea;
-	}
+	
 	.board-tbl tr:hover{
-        background-color: #ffd7e4;
+	    background-color: rgba(131, 115, 138, 0.1);
 	}
 </style>
 </head>

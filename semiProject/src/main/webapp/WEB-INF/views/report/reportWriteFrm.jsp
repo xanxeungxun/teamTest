@@ -1,16 +1,21 @@
 <%@page import="com.iei.bookListManage.model.vo.*"%>
+<%@page import="com.iei.board.model.vo.*"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
     <%
     BookListManageVo list = (BookListManageVo)request.getAttribute("list");
     %>
+    <%
+    Board list2 = (Board)request.getAttribute("list2");
+    %>
+    
 
 <!DOCTYPE html>
 <html>
 <head>
 
-<meta `charset="UTF-8">
+<meta charset="UTF-8">
 <title>신고 게시글 작성</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -51,8 +56,22 @@ $(document).ready(function(){
 					<tr class="tr-1">
 						<th class="td-3" style="height:50px;">신고 게시물</th>
 						<td colspan="3">
-							<input type="hidden" id="bookNoGo" name="bookTitle" value="<%=list.getBookNo() %>">
+					
+					<%-- 제목 (소설) --%>
+					<% if(list !=null){%>
+							<input type="hidden" id="noGo1" name="bookTitle" value="(소설게시판)">
+							<input type="hidden" id="noGo2" name="bookTitle" value="<%=list.getBookNo() %>">
+							<input type="hidden" id="noGo3" name="bookTitle" value="<%=list.getBookTitle() %>">
 							<%=list.getBookTitle() %>
+							<%}else if(list2 != null){%>
+							
+					<%-- 제목 (자유) --%>
+							<input type="hidden" id="noGo1" name="boardTitle" value="(자유게시판)">
+							<input type="hidden" id="noGo2" name="boardTitle" value="<%=list2.getBoardNo() %>">
+							<input type="hidden" id="noGo3" name="boardTitle" value="<%=list2.getBoardTitle() %>">
+							<%=list2.getBoardTitle() %>
+							<%} %>
+							
 						</td> 
 					</tr>
 					<tr class="tr-1">
@@ -103,11 +122,15 @@ $(document).ready(function(){
 			<script>
 			$("#submitBtn").on("click",function(){
 				const reporterId = $("#reporterId").val();
-				const bookNo = $("#bookNoGo").val();
+				const bobType = $("#noGo1").val();
+				const bobTitle = $("#noGo2").val();
+				const bobNo = $("#noGo3").val();
 				const reportType = $("#reportType").text();
-				location.href="/report/reportList.do?bookNo="+bookNo+
-						"?reporterId="+reporterId+
-								"?reportType="+reportType;
+				location.href="/report/reportList.do?reporterId="+reporterId+
+								"?reportType="+reportType+
+										"?bobType="+bobType+
+												"?bobTitle"+bobTitle+
+														"?bobNo"+bobNo;
 			});
 			
 			$("#reportContent").summernote({

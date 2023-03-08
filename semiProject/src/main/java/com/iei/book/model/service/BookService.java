@@ -188,6 +188,17 @@ public class BookService {
 		
 	}
 
+	public ArrayList<Book> mainViewBook() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Book> viewList = dao.mainViewBook(conn);
+		JDBCTemplate.close(conn);
+		return viewList;
+	}
+
+
+	
+		
+
 	
 
 	

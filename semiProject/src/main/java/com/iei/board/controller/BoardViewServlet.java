@@ -32,6 +32,7 @@ public class BoardViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		
 		BoardService service = new BoardService();

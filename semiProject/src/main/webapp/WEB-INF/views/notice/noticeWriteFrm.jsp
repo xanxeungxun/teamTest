@@ -11,7 +11,13 @@
 		background-color: #eeeeee;
 	}
 	.notice-input{
-		border: 1px soild #ccc;
+		border: 0.1px solid #ccc;
+	}
+	.note-editor.note-frame .note-editing-area .note-editable, .note-editor.note-airframe .note-editing-area .note-editable {
+	    padding: 10px;
+	    overflow: auto;
+	    word-wrap: break-word;
+	    background-color: #fff;
 	}
 </style>
 </head>
@@ -37,7 +43,7 @@
 						<tr class="notice-tr">
 							<th class="notice-td">내용</th>
 							<td class="notice-td">
-								<textarea id="noticeContent" name="noticeContent" class="notice-input"></textarea>
+								<textarea id="noticeContent" name="noticeContent" class="notice-input" style="background-color: #fff;"></textarea>
 							</td>
 						</tr>
 						<tr class="notice-tr">

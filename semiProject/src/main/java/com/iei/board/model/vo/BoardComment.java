@@ -7,6 +7,22 @@ public class BoardComment {
 	private String boardCommentDate;
 	private int boardRef;
 	private int boardCommentRef;
+	private String filePath;
+	public BoardComment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public BoardComment(int boardCommentNo, String boardCommnetWriter, String boardCommentContent,
+			String boardCommentDate, int boardRef, int boardCommentRef, String filePath) {
+		super();
+		this.boardCommentNo = boardCommentNo;
+		this.boardCommnetWriter = boardCommnetWriter;
+		this.boardCommentContent = boardCommentContent;
+		this.boardCommentDate = boardCommentDate;
+		this.boardRef = boardRef;
+		this.boardCommentRef = boardCommentRef;
+		this.filePath = filePath;
+	}
 	public int getBoardCommentNo() {
 		return boardCommentNo;
 	}
@@ -43,18 +59,11 @@ public class BoardComment {
 	public void setBoardCommentRef(int boardCommentRef) {
 		this.boardCommentRef = boardCommentRef;
 	}
-	public BoardComment(int boardCommentNo, String boardCommnetWriter, String boardCommentContent,
-			String boardCommentDate, int boardRef, int boardCommentRef) {
-		super();
-		this.boardCommentNo = boardCommentNo;
-		this.boardCommnetWriter = boardCommnetWriter;
-		this.boardCommentContent = boardCommentContent;
-		this.boardCommentDate = boardCommentDate;
-		this.boardRef = boardRef;
-		this.boardCommentRef = boardCommentRef;
+	public String getFilePath() {
+		return filePath;
 	}
-	public BoardComment() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
+	
 }
