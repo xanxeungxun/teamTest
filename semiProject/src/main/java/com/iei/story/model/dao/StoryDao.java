@@ -190,7 +190,7 @@ public class StoryDao {
 		return checkLike;
 	}
 
-	public int updateStoryComment(Connection conn, int storyCommentNo,int storyNo, int bookNo, String storyCommentContent) {
+	public int updateStoryComment(Connection conn, int storyNo, int bookNo, int storyCommentNo, String storyCommentContent) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "update story_comment set story_comment_content = ? where story_comment_no =?";

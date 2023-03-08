@@ -223,6 +223,7 @@
 	function modifyComplete(obj,storyCommentNo, storyNo, bookNo){
 		//form태그를 생성해서 전송
 		//댓글내용, 댓글번호, 공지사항번호
+		
 		//1. form태그 생성
 		const form=$("<form style='display:none;' action='/updateStoryComment.do' method='post'></form>");
 		//2. input태그 2개 숨김
@@ -233,7 +234,7 @@
 		const bookNoInput = $("<input type='text' name='bookNo'>");
 		bookNoInput.val(bookNo);
 		//3. textarea
-		const storyCommentContent = $(obj).parents("p").siblings("textarea").clone().val();
+		const storyCommentContent = $(obj).parents("p").siblings("textarea").clone();
 		//4. form태그에 input, textarea를 모두 포함
 		form.append(storyCommentNoInput).append(storyNoInput).append(storyCommentContent).append(bookNoInput);
 		//5. 생성된 form태그를 body태그에 추가

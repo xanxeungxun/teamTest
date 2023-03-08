@@ -122,9 +122,9 @@ public class StoryService {
 		return result;
 	}
 
-	public int updateStoryComment(int storyCommentNo, int storyNo, int bookNo, String storyCommentContent) {
+	public int updateStoryComment(int storyNo, int bookNo, int storyCommentNo, String storyCommentContent) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.updateStoryComment(conn, storyCommentNo,storyNo,bookNo, storyCommentContent);
+		int result = dao.updateStoryComment(conn,storyNo,bookNo,storyCommentNo, storyCommentContent);
 		
 		if(result>0) {
 			JDBCTemplate.commit(conn);
