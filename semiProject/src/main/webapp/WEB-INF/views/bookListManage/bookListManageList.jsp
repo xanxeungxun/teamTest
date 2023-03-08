@@ -15,8 +15,23 @@ int start = (int)request.getAttribute("start");
 <title>작품 관리</title>
 <link rel="stylesheet" href="/css/bookListManage.css">
 <style>
+.bookListManage-td>.ttd{
+text-align:left;
+padding:0;
+width:50px;
+}
 .bookListManage-tr{
 text-align:center; 
+}
+.text-inline{
+text-align:left;
+padding-left:50px;
+padding-right:50px;
+display:block;
+height:19px;
+white-space: no-wrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 .text td{
 font-size:14px;
@@ -46,7 +61,7 @@ font-size:14px;
 						<td class="bookListManage-td" style="width:6%">순번</td>
 						<td class="bookListManage-td" style="width:6%">품번</td>
 						<td class="bookListManage-td" style="width:10%">장르코드</td>
-						<td class="bookListManage-td" style="width:50%">작품명</td>
+						<td class="bookListManage-td ttd" style="width:40%">작품명</td>
 						<td class="bookListManage-td" style="width:8%">작가명</td>
 						<td class="bookListManage-td" style="width:9%">연재상태</td>
 						<td class="bookListManage-td" style="width:10%">삭제하기</td>
@@ -64,7 +79,7 @@ font-size:14px;
 						<td class="bookListManage-td"><%=q.getBookNo() %></td>
 						<td class="bookListManage-td"><%=q.getGenreName() %>
 						<td class="bookListManage-td">
-						<a href="/storyList.do?bookNo=<%=q.getBookNo()%>">
+						<a class="text-inline" href="/storyList.do?bookNo=<%=q.getBookNo()%>">
 						<%=q.getBookTitle()%></a></td>
 						<td class="bookListManage-td"><%=q.getBookWriter() %></td>
 						<td class="bookListManage-td">
