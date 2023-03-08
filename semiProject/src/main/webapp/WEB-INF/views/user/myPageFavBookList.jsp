@@ -108,10 +108,10 @@
                 	<%for(int i=0; i<favList.size(); i++) { %>
                 		<%FavoriteBook fb = favList.get(i); %>
 	                    <div class="book-box">
-	                        <div style="background-image: url(/upload/cover-image/<%=fb.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></div>
+	                        <a href="/storyList.do?bookNo=<%=fb.getBookNo() %>" style="background-image: url(/upload/cover-image/<%=fb.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></a>
 	                        <div class="book-info">
 	                            <div class="book-info-head">
-	                                <div class="book-title"><%=fb.getBookTitle() %></div>
+	                                <a href="/storyList.do?bookNo=<%=fb.getBookNo() %>" class="book-title"><%=fb.getBookTitle() %></a>
 	                                <a href="/deleteFavBook.do?favBookNo=<%=fb.getFavBookNo() %>&userNo=<%=loginUser.getUserNo() %>" class="material-symbols-outlined close-btn">close</a>
 	                            </div>
 	                            <div class="box">
@@ -122,8 +122,8 @@
 		                            </div>
 		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=fb.getBookDate() %></span></div>
 		                            <div>
-		                                <a href="#" class="btn bc6 read-btn">보기</a>
-		                                <a href="#" class="btn bc000 bc444 sup-btn">후원하기</a>
+		                                <a href="/storyList.do?bookNo=<%=fb.getBookNo() %>" class="btn bc6 read-btn">보기</a>
+		                                <a href="/storyList.do?bookNo=<%=fb.getBookNo() %>" class="btn bc000 bc444 sup-btn">후원하기</a>
 		                            </div>
 	                            </div>
 	                        </div>

@@ -99,7 +99,7 @@
     <div class="page-content mypage-content">
     	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
-            <div class="page-title">투고한 작품 확인</div>
+            <div class="page-title"><span style="color:#fea1bf; font-family:ns-bold"><%=loginUser.getUserNick() %></span>님이 투고한 작품 확인</div>
            	<%if(upList.size() == 0) { %>
            	<div class="line"></div>
 			<div class="inform-wrap">
@@ -115,10 +115,10 @@
                 		<%UploadBook ub = upList.get(i); %>
 	                    <div class="book-box">
 	                        <div class="book-num"><%=i+start %></div>
-	                        <div style="background-image: url(/upload/cover-image/<%=ub.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></div>
+	                        <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" style="background-image: url(/upload/cover-image/<%=ub.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></a>
 	                        <div class="book-info">
 	                            <div class="book-info-head">
-	                                <div class="book-title"><%=ub.getBookTitle() %></div>
+	                                <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" class="book-title"><%=ub.getBookTitle() %></a>
 	                            </div>
 	                            <div class="box">
 		                            <div class="genre"><%=ub.getGenreName() %></div>
@@ -162,8 +162,8 @@
 	      function deleteUploadBook(bookNo, bookWriter) {
 	          swal({
 	              title: '작품 삭제',
-	              text: "작품을 삭제하시겠습니까?",
-	              icon: 'warning',
+	              text: "로그인한 회원만 마이페이지를 조회할 수 있습니다.",
+	              icon: 'info',
 	              showCancelButton: true,
 	              /*confirmButtonColor: '#AACB73',
 	              cancelButtonColor: '#ccc',*/
@@ -171,7 +171,7 @@
 	              cancelButtonText: '취소'
 	          }).then(function(result) {
 	              if (result) {
-	                  location.href="/deleteUploadBook.do?bookNo="+bookNo+"&bookWriter="+bookWriter;
+	                  location.href="/";
 	              }
 	          })
 	      }
