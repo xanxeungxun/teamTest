@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.iei.book.model.service.BookService;
 import com.iei.book.model.vo.Book;
-import com.iei.book.model.vo.BookListData;
 
 /**
  * Servlet implementation class MainServlet

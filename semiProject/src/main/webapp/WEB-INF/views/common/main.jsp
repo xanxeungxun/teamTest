@@ -20,6 +20,23 @@
 		document.documentElement.scrollTop = 0;
 	}
 </script>
+	<link rel="stylesheet" href="/css/bookList.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 300,
+            'GRAD' 0,
+            'opsz' 48;
+        }
+        .bookmarks{
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 300
+        }
+    </style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -58,10 +75,10 @@
 			<div class="mid-container">
 				<div class="mid-content-title">
 					<div class="content-category">
-						<a href="/bookList.do?reqPage=1">인기콘텐츠 ></a>
+						<a href="/bookList.do?reqPage=1">ㅤ최신콘텐츠 ></a>
 					</div>
 				</div>
-				<div class="content-box">
+				<div class="book-list">
 				<%for(int i=0 ; i<viewList.size(); i++){ %>
             <%		Book b = viewList.get(i);		  %>
             	
@@ -258,7 +275,7 @@
 						</a>
 					</div>
 					-->
-				</div> <!--content-box-->
+				</div>
 				
 
 				<div class="btm-link1">
@@ -270,10 +287,12 @@
 	
 				<div class="mid-content-title">
 					<div class="content-category">
-						<a href="/bookList.do?reqPage=1">최신콘텐츠 ></a>
+						<a href="/bookList.do?reqPage=1">ㅤ최신콘텐츠 ></a>
 					</div>
 				</div>
-				<div class="content-box">
+				<div class="book-list">
+				
+					<!--
 					<div class="img-box">
 						<a href="#"> <img src="/img/earthzzang.jpg">
 							<div class="inner-wrap">
@@ -422,9 +441,11 @@
 							</div>
 						</a>
 					</div>
+					-->
+					
 				</div>
 				
-			</div> mid-container 종료 -->
+			</div>
 			
 
 
