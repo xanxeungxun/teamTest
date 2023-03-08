@@ -1,7 +1,6 @@
 package com.iei.story.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,23 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.iei.book.model.vo.Book;
 import com.iei.story.model.service.StoryService;
-import com.iei.story.model.vo.Story;
-import com.iei.story.model.vo.StoryComment;
+import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class StoryViewServlet
+ * Servlet implementation class LikeStoryServlet
  */
-@WebServlet(name = "StoryView", urlPatterns = { "/storyView.do" })
-public class StoryViewServlet extends HttpServlet {
+@WebServlet(name = "LikeStory", urlPatterns = { "/likeStory.do" })
+public class LikeStoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StoryViewServlet() {
+    public LikeStoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,25 +32,28 @@ public class StoryViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		//2값추출
-		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
 		
-		//3비즈니스로직
 		StoryService service = new StoryService();
-		Book b = service.selectOneBook(bookNo);
-		Story s = service.selectOneStory(storyNo);
-		ArrayList<StoryComment> storyCommentList = service.selectAllComment(storyNo);
+		int result = service.insertFavoriteBook(bookNo, userNo);
 		
-		//4결과처리
-		request.setAttribute("s", s);
-		request.setAttribute("b", b);
-		request.setAttribute("cl", storyCommentList);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyView.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		if(result > 0) {
+			request.setAttribute("title", "관심작품 등록");
+			request.setAttribute("msg", "관식작품으로 등록하셨습니다.");
+			request.setAttribute("icon", "success");
+		}else {
+			request.setAttribute("title", "등록실패");
+			request.setAttribute("msg", "이미 등록된 관심작품입니다.");
+			request.setAttribute("icon", "warning");
+		}
+		request.setAttribute("loc", "/storyList.do?bookNo="+bookNo);
 		view.forward(request, response);
+		
+		
 	}
 
 	/**

@@ -36,7 +36,8 @@ body>.page-content{
 	margin: 0;
 	width:900px;
 	margin-top: 20px;
-	margin-bottom: 150px
+	margin-bottom: 150px;
+	margin-right: 30px;
 }
 .detail-title{
     font-family: ns-bold;

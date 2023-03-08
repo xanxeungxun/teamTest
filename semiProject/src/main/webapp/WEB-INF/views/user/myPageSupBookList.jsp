@@ -79,13 +79,14 @@
         position: absolute;
         bottom: 0;
     }
-    div>.sup-btn{
+    .box>div>.sup-btn{
     	padding: 0;
 		width: 250px;
 	    height: 50px;
 	    text-align: center;
 	    font-size: 15px;
 	    line-height: 50px;
+	    cursor: default;
     }
     .sup-money{
         color: #ffc6d3;
@@ -122,7 +123,7 @@
 		                            <div class="genre"><%=sb.getGenreName() %></div>
 		                            <div class="writer-wrap">
 		                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
-		                                <a href="/uploadBookList.do?userId=<%=sb.getBookWriter()%>&reqPage=1"><%=sb.getUserNick() %></a>
+		                                <a href="/uploadBookList.do?userId=<%=sb.getBookWriter()%>&reqPage=1"><%=sb.getRecvUserNick() %></a>
 		                            </div>
 		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=sb.getBookDate() %></span></div>
 		                            <div>

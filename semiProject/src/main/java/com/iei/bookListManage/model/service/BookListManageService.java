@@ -98,6 +98,17 @@ public class BookListManageService {
 		
 		return result;
 	}
+
+
+	public BookListManageVo selectAllBook(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		BookListManageVo result = dao.selectAllBook(conn, bookNo);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+
+
 	
 
 

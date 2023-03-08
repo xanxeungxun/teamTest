@@ -33,6 +33,24 @@
 	.boardContentDiv{
 		min-height: 400px;
 	}
+	.report-a{
+		float: right;
+		margin-right: 50px;
+	}
+	.textarea .input-from{
+		resize: none;
+	}
+	.input-form{
+	    width: 100%;
+	    height: 50px;
+	    display: block;
+	    padding: 0.8rem;
+	    background-color: #fff;
+	    outline: none;
+	    border: 1px solid #ccc;
+	    border-radius: 4px;
+	    box-sizing: border-box;
+	}
 	
 	
 	
@@ -54,7 +72,13 @@
 						<td class="board-td" colspan="2">
 						<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>">
 							<span class="title-span"><%=b.getBoardTitle() %></span>
-							<div><span class="date-span"><%=b.getboardDate() %></span></div>
+							<div>
+								<span class="date-span"><%=b.getboardDate() %></span>
+								<%-- 신고 버튼 --%>
+								<a href="/report/reportWriteFrm.do?boardNo=<%=b.getBoardNo() %>" class="report-a">
+									<span class="report material-symbols-outlined" style="font-size:24px;">e911_emergency</span>
+								</a>
+							</div>
 						</td>
 					</tr>
 					<%if(b.getFileName() != null) {%>
@@ -91,7 +115,7 @@
 								<input type="hidden" name="boardCommentWriter" value="<%=loginUser.getUserId() %>">
 								<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>">
 								<input type="hidden" name="boardCommentRef" value="0">
-								<textarea name="boardCommentContent" class="input-form"></textarea>
+								<textarea name="boardCommentContent" class="input-form" placeholder="댓글을 입력해주세요"></textarea>
 							</li>
 							<li>
 								<button type="submit" class="btn bc1 bs2">등록</button>
@@ -169,10 +193,10 @@
 										<input type="hidden" name="boardCommentWriter" value="<%=loginUser.getUserId() %>"> 
 										<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>">
 										<input type="hidden" name="boardCommentRef" value="<%=bc.getBoardCommentNo() %>">
-										<textarea name="boardCommentContent" class="input-form"></textarea>
+										<textarea name="boardCommentContent" class="input-form" style="min-height: 85px;" placeholder="댓글을 입력해주세요"></textarea>
 									</li>
 									<li>
-										<button type="submit" class="btn bc1 bs4">등록</button>
+										<button type="submit" class="btn bc4" style="width:100%; height:100%; cursor: pointer;">등록</button>
 									</li>
 								</ul>
 							</form>

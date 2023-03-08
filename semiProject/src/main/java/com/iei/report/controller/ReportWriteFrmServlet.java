@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.iei.bookListManage.model.service.BookListManageService;
+import com.iei.bookListManage.model.vo.BookListManagePageData;
+import com.iei.bookListManage.model.vo.BookListManageVo;
 import com.iei.user.model.vo.User;
 
 
@@ -27,18 +30,26 @@ public class ReportWriteFrmServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//2값추출
 		//3비즈니스 로직
+		BookListManageService service = new BookListManageService();
+		int bookNo = Integer.parseInt(request.getParameter("bookNo"));  
+		BookListManageVo list = service.selectAllBook(bookNo);
+		System.out.println(bookNo);
+		
 		HttpSession session = request.getSession();  
 		User loginUser = (User)session.getAttribute("loginUser");
 		//4결과처리
 		
-		if(loginUser!=null&&loginUser.getUserLevel()==1) {
+		if(loginUser!=null&&loginUser.getUserLevel()==2) {
 		RequestDispatcher view =
 				request.getRequestDispatcher("/WEB-INF/views/report/reportWriteFrm.jsp");
+		request.setAttribute("list", list);
+		
 		view.forward(request, response);
-		}
+		}else {
 		RequestDispatcher view =
 				request.getRequestDispatcher("/");
 		view.forward(request, response);
+		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

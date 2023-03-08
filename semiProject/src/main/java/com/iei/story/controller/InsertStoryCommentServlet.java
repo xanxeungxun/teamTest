@@ -1,31 +1,29 @@
 package com.iei.story.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.security.Provider.Service;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.book.model.vo.Book;
+import org.json.simple.JSONObject;
+
 import com.iei.story.model.service.StoryService;
-import com.iei.story.model.vo.Story;
-import com.iei.story.model.vo.StoryComment;
 
 /**
- * Servlet implementation class StoryViewServlet
+ * Servlet implementation class InsertStoryCommentServlet
  */
-@WebServlet(name = "StoryView", urlPatterns = { "/storyView.do" })
-public class StoryViewServlet extends HttpServlet {
+@WebServlet(name = "InsertStoryComment", urlPatterns = { "/insertStoryComment.do" })
+public class InsertStoryCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StoryViewServlet() {
+    public InsertStoryCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,25 +32,26 @@ public class StoryViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1인코딩
+		//인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		//2값추출
-		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
+		//값추출
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
-		
-		//3비즈니스로직
+		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
+		String userId = request.getParameter("userId");
+		String commentCnt = request.getParameter("commentCnt");
+
+		//비즈니스로직
 		StoryService service = new StoryService();
-		Book b = service.selectOneBook(bookNo);
-		Story s = service.selectOneStory(storyNo);
-		ArrayList<StoryComment> storyCommentList = service.selectAllComment(storyNo);
+		int result = service.insertStoryComment(bookNo,storyNo,userId,commentCnt);
 		
-		//4결과처리
-		request.setAttribute("s", s);
-		request.setAttribute("b", b);
-		request.setAttribute("cl", storyCommentList);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyView.jsp");
-		view.forward(request, response);
+		if(result>0) { //입력성공
+			
+		}else{ //입력실패
+			
+		}
+		//결과처리
+		
 	}
 
 	/**

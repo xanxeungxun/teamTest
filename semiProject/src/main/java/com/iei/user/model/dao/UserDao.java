@@ -89,7 +89,7 @@ public class UserDao {
 		
 		int result = 0;
 		
-		String query = "insert into user_tbl values(user_tbl_seq.nextval, ?, ?, ?, ?, ?, 2, null, 0, to_char(sysdate,'yyyy-mm-dd'), ?)";
+		String query = "insert into user_tbl values(user_tbl_seq.nextval, ?, ?, ?, ?, ?, 2, null, 1000, to_char(sysdate,'yyyy-mm-dd'), ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -307,15 +307,16 @@ public class UserDao {
 		return result2;
 	}
 
-	public int insertSupportBook(Connection conn, int inputPoint, int userNo, int bookNo) {
+	public int insertSupportBook(Connection conn, int inputPoint, int userNo, int bookNo, String bookWriter) {
 		PreparedStatement pstmt = null;
 		int result3 = 0;
-		String query = "insert into support_book values(support_book_seq.nextval,?,?,?)";
+		String query = "insert into support_book values(support_book_seq.nextval,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bookNo);
 			pstmt.setInt(2, userNo);
 			pstmt.setInt(3, inputPoint);
+			pstmt.setString(4, bookWriter);
 			result3 = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -386,8 +387,52 @@ public class UserDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		return checkDay;
+	}
+
+	public User selectOneUser(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		User user = null;
+		
+		String query = "select * from user_tbl where user_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				user = new User();
+				
+				user.setUserEnroll(rset.getString("user_enroll"));
+				user.setUserId(rset.getString("user_id"));
+				user.setUserLevel(rset.getInt("user_level"));
+				user.setUserName(rset.getString("user_name"));
+				user.setUserNick(rset.getString("user_nick"));
+				user.setUserNo(rset.getInt("user_no"));
+				user.setUserPhone(rset.getString("user_phone"));
+				user.setUserPic(rset.getString("user_pic"));
+				user.setUserPoint(rset.getInt("user_point"));
+				user.setUserPw(rset.getString("user_pw"));
+				user.setUserEmail(rset.getString("user_email"));
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return user;
+		
 	}
 
 	
