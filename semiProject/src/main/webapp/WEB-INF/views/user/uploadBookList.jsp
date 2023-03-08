@@ -99,7 +99,7 @@
     <div class="page-content mypage-content">
     	<%@include file="/WEB-INF/views/user/myPageMenu.jsp" %>
         <div class="mypage-detail">
-            <div class="page-title"><span style="color:#fea1bf; font-family:ns-bold"><%=loginUser.getUserNick() %></span>님이 투고한 작품 확인</div>
+            <div class="page-title">투고한 작품 확인</div>
            	<%if(upList.size() == 0) { %>
            	<div class="line"></div>
 			<div class="inform-wrap">
@@ -128,9 +128,14 @@
 		                            </div>
 		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=ub.getBookDate() %></span></div>
 		                            <div>
-		                                <a href="/updateBookFrm.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">수정</a>
-		                                <button class="btn bc33 book-btn modal-open-btn" onclick="deleteUploadBook(<%=ub.getBookNo()%>, '<%=ub.getBookWriter()%>');">작품 삭제</button>
-		                                <%--<a href="/deleteUploadBook.do?bookNo=<%=ub.getBookNo() %>&bookWriter=<%=ub.getBookWriter() %>" class="btn bc33 book-btn modal-open-btn">작품 삭제</a> --%>
+		                            	<%if(loginUser.getUserId().equals(ub.getBookWriter())) { %>
+			                                <a href="/updateBookFrm.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">수정</a>
+			                                <button class="btn bc33 book-btn modal-open-btn" onclick="deleteUploadBook(<%=ub.getBookNo()%>, '<%=ub.getBookWriter()%>');">작품 삭제</button>
+			                                <%--<a href="/deleteUploadBook.do?bookNo=<%=ub.getBookNo() %>&bookWriter=<%=ub.getBookWriter() %>" class="btn bc33 book-btn modal-open-btn">작품 삭제</a> --%>
+		                            	<%} else { %>
+		                            		<a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">보기</a>
+			                                <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" class="btn bc000 bc444 book-btn modal-open-btn">후원하기</a>
+		                            	<%} %>
 		                            </div>
 	                            </div>
 	                        </div>
