@@ -17,11 +17,13 @@
 </head>
 <style>
 .mypage-box {
-	padding: 20px;
+	padding: 40px 40px;
 	border: 1px solid lightgray;
 	box-shadow: 0 0 0 0.1rem #eee;
 	border-radius: 10px;
 	display: flex;
+	
+	position: relative;
 }
 
 .mypage-box>.profile>.material-icons {
@@ -31,7 +33,7 @@
 
 .mypage-info {
 	padding: 15px;
-	width: 65%;
+	width: 68%;
 }
 
 .line {
@@ -39,10 +41,8 @@
 	border-bottom: 1px solid lightgray;
 }
 
-.icon {
-	font-size: 20px;
-	color: #59516e;
-	cursor: default;
+.link>div>.icon {
+	font-size: 24px;
 }
 
 .nick {
@@ -67,7 +67,7 @@
 
 .link>div>a {
 	display: block;
-	padding: 2px 0px 0px 3px;
+	padding: 5px 0px 0px 3px;
 }
 
 .link>div>a:hover {
@@ -76,10 +76,12 @@
 
 .logout-btn {
 	height: 55px;
-	margin-top: 80px;
+	position: absolute;
+	right: 40px;
+	bottom: 40px;
 }
 
-.myPoint {
+.mypage-main-wrap>div>.myPoint {
 	display: block;
 	height: 50px;
 	text-align: center;
@@ -87,6 +89,7 @@
 	margin: 10px 0px 10px 0px;
 	border-radius: 4px;
 	box-shadow: 0 0 0 0.1rem #eee;
+	cursor: default;
 }
 
 .myPoint-num {
@@ -111,7 +114,7 @@
 					<%if(loginUser.getUserPic()==null){ %>
 						<div class="material-icons">account_circle</div>
 					<%} else { %>
-						<div style="background-image: url(/upload/profile/<%=loginUser.getUserPic()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="previewImg" class="book-img"></div>
+						<div style="background-image: url(/upload/profile/<%=loginUser.getUserPic()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
 					<%} %>
 				</div>
 				<div class="mypage-info">
@@ -121,10 +124,10 @@
 					</div>
 					<div class="line"></div>
 					<div class="link">
-						<%-- <div>
-							<div class="material-symbols-outlined icon">mail</div>
-							<a href="#" class="message">쪽지함</a>
-						</div>--%>
+						<div>
+							<div class="material-symbols-outlined icon">calendar_month</div>
+							<a href="/cal.do" class="cal">출석체크</a>
+						</div>
 						<div>
 							<div class="material-symbols-outlined icon">savings</div>
 							<a href="/pointRechargeFrm.do" class="point">포인트 충전</a>
@@ -135,7 +138,7 @@
 			</div>
 			<div>
 				<div class="myPoint bc4">
-					나의 포인트 : <span class="myPoint-num"><%=user.getUserPoint() %></span> P</a>
+					나의 포인트 : <span class="myPoint-num"><%=user.getUserPoint() %></span> P
 				</div>
 			</div>
 		</div>

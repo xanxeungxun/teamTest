@@ -163,6 +163,14 @@ public class MyPageService {
 		
 		ArrayList<SupportBook> supList = dao.selectSupList(conn, userNo, start, end);
 		
+		//recv_user_nick 조회
+		for(SupportBook sb : supList) {
+			String recvUserId = sb.getBookWriter();
+			String recvUserNick = dao.selectRecvUserNick(conn, recvUserId);
+			
+			sb.setRecvUserNick(recvUserNick);
+		}
+		
 		/*<페이징 제작 시작>*/
 		/*한페이지당 게시물 수 : 10
 		총 게시물 수 : 222

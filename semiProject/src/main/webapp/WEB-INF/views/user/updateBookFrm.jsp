@@ -35,7 +35,7 @@
         border-radius: 4px;
         margin-right: 20px;
     }
-    .bold{
+    .book-info .bold{
         font-family: ns-m;
         margin-bottom: 10px;
     }
@@ -136,7 +136,7 @@
                             <div class="notice-msg">최대 100자까지 입력할 수 있습니다. 작품의 개요, 연재 정보, 독자를 위한 인삿말 등 작품을 매력적으로 소개해보세요.</div>
                         </div>
                         <div>
-                            <div class="bold">장르 설정 <span class="star">*</span></div>
+                            <div class="bold">장르 설정 <input type="hidden" id="genreCode" value="<%=book.getGenreCode()%>"><span class="star">*</span></div>
                             <select name="genre" class="input-form">
                                 <option value="1">판타지</option>
                                 <option value="2">로맨스</option>
@@ -216,6 +216,18 @@
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}
+	
+	//[작품 설정 수정] 장르코드 기본 선택
+	$(function(){
+		const code = $("#genreCode").val();
+		const options = $("[name=genre]>option");
+		options.each(function(index,item){
+			if($(item).val() == code){
+				$(item).prop("selected",true);
+			}
+		});
+	});
+	
     </script>
 </body>
 </html>

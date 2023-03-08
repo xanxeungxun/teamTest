@@ -104,6 +104,23 @@ public class StoryDao {
 			pstmt.setInt(2, storyNo);
 			pstmt.setInt(3, bookNo);
 			pstmt.setString(4, commentCnt);
+				result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public int insertFavoriteBook(Connection conn, int bookNo, int userNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into favorite_book values(favorite_book_seq.nextval,?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			pstmt.setInt(2, userNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -137,16 +154,38 @@ public class StoryDao {
 				
 				StoryComment.add(c);
 			}
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(rset);
+		}finally {	JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
 		
 		return StoryComment;
+			
+	public int selectLikeBook(Connection conn, int bookNo, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int checkLike = 0;
+		String query = "select count(*) as cnt from favorite_book where book_no=? and user_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			pstmt.setInt(2, userNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				checkLike = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+		
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return checkLike;
 	}
 
 	

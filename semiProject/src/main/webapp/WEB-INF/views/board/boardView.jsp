@@ -33,6 +33,10 @@
 	.boardContentDiv{
 		min-height: 400px;
 	}
+	.report-a{
+		float: right;
+		margin-right: 50px;
+	}
 	
 	
 	
@@ -54,7 +58,13 @@
 						<td class="board-td" colspan="2">
 						<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>">
 							<span class="title-span"><%=b.getBoardTitle() %></span>
-							<div><span class="date-span"><%=b.getboardDate() %></span></div>
+							<div>
+								<span class="date-span"><%=b.getboardDate() %></span>
+								<%-- 신고 버튼 --%>
+								<a href="/report/reportWriteFrm.do?boardNo=<%=b.getBoardNo() %>" class="report-a">
+									<span class="report material-symbols-outlined" style="font-size:24px;">e911_emergency</span>
+								</a>
+							</div>
 						</td>
 					</tr>
 					<%if(b.getFileName() != null) {%>

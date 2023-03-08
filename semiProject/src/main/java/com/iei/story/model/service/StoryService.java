@@ -95,6 +95,23 @@ public class StoryService {
 		JDBCTemplate.close(conn);
 		return StoryComment;
 	}
+	public int insertFavoriteBook(int bookNo, int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.selectLikeBook(conn, bookNo, userNo);
+		if(result == 0) {
+			result = dao.insertFavoriteBook(conn, bookNo, userNo);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		}else {
+			JDBCTemplate.close(conn);
+			return -1;
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 	
 	

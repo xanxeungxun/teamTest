@@ -73,7 +73,8 @@
                             <span>
                             <%=b.getBookStatus() %>
                             </span>
-                            <a href="#">
+                            <%-- 신고버튼 --%>
+                            <a href="/report/reportWriteFrm.do?bookNo=<%=b.getBookNo() %>">
                                 <span class="report material-symbols-outlined" style="font-size:22px;">e911_emergency</span>
                             </a>
                         </div>
@@ -186,7 +187,7 @@
 					        					<%=loginUser.getUserPoint() %>
 					        					<input type="hidden" name="userPoint" value="<%=loginUser.getUserPoint()%>">
 					        					<input type="hidden" name="loginUser" value="<%=loginUser.getUserId()%>">
-					        					<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
+					        					<input type="hidden" name="userNo" id="userNo" value="<%=loginUser.getUserNo()%>">
 					        				<%}else {%>
 					        					0
 					        				<%} %>
@@ -276,8 +277,11 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 			button2.css("margin-bottom","10px");
 			
 			
+			const bookNo = $("#bookNo").val();
+			const userNo = $("#userNo").val();
 			button3.text("관심작품");
 			button3.addClass("btn bc4");
+			button3.attr("onclick","location.href='/likeStory.do?bookNo="+bookNo+"&userNo="+userNo+"'");
 			
 			
 			$(".book-button").append(button1);

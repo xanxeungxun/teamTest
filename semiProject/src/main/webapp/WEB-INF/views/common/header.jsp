@@ -39,7 +39,7 @@
 	                <form action="/search.do" method="get">
 	                <input type="hidden" value="1" name="reqPage">
 	                <input id="integrated-search" class="search-bar" type="text" name="searchKeyword" value=""
-	                    placeholder="포스트, 시리즈, 채널 검색" maxlength="50">
+	                    placeholder="제목을 입력해주세요" maxlength="50">
 	                    <button type="submit" id="search-icon" class="material-symbols-outlined search-icon">search</button>
 	                </form>
 	                

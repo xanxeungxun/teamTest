@@ -115,22 +115,27 @@
                 		<%UploadBook ub = upList.get(i); %>
 	                    <div class="book-box">
 	                        <div class="book-num"><%=i+start %></div>
-	                        <div style="background-image: url(/upload/cover-image/<%=ub.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></div>
+	                        <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" style="background-image: url(/upload/cover-image/<%=ub.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></a>
 	                        <div class="book-info">
 	                            <div class="book-info-head">
-	                                <div class="book-title"><%=ub.getBookTitle() %></div>
+	                                <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" class="book-title"><%=ub.getBookTitle() %></a>
 	                            </div>
 	                            <div class="box">
 		                            <div class="genre"><%=ub.getGenreName() %></div>
 		                            <div class="writer-wrap">
 		                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
-		                                <div class="writer"><%=ub.getBookWriter() %></div>
+		                                <div class="writer"><%=ub.getUserNick() %></div>
 		                            </div>
 		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=ub.getBookDate() %></span></div>
 		                            <div>
-		                                <a href="/updateBookFrm.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">수정</a>
-		                                <button class="btn bc33 book-btn modal-open-btn" onclick="deleteUploadBook(<%=ub.getBookNo()%>, '<%=ub.getBookWriter()%>');">작품 삭제</button>
-		                                <%--<a href="/deleteUploadBook.do?bookNo=<%=ub.getBookNo() %>&bookWriter=<%=ub.getBookWriter() %>" class="btn bc33 book-btn modal-open-btn">작품 삭제</a> --%>
+		                            	<%if(loginUser.getUserId().equals(ub.getBookWriter())) { %>
+			                                <a href="/updateBookFrm.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">수정</a>
+			                                <button class="btn bc33 book-btn modal-open-btn" onclick="deleteUploadBook(<%=ub.getBookNo()%>, '<%=ub.getBookWriter()%>');">작품 삭제</button>
+			                                <%--<a href="/deleteUploadBook.do?bookNo=<%=ub.getBookNo() %>&bookWriter=<%=ub.getBookWriter() %>" class="btn bc33 book-btn modal-open-btn">작품 삭제</a> --%>
+		                            	<%} else { %>
+		                            		<a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" class="btn bc6 book-btn">보기</a>
+			                                <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" class="btn bc000 bc444 book-btn modal-open-btn">후원하기</a>
+		                            	<%} %>
 		                            </div>
 	                            </div>
 	                        </div>
@@ -162,8 +167,8 @@
 	      function deleteUploadBook(bookNo, bookWriter) {
 	          swal({
 	              title: '작품 삭제',
-	              text: "작품을 삭제하시겠습니까?",
-	              icon: 'warning',
+	              text: "로그인한 회원만 마이페이지를 조회할 수 있습니다.",
+	              icon: 'info',
 	              showCancelButton: true,
 	              /*confirmButtonColor: '#AACB73',
 	              cancelButtonColor: '#ccc',*/
@@ -171,7 +176,7 @@
 	              cancelButtonText: '취소'
 	          }).then(function(result) {
 	              if (result) {
-	                  location.href="/deleteUploadBook.do?bookNo="+bookNo+"&bookWriter="+bookWriter;
+	                  location.href="/";
 	              }
 	          })
 	      }

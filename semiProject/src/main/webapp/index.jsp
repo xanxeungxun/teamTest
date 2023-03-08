@@ -16,7 +16,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<button onclick="gotoTop()" id="gototop" title="맨 위로">＾</button>
+	<button onclick="gotoTop()" id="gototop" title="맨 위로">Δ</button>
 	<div class="content-wrap">
 		<div class="content-title">
 			<div class="autoplay">
@@ -49,7 +49,7 @@
 			<div class="mid-container">
 				<div class="mid-content-title">
 					<div class="content-category">
-						<a href="#">인기콘텐츠 ></a>
+						<a href="/bookList.do?reqPage=1">인기콘텐츠 ></a>
 					</div>
 				</div>
 				<div class="content-box">
@@ -187,14 +187,14 @@
 
 				<div class="btm-link1">
 					<div class="link-main1">
-						<a href="/category/웹소설/recent" class="btn btn-secondary">전체 보기</a>
+						<a href="/bookList.do?reqPage=1" class="btn btn-secondary">전체 보기</a>
 					</div>
 				</div>
 
 
 				<div class="mid-content-title">
 					<div class="content-category">
-						<a href="#">최신콘텐츠 ></a>
+						<a href="/bookList.do?reqPage=1">최신콘텐츠 ></a>
 					</div>
 				</div>
 				<div class="content-box">
@@ -358,7 +358,7 @@
 
 		<div class="btm-link2">
 			<div class="link-main2">
-				<a href="/category/웹소설/recent" class="btn btn-secondary">전체 보기</a>
+				<a href="/bookList.do?reqPage=1" class="btn btn-secondary">전체 보기</a>
 			</div>
 		</div>
 	</div>

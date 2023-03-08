@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.iei.cal.model.vo.CalCheck;
 import com.iei.mypage.vo.FavoriteBook;
 import com.iei.user.model.vo.User;
 
@@ -306,15 +307,16 @@ public class UserDao {
 		return result2;
 	}
 
-	public int insertSupportBook(Connection conn, int inputPoint, int userNo, int bookNo) {
+	public int insertSupportBook(Connection conn, int inputPoint, int userNo, int bookNo, String bookWriter) {
 		PreparedStatement pstmt = null;
 		int result3 = 0;
-		String query = "insert into support_book values(support_book_seq.nextval,?,?,?)";
+		String query = "insert into support_book values(support_book_seq.nextval,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, bookNo);
 			pstmt.setInt(2, userNo);
 			pstmt.setInt(3, inputPoint);
+			pstmt.setString(4, bookWriter);
 			result3 = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -355,7 +357,7 @@ public class UserDao {
 	public int insertCalCheck(Connection conn, int userNo) {
 		PreparedStatement pstmt = null;
 		int result1 = 0;
-		String query = "insert into cal_check values(cal_check_seq.nextval,sysdate,?)";
+		String query = "insert into cal_check values(cal_check_seq.nextval,to_char(sysdate,'YYYY-MM-DD'),?)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, userNo);
@@ -367,6 +369,70 @@ public class UserDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return result1;
+	}
+
+	public int selectCheck(Connection conn, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int checkDay = 0;
+		String query = "select count(*) as cnt from cal_check where user_no=? and check_day = to_char(sysdate,'YYYY-MM-DD')";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				checkDay = rset.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return checkDay;
+	}
+
+	public User selectOneUser(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		User user = null;
+		
+		String query = "select * from user_tbl where user_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				user = new User();
+				
+				user.setUserEnroll(rset.getString("user_enroll"));
+				user.setUserId(rset.getString("user_id"));
+				user.setUserLevel(rset.getInt("user_level"));
+				user.setUserName(rset.getString("user_name"));
+				user.setUserNick(rset.getString("user_nick"));
+				user.setUserNo(rset.getInt("user_no"));
+				user.setUserPhone(rset.getString("user_phone"));
+				user.setUserPic(rset.getString("user_pic"));
+				user.setUserPoint(rset.getInt("user_point"));
+				user.setUserPw(rset.getString("user_pw"));
+				user.setUserEmail(rset.getString("user_email"));
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return user;
+		
 	}
 
 	

@@ -1,8 +1,8 @@
-package com.iei.cal.controller;
+package com.iei.story.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,21 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-import com.iei.user.model.service.UserService;
+import com.iei.story.model.service.StoryService;
 import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class CalEventServlet
+ * Servlet implementation class LikeStoryServlet
  */
-@WebServlet(name = "CalEvent", urlPatterns = { "/calEvent.do" })
-public class CalEventServlet extends HttpServlet {
+@WebServlet(name = "LikeStory", urlPatterns = { "/likeStory.do" })
+public class LikeStoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CalEventServlet() {
+    public LikeStoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,35 +32,27 @@ public class CalEventServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
-		//2. 값추출
+		
+		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
 		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		int userPoint = Integer.parseInt(request.getParameter("userPoint"));
-		String userId = request.getParameter("userId");
 		
+		StoryService service = new StoryService();
+		int result = service.insertFavoriteBook(bookNo, userNo);
 		
-		//3. 비즈니스로직
-		UserService service = new UserService();
-		int result = service.updateUserCheckPoint(userId, userPoint, userNo);
-		//4. 결과처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 		if(result > 0) {
-			HttpSession session = request.getSession();
-			User userSession = (User)session.getAttribute("loginUser");
-			userSession.setUserPoint(userPoint+50);
+			request.setAttribute("title", "관심작품 등록");
+			request.setAttribute("msg", "관식작품으로 등록하셨습니다.");
+			request.setAttribute("icon", "success");
 		}else {
-			HttpSession session = request.getSession();
-			User userSession = (User)session.getAttribute("loginUser");
-			userSession.setUserPoint(userPoint);
+			request.setAttribute("title", "등록실패");
+			request.setAttribute("msg", "이미 등록된 관심작품입니다.");
+			request.setAttribute("icon", "warning");
 		}
+		request.setAttribute("loc", "/storyList.do?bookNo="+bookNo);
+		view.forward(request, response);
 		
-		
-		
-		
-		response.setCharacterEncoding("utf-8");
-		PrintWriter out = response.getWriter();
-		Gson gson = new Gson();
-		gson.toJson(result,out);
 		
 	}
 

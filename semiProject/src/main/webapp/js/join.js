@@ -36,8 +36,21 @@ function falseDesign(i){
 
 //1. 아이디
 $("[name=userId]").on("change",function(){
-    const idReg = /^[a-z0-9]{5,25}$/;
-    const check = idReg.test($(this).val());
+
+});
+
+//1-2. 아이디, 비번 같으면 안됨
+function idDifferPw(i){
+    $(".reg-msg").eq(i).text("아이디와 같은 비밀번호는 사용할 수 없습니다.");
+    falseDesign(i);
+}
+
+//1-3. 아이디 중복 체크
+$("#userId").on("change",function(){
+	const userId = $(this).val();
+	//아이디 정규표현식 검사
+	const idReg = /^[a-z0-9]{5,25}$/;
+    const check = idReg.test(userId);
 
     if($("[name=userId]").val() == $("[name=userPw]").val()) {
         idDifferPw(0);
@@ -45,8 +58,25 @@ $("[name=userId]").on("change",function(){
     } else {
         if(check) {
             //true
-            trueDesign(0);
-            result[0] = true;
+
+            
+            //정규식 통과되면 아이디 중복체크
+            $.ajax({
+				url : "/checkId.do",
+				type : "get",
+				data : {userId:userId},
+				success : function(data){
+					if(data == "1"){
+						$(".reg-msg").eq(0).text("중복된 아이디가 있습니다.");
+						falseDesign(0);
+            			result[0] = false;
+            			
+					} else if(data == "0"){
+						trueDesign(0);
+            			result[0] = true;
+					}
+				}
+			});
     
         } else {
             //false
@@ -55,13 +85,8 @@ $("[name=userId]").on("change",function(){
             result[0] = false;
         }
     }
+	
 });
-
-//1-2. 아이디, 비번 같으면 안됨
-function idDifferPw(i){
-    $(".reg-msg").eq(i).text("아이디와 같은 비밀번호는 사용할 수 없습니다.");
-    falseDesign(i);
-}
 
 //2-1. 비밀번호
 $("[name=userPw]").on("change",function(){

@@ -1,4 +1,4 @@
-package com.iei.cal.controller;
+package com.iei.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,23 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
 import com.iei.user.model.service.UserService;
 import com.iei.user.model.vo.User;
 
 /**
- * Servlet implementation class CalEventServlet
+ * Servlet implementation class CheckIdServlet
  */
-@WebServlet(name = "CalEvent", urlPatterns = { "/calEvent.do" })
-public class CalEventServlet extends HttpServlet {
+@WebServlet(name = "CheckId", urlPatterns = { "/checkId.do" })
+public class CheckIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CalEventServlet() {
+    public CheckIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,34 +33,22 @@ public class CalEventServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
-		//2. 값추출
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		int userPoint = Integer.parseInt(request.getParameter("userPoint"));
+		
+		//2. 값 추출
 		String userId = request.getParameter("userId");
 		
-		
-		//3. 비즈니스로직
+		//3. 비즈니스 로직
 		UserService service = new UserService();
-		int result = service.updateUserCheckPoint(userId, userPoint, userNo);
-		//4. 결과처리
-		if(result > 0) {
-			HttpSession session = request.getSession();
-			User userSession = (User)session.getAttribute("loginUser");
-			userSession.setUserPoint(userPoint+50);
-		}else {
-			HttpSession session = request.getSession();
-			User userSession = (User)session.getAttribute("loginUser");
-			userSession.setUserPoint(userPoint);
-		}
+		User m = service.selectOneUser(userId);
 		
-		
-		
-		
+		//4. 결과 처리
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		Gson gson = new Gson();
-		gson.toJson(result,out);
-		
+		if(m != null) {
+			out.print(1);
+		} else {
+			out.print(0);
+		}
 	}
 
 	/**

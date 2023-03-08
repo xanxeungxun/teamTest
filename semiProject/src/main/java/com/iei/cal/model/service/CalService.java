@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.iei.cal.model.dao.CalDao;
 import com.iei.cal.model.vo.Cal;
+import com.iei.cal.model.vo.CalCheck;
 
 import common.JDBCTemplate;
 
@@ -16,9 +17,9 @@ public class CalService {
 		dao = new CalDao();
 	}
 
-	public ArrayList<Cal> selectAllCalCheck() {
+	public ArrayList<CalCheck> selectAllCalCheck(int userNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		ArrayList<Cal> list = dao.selectAllCalCheck(conn);
+		ArrayList<CalCheck> list = dao.selectAllCalCheck(conn, userNo);
 		JDBCTemplate.close(conn);
 		return list;
 	}
