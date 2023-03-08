@@ -218,7 +218,7 @@
 		//이미지 띄우기
 		function loadImg(f){
 			//첨부파일이 여러개일 수 있어서 항상 배열로 처리
-			//console.log(f.files); //우리가 첨부한 파일 볼 수 있음
+			console.log(f.files); //우리가 첨부한 파일 볼 수 있음
 			
 			//파일 개수가 0개가 아니고 && 첫번째파일이 정상파일이면
 			if(f.files.length != 0 && f.files[0] != 0){
@@ -247,7 +247,7 @@
 		            var filename = $(this).val().split('/').pop().split('\\').pop();
 		            $("#previewImg").css({"background-image":"url(/upload/profile/"+filename+")"}); //input upload-name 에 파일명 설정해주기
 					
-		            readImage($(this)[0]); //미리보기
+		            loadImg($(this)[0]); //미리보기
 	
 		            //파일 이름 표시
 		            $('.upfile-name').text(filename);
@@ -370,6 +370,19 @@
 		//(3) 새 비밀번호 확인 ... 동일한지 확인
 		$("[name=newPwCh]").on("change",function(){
 		    const newPwValue = $("[name=newPw]").val();
+		    const newPwReValue = $(this).val();
+		    if(newPwValue == newPwReValue) {
+		        trueDesign(5);
+
+		    } else{
+		        $(".reg-msg").eq(5).text("비밀번호가 일치하지 않습니다.");
+		        falseDesign(5);
+
+		    }
+		});
+	</script>
+</body>
+</html>t newPwValue = $("[name=newPw]").val();
 		    const newPwReValue = $(this).val();
 		    if(newPwValue == newPwReValue) {
 		        trueDesign(5);
