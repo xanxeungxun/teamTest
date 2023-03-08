@@ -18,7 +18,7 @@ public class ReportDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<ReportVo> list = new ArrayList<ReportVo>();
-		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,sus_no,report_title,report_content,report_style,report_date,book_no,board_no,file_name,file_patch from report order by 1 desc)n)where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,report_title,report_content,report_type,report_date,BOOK_OR_BOARD_TYPE,BOOK_OR_BOARD_NO,BOOK_OR_BOARD_TITLE,file_name,file_patch from report order by 1 desc)n)where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -27,14 +27,14 @@ public class ReportDao {
 			while(rset.next()) {
 				ReportVo n = new ReportVo();
 				n.setReportNo(rset.getInt("report_no"));
-				n.setReporterId(rset.getInt("reporter_id"));
-				n.setSusNo(rset.getInt("sus_no"));
+				n.setReporterId(rset.getString("reporter_id"));
 				n.setReportTitle(rset.getString("report_title"));
 				n.setReportContent(rset.getString("report_content"));
-				n.setReportStyle(rset.getInt("report_style"));
+				n.setReportType(rset.getInt("report_type"));
 				n.setReportDate(rset.getString("report_date"));
-				n.setBookNo(rset.getInt("book_no"));
-				n.setBoardNo(rset.getInt("board_no"));
+				n.setBobType(rset.getString("BOOK_OR_BOARD_TYPE"));
+				n.setBobNo(rset.getInt("BOOK_OR_BOARD_NO"));
+				n.setBobTitle(rset.getString("BOOK_OR_BOARD_TITLE"));
 				n.setFileName(rset.getString("file_name"));
 				n.setFilePatch(rset.getString("file_patch"));
 				list.add(n);
