@@ -122,7 +122,7 @@
 		                            <div class="genre"><%=sb.getGenreName() %></div>
 		                            <div class="writer-wrap">
 		                                <span class="material-symbols-outlined">drive_file_rename_outline</span>
-		                                <div class="writer"><%=sb.getUserNick() %></div>
+		                                <a href="/uploadBookList.do?userId=<%=sb.getBookWriter()%>&reqPage=1"><%=sb.getUserNick() %></a>
 		                            </div>
 		                            <div class="book-date">작품 등록일 : <span class="book-date"><%=sb.getBookDate() %></span></div>
 		                            <div>
