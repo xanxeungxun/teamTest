@@ -73,6 +73,7 @@
                             <span>
                             <%=b.getBookStatus() %>
                             </span>
+                            <%-- 신고버튼 --%>
                             <a href="/report/reportWriteFrm.do?bookNo=<%=b.getBookNo() %>">
                                 <span class="report material-symbols-outlined" style="font-size:22px;">e911_emergency</span>
                             </a>
