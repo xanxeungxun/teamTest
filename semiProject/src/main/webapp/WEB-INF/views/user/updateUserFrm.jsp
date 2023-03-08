@@ -23,7 +23,7 @@
 
     .profile>.material-icons{
         font-size: 80px;
-        color: #ccc
+        color: #ccc;
     }
     .profile{
         margin-top: 10px;
