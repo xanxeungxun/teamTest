@@ -16,7 +16,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<button onclick="gotoTop()" id="gototop" title="맨 위로">＾</button>
+	<button onclick="gotoTop()" id="gototop" title="맨 위로">Δ</button>
 	<div class="content-wrap">
 		<div class="content-title">
 			<div class="autoplay">
