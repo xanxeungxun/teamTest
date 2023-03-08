@@ -305,7 +305,7 @@ public class BookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Book> viewList = new ArrayList<Book>();
-		String query="SELECT *FROM (SELECT ROWNUM AS rnum, (SELECT COUNT(*) AS count FROM story WHERE book_no=n.book_no) AS story_count, n.*FROM (SELECT b.book_no, b.genre_code, g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, CASE b.book_status WHEN 1 THEN '연재중' ELSE '완결' END AS book_status, b.book_date FROM genre g, book b, user_tbl u WHERE g.genre_code = b.genre_code AND b.BOOK_WRITER = u.USER_id ORDER BY 1 DESC)n WHERE ROWNUM <= 4) WHERE rnum >= 1";
+		String query="SELECT *FROM (SELECT ROWNUM AS rnum, (SELECT COUNT(*) AS count FROM story WHERE book_no=n.book_no) AS story_count, n.*FROM (SELECT b.book_no, b.genre_code, g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, CASE b.book_status WHEN 1 THEN '연재중' ELSE '완결' END AS book_status, b.book_date FROM genre g, book b, user_tbl u WHERE g.genre_code = b.genre_code AND b.BOOK_WRITER = u.USER_id ORDER BY 1 DESC)n WHERE ROWNUM <= 6) WHERE rnum >= 1";
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -335,6 +335,7 @@ public class BookDao {
 		}
 		return viewList;
 	}
+
 
 	
 	

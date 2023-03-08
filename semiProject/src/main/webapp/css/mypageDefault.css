@@ -1,7 +1,14 @@
 body>.page-content{
 	padding-top : 50px;
 }
-
+.book-title{
+	width: 500px;
+    font-size: 18px;
+    font-family: ns-m;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .line{
 	border-top: 2px solid lightgray;
 }

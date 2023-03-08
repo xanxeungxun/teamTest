@@ -85,7 +85,7 @@ public class UserService {
 		if(result>0) {
 			JDBCTemplate.commit(conn);
 		} else {
-			JDBCTemplate.close(conn);
+			JDBCTemplate.rollback(conn);
 		}
 		
 		JDBCTemplate.close(conn);
@@ -181,6 +181,17 @@ public class UserService {
 		JDBCTemplate.close(conn);
 		
 		return user;
+	}
+
+
+	public String selectEmail(String inputEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		String sameEmail = dao.selectEmail(conn, inputEmail);
+		
+		JDBCTemplate.close(conn);
+		
+		return sameEmail;
 	}
 
 

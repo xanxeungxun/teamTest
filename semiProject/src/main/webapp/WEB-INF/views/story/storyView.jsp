@@ -76,19 +76,21 @@
 		<div class="comment" style="width: 80%; margin: 0 auto;">
 		
 		<%if(loginUser != null) {%>
+		<form action="/insertStoryComment.do" method="post">
+			<span class="material-icons">account_box</span>
 			<div class="input-comment" style="display: flex;">
-				<span class="material-icons">account_box</span>
-				<div style="width: 90%;">
-				<input type="hidden" name="bookNo" value="<%=b.getBookNo()%>">
-				<input type="hidden" name="storyNo" value="<%=s.getStoryNo()%>">
-				<input type="hidden" name="userId" value="<%=loginUser.getUserId()%>">
-					<textarea name="commentCnt" class="input-form" style="min-height: 85px;"
-					placeholder="친절한 코멘트는 작가에게 큰 힘이 됩니다"></textarea>
-				</div>
-				<div style="width: 20%;">
-					<button id="cmtBtn" class="btn bc4" style="width:100%; height: 100%; cursor: pointer;">등록</button>
-				</div>
+					<div style="width: 90%;">
+					<input type="hidden" name="bookNo" value="<%=b.getBookNo()%>">
+					<input type="hidden" name="storyNo" value="<%=s.getStoryNo()%>">
+					<input type="hidden" name="userId" value="<%=loginUser.getUserId()%>">
+						<textarea name="commentCnt" class="input-form" style="min-height: 85px;"
+						placeholder="친절한 코멘트는 작가에게 큰 힘이 됩니다"></textarea>
+					</div>
+					<div style="width: 20%;">
+						<button id="cmtBtn" class="btn bc4" style="width:100%; height: 100%; cursor: pointer;">등록</button>
+					</div>
 			</div>
+		</form>
 		<%}%>
 			<div class="comment-list">
 				<%for(StoryComment c : cl){ %>
@@ -101,8 +103,8 @@
 			                    <span style="font-size:16px;"><%=c.getUserId() %></span>
 			                    <span class="comment-link">
 			                    <%	if(loginUser != null && loginUser.getUserId().equals(c.getUserId())){ %>
-			                        <a href="javascript:void(0)" onclick="modifyComment(this,코멘트번호,보드번호)">수정</a>
-			                        <a type="button" href="javascript:void(0)" onclick="deleteComment(this,코멘트번호,보드번호)">삭제</a>
+			                        <a href="javascript:void(0)" onclick="modifyComment(this,<%=c.getStoryCommentNo() %>,<%=s.getStoryNo()%>,<%=b.getBookNo()%>)">수정</a>
+			                        <a type="button" href="javascript:void(0)" onclick="deleteComment(this,<%=c.getStoryCommentNo() %>,<%=s.getStoryNo()%>,<%=b.getBookNo()%>)">삭제</a>
 			                     <% } %> 
 			                    </span>
 			                  </p>
@@ -110,34 +112,35 @@
 			                      <span><%=c.getCommentDate()%></span>
 			                  </p>
 			                  <p class="comment-content show-content" style="font-size:16px;"><%=c.getStoryCommentContent()%></p>
-			                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;"><%=c.getStoryCommentContent()%></textarea>
+			                  <textarea name="storyCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;"><%=c.getStoryCommentContent()%></textarea>
 			                  <% if(loginUser!=null) { %>
 			                  	<a href="javascript:void(0)" class="recShow"><span class="material-symbols-outlined">sms</span></a>
 			                  <% } %>
 			                </li>
 		         	</ul>
-		         <%} %>
+		         	
+		         	<%if(loginUser != null) {%>
+					<div class="inputCommentBox inputRecommentBox">
+						<form action="/insertStoryComment.do" method="post">
+							<div class="input-comment" style="display: flex;">
+									<div style="width: 90%;">
+									<input type="hidden" name="bookNo" value="<%=b.getBookNo()%>">
+									<input type="hidden" name="storyNo" value="<%=s.getStoryNo()%>">
+									<input type="hidden" name="userId" value="<%=loginUser.getUserId()%>">
+										<textarea name="commentCnt" class="input-form" style="min-height: 85px;"
+										placeholder="바르고 고운말을 사용합시다 :)"></textarea>
+									</div>
+									<div style="width: 20%;">
+										<button id="cmtBtn" class="btn bc4" style="width:100%; height: 100%; cursor: pointer;">등록</button>
+									</div>
+							</div>
+						</form>	
+					</div>			
+				 	<%} %><!-- 답답글 다는 창 -->
+				 	
+		         <%} %><!-- 댓글 출력 for문 끝나는 위치 -->
 		         
-		         <%if(loginUser != null) {%>
-						<div class="inputCommentBox inputRecommentBox">
-							<form action="/insertBoardComment.do" method="post">
-								<ul style="list-style: none;">
-									<li>
-										<span class="material-icons">subdirectory_arrow_right</span>
-									</li>
-									<li>
-										<input type="hidden" name="boardCommentWriter" value="로그인유저아이디"> 
-										<input type="hidden" name="boardRef" value="작품번호">
-										<input type="hidden" name="boardCommentRef" value="코멘트번호">
-										<textarea name="boardCommentContent" class="input-form"></textarea>
-									</li>
-									<li>
-										<button type="submit" class="btn bc4 bs4" style="font-size: 16px;">등록</button>
-									</li>
-								</ul>
-							</form>
-						</div>					
-				 <%} %>
+		         
 				 
 				 <ul class="posting-comment reply">
 		                <li>
@@ -170,68 +173,7 @@
 	
 	<script>
 	
-	$("#cmtBtn").on("click",function(){
-		const bookNo = $("[name=bookNo]").val();
-		const storyNo = $("[name=storyNo]").val();
-		const commentCnt = $("[name=commentCnt]").val();
-		const userId = $("[name=userId]").val();
-		
-		const commentList = $(".comment-list");
-		$.ajax({
-			url : "/insertStoryComment.do",
-			type : "post",
-			data:{
-				bookNo : bookNo,
-				storyNo : storyNo,
-				commentCnt : commentCnt,
-				userId : userId
-			},
-			dataType: "JSON",
-			success: function(data){
-				if(data==null){
-					commentList.append("작성된 코멘트가 없습니다");
-				}else{
-					/*
-					<ul class="posting-comment">
-		                <li>
-		                  <span class="material-icons">account_circle</span>
-		                </li>
-		                <li>
-		                  <p class="comment-info">
-		                    <span style="font-size:16px;">작성자</span>
-		                    <span class="comment-link">
-		                    	if(loginUser != null && loginUser.getUserId().equals("댓글쓴이")){
-		                        <a href="javascript:void(0)" onclick="modifyComment(this,코멘트번호,보드번호)">수정</a>
-		                        <a type="button" href="javascript:void(0)" onclick="deleteComment(this,코멘트번호,보드번호)">삭제</a>
-		                        } 
-		                    </span>
-		                  </p>
-		                  <p class="comment-date">
-		                      <span>작성날짜</span>
-		                  </p>
-		                  <p class="comment-content show-content" style="font-size:16px;">코멘트내용</p>
-		                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;">코멘트내용..?</textarea>
-		                  if(loginUser!=null) {
-		                  <a href="javascript:void(0)" class="recShow"><span class="material-symbols-outlined">sms</span></a>
-		                  }
-		                </li>
-	         		</ul>
-					*/
-					
-				}
-			},
-			error: function(){
-				alert("시스템 오류. 관리자에게 문의하세요");
-			}
-			
-		})
-	})
-	
-	
-	
-	
-	
-	
+	$(".inputRecommentBox").hide();
 	
 	$(".recShow>span").on("click",function(){
 		const idx = $(".recShow>span").index(this);
@@ -244,34 +186,68 @@
 		$(".inputRecommentBox").eq(idx).find("textarea").focus();
 	});
 	
-	function modifyComment(obj, boardCommentNo, boardNo){
+	
+	function modifyComment(obj, storyCommentNo, storyNo, bookNo){
 		//숨겨놓은 textarea를 화면에 보여줌
-		$(".hide-textarea").show();
+		$(obj).parents("p").siblings("textarea").show();
 		//화면에 있던 댓글내용(p태그)를 숨김
-		$("show-content").hide();
+		$(obj).parents("p").siblings(".comment-content").hide();
 		//수정 -> 수정완료
 		$(obj).text("수정완료");
-		$(obj).attr("onclick","modifyComplete(this,"+boardCommentNo+","+boardNo+")");
+		$(obj).attr("onclick","modifyComplete(this,"+storyCommentNo+","+storyNo+","+bookNo+")");
+		
 		//삭제 -> 수정취소
 		$(obj).next().text("수정취소");
-		$(obj).next().attr("onclick","modifyCancel(this,"+boardCommentNo+","+boardNo+")");
+		$(obj).next().attr("onclick","modifyCancel(this,"+storyCommentNo+","+storyNo+","+bookNo+")");
 		//답글달기버튼 삭제
-		$(obj).next().next().hide();
+		$(obj).parents("p").siblings("a").hide();
+		
+		$(obj).parent().css("width","115px");
 	}
 	
-	function modifyCancel(obj,boardCommentNo, boardNo){
-		$(".hide-textarea").hide();
-		$("show-content").show();
+	function modifyCancel(obj,storyCommentNo, storyNo,bookNo){
+		$(obj).parents("p").siblings("textarea").hide();
+		$(obj).parents("p").siblings(".comment-content").show();
 		//수정완료 -> 수정
 		$(obj).prev().text("수정");
-		$(obj).prev().attr("onclick","modifyComment(this,"+boardCommentNo+","+boardNo+")");
+		$(obj).prev().attr("onclick","modifyComment(this,"+storyCommentNo+","+storyNo+","+bookNo+")");
 		//수정취소 -> 삭제
 		$(obj).text("삭제");
-		$(obj).attr("onclick","deleteComment(this,"+boardCommentNo+","+boardNo+")");
+		$(obj).attr("onclick","deleteComment(this,"+storyCommentNo+","+storyNo+","+bookNo+")");
 		//답글달기 버튼 다시 보여줌
-		$(obj).next().show();
+		$(obj).parents("p").siblings("a").show();
+		
+		$(obj).parent().css("width","7%");
 	}
 	
+	function modifyComplete(obj,storyCommentNo, storyNo, bookNo){
+		//form태그를 생성해서 전송
+		//댓글내용, 댓글번호, 공지사항번호
+		
+		//1. form태그 생성
+		const form=$("<form style='display:none;' action='/updateStoryComment.do' method='post'></form>");
+		//2. input태그 2개 숨김
+		const storyCommentNoInput = $("<input type='text' name='storyCommentNo'>");
+		storyCommentNoInput.val(storyCommentNo);
+		const storyNoInput = $("<input type='text' name='storyNo'>");
+		storyNoInput.val(storyNo);
+		const bookNoInput = $("<input type='text' name='bookNo'>");
+		bookNoInput.val(bookNo);
+		//3. textarea
+		const storyCommentContent = $(obj).parents("p").siblings("textarea").clone();
+		//4. form태그에 input, textarea를 모두 포함
+		form.append(storyCommentNoInput).append(storyNoInput).append(storyCommentContent).append(bookNoInput);
+		//5. 생성된 form태그를 body태그에 추가
+		$("body").append(form);
+		//form태그를 전송
+		form.submit();
+	}
+	
+	function deleteComment(obj,storyCommentNo,storyNo,bookNo){
+		if(confirm("댓글을 삭제하시겠습니까?")){
+			location.href="/deleteStoryComment.do?storyCommentNo="+storyCommentNo+"&bookNo="+bookNo+"&storyNo="+storyNo;
+		}
+	}
 	
 	</script>
 

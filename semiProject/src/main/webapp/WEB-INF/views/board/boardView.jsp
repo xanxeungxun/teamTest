@@ -51,7 +51,28 @@
 	    border-radius: 4px;
 	    box-sizing: border-box;
 	}
-	
+	.book-img{
+        width: 80px;
+        height: 80px;
+        background-color: #fff;
+        border : 1px solid #EEEEEE;
+        border-radius: 60px;
+    }
+    .comment-ul{
+    	display: flex;
+   		list-style-type: none;
+    	margin-top: 50px;
+    	margin-bottom: 50px;
+    }
+    textarea.input-form {
+	    resize: none;
+	    min-height: 100px;
+	    width: 1000px;
+	}
+	.btn{
+		width: 100px;
+		height: 100px;
+	}
 	
 	
 </style>
@@ -107,9 +128,9 @@
 				<%if(loginUser != null) {%>
 				<div class="inputCommentBox">
 					<form action="/insertBoardComment.do" method="post">
-						<ul>
+						<ul class="comment-ul">
 							<li>
-								<span class="material-icons">account_box</span>
+								<span class="material-icons" style="font-size:100px;">account_box</span>
 							</li>
 							<li>
 								<input type="hidden" name="boardCommentWriter" value="<%=loginUser.getUserId() %>">
@@ -129,7 +150,11 @@
 				<%for(BoardComment bc : commentList) {%>
 		            <ul class="posting-comment">
 		                <li>
-		                  <span class="material-icons">account_circle</span>
+		                  	<%if(bc.getFilePath()==null){ %>
+								<div class="material-icons">account_circle</div>
+							<%} else { %>
+								<div style="background-image: url(/upload/profile/<%=bc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
+							<%} %>
 		                </li>
 		                <li>
 		                  <p class="comment-info">
@@ -145,10 +170,10 @@
 		                      <span><%=bc.getBoardCommentDate() %></span>
 		                  </p>
 		                  <p class="comment-content show-content"><%=bc.getBoardCommentContent() %></p>
-		                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;"><%=bc.getBoardCommentContent() %></textarea>
 		                  <%if(loginUser!=null) {%>
 		                  <a href="javascript:void(0)" class="recShow"><span class="material-symbols-outlined">sms</span></a>
 		                  <%} %>
+		                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;"><%=bc.getBoardCommentContent() %></textarea>
 		                </li>
 		              </ul>
 		              
@@ -156,10 +181,14 @@
 		             	<%if(bcc.getBoardCommentRef()==bc.getBoardCommentNo()) {%>
 		              <ul class="posting-comment reply">
 		                <li>
-		                  <span class="material-icons">account_circle</span>
+		                  	<%if(bcc.getFilePath()==null){ %>
+								<div class="material-icons">account_circle</div>
+							<%} else { %>
+								<div style="background-image: url(/upload/profile/<%=bcc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
+							<%} %>
 		                </li>
 		                <li>
-		                  <p class="comment-info">
+		                  	<p class="comment-info">
 		                      <span><%=bcc.getBoardCommnetWriter() %></span>
 		                      <span class="comment-link">
 		                      	  <%if(loginUser != null && loginUser.getUserId().equals(bcc.getBoardCommnetWriter())) {%>
@@ -185,18 +214,18 @@
 					<%if(loginUser != null) {%>
 						<div class="inputCommentBox inputRecommentBox">
 							<form action="/insertBoardComment.do" method="post">
-								<ul>
+								<ul class="comment-ul">
 									<li>
-										<span class="material-icons">subdirectory_arrow_right</span>
+										<span class="material-icons" style="font-size:100px;">subdirectory_arrow_right</span>
 									</li>
 									<li>
 										<input type="hidden" name="boardCommentWriter" value="<%=loginUser.getUserId() %>"> 
 										<input type="hidden" name="boardRef" value="<%=b.getBoardNo() %>">
 										<input type="hidden" name="boardCommentRef" value="<%=bc.getBoardCommentNo() %>">
-										<textarea name="boardCommentContent" class="input-form" style="min-height: 85px;" placeholder="댓글을 입력해주세요"></textarea>
+										<textarea name="boardCommentContent" class="input-form" style="min-height: 100px;" placeholder="댓글을 입력해주세요"></textarea>
 									</li>
 									<li>
-										<button type="submit" class="btn bc4" style="width:100%; height:100%; cursor: pointer;">등록</button>
+										<button type="submit" class="btn bc1 bs2">등록</button>
 									</li>
 								</ul>
 							</form>
@@ -229,9 +258,9 @@
 		
 		function modifyComment(obj, boardCommentNo, boardNo){
 			//숨겨놓은 textarea를 화면에 보여줌
-			$(".hide-textarea").show();
+			$(obj).parents("li").eq(0).find("textarea").show();
 			//화면에 있던 댓글내용(p태그)를 숨김
-			$("show-content").hide();
+			$(obj).parent().next().next().hide();
 			//수정 -> 수정완료
 			$(obj).text("수정완료");
 			$(obj).attr("onclick","modifyComplete(this,"+boardCommentNo+","+boardNo+")");
@@ -264,7 +293,7 @@
 			const boardNoInput = $("<input type='text' name='boardNo'>");
 			boardNoInput.val(boardNo);
 			//3. textarea
-			const boardCommentContent = $(".hide-textarea").clone();
+			const boardCommentContent = $(obj).parents("li").eq(0).find("textarea").clone();
 			//4. form태그에 input, textarea를 모두 포함
 			form.append(boardCommentNoInput).append(boardNoInput).append(boardCommentContent);
 			//5. 생성된 form태그를 body태그에 추가

@@ -1,7 +1,7 @@
 package com.iei.story.controller;
 
 import java.io.IOException;
-import java.security.Provider.Service;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,21 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
-
+import com.iei.book.model.vo.Book;
 import com.iei.story.model.service.StoryService;
+import com.iei.story.model.vo.Story;
+import com.iei.story.model.vo.StoryComment;
 
 /**
- * Servlet implementation class InsertStoryCommentServlet
+ * Servlet implementation class SelectFirstStoryServlet
  */
-@WebServlet(name = "InsertStoryComment", urlPatterns = { "/insertStoryComment.do" })
-public class InsertStoryCommentServlet extends HttpServlet {
+@WebServlet(name = "SelectFirstStory", urlPatterns = { "/selectFirstStory.do" })
+public class SelectFirstStoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertStoryCommentServlet() {
+    public SelectFirstStoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,28 +39,17 @@ public class InsertStoryCommentServlet extends HttpServlet {
 		
 		//값추출
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
-		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
-		String userId = request.getParameter("userId");
-		String commentCnt = request.getParameter("commentCnt");
-
+		
 		//비즈니스로직
 		StoryService service = new StoryService();
-		int result = service.insertStoryComment(bookNo,storyNo,userId,commentCnt);
+		int storyNo = service.selectFirstStory(bookNo);
 		
 		//결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if(result>0) { //입력성공
-			request.setAttribute("title", "성공");
-			request.setAttribute("msg", "댓글 작성 완료");
-			request.setAttribute("icon", "success");
-		}else{ //입력실패
-			request.setAttribute("title", "실패");
-			request.setAttribute("msg", "댓글 작성 실패");
-			request.setAttribute("icon", "error");
-		}
-		
-		request.setAttribute("loc", "/storyView.do?storyNo="+storyNo+"&bookNo="+bookNo);
+
+		RequestDispatcher view = request.getRequestDispatcher("/storyView.do?storyNo="+storyNo+"&bookNo="+bookNo);
+	
 		view.forward(request, response);
+		
 	}
 
 	/**
