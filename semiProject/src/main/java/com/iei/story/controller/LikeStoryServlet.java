@@ -41,14 +41,14 @@ public class LikeStoryServlet extends HttpServlet {
 		int result = service.insertFavoriteBook(bookNo, userNo);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		if(result>0) {
+		if(result > 0) {
 			request.setAttribute("title", "관심작품 등록");
 			request.setAttribute("msg", "관식작품으로 등록하셨습니다.");
 			request.setAttribute("icon", "success");
 		}else {
 			request.setAttribute("title", "등록실패");
-			request.setAttribute("msg", "관심작품으로 등록할 수 없습니다.");
-			request.setAttribute("icon", "error");
+			request.setAttribute("msg", "이미 등록된 관심작품입니다.");
+			request.setAttribute("icon", "warning");
 		}
 		request.setAttribute("loc", "/storyList.do?bookNo="+bookNo);
 		view.forward(request, response);

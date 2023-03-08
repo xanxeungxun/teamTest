@@ -109,6 +109,30 @@ public class StoryDao {
 		return result;
 	}
 
+	public int selectLikeBook(Connection conn, int bookNo, int userNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int checkLike = 0;
+		String query = "select count(*) as cnt from favorite_book where book_no=? and user_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			pstmt.setInt(2, userNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				checkLike = rset.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		
+		return checkLike;
+	}
+
 	
 	
 }
