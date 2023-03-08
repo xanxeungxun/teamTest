@@ -134,7 +134,7 @@
 	                        <div class="profile-file">
 	                            <div class="upfile-name input-form">파일을 선택해주세요</div>
 	                            <label for="profile-upfile" class="btn bc6 upfile">파일 선택</label>
-	                            <input type="file" name="profile-upfile" id="profile-upfile" class="upload-hidden" accept=".jap,.png,.jpeg" style="display:none" onchange="loadImg(this);">
+	                            <input type="file" name="profile-upfile" id="profile-upfile" class="upload-hidden" accept=".jap,.png,.jpeg" style="display:none">
 	                        </div>
 	                    </div>
 	                </div> 

@@ -37,6 +37,7 @@
     }
     .book-img{
         width: 120px;
+        height: 100%;
         background-color: #fff;
         border : 1px solid #EEEEEE;
         border-radius: 4px;
@@ -51,7 +52,8 @@
     	bottom: 0;
     }
     .book-info>div>div{
-        padding: 3px 0px 3px 0px;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
     .book-info-head{
         display: flex;
@@ -115,7 +117,7 @@
                 		<%UploadBook ub = upList.get(i); %>
 	                    <div class="book-box">
 	                        <div class="book-num"><%=i+start %></div>
-	                        <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" style="background-image: url(/upload/cover-image/<%=ub.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></a>
+	                        <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>"><img src="/upload/cover-image/<%=ub.getCoverPath()%>" class="book-img"></a>
 	                        <div class="book-info">
 	                            <div class="book-info-head">
 	                                <a href="/storyList.do?bookNo=<%=ub.getBookNo() %>" class="book-title"><%=ub.getBookTitle() %></a>
