@@ -38,6 +38,7 @@
     }
 </style>
 <body>
+<%@include file = "/WEB-INF/views/user/agreeContentHeader.jsp" %>
     <div class="agree-content">
 
         <h1>< 이용약관 v4.7 ></h1>

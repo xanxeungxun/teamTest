@@ -39,6 +39,7 @@
     }
 </style>
 <body>
+<%@include file = "/WEB-INF/views/user/agreeContentHeader.jsp" %>
     <div class="agree-content">
 
         <h1>성별, 생년 정보제공 동의 (선택)</h1>

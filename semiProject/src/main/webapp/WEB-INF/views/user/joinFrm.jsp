@@ -62,7 +62,7 @@
 	                            <div>
 	                                <label for="agreement1"><input type="checkbox" name="agreement" id="agreement1" class="must-check" required>이용약관 동의(필수)</label>
 	                            </div>
-	                            <a href="#">약관 보기 ></a>
+	                            <a href="/agreeContent1.do">약관 보기 ></a>
 	                        </div>
 	                        <div>
 	                            <label for="agreement2"><input type="checkbox" name="agreement" id="agreement2">알림 수신동의(선택)</label>
@@ -71,14 +71,14 @@
 	                            <div>
 	                                <label for="agreement3"><input type="checkbox" name="agreement" id="agreement3">성별, 생년 정보 제공 동의(선택)</label>
 	                            </div>
-	                            <a href="#">내용 확인 ></a>
+	                            <a href="/agreeContent2.do">내용 확인 ></a>
 	                        </div>
 	                    </div>
 	                    <div class="privacyAgreement">
 	                        <div>
 	                            <label for="privacyAgreement"><input type="checkbox" name="agreement" id="privacyAgreement" class="must-check" required>개인정보 수집 및 이용 동의(필수)</label>
 	                        </div>
-	                        <a href="#">내용 확인 ></a>
+	                        <a href="/agreeContent3.do">내용 확인 ></a>
 	                    </div>
 	                </div>
 	            </div>

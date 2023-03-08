@@ -39,6 +39,7 @@
     }
 </style>
 <body>
+<%@include file = "/WEB-INF/views/user/agreeContentHeader.jsp" %>
     <div class="agree-content">
 
         <h1>개인정보 수집 및 이용 동의 (필수)</h1>
