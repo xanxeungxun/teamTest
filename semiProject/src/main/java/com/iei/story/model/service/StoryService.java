@@ -70,6 +70,18 @@ public class StoryService {
 		
 		return result;
 	}
+
+	public int insertFavoriteBook(int bookNo, int userNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.insertFavoriteBook(conn, bookNo, userNo);
+		if(result > 0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		JDBCTemplate.close(conn);
+		return result;
+	}
 	
 	
 	
