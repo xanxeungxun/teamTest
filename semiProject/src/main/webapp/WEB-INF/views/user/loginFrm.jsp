@@ -48,7 +48,7 @@ div>.btn {
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="loginJoin-wrap page-content">
 		<div class="loginJoin-title page-title">로그인</div>
-		<form action="/loginFrm.do" method="post">
+		<form action="/login.do" method="post">
 			<div class="searchIdPw-box">
 				<div class="input-wrap">
 					<input type="text" name="signId" id="signId"
