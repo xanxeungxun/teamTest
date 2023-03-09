@@ -38,7 +38,7 @@
                 <div class="please">
 	                <form action="/search.do" method="get">
 	                <input type="hidden" value="1" name="reqPage">
-	                <input id="integrated-search" class="search-bar" type="text" name="searchKeyword" value=""
+	                <input id="integrated-search" class="search-bar" type="search" name="searchKeyword" value=""
 	                    placeholder="제목을 입력해주세요" maxlength="50">
 	                    <button type="submit" id="search-icon" class="material-symbols-outlined search-icon">search</button>
 	                </form>

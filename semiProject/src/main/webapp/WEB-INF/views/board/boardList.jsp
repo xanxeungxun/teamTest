@@ -18,6 +18,10 @@
 		font-size: 17px;
 		cursor: pointer;
 	}
+	.title-span:hover{
+		color: #2f343d;
+		font-weight: bold;
+	}
 	.board-td{
 		height: 80px;
 		margin-bottom: 20px;

@@ -368,10 +368,10 @@ public class MyPageService {
 		return book;
 	}
 
-	public int updateBook(Book updateBook, int bookNo) {
+	public int updateBook(Book updateBook) {
 		Connection conn = JDBCTemplate.getConnection();
 		
-		int result = dao.updateBook(conn, updateBook, bookNo);
+		int result = dao.updateBook(conn, updateBook);
 		
 		if(result>0) {
 			JDBCTemplate.commit(conn);

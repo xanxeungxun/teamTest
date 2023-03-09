@@ -8,6 +8,7 @@
     Book b = (Book)request.getAttribute("b");
     Story s = (Story)request.getAttribute("s");
     ArrayList<StoryComment> cl = (ArrayList<StoryComment>)request.getAttribute("cl");
+    ArrayList<StoryComment> ccl = (ArrayList<StoryComment>)request.getAttribute("ccl");
     %>
 <!DOCTYPE html>
 <html>
@@ -93,10 +94,16 @@
 		</form>
 		<%}%>
 			<div class="comment-list">
-				<%for(StoryComment c : cl){ %>
+				<%for(StoryComment c : cl){ 
+					if(c.getStoryCommentRef()==0){
+				%>
 					<ul class="posting-comment">
 			                <li>
-			                  <span class="material-icons">account_circle</span>
+			                  <%if(c.getFilePath()==null){ %>
+								<div class="material-icons" style="height: 80px; width: 80px;">account_circle</div>
+							  <%} else { %>
+								<div style="background-image: url(/upload/profile/<%=c.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; height: 80px; width: 80px;" id="previewImg" class="book-img"></div>
+							  <%} %>
 			                </li>
 			                <li>
 			                  <p class="comment-info">
@@ -119,9 +126,42 @@
 			                </li>
 		         	</ul>
 		         	
+		         	<%for(StoryComment cc : ccl){ 
+		         		if(cc.getStoryCommentRef()==c.getStoryCommentNo()){
+		         	%>
+			         	<ul class="posting-comment reply">
+			                <li>
+			                  <%if(cc.getFilePath()==null){ %>
+								<div class="material-icons" style="height: 80px; width: 80px;">account_circle</div>
+							  <%} else { %>
+								<div style="background-image: url(/upload/profile/<%=cc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; height: 80px; width: 80px;" id="previewImg" class="book-img"></div>
+							  <%} %>
+			                </li>
+			                <li>
+			                  <p class="comment-info">
+			                      <span style="font-size:16px;"><%=cc.getUserId() %></span>
+			                      <span class="comment-link" style="font-size:16px;">
+			                      	  <%if(loginUser != null && loginUser.getUserId().equals(cc.getUserId())) {%>
+			                          <a href="javascript:void(0)" onclick="modifyComment(this,<%=cc.getStoryCommentNo() %>,<%=s.getStoryNo()%>,<%=b.getBookNo()%>)">수정</a>
+			                          <a href="javascript:void(0)" onclick="deleteComment(this,<%=cc.getStoryCommentNo() %>,<%=s.getStoryNo()%>,<%=b.getBookNo()%>)">삭제</a>
+			                          <%} %>
+			                      </span>
+			                    </p>
+			                    <p class="comment-date">
+			                        <span><%=cc.getCommentDate()%></span>
+			                    </p>
+			                  <p class="comment-content show-content" style="font-size:16px;"><%=cc.getStoryCommentContent()%></p>
+			                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;"><%=cc.getStoryCommentContent()%></textarea>
+			                </li>
+			          	</ul>
+		         	<%
+		         		}
+		         	} %> <!-- 대댓글 출력 -->
+		         	
 		         	<%if(loginUser != null) {%>
 					<div class="inputCommentBox inputRecommentBox">
-						<form action="/insertStoryComment.do" method="post">
+						<form action="/insertStoryReComment.do" method="post">
+							<input type="hidden" name="commentRef" value="<%=c.getStoryCommentNo()%>">
 							<div class="input-comment" style="display: flex;">
 									<div style="width: 90%;">
 									<input type="hidden" name="bookNo" value="<%=b.getBookNo()%>">
@@ -138,31 +178,13 @@
 					</div>			
 				 	<%} %><!-- 답답글 다는 창 -->
 				 	
-		         <%} %><!-- 댓글 출력 for문 끝나는 위치 -->
+		         <%}
+				
+				} %><!-- 댓글 출력 for문 끝나는 위치 -->
 		         
 		         
 				 
-				 <ul class="posting-comment reply">
-		                <li>
-		                  <span class="material-icons">account_circle</span>
-		                </li>
-		                <li>
-		                  <p class="comment-info">
-		                      <span style="font-size:16px;">대댓글작성자</span>
-		                      <span class="comment-link" style="font-size:16px;">
-		                      	  <%if(loginUser != null && loginUser.getUserId().equals("댓글작성자")) {%>
-		                          <a href="javascript:void(0)" onclick="modifyComment(this,코멘트번호,작품번호)">수정</a>
-		                          <a href="javascript:void(0)" onclick="deleteComment(this,코멘트번호,작품번호)">삭제</a>
-		                          <%} %>
-		                      </span>
-		                    </p>
-		                    <p class="comment-date">
-		                        <span>대댓글작성일</span>
-		                    </p>
-		                  <p class="comment-content show-content" style="font-size:16px;">대댓글내용</p>
-		                  <textarea name="boardCommentContent" class="input-form hide-textarea" style="min-height:96px;display:none;">대댓글수정창쓰</textarea>
-		                </li>
-		          </ul>
+				 
 				
 				
 			</div>

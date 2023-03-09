@@ -336,9 +336,79 @@ public class BookDao {
 		return viewList;
 	}
 
+	public ArrayList<Book> mainViewBook2(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Book> viewList2 = new ArrayList<Book>();
+		String query="SELECT *FROM (SELECT ROWNUM AS rnum, (SELECT COUNT(*) AS count FROM story WHERE book_no=n.book_no) AS story_count, n.*FROM (SELECT b.book_no, b.genre_code, g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, CASE b.book_status WHEN 1 THEN '연재중' ELSE '완결' END AS book_status, b.book_date FROM genre g, book b, user_tbl u WHERE g.genre_code = b.genre_code AND b.BOOK_WRITER = u.USER_id ORDER BY 1 )n WHERE ROWNUM <= 6) WHERE rnum >= 1";
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Book b = new Book();
+				b.setBookDate(rset.getString("book_date"));
+				b.setBookExp(rset.getString("book_exp"));
+				b.setBookNo(Integer.parseInt(rset.getString("book_no")));
+				b.setBookStatus(rset.getString("book_status"));
+				b.setBookTitle(rset.getString("book_title"));
+				b.setBookWriterId(rset.getString("book_writer"));
+				b.setBookWriterNick(rset.getString("user_nick"));
+				b.setCoverpath(rset.getString("coverpath"));
+				b.setGenreCode(Integer.parseInt(rset.getString("genre_code")));
+				b.setGenreName(rset.getString("genre_name"));
+				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
+				
+				viewList2.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return viewList2;
+	}
 
-	
-	
+	public ArrayList<Book> selectGenreBook(Connection conn, int selectGenreCode, int start, int end) {
+		PreparedStatement pstmt = null;
+		ArrayList<Book> genreList = new ArrayList<Book>();
+		ResultSet rset = null;
+		//String query = "select book_title from book where book_title like ?";
+		String query = "select * from (select rownum as rnum, ub.* from (select book_no, genre_code, genre_name, book_title, book_writer, coverpath, book_date, user_nick from book join genre using(genre_code) join user_tbl on(user_id=book_writer) where genre_code=? order by 1 desc) ub) where rnum between ? and ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, selectGenreCode);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rset = pstmt.executeQuery();
+			while(rset.next()){
+				Book b = new Book();
+				b.setBookDate(rset.getString("book_date"));
+				b.setBookExp(rset.getString("book_exp"));
+				b.setBookNo(Integer.parseInt(rset.getString("book_no")));
+				b.setBookStatus(rset.getString("book_status"));
+				b.setBookTitle(rset.getString("book_title"));
+				b.setBookWriterId(rset.getString("book_writer"));
+				b.setBookWriterNick(rset.getString("user_nick"));
+				b.setCoverpath(rset.getString("coverpath"));
+				b.setGenreCode(Integer.parseInt(rset.getString("genre_code")));
+				b.setGenreName(rset.getString("genre_name"));
+				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
+				
+				genreList.add(b);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return genreList;
+	}
+
 
 
 	

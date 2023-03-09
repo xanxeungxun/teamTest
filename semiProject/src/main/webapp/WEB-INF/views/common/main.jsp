@@ -4,8 +4,11 @@
     pageEncoding="UTF-8"%>
 <%
 	ArrayList<Book> viewList = (ArrayList<Book>)request.getAttribute("viewList");
+	ArrayList<Book> viewList2 = (ArrayList<Book>)request.getAttribute("viewList2");
 	String result1="";
 	String result2="";
+	String result3="";
+	String result4="";
 %>
 <!DOCTYPE html>
 <html>
@@ -79,7 +82,7 @@
 					</div>
 				</div>
 				<div class="book-list">
-				<%for(int i=0 ; i<viewList.size(); i++){ %>
+				<%for(int i=0 ; i<viewList.size() ; i++){ %>
             <%		Book b = viewList.get(i);		  %>
             	
             	<div class="book-one">
@@ -94,7 +97,7 @@
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                        	<%int total1 = b.getBookTitle().length();
+	                  	<!--   <%int total1 = b.getBookTitle().length();
 		                        	if(36 < total1){		                        		
 		                        		//System.out.println(arrayTitle);
 		                        		result1 = b.getBookTitle().substring(0,36);
@@ -108,7 +111,9 @@
 		                        	<%=result1+" ..."%>
 		                        <%}else{//공백포함 20글자가 안넘는다면%>
 		                        	<%=b.getBookTitle() %>
-		                        <%} %>
+		                        <%} %>  -->	
+		                        
+		                        <%=b.getBookTitle() %>
 	                        </a>
                         </div>
                         <div class="book-one-subTitle">
@@ -119,14 +124,16 @@
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		                        <%int total2 = b.getBookExp().length();
+		             <!--       <%int total2 = b.getBookExp().length();
 		                        	if(86 < total2){
 		                        		result2 = b.getBookExp().substring(0,86);
 		                        %>
 		                        	<%=result2+" ..."%>
 		                        <%}else{//공백포함 89글자가 안넘는다면%>
 		                        	<%=b.getBookExp() %>
-		                        <%} %>
+		                        <%} %> -->
+		                        
+		                        <%=b.getBookExp() %>
 	                        </a>
                         </div>
                         <div class="book-one-exp">
@@ -287,11 +294,78 @@
 	
 				<div class="mid-content-title">
 					<div class="content-category">
-						<a href="/bookList.do?reqPage=1">ㅤ최신콘텐츠 ></a>
+						<a href="/bookList.do?reqPage=1">ㅤ인기콘텐츠 ></a>
 					</div>
 				</div>
 				<div class="book-list">
-				
+				<%for(int i=0 ; i<viewList2.size() ; i++){ %>
+            <%		Book b = viewList2.get(i);		  %>
+            	
+            	<div class="book-one">
+                    <div class="book-one-cover"
+                    	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
+                    	 background-size: contain;
+  						 background-position: center;
+  						 background-repeat: no-repeat;
+  						 cursor : pointer;"
+  						 onclick="location.href='/storyList.do?bookNo=<%=b.getBookNo()%>';">
+                    </div>
+                    <div class="book-one-etc">	
+                        <div class="book-one-title">
+	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
+	                  	<!--   <%int total1 = b.getBookTitle().length();
+		                        	if(36 < total1){		                        		
+		                        		//System.out.println(arrayTitle);
+		                        		result1 = b.getBookTitle().substring(0,36);
+		                        		/*
+		                        		for(int j=0 ; j<36 ; j++){
+		                        			result1 = result1 + b.getBookTitle().charAt(j);		
+		                         		}//for문
+		                        		System.out.println(result1);
+		                         		*/
+		                        %>
+		                        	<%=result1+" ..."%>
+		                        <%}else{//공백포함 20글자가 안넘는다면%>
+		                        	<%=b.getBookTitle() %>
+		                        <%} %>  -->	
+		                        
+		                        <%=b.getBookTitle() %>
+	                        </a>
+                        </div>
+                        <div class="book-one-subTitle">
+                            <span class="genre"><a href="#"><%=b.getGenreName() %></a></span>
+                            <span class="gray-bar">|</span>
+                            <span>총 <%=b.getStoryCount()%>화</span>
+                        </div>
+                        <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
+                        <div class="book-one-syn">
+	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
+		             <!--       <%int total2 = b.getBookExp().length();
+		                        	if(86 < total2){
+		                        		result2 = b.getBookExp().substring(0,86);
+		                        %>
+		                        	<%=result2+" ..."%>
+		                        <%}else{//공백포함 89글자가 안넘는다면%>
+		                        	<%=b.getBookExp() %>
+		                        <%} %> -->
+		                        
+		                        <%=b.getBookExp() %>
+	                        </a>
+                        </div>
+                        <div class="book-one-exp">
+                            <span class="material-symbols-outlined">
+                                visibility
+                            </span>
+                            <span class="book-one-count">조회수</span>
+                            <span class="material-symbols-outlined bookmarks">
+                                bookmarks
+                            </span>
+                            <span class="subscriber">구독자수</span>
+                        </div>
+                    </div>
+                </div><!--작품하나..-->
+            	
+            <%} %>
 					<!--
 					<div class="img-box">
 						<a href="#"> <img src="/img/earthzzang.jpg">
@@ -443,6 +517,12 @@
 					</div>
 					-->
 					
+				</div>
+				
+				<div class="btm-link1">
+					<div class="link-main1">
+						<a href="/bookList.do?reqPage=1" class="btn btn-secondary">전체 보기</a>
+					</div>
 				</div>
 				
 			</div>

@@ -30,6 +30,10 @@
 		font-size: 17px;
 		cursor: pointer;
 	}
+	.title-span:hover{
+		color: #2f343d;
+		font-weight: bold;
+	}
 	
 	.notice-tbl tr:hover{
 		background-color: #f8f8f8ee;

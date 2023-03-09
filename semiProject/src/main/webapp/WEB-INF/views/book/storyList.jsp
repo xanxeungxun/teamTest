@@ -145,10 +145,10 @@
 	                            </a>
 	                        </div>
 	                        <div class="story-coment">
-	                            <span class="material-symbols-outlined">
-	                                forum
+	                        	<span class="material-symbols-outlined">
+	                                visibility
 	                            </span>
-	                            <span>
+	                       		<span>
 	                            <%=s.getReadCount() %>
 	                            </span>
 	                        </div>
@@ -256,7 +256,21 @@
       
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 <%
-if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
+if(loginUser==null){%>
+	<script>
+		const button1 = $("<button>");
+		
+		const bookNo2 = $("#bookNo").val();
+		const url = "location.href='/selectFirstStory.do?bookNo="+bookNo2+"'";
+		
+		button1.text("첫 화 보기");
+		button1.addClass("btn bc4");
+		button1.attr("onclick",url);
+		
+		$(".book-button").append(button1);
+	</script>
+<%}
+else if(!loginUser.getUserId().equals(b.getBookWriterId())){%>
 	<script>
 			/*	
 			<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
@@ -303,6 +317,7 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 	    	const button1 = $("<button>");
 	    	const button2 = $("<button>");
 	    	const bookNo = $("#bookNo").val();
+	    	const storyNo = $("#check").val();
 	    	
 	    	button1.text("완결작으로 전환");
 		    button1.addClass("btn bc44 modal-open-btn");
@@ -311,7 +326,7 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 		    
 		    button2.text("글쓰기");
 		    button2.addClass("btn bc4");
-		    button2.attr("onclick","location.href='/storyWriteFrm.do?bookNo="+bookNo+"'");
+		    button2.attr("onclick","location.href='/storyNewWriteFrm.do?bookNo="+bookNo+"'");
 		    
 		    $(".book-button").append(button1);
 		    $(".book-button").append(button2);

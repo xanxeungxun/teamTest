@@ -17,7 +17,7 @@ import com.iei.story.model.service.StoryService;
 /**
  * Servlet implementation class InsertStoryCommentServlet
  */
-@WebServlet(name = "InsertStoryComment", urlPatterns = { "/insertStoryComment.do" })
+@WebServlet(name = "InsertStoryComment1", urlPatterns = { "/insertStoryComment.do" })
 public class InsertStoryCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

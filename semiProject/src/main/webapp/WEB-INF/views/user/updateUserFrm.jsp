@@ -120,6 +120,7 @@
 		<div class="mypage-detail">
 			<div class="mypage-title page-title">회원정보 변경</div>
 	        <form action="/updateUser.do" method="post" enctype="multipart/form-data">
+	        <input type="hidden" name="currentUserPw" id="currentUserPw" class="input-hidden" value="<%=loginUser.getUserPw()%>">
 	            <div class="content-wrap">
 	                <div>
 	                    <label for="profilePic" class="bold user-bold">프로필 사진</label>
@@ -133,7 +134,7 @@
 	                        <div class="profile-file">
 	                            <div class="upfile-name input-form">파일을 선택해주세요</div>
 	                            <label for="profile-upfile" class="btn bc6 upfile">파일 선택</label>
-	                            <input type="file" name="profile-upfile" id="profile-upfile" class="upload-hidden" accept=".jap,.png,.jpeg" style="display:none" onchange="loadImg(this);">
+	                            <input type="file" name="profile-upfile" id="profile-upfile" class="upload-hidden" accept=".jap,.png,.jpeg" style="display:none">
 	                        </div>
 	                    </div>
 	                </div> 
@@ -173,7 +174,7 @@
                             <div>
                                 <span class="material-symbols-outlined check-circle">check_circle</span>
                                 <input type="password" name="userPw" id="userPw" placeholder="현재 비밀번호" class="input-form input-update">
-                                <input type="password" name="currentUserPw" id="currentUserPw"class="input-hidden" value="<%=loginUser.getUserPw()%>" style="display:none">
+                                
                                 <span class="reg-msg"></span>
                             </div>
                             <div>
@@ -327,7 +328,7 @@
 		        idDifferPw(3);
 		        return;
 		    } else {
-		        if(<%=loginUser.getUserPw() %> == pwInputValue) {
+		        if($("[name=userPw]").val() == pwInputValue) {
 		            trueDesign(3);
 		    
 		        } else{
@@ -370,19 +371,6 @@
 		//(3) 새 비밀번호 확인 ... 동일한지 확인
 		$("[name=newPwCh]").on("change",function(){
 		    const newPwValue = $("[name=newPw]").val();
-		    const newPwReValue = $(this).val();
-		    if(newPwValue == newPwReValue) {
-		        trueDesign(5);
-
-		    } else{
-		        $(".reg-msg").eq(5).text("비밀번호가 일치하지 않습니다.");
-		        falseDesign(5);
-
-		    }
-		});
-	</script>
-</body>
-</html>t newPwValue = $("[name=newPw]").val();
 		    const newPwReValue = $(this).val();
 		    if(newPwValue == newPwReValue) {
 		        trueDesign(5);

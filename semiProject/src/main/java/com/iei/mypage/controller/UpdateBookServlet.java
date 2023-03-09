@@ -48,14 +48,23 @@ public class UpdateBookServlet extends HttpServlet {
 		MultipartRequest mRequest = new MultipartRequest(request, saveDirectory, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
 		int bookNo = Integer.parseInt(mRequest.getParameter("bookNo"));
-		String coverpath = mRequest.getFilesystemName("book-img-upfile");
+
 		int bookStatus = Integer.parseInt(mRequest.getParameter("status"));
 		String bookTitle = mRequest.getParameter("bookTitle");
 		String bookExp = mRequest.getParameter("bookExp");
 		int genreCode = Integer.parseInt(mRequest.getParameter("genre"));
 		
 		Book updateBook = new Book();
-		updateBook.setCoverpath(coverpath);
+		
+		String changeCoverpath = mRequest.getFilesystemName("book-img-upfile");
+		if(changeCoverpath==null) {
+			String coverpath = mRequest.getFilesystemName("coverPath");
+			updateBook.setCoverpath(coverpath);
+		} else {
+			updateBook.setCoverpath(changeCoverpath);
+		}
+		
+		updateBook.setBookNo(bookNo);
 		updateBook.setBookStatusNum(bookStatus);
 		updateBook.setBookTitle(bookTitle);
 		updateBook.setBookExp(bookExp);
@@ -63,7 +72,7 @@ public class UpdateBookServlet extends HttpServlet {
 		
 		//3. 비즈니스 로직
 		MyPageService service = new MyPageService();
-		int result = service.updateBook(updateBook, bookNo);
+		int result = service.updateBook(updateBook);
 		
 		//4. 결과 처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");

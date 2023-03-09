@@ -46,11 +46,13 @@ public class StoryViewServlet extends HttpServlet {
 		Book b = service.selectOneBook(bookNo);
 		Story s = service.selectOneStory(storyNo);
 		ArrayList<StoryComment> storyCommentList = service.selectAllComment(storyNo);
+		ArrayList<StoryComment> storyReCommentList = service.selectAllReComment(storyNo);
 		
 		//4결과처리
 		request.setAttribute("s", s);
 		request.setAttribute("b", b);
 		request.setAttribute("cl", storyCommentList);
+		request.setAttribute("ccl", storyReCommentList);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyView.jsp");
 		view.forward(request, response);
 	}

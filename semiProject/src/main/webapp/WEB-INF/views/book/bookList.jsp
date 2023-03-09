@@ -52,9 +52,36 @@
                         <li><a href="#">완결</a></li>
                     </ul>
                 </div>
-                <div class="book-selectBox">
-                    <div>select</div>
-                </div>
+                <form name="genreFrm" action="/selectGenre.do" method="post">
+                	<input type="hidden" name="reqPage" value="1">
+	                <div class="book-selectBox">
+		               	<select name="genre" class="input-form">
+		                    <option value="1">판타지</option>
+		                    <option value="2">로맨스</option>
+		                    <option value="3">로맨스판타지</option>
+		                    <option value="4">무협</option>
+		                    <option value="5">퓨전</option>
+		                    <option value="6">게임</option>
+		                    <option value="7">역사</option>
+		                    <option value="8">스포츠</option>
+		                    <option value="9">라이트노벨</option>
+		                    <option value="10">BL</option>
+		                    <option value="11">GL</option>
+		                    <option value="12">패러디</option>
+		                    <option value="13">팬픽</option>
+		                    <option value="14">SF</option>
+		                    <option value="15">밀리터리</option>
+		                    <option value="16">시</option>
+		                    <option value="17">소설</option>
+		                    <option value="18">수필</option>
+		                    <option value="19">공포</option>
+		                    <option value="20">추리</option>
+		                    <option value="21">아동</option>
+		                    <option value="22">시나리오/희곡</option>
+		                    <option value="23">비평</option>
+		            	</select>
+	                </div>
+                </form>
             </div>
 
             <div class="book-list">
@@ -170,5 +197,19 @@
 </div><!-- page-content -->
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+<script>
+	const selectGenre = $("[name=genre]").val();
+	const options = $("[name=genre]>option");
+		console.log(selectGenre);
+		console.log(options);
+	$(options).click(function(){
+		options.each(function(index,item){
+			if($(item).prop("selected",true)){
+				$("[name=genreFrm]").submit();
+			}
+		});
+	});
+</script>
 </body>
 </html>
