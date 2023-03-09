@@ -272,7 +272,7 @@
 	
 				<div class="mid-content-title">
 					<div class="content-category">
-						<a href="/bookList.do?reqPage=1">ㅤ인기콘텐츠 ></a>
+						<a href="/bookListViews.do?reqPage=1">ㅤ인기콘텐츠 ></a>
 					</div>
 				</div>
 				<div class="book-list">
@@ -469,7 +469,7 @@
 				
 				<div class="btm-link1">
 					<div class="link-main1">
-						<a href="/bookList.do?reqPage=1" class="btn btn-secondary">전체 보기</a>
+						<a href="/bookListViews.do?reqPage=1" class="btn btn-secondary">전체 보기</a>
 					</div>
 				</div>
 				
