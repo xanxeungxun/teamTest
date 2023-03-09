@@ -376,7 +376,7 @@ public class BookDao {
 		ArrayList<Book> genreList = new ArrayList<Book>();
 		ResultSet rset = null;
 		//String query = "select book_title from book where book_title like ?";
-		String query = "select * from (select rownum as rnum, ub.* from (select book_no, genre_code, genre_name, book_title, book_writer, coverpath, book_date, user_nick from book join genre using(genre_code) join user_tbl on(user_id=book_writer) where genre_code=? order by 1 desc) ub) where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where b.genre_code = ? order by 1 desc)n) where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, selectGenreCode);
