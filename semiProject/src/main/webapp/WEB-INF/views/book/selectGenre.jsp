@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%	
 	ArrayList<Book> genreList = (ArrayList<Book>)request.getAttribute("genreList");
-	String naviCode = (String)request.getAttribute("naviCode");
+	String naviCode = (String)request.getAttribute("pageNavi");
 	int start = (int)request.getAttribute("start");
 	String result1="";
 	String result2="";
@@ -52,7 +52,7 @@
                         <li><a href="#">완결</a></li>
                     </ul>
                 </div>
-                <form action="/selectGenre.do" method="post">
+                <form name="genreFrm" action="/selectGenre.do" method="post">
                 	<input type="hidden" name="reqPage" value="1">
 	                <div class="book-selectBox">
 		               	<select name="genre" class="input-form">
@@ -197,5 +197,20 @@
 </div><!-- page-content -->
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+<script>
+	const selectGenre = $("[name=genre]");
+	const selectGenreVal = $("[name=genre]").val();
+	const options = $("[name=genre]>option");
+	console.log(selectGenre);
+	console.log(options);
+	$(selectGenre).change(function(){
+		options.each(function(index,item){
+			if($(item).prop("selected",true)){
+				$("[name=genreFrm]").submit();
+			}
+		});
+	});
+</script>
 </body>
 </html>

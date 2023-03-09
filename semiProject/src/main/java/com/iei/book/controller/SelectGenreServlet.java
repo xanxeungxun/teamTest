@@ -43,7 +43,7 @@ public class SelectGenreServlet extends HttpServlet {
 		BookListData bld = service.selectGenreBook(selectGenreCode, reqPage);
 		
 		//4. 결과 처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/selectGenre.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/selectGenre.jsp");
 		
 		request.setAttribute("genreList", bld.getBookList());
 		request.setAttribute("pageNavi", bld.getPageNavi());
