@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <style>
-	.no-cover{
+	div>.no-cover{
 		width: 200px;
         height: 260px;
         background-color: #EEEEEE;
@@ -100,14 +100,15 @@
         <div class="mypage-detail">
             <div class="page-title">작품 정보 수정</div>
             <form action="/updateBook.do" method="post" enctype="multipart/form-data">
-            	<input type="text" name="bookNo" value="<%=book.getBookNo() %>" style="display:none">
+            	<input type="hidden" name="bookNo" value="<%=book.getBookNo() %>">
+            	<input type="hidden" name="coverPath" value="<%=book.getCoverpath()%>"> 
                 <div class="content-wrap">
-                    <div class="book-img">
+                    <div>
                     	<%if(book.getCoverpath()==null){ %>
-	                    	<div class="no-cover"></div>
+	                    	<img class="no-cover book-img">
                     	<%} else { %>
-                    		<div style="background-image: url(/upload/cover-image/<%=book.getCoverpath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="cover-img" class="book-img"></div>
-	                        <%-- <img src="/upload/cover-image/<%=book.getCoverpath()%>" id="cover-img" class="book-img-file">--%>
+                    		<%-- <div style="background-image: url(/upload/cover-image/<%=book.getCoverpath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" id="cover-img" class="book-img"></div>--%>
+	                        <img src="/upload/cover-image/<%=book.getCoverpath()%>" id="previewImg" class="book-img-file book-img">
                     	<%} %>
                         <div class="notice-msg">600*800 픽셀 이상</div>
                         <div class="upfile">
@@ -175,26 +176,6 @@
     <%@include file="/WEB-INF/views/common/footer.jsp" %>
     <script>
 	/*1. 프로필 이미지 업로드*/
-	$(document).ready(function(){
-	    //파일첨부 이벤트
-	    $('.upfile>.upload-hidden').on('change', function(){  	
-	        
-	        if(!validFileSize($(this)[0].files[0])){
-	            alert("파일 사이즈가 10MB를 초과합니다.");
-	            return false;
-	        } else {
-	            var filename = $(this).val().split('/').pop().split('\\').pop();
-	            $("#cover-img").css({"background-image":"url(/upload/cover-image/"+filename+")"}); //input upload-name 에 파일명 설정해주기
-
-	            readImage($(this)[0]); //미리보기
-
-	            //기본이미지 삭제 / 업로드 이미지 보이기10
-	            /*$('.no-cover').css("display","none");
-	            $('#cover-img').css("display","inline-block");*/
-	        }
-	    });
-	});
-
 	//파일 용량 10MB 제한
 	function validFileSize(file){
 	    if(file.size > 10000000){ //10MB
@@ -205,17 +186,42 @@
 	}
 
 	//이미지 띄우기
-	function readImage(input) {
-	    if(input.files && input.files[0]) {
-	        const reader = new FileReader();
-	        reader.onload = function(e){
-	            const previewImage = document.getElementById("cover-img");
-	            previewImage.src = e.target.result;
-	        }
-	        // reader가 이미지 읽도록 하기
-	        reader.readAsDataURL(input.files[0]);
-	    }
+	function loadImg(f){
+		//첨부파일이 여러개일 수 있어서 항상 배열로 처리
+		console.log(f.files); //우리가 첨부한 파일 볼 수 있음
+		
+		//파일 개수가 0개가 아니고 && 첫번째파일이 정상파일이면
+		if(f.files.length != 0 && f.files[0] != 0){
+			const reader = new FileReader(); //파일정보를 얻어올 수 있는 객체
+			
+			//선택한 파일 정보를 읽어옴
+			reader.readAsDataURL(f.files[0]);
+			
+			//파일리더가 정보를 다 읽어오면 동작할 함수
+			reader.onload = function(e){ //e : 읽어온 결과가 있음
+				$(".book-img").attr("src",e.target.result);
+			}
+		} else { //이미지 선택 취소한 경우
+			$(".book-img").attr("src",""); //src 속성값 비움
+		}
 	}
+	
+	$(document).ready(function(){
+	    //파일첨부 이벤트
+	    $('.upfile>.upload-hidden').on('change', function(){  	
+	        
+	        if(!validFileSize($(this)[0].files[0])){
+	            alert("파일 사이즈가 10MB를 초과합니다.");
+	            return false;
+	        } else {
+	            //var filename = $(this).val().split('/').pop().split('\\').pop();
+	            //$("#previewImg").css({"background-image":"url(/upload/profile/"+filename+")"}); //input upload-name 에 파일명 설정해주기
+				
+	            loadImg($(this)[0]); //미리보기
+
+	        }
+	    });
+	});
 	
 	//[작품 설정 수정] 장르코드 기본 선택
 	$(function(){
