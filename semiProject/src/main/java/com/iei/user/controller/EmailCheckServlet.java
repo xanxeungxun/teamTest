@@ -1,6 +1,7 @@
 package com.iei.user.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,23 +41,8 @@ public class EmailCheckServlet extends HttpServlet {
 		
 		
 		//4. 결과 처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
-		
-		if(email == null) {
-			request.setAttribute("title", "인증번호 전송 성공");
-			request.setAttribute("msg", "회원님의 인증번호가 전송되었습니다.");
-			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/joinFrm.do");
-			
-		} else {
-			request.setAttribute("title", "인증번호 전송 실패");
-			request.setAttribute("msg", "회원님의 인증번호 전송이 실패되었습니다.");
-			request.setAttribute("icon", "wraning");
-			request.setAttribute("loc", "/joinFrm.do");
-			
-		}
-		
-		view.forward(request, response);
+		PrintWriter out = response.getWriter();
+		out.print(email);
 	}
 
 	/**

@@ -1,8 +1,10 @@
+<%@page import="com.iei.story.model.vo.Story"%>
 <%@page import="com.iei.book.model.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
     	int bookNo = (int)request.getAttribute("bookNo");
+    	Story story = (Story)request.getAttribute("story");
     %>
 <!DOCTYPE html>
 <html>
@@ -31,11 +33,12 @@
 	    
 		    <form action="/storyWrite.do" method="post">
 		    <input type="hidden" name="bookNo" value="<%=bookNo%>">
+		    <input type="hidden" name="storyNo" value="<%=story.getStoryNo() %>">
 			   		<table class="board-write-frm tbl" id="boardWriteFrm2">
 			   			<tr class="tr-1">
 			   				<th>스토리 제목</th>
 			   				<td>
-			   					<input type="text" name="storyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스">
+			   					<input type="text" name="storyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스" value="<%=story.getStoryName()%>">
 			   				</td>
 			   			</tr>
 			   			<tr class="tr-1">
@@ -43,18 +46,18 @@
 			   			</tr>
 			   			<tr class="tr-1">
 			   				<td colspan="2" style="text-align: left;">
-			   					<textarea name="storyContent" id="storyContent" class="input-form"></textarea>
+			   					<textarea name="storyContent" id="storyContent" class="input-form"><%=story.getStoryContent()%></textarea>
 			   				</td>
 			   			</tr>
 			   			<tr class="tr-1">
 			   				<th>작가후기</th>
 			   				<td>
-			   					<textarea cols="30" rows="3" name="storyAfter" class="input-form" placeholder="작품의 전체 내용을 간단하게 소개해주세요."></textarea>
+			   					<textarea cols="30" rows="3" name="storyAfter" class="input-form" placeholder="작품의 전체 내용을 간단하게 소개해주세요."><%=story.getStoryAfter()%></textarea>
 			   				</td>
 			   			</tr>
 			   			<tr class="tr-1">
 			   				<td colspan="2">
-			   					<button id="submit" class="btn bc4" style="margin-top: 30px;">글쓰기</button>
+			   					<button id="submit" class="btn bc4" style="margin-top: 30px;">수정</button>
 			   				</td>
 			   			</tr>
 			   		</table>

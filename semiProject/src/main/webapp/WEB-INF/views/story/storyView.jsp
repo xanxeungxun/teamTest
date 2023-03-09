@@ -42,7 +42,7 @@
 			if(loginUser!=null && loginUser.getUserId().equals(b.getBookWriterId())){
 			%>
 				<div class="author-zone" style="position:relative;">
-					<a href="#" style="font-weight: bold; display:flex; position: absolute; right:0; line-height: 26px;">
+					<a href="/storyWriteFrm.do?bookNo=<%=s.getBookNo()%>&storyNo=<%=s.getStoryNo()%>" style="font-weight: bold; display:flex; position: absolute; right:0; line-height: 26px;">
 						<span class="material-symbols-outlined">
 						auto_fix
 						</span>

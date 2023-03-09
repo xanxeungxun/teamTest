@@ -14,6 +14,10 @@ public class ReportListDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "insert into report values(report_seq.nextval,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?,?,?,?)";
+		
+		System.out.println("ReportListDao 접근");
+		System.out.println("QUERY : " + query);
+		System.out.println("PARAMS : " + r.toString());
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, r.getReporterId());
@@ -27,7 +31,6 @@ public class ReportListDao {
 			pstmt.setString(9, r.getFilePatch());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			JDBCTemplate.close(pstmt);

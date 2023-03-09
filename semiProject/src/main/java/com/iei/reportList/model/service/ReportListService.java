@@ -16,6 +16,9 @@ public class ReportListService {
 	}
 
 	public int insertReport(ReportVo r) {
+		System.out.println("ReportListService 접근");
+		System.out.println("ReportVo : " + r.toString());
+		
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertReport(conn, r);
 		if(result>0) {

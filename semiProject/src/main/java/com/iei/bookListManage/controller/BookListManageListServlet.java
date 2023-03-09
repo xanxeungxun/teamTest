@@ -44,12 +44,12 @@ public class BookListManageListServlet extends HttpServlet {
 			request.setAttribute("pageNavi", qpd.getPageNavi());
 			request.setAttribute("start", qpd.getStart());
 			view.forward(request, response);
-		}
+		}else {
 		BookListManageService service = new BookListManageService();
 		BookListManagePageData qpd = service.selectAllBookListManageList(reqPage);
 		RequestDispatcher view = request.getRequestDispatcher("/");
 		view.forward(request, response);
-
+		}
 	}
 		
 		

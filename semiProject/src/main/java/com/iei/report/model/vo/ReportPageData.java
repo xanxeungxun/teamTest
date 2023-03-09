@@ -6,6 +6,21 @@ public class ReportPageData {
 	private ArrayList<ReportVo> list;
 	private String pageNavi;
 	private int start;
+	private String searchValue;
+	private String searchType;
+	
+	public String getSearchValue() {
+		return searchValue;
+	}
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
 	public ReportPageData() {
 		super();
 	}
@@ -34,6 +49,10 @@ public class ReportPageData {
 		this.start = start;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "ReportPageData [list=" + list + ", pageNavi=" + pageNavi + ", start=" + start + ", searchValue="
+				+ searchValue + ", searchType=" + searchType + "]";
+	}
 
 }
