@@ -33,6 +33,14 @@
             'FILL' 1,
             'wght' 300
         }
+        .book-img{
+        width: 180px;
+        height: 240px;
+        background-color: #fff;
+        border-radius: 4px;
+        margin-right: 10px;
+        border : 1px solid #EEEEEE;
+    }
     </style>
 </head>
 
@@ -97,18 +105,13 @@
             <%		Book b = searchList.get(i);		  %>
             	
             	<div class="book-one">
-                    <div class="book-one-cover"
-                    	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
-                    	 background-size: contain;
-  						 background-position: center;
-  						 background-repeat: no-repeat;
-  						 cursor : pointer;"
-  						 onclick="location.href='/storyList.do?bookNo=<%=b.getBookNo()%>';">
+                    <div class="book-one-cover" onclick="location.href='/storyList.do?bookNo=<%=b.getBookNo()%>';">
+  						 <img class="book-img" src="/upload/cover-image/<%=b.getCoverpath() %>" style="cursor:pointer;">
                     </div>
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                        	<%=b.getBookTitle() %>
+		                        <%=b.getBookTitle() %>
 	                        </a>
                         </div>
                         <div class="book-one-subTitle">
@@ -117,21 +120,25 @@
                             <span>총 <%=b.getStoryCount()%>화</span>
                         </div>
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
-                        
-                        
+                        <div class="book-one-syn">
+	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
+		                        <%=b.getBookExp() %>
+	                        </a>
+                        </div>
                         <div class="book-one-exp">
                             <span class="material-symbols-outlined">
                                 visibility
                             </span>
-                            <span class="book-one-count">조회수</span>
+                            <span class="book-one-count"><%=b.getAllViewer() %></span>
                             <span class="material-symbols-outlined bookmarks">
                                 bookmarks
                             </span>
-                            <span class="subscriber">구독자수</span>
+                            <span class="subscriber"><%=b.getAllScore() %></span>
                         </div>
                     </div>
                 </div><!--작품하나..-->
-            <%}%>
+            	
+            <%} %>
             
             </div><!--book-list-->
             
