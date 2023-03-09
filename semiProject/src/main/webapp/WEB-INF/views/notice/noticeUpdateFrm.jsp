@@ -39,15 +39,14 @@
 				<form action="/noticeUpdate.do" method="post">
 					<table class="notice-tbl" id="noticeWrite-tbl">
 						<tr class="notice-tr">
-							<th class="notice-td">제목</th>
+							<th class="notice-td" style="width: 100px;">제목</th>
 							<td class="notice-td">
 								<input type="hidden" name="noticeNo" value="<%=n.getNoticeNo() %>">
-								<input type="text" name="noticeTitle" class="notice-input" value="<%=n.getNoticeTitle()%>">
+								<input type="text" name="noticeTitle" class="notice-input" value="<%=n.getNoticeTitle()%>" style="padding-left: 15px;">
 							</td>
 						</tr>
 						<tr class="notice-tr">
-							<th class="notice-td">내용</th>
-							<td class="notice-td">
+							<td class="notice-td" colspan="2">
 								<textarea id="noticeContent" name="noticeContent" class="notice-input"><%=n.getNoticeContent() %></textarea>
 							</td>
 						</tr>

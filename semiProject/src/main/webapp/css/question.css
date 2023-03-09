@@ -2,44 +2,42 @@
 .ttd:nth-child(n+1):nth-child(-n+2){
 	text-align:center;
 }
-.ttd:nth-child(n+4):nth-child(-n+7){
+.question-td:nth-child(n+4):nth-child(-n+7){
 	text-align:center;
 
 	}
 
-/*검색창 css 만들기*/
-.select:nth-child(0){
-	width:100px;
+/*검색창 css 만들기 시작*/
+.div-form-box{
+	color:red;
+	width: 1200px;
+	overflow:hidden;
 	height:40px;
 	font-size:14px;
-	position:relative;
 }
-.select:nth-child(1){
-	padding-left:5px;
-	width:76.7px;
+.div-form-box #searchType{
+	padding-left:10px;
+	width:76.72px;
+}
+/*검색바 전체디자인*/
+.div-form-box .select{
 	height:40px;
-	position:absolute;
-	}
-.select:nth-child(3){
-	margin-left:75px;
-	padding-left:5px;
+	float:left;
+	font-size:14px;
+	box-sizing:border-box;
+}
+/*검색어 바*/
+.div-form-box>#searchValue{
+	padding-left:10px;
 	width:128px;
-	height:38px;
-	font-size:14px;
-	position:relative;
-}
-option{
-	font-size:14px;
-}
-.select:nth-child(4){
-	margin-left:0px;
-	left:665px;
-	width:100px;
 	height:40px;
+	box-sizing:border-box;
 	font-size:14px;
-	position:absolute;
 }
-
+.div-form-box .bttn{
+	box-sizing:border-box;
+	width:100px;
+}
 /*검색창 css 만들기 끝*/
 .question-header{
 	padding-top: 50px;

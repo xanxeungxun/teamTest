@@ -209,7 +209,7 @@ public class BookService {
 		//start : 해당 페이지(reqPage)보여줄 작품의 시작 번호
 		int end = numPerPage * reqPage; // 보여줄작품개수*요청페이지
 		int start = (end - numPerPage) + 1;
-		ArrayList<Book> bookList = dao.selectGenreBook(conn,selectGenreCode,start,end);
+		ArrayList<Book> genreList = dao.selectGenreBook(conn,selectGenreCode,start,end);
 		
 		
 		//페이징 제작
@@ -255,7 +255,7 @@ public class BookService {
 
 		JDBCTemplate.close(conn);
 		
-		BookListData bld = new BookListData(bookList, naviCode, start);
+		BookListData bld = new BookListData(genreList, naviCode, start);
 		return bld;
 	}
 

@@ -3,6 +3,7 @@ package com.iei.report.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.iei.question.model.vo.QuestionPageData;
 import com.iei.report.model.dao.ReportDao;
 import com.iei.report.model.vo.ReportPageData;
 import com.iei.report.model.vo.ReportVo;
@@ -157,7 +158,7 @@ public class ReportService {
 		return result;
 	}
 
-	// 문의 게시물 작성
+	// 신고 게시물 작성
 	public int insertReport(ReportVo q) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.insertReport(conn, q);
@@ -170,5 +171,7 @@ public class ReportService {
 		
 		return result;
 	}
+
+
 
 }

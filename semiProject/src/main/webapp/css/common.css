@@ -142,7 +142,6 @@ div[class$="-menu"]>ul>li {
 
 
 .logo-text{
-	width : 700px;
     float: left;
     font-size: 30px;
     color: blueviolet;
@@ -153,6 +152,7 @@ div[class$="-menu"]>ul>li {
 	color : blueviolet;
 	float: left;
 }
+
 .logo-text>h4:hover{
 	cursor: pointer;
 }
@@ -164,6 +164,9 @@ div[class$="-menu"]>ul>li {
 #integrated-search{
     border-right: none;
     cursor: pointer;
+}
+#integrated-search:hover{
+    cursor: text;
 }
 .search-bar {
 	display : block;
@@ -177,6 +180,7 @@ div[class$="-menu"]>ul>li {
     width: 260px;
     border: 1px solid #ccc;
 }
+
 #search-icon{
 	width : 40px;
 	border-left : none;
