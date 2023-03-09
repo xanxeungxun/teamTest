@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.iei.question.model.vo.QuestionVo;
+import com.iei.report.model.vo.ReportVo;
 
 import common.JDBCTemplate;
 
@@ -28,7 +29,7 @@ public class QuestionDao {
 				QuestionVo n = new QuestionVo();
 				n.setQuestionNo(rset.getInt("QUESTION_NO"));
 				n.setQuestionUserId(rset.getString("QUESTION_USER_ID"));
-				n.setQuestionName(rset.getString("QUESTION_USER_ID"));
+				n.setQuestionName(rset.getString("QUESTION_NAME"));
 				n.setQuestionTitle(rset.getString("QUESTION_TITLE"));
 				n.setQuestionType(rset.getInt("QUESTION_TYPE"));
 				n.setQuestionContent(rset.getString("QUESTION_CONTENT"));
@@ -138,7 +139,7 @@ public class QuestionDao {
 			pstmt.setString(8, "n");
 			pstmt.setString(9, " ");
 			pstmt.setString(10, " ");
-			pstmt.setString(11, " ");
+			pstmt.setString(11, "n");
 			System.out.println(pstmt);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -170,5 +171,75 @@ public class QuestionDao {
 		}
 		return totalCount;
 	}
+
+	// 검색 목록 조회
+	public ArrayList<QuestionVo> selectSearchedQuestion(Connection conn, int start, int end, String searchValue, String searchType) {
+			PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	String type = "";
+	if("1".equals(searchType)) type = "QUESTION_TITLE";
+	else if("2".equals(searchType)) type = "QUESTION_NAME";
+	
+	ArrayList<QuestionVo> list = new ArrayList<QuestionVo>();
+	String query = "select * from(select rownum as rnum, n.* from(select QUESTION_NO,QUESTION_USER_ID,QUESTION_NAME,QUESTION_TITLE,QUESTION_TYPE,QUESTION_CONTENT,ENROLL_DATE,ANSWER_YN,ANSWER_USER_NAME,ANSWER_USER_ID,ANSWER_TITLE,ANSWER_CONTENT,ANSWER_DATE from question"
+			+ " where " + type + " like " + "\'" +"%" + searchValue +"%" + "\'"+ " order by 1 desc)n)where rnum between ? and ?";
+	
+	System.out.println("QUERY : " + query);
+	try {
+		pstmt = conn.prepareStatement(query);
+		pstmt.setInt(1, start);
+		pstmt.setInt(2, end);
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			QuestionVo n = new QuestionVo();
+			n.setQuestionNo(rset.getInt("QUESTION_NO"));
+			n.setQuestionUserId(rset.getString("QUESTION_USER_ID"));
+			n.setQuestionName(rset.getString("QUESTION_NAME"));
+			n.setQuestionTitle(rset.getString("QUESTION_TITLE"));
+			n.setQuestionType(rset.getInt("QUESTION_TYPE"));
+			n.setQuestionContent(rset.getString("QUESTION_CONTENT"));
+			n.setEnrollDate(rset.getString("ENROLL_DATE"));
+			n.setAnswerYn(rset.getString("ANSWER_YN"));
+			n.setAnswerUserName(rset.getString("ANSWER_USER_NAME"));
+			n.setAnswerUserId(rset.getString("ANSWER_USER_ID"));
+			n.setAnswerTitle(rset.getString("ANSWER_TITLE"));
+			n.setAnswerContent(rset.getString("ANSWER_CONTENT"));
+			n.setAnswerDate(rset.getString("ANSWER_DATE"));
+			list.add(n);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rset);
+	}
+	return list;
+	
+
+	}
+
+
+	// 게시물수가 몇개인지 세어주는 dao
+		public int selectQuestionCount(Connection conn) {
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			int totalCount = 0;
+			String query = "select count(*) as cnt from question";
+			try {
+				pstmt = conn.prepareStatement(query);
+				rset = pstmt.executeQuery();
+				if(rset.next()) {
+					totalCount = rset.getInt("cnt"); 
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				JDBCTemplate.close(rset);
+				JDBCTemplate.close(pstmt);
+			}
+			return totalCount;
+		}
+
+
 
 }
