@@ -194,6 +194,12 @@ public class BookService {
 		JDBCTemplate.close(conn);
 		return viewList;
 	}
+	public ArrayList<Book> mainViewBook2() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Book> viewList2 = dao.mainViewBook2(conn);
+		JDBCTemplate.close(conn);
+		return viewList2;
+	}
 
 
 	

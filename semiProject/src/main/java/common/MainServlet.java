@@ -38,9 +38,11 @@ public class MainServlet extends HttpServlet {
 		//3. 비즈니스로직
 		BookService service = new BookService();
 		ArrayList<Book> viewList = service.mainViewBook();
+		ArrayList<Book> viewList2 = service.mainViewBook2();
 		//4. 결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/main.jsp");
 		request.setAttribute("viewList", viewList);
+		request.setAttribute("viewList2", viewList2);
 		view.forward(request, response);
 	}
 
