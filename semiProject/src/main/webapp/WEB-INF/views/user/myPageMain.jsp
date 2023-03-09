@@ -140,6 +140,11 @@
 				<div class="myPoint bc4">
 					나의 포인트 : <span class="myPoint-num"><%=user.getUserPoint() %></span> P
 				</div>
+				<%if(loginUser!=null&&loginUser.getUserLevel()==1){ %>
+				<div class="myPoint bc4" onclick="location.href='/adminMain.do?userLevel=1';" style="cursor: pointer;">
+					관리자 페이지
+				</div>
+				<%} %>
 			</div>
 		</div>
 	</div>
