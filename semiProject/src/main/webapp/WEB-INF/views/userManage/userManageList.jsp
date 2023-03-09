@@ -39,6 +39,7 @@ int start = (int)request.getAttribute("start");
 				<%
 				} else {
 				%>
+				<br><br><br>
 				<thead>
 					<tr class="userManage-tr">
 					<td class="userManage-td" style="width:5%;padding:10px;">순번</td>

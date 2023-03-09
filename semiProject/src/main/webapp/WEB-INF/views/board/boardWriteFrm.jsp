@@ -38,7 +38,7 @@
 							
 							<th class="board-td">제목</th>
 							<td class="board-td" colspan="3">
-								<input type="text" name="boardTitle" class="board-input">
+								<input type="text" name="boardTitle" class="board-input" style="padding-left: 15px;">
 							</td>
 						</tr>
 						<tr class="board-tr">
@@ -50,8 +50,7 @@
 							<td class="board-td"><input type="file" name="upfile"></td>
 						</tr>
 						<tr class="board-tr">
-							<th class="board-td">내용</th>
-							<td class="board-td" colspan="3">
+							<td class="board-td" colspan="4">
 								<textarea id="boardContent" name="boardContent" class="board-input"></textarea>
 							</td>
 						</tr>

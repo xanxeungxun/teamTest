@@ -20,21 +20,19 @@ public class Book {
 	
 	private int bookStatusNum;
 	
-	public int getBookStatusNum() {
-		return bookStatusNum;
-	}
-
-	public void setBookStatusNum(int bookStatusNum) {
-		this.bookStatusNum = bookStatusNum;
-	}
-
+	private int allViewer;
+	private int allScore;
+	
+	
 	public Book() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Book(int bookNo, int storyCount, int genreCode, String genreName, String bookTitle, String bookWriterId,
-			String bookWriterNick, String bookExp, String coverpath, String bookStatus, String bookDate) {
+			String bookWriterNick, String bookExp, String coverpath, String bookStatus, String bookDate,
+			int bookStatusNum, int allViewer, int allScore) {
 		super();
 		this.bookNo = bookNo;
 		this.storyCount = storyCount;
@@ -47,95 +45,152 @@ public class Book {
 		this.coverpath = coverpath;
 		this.bookStatus = bookStatus;
 		this.bookDate = bookDate;
+		this.bookStatusNum = bookStatusNum;
+		this.allViewer = allViewer;
+		this.allScore = allScore;
 	}
+
 
 	public int getBookNo() {
 		return bookNo;
 	}
 
+
 	public void setBookNo(int bookNo) {
 		this.bookNo = bookNo;
 	}
+
 
 	public int getStoryCount() {
 		return storyCount;
 	}
 
+
 	public void setStoryCount(int storyCount) {
 		this.storyCount = storyCount;
 	}
+
 
 	public int getGenreCode() {
 		return genreCode;
 	}
 
+
 	public void setGenreCode(int genreCode) {
 		this.genreCode = genreCode;
 	}
+
 
 	public String getGenreName() {
 		return genreName;
 	}
 
+
 	public void setGenreName(String genreName) {
 		this.genreName = genreName;
 	}
+
 
 	public String getBookTitle() {
 		return bookTitle;
 	}
 
+
 	public void setBookTitle(String bookTitle) {
 		this.bookTitle = bookTitle;
 	}
+
 
 	public String getBookWriterId() {
 		return bookWriterId;
 	}
 
+
 	public void setBookWriterId(String bookWriterId) {
 		this.bookWriterId = bookWriterId;
 	}
+
 
 	public String getBookWriterNick() {
 		return bookWriterNick;
 	}
 
+
 	public void setBookWriterNick(String bookWriterNick) {
 		this.bookWriterNick = bookWriterNick;
 	}
+
 
 	public String getBookExp() {
 		return bookExp;
 	}
 
+
 	public void setBookExp(String bookExp) {
 		this.bookExp = bookExp;
 	}
+
 
 	public String getCoverpath() {
 		return coverpath;
 	}
 
+
 	public void setCoverpath(String coverpath) {
 		this.coverpath = coverpath;
 	}
+
 
 	public String getBookStatus() {
 		return bookStatus;
 	}
 
+
 	public void setBookStatus(String bookStatus) {
 		this.bookStatus = bookStatus;
 	}
+
 
 	public String getBookDate() {
 		return bookDate;
 	}
 
+
 	public void setBookDate(String bookDate) {
 		this.bookDate = bookDate;
 	}
+
+
+	public int getBookStatusNum() {
+		return bookStatusNum;
+	}
+
+
+	public void setBookStatusNum(int bookStatusNum) {
+		this.bookStatusNum = bookStatusNum;
+	}
+
+
+	public int getAllViewer() {
+		return allViewer;
+	}
+
+
+	public void setAllViewer(int allViewer) {
+		this.allViewer = allViewer;
+	}
+
+
+	public int getAllScore() {
+		return allScore;
+	}
+
+
+	public void setAllScore(int allScore) {
+		this.allScore = allScore;
+	}
+	
+	
 	
 
 }//Book

@@ -261,4 +261,6 @@ public class BoardService {
 		BoardPageData bpd = new BoardPageData(list, pageNavi, start);
 		return bpd;
 	}
+
+	
 }
