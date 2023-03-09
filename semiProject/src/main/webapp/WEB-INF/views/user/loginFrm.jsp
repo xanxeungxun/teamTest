@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="/css/loginJoin.css">
-<link rel="stylesheet" href="/css/login.css">
 </head>
 <style>
 .page-content>* {
@@ -49,7 +48,7 @@ div>.btn {
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="loginJoin-wrap page-content">
 		<div class="loginJoin-title page-title">로그인</div>
-		<form action="login.do" method="post">
+		<form action="/loginFrm.do" method="post">
 			<div class="searchIdPw-box">
 				<div class="input-wrap">
 					<input type="text" name="signId" id="signId"
