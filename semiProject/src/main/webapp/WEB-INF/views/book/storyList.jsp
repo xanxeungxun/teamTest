@@ -303,6 +303,7 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 	    	const button1 = $("<button>");
 	    	const button2 = $("<button>");
 	    	const bookNo = $("#bookNo").val();
+	    	const storyNo = $("#check").val();
 	    	
 	    	button1.text("완결작으로 전환");
 		    button1.addClass("btn bc44 modal-open-btn");
@@ -311,7 +312,7 @@ if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
 		    
 		    button2.text("글쓰기");
 		    button2.addClass("btn bc4");
-		    button2.attr("onclick","location.href='/storyWriteFrm.do?bookNo="+bookNo+"'");
+		    button2.attr("onclick","location.href='/storyWriteFrm.do?bookNo="+bookNo+"&storyNo="+storyNo+"'");
 		    
 		    $(".book-button").append(button1);
 		    $(".book-button").append(button2);
