@@ -35,14 +35,13 @@ public class ChangeReportNoServlet extends HttpServlet {
 			request.setAttribute("title", "신고 처리 완료");
 			request.setAttribute("msg", "신고 처리를 완료하였습니다.");
 			request.setAttribute("icon", "success");
+			request.setAttribute("loc", "/reportView.do?reportNo="+reportNo);
 		}else {
 			request.setAttribute("title", "신고 처리 실패");
 			request.setAttribute("msg", "오류가 발생하였습니다.");
 			request.setAttribute("icon", "error");
+			request.setAttribute("loc", "/reportView.do?reportNo="+reportNo);
 		}
-
-		//보내줄 경로 위치
-		request.setAttribute("loc", "/report/reportList.do?reqPage=1");
 		view.forward(request, response);
 	}
 	
