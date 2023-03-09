@@ -114,7 +114,7 @@ int start = (int)request.getAttribute("start");
 							<a
 							href="/question/viewQuestion.do?questionNo=
 							<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a>
-							<%}%> <%=q.getQuestionTitle()%>
+							<%}else{%> <%=q.getQuestionTitle()%><%} %>
 						</td>
 						<td class="question-td ttd"><%=q.getQuestionName()%></td>
 						<%-- 작성자 --%>
