@@ -25,11 +25,8 @@ public class ViewReportServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		ReportService service = new ReportService();
-		
-		String reportNo = request.getParameter("reportNo");
-		
+		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
 		ReportVo result = service.selectOneReport(reportNo);
-		
 		request.setAttribute("reportResult", result);
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/report/viewReport.jsp");
 		view.forward(request, response);
