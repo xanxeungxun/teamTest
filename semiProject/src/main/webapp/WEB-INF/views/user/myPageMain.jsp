@@ -145,6 +145,11 @@
 					관리자 페이지
 				</div>
 				<%} %>
+				<%if(loginUser!=null&&loginUser.getUserLevel()!=1){ %>
+					<div class="myPoint bc4" onclick="location.href='/questionList.do?reqPage=1';" style="cursor: pointer;">
+					내가 신고한 게시글
+					</div>
+				<%} %>
 			</div>
 		</div>
 	</div>

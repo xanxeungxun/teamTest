@@ -13,7 +13,7 @@ public class ReportListDao {
 	public int insertReport(Connection conn, ReportVo r) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into report values(report_seq.nextval,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?,?,?,?)";
+		String query = "insert into report values(report_seq.nextval,?,?,?,?,to_char(sysdate,'yyyy-mm-dd'),?,?,?,?,?,?)";
 		
 		System.out.println("ReportListDao 접근");
 		System.out.println("QUERY : " + query);
@@ -29,6 +29,7 @@ public class ReportListDao {
 			pstmt.setString(7, r.getBobTitle());
 			pstmt.setString(8, r.getFileName());
 			pstmt.setString(9, r.getFilePatch());
+			pstmt.setInt(10, r.getReportYn());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
