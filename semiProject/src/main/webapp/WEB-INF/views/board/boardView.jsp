@@ -153,7 +153,7 @@
 		            <ul class="posting-comment">
 		                <li>
 		                  	<%if(bc.getFilePath()==null){ %>
-								<div class="material-icons">account_circle</div>
+								<div class="material-icons" style="font-size: 80px;">account_circle</div>
 							<%} else { %>
 								<div style="background-image: url(/upload/profile/<%=bc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; border-radius: 40px;" id="previewImg" class="book-img"></div>
 							<%} %>
@@ -184,7 +184,7 @@
 		              <ul class="posting-comment reply">
 		                <li>
 		                  	<%if(bcc.getFilePath()==null){ %>
-								<div class="material-icons">account_circle</div>
+								<div class="material-icons" style="font-size: 80px;">account_circle</div>
 							<%} else { %>
 								<div style="background-image: url(/upload/profile/<%=bcc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; border-radius: 40px;" id="previewImg" class="book-img"></div>
 							<%} %>
