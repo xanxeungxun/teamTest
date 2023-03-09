@@ -18,6 +18,10 @@ int start = (int) request.getAttribute("start");
 .tt {
 	background: #F2F1F3;
 }
+.write-btd-wrap{
+margin:0;
+}
+
 </style>
 </head>
 <body>
@@ -28,35 +32,6 @@ int start = (int) request.getAttribute("start");
 			<div class="question-header">
 				<span>문의사항</span>
 			</div>
-			<%-- 검색 폼 태그 시작 --%>
-			<div class="div-form-box" style="width:500px;">
-				<form id="searchForm" action="/question/searchQuestion.do">
-					<select id="searchType" class="select bc666" name="searchType"
-						style="background: #fff; border: 1px solid #CCC;">
-						<%-- 검색 선택 구간 --%>
-						<option value="1" id="select2">제목</option>
-						<option value="2" id="select2">작성자</option>
-					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
-				</form>
-				<input type="text" id="searchValue" class="select bc666"
-					style="background: #fff; border: 1px solid #CCC;"
-					onkeydown="javascript:if(event.keyCode==13) searchQuestion()">
-				<button onclick="searchQuestion()" class="select bttn bc666"
-					id="search" style="background: #fff; border: 1px solid #CCC;">검색</button>
-			</div>
-			<%-- 검색 폼 태그 종료 --%>
-			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
-			<script>
-				function searchQuestion() {
-					if ($("#searchValue").val() == "") {
-						alert("검색어를 입력해 주세요.");
-						return;
-					}
-					$("#hiddenSearchValue").val($("#searchValue").val());
-					$("#searchForm").submit();
-				}
-			</script>
-			<%-- 검색 미 입력시 나올 alert 띄우기 종료 --%>
 
 			<%-- 테이블 시작 --%>
 			<table class="question-tbl">
@@ -93,6 +68,36 @@ int start = (int) request.getAttribute("start");
 				%>
 				<button id="write-btn1" class="btn bc1 bs1"
 					style="visibility: hidden;">문의 게시물 작성</button>
+			<%-- 검색 폼 태그 시작 --%>
+			<div class="div-form-box">
+				<form id="searchForm" action="/question/searchQuestion.do">
+					<select id="searchType" class="select bc666" name="searchType"
+						style="background: #fff; border: 1px solid #CCC;">
+						<%-- 검색 선택 구간 --%>
+						<option value="1" id="select2">제목</option>
+						<option value="2" id="select2">작성자</option>
+					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
+				</form>
+				<input type="text" id="searchValue" class="select bc666"
+					style="background: #fff; border: 1px solid #CCC;"
+					onkeydown="javascript:if(event.keyCode==13) searchQuestion()">
+				<button onclick="searchQuestion()" class="select bttn bc666"
+					id="search" style="background: #fff; border: 1px solid #CCC;">검색</button>
+			</div>
+			<%-- 검색 폼 태그 종료 --%>
+			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
+			<script>
+				function searchQuestion() {
+					if ($("#searchValue").val() == "") {
+						alert("검색어를 입력해 주세요.");
+						return;
+					}
+					$("#hiddenSearchValue").val($("#searchValue").val());
+					$("#searchForm").submit();
+				}
+			</script>
+			<%-- 검색 미 입력시 나올 alert 띄우기 종료 --%>
+			<br>
 				<thead>
 					<tr class="question-tr ttr tt">
 						<td class="question-td ttd" style="width: 6%">번호</td>

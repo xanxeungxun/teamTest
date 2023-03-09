@@ -103,6 +103,7 @@
         border : 1px solid #EEEEEE;
         border-radius: 60px;
     }
+   
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
