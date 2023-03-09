@@ -303,8 +303,8 @@ public class BookDao {
 		
 		return result;
 	}
-
-	public ArrayList<Book> mainViewBook(Connection conn) {
+	
+	public ArrayList<Book> mainViewBook(Connection conn) {//최신순
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Book> viewList = new ArrayList<Book>();
@@ -339,7 +339,7 @@ public class BookDao {
 		return viewList;
 	}
 
-	public ArrayList<Book> mainViewBook2(Connection conn) {
+	public ArrayList<Book> mainViewBook2(Connection conn) {//인기(조회수)순
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Book> viewList2 = new ArrayList<Book>();

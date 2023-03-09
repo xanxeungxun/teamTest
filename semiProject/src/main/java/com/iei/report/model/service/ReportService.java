@@ -3,7 +3,6 @@ package com.iei.report.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.iei.question.model.vo.QuestionPageData;
 import com.iei.report.model.dao.ReportDao;
 import com.iei.report.model.vo.ReportPageData;
 import com.iei.report.model.vo.ReportVo;
@@ -135,15 +134,6 @@ public class ReportService {
 	}
 	
 	
-	// 신고 상세 보기
-	public ReportVo selectOneReport(String questionNo) {
-		
-		Connection conn = JDBCTemplate.getConnection();
-		ReportVo result = dao.selectOneReport(conn, questionNo);
-		JDBCTemplate.close(conn);
-
-		return result;
-	}
 	
 	// 답변 등록, 수정
 	public int updateReport(ReportVo paramVo) {
@@ -158,17 +148,13 @@ public class ReportService {
 		return result;
 	}
 
-	// 신고 게시물 작성
-	public int insertReport(ReportVo q) {
+
+	// 신고 상세 보기
+	public ReportVo selectOneReport(int reportNo) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.insertReport(conn, q);
-		if(result>0) {
-			JDBCTemplate.commit(conn);
-		}else {
-			JDBCTemplate.rollback(conn);
-		}
+		ReportVo result = dao.selectOneReport(conn, reportNo);
 		JDBCTemplate.close(conn);
-		
+
 		return result;
 	}
 

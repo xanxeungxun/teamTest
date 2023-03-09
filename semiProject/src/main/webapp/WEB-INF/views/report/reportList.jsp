@@ -63,7 +63,7 @@ int start = (int)request.getAttribute("start");
 				if (list.size() < 1) {
 				%>
 				<tr class="report-tr">
-					<td class="report-td">신고된 내용이 없습니다.</td>
+					<td class="report-td">조회 결과가 없습니다.</td>
 				</tr>
 				<%
 				} else {
@@ -87,7 +87,8 @@ int start = (int)request.getAttribute("start");
 					<tr class="report-tr">
 						<td class="report-td"style="font-size:14px;"><%=i+start %></td>
 						<td class="report-td kk"style="font-size:14px;"><%=u.getReporterId() %></td>
-						<td class="report-td"style="font-size:14px;"><%=u.getReportTitle()%></td>
+						<td class="report-td"style="font-size:14px;">
+						<a class="text-inline" href="/reportView.do?reportNo=<%=u.getReportNo()%>"><%=u.getReportTitle()%></a></td>
 						<td class="report-td"style="font-size:14px;">
 						<% if(u.getReportType() == 1 ){%>유저
 						<%}else if(u.getReportType() == 2 ){%>게시판

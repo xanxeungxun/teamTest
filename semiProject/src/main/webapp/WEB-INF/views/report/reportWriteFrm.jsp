@@ -28,7 +28,6 @@
 		
 	
 	}
-	
 </style>
 <link rel="stylesheet" href="/css/report.css">
 </head>
@@ -92,7 +91,7 @@ $(document).ready(function(){
     					<option value="3">성적수치심</option>
     					<option value="4">기타</option>
     				</select></td>
-						<th class="td-3">작성자</td>
+						<th class="td-3" class="ttt">작성자</td>
 						<td style="width:200px;text-align:right;padding-right:50px;">
 							<span>아이디</span>
 							<input type="hidden" name="reporterId" id="reporterId"
@@ -114,7 +113,7 @@ $(document).ready(function(){
 					</tr>
 					<tr class="tr-1">
 						<td colspan="4">
-							<button type="submit" id="submitBtn" class="btn bc1 bs4">문의 게시글 작성</button>
+							<button type="submit" id="submitBtn" class="btn bc1 bs4">신고 사항 전송</button>
 						</td>
 					</tr>
 				</table>
