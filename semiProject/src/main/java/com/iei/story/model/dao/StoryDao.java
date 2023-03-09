@@ -96,7 +96,7 @@ public class StoryDao {
 	public int insertStoryComment(Connection conn, int bookNo, int storyNo, String userId, String commentCnt) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "insert into story_comment values(STORY_COMMENT_SEQ.nextval,?,?,?,?,sysdate,STORY_COMMENT_SEQ.nextval)";
+		String query = "insert into story_comment values(STORY_COMMENT_SEQ.nextval,?,?,?,?,sysdate,0)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -104,7 +104,7 @@ public class StoryDao {
 			pstmt.setInt(2, storyNo);
 			pstmt.setInt(3, bookNo);
 			pstmt.setString(4, commentCnt);
-				result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -294,6 +294,64 @@ public class StoryDao {
 		}
 		
 		return result;
+	}
+
+	public int insertStoryReComment(Connection conn, int bookNo, int storyNo, String userId, String commentCnt,
+			int commentRef) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into story_comment values(STORY_COMMENT_SEQ.nextval,?,?,?,?,sysdate,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, storyNo);
+			pstmt.setInt(3, bookNo);
+			pstmt.setString(4, commentCnt);
+			pstmt.setInt(5, commentRef);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<StoryComment> selectAllReComment(Connection conn, int storyNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<StoryComment> StoryComment = new ArrayList<StoryComment>();
+		String query = "select * from Story_Comment where story_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, storyNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				StoryComment c = new StoryComment();
+				c.setBookNo(rset.getInt("book_no"));
+				c.setCommentDate(rset.getString("story_comment_date"));
+				c.setStoryCommentContent(rset.getString("story_comment_content"));
+				c.setStoryCommentNo(rset.getInt("story_comment_no"));
+				c.setStoryCommentRef(rset.getInt("story_comment_ref"));
+				c.setStoryNo(rset.getInt("story_no"));
+				c.setUserId(rset.getString("user_id"));
+				
+				StoryComment.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {	
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return StoryComment;
 	}
 
 	

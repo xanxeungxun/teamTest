@@ -1,7 +1,7 @@
 package com.iei.story.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.security.Provider.Service;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.book.model.vo.Book;
+import org.json.simple.JSONObject;
+
 import com.iei.story.model.service.StoryService;
-import com.iei.story.model.vo.Story;
-import com.iei.story.model.vo.StoryComment;
 
 /**
- * Servlet implementation class StoryViewServlet
+ * Servlet implementation class InsertStoryCommentServlet
  */
-@WebServlet(name = "StoryView", urlPatterns = { "/storyView.do" })
-public class StoryViewServlet extends HttpServlet {
+@WebServlet(name = "InsertStoryComment", urlPatterns = { "/insertStoryReComment.do" })
+public class InsertStoryReCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StoryViewServlet() {
+    public InsertStoryReCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,26 +33,33 @@ public class StoryViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1인코딩
+		//인코딩
 		request.setCharacterEncoding("utf-8");
 		
-		//2값추출
-		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
+		//값추출
+		int commentRef = Integer.parseInt(request.getParameter("commentRef"));
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
-		
-		//3비즈니스로직
+		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
+		String userId = request.getParameter("userId");
+		String commentCnt = request.getParameter("commentCnt");
+
+		//비즈니스로직
 		StoryService service = new StoryService();
-		Book b = service.selectOneBook(bookNo);
-		Story s = service.selectOneStory(storyNo);
-		ArrayList<StoryComment> storyCommentList = service.selectAllComment(storyNo);
-		ArrayList<StoryComment> storyReCommentList = service.selectAllReComment(storyNo);
+		int result = service.insertStoryReComment(bookNo,storyNo,userId,commentCnt,commentRef);
 		
-		//4결과처리
-		request.setAttribute("s", s);
-		request.setAttribute("b", b);
-		request.setAttribute("cl", storyCommentList);
-		request.setAttribute("ccl", storyReCommentList);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyView.jsp");
+		//결과처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+		if(result>0) { //입력성공
+			request.setAttribute("title", "성공");
+			request.setAttribute("msg", "댓글 작성 완료");
+			request.setAttribute("icon", "success");
+		}else{ //입력실패
+			request.setAttribute("title", "실패");
+			request.setAttribute("msg", "댓글 작성 실패");
+			request.setAttribute("icon", "error");
+		}
+		
+		request.setAttribute("loc", "/storyView.do?storyNo="+storyNo+"&bookNo="+bookNo);
 		view.forward(request, response);
 	}
 

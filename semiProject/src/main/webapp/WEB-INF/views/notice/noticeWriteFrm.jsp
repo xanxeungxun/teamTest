@@ -13,6 +13,8 @@
 	.notice-input{
 		border: 0.1px solid #ccc;
 	}
+
+	
 	.note-editor.note-frame .note-editing-area .note-editable, .note-editor.note-airframe .note-editing-area .note-editable {
 	    padding: 10px;
 	    overflow: auto;
