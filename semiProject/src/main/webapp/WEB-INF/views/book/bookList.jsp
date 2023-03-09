@@ -199,11 +199,12 @@
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 <script>
-	const selectGenre = $("[name=genre]").val();
+	const selectGenre = $("[name=genre]");
+	const selectGenreVal = $("[name=genre]").val();
 	const options = $("[name=genre]>option");
+	$(selectGenre).change(function(){
 		console.log(selectGenre);
 		console.log(options);
-	$(options).click(function(){
 		options.each(function(index,item){
 			if($(item).prop("selected",true)){
 				$("[name=genreFrm]").submit();
