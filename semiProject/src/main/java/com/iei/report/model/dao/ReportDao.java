@@ -112,9 +112,9 @@ public class ReportDao {
 				result.setReportContent(rset.getString("report_content"));
 				result.setReportType(rset.getInt("report_type"));
 				result.setReportDate(rset.getString("report_date"));
-				result.setBobType(rset.getString("book_of_board_type"));
-				result.setBobNo(rset.getInt("book_of_board_no"));
-				result.setBobTitle(rset.getString("book_of_board_title"));
+				result.setBobType(rset.getString("book_or_board_type"));
+				result.setBobNo(rset.getInt("book_or_board_no"));
+				result.setBobTitle(rset.getString("book_or_board_title"));
 				result.setFileName(rset.getString("file_name"));
 				result.setFilePatch(rset.getString("file_patch"));
 				result.setReportYn(rset.getInt("report_yn"));
@@ -151,6 +151,23 @@ public class ReportDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return totalCount;
+	}
+
+	public int changeReportNo(Connection conn, int reportNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update report set report_yn='1' where report_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, reportNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			
+		}
+		return result;
 	}
 
 }
