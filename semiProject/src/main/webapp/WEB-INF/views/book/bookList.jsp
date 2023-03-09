@@ -48,7 +48,7 @@
                 <div>
                    <ul>
                         <li><a href="/bookList.do?reqPage=1">최신순</a><span class="gray-bar">|</span></li>
-                        <li><a href="#">인기순</a><span class="gray-bar">|</span></li>
+                        <li><a href="/bookListViews.do?reqPage=1">인기순</a><span class="gray-bar">|</span></li>
                         <li><a href="/bookListComplete.do?reqPage=1">완결</a></li>
                     </ul>
                 </div>
