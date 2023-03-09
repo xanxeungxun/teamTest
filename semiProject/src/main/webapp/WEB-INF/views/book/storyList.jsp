@@ -56,11 +56,8 @@
             <div class="book-content-box">	
 
                 <div class="book-content">
-                    <div class="book-cover"
-                    	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
-                    	 background-size: contain;
-  						 background-position: center;
-  						 background-repeat: no-repeat;">
+                    <div class="book-cover">
+  						 <img src="/upload/cover-image/<%=b.getCoverpath() %>" style="width: 180px; height:240px;cursor:pointer;">
                     </div>
                     <div class="book-exp">
                         <div class="book-title">

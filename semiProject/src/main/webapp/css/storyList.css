@@ -32,12 +32,12 @@ a{
 }
 
 .book-content-box{
-    width: 1000px;
+    width: 1200px;
     margin: 0 auto 80px auto;
 }
 
 .book-content{
-
+	justify-content:center;
     display: flex;
 }
 .book-cover{
@@ -46,8 +46,8 @@ a{
     height: 240px;
 }
 .book-exp{
-    padding: 0 10px;
-    width: 630px;
+    padding: 0 20px;
+    width: 600px;
 }
 .book-exp .book-title{
     font-size: 23px;
@@ -100,7 +100,7 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: end;
-    width: 250px;
+    width: 200px;
 }
 
 .switch-zone{
