@@ -134,20 +134,6 @@ public class ReportService {
 	}
 	
 	
-	
-	// 답변 등록, 수정
-	public int updateReport(ReportVo paramVo) {
-		Connection conn = JDBCTemplate.getConnection();
-		int result = dao.updateAnswer(conn, paramVo);
-		if(result >0)
-			JDBCTemplate.commit(conn);
-		else
-			JDBCTemplate.rollback(conn);
-		JDBCTemplate.close(conn);
-		
-		return result;
-	}
-
 
 	// 신고 상세 보기
 	public ReportVo selectOneReport(int reportNo) {
