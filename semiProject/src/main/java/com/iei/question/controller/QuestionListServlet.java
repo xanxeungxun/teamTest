@@ -38,7 +38,7 @@ public class QuestionListServlet extends HttpServlet {
 		User loginUser = (User) session.getAttribute("loginUser");
 		
 		//4 결과처리
-		if (loginUser != null && loginUser.getUserLevel() == 2) {
+		if (loginUser != null && loginUser.getUserLevel() == 2||loginUser != null && loginUser.getUserLevel() == 1) {
 			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/question/questionList.jsp");
 			request.setAttribute("list", qpd.getList());
 			request.setAttribute("pageNavi", qpd.getPageNavi());

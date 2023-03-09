@@ -60,7 +60,7 @@ public class ReportWriteFrmServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			User loginUser = (User) session.getAttribute("loginUser");
 			// 4결과처리
-			if (loginUser != null && loginUser.getUserLevel() == 2) {
+			if (loginUser != null && loginUser.getUserLevel() == 2||loginUser != null && loginUser.getUserLevel() == 1) {
 				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/report/reportWriteFrm.jsp");
 				request.setAttribute("list2", list2);
 

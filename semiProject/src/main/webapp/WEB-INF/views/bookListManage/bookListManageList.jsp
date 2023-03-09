@@ -55,6 +55,7 @@ font-size:14px;
 				<%
 				} else {
 				%>
+				<br><br><br>
 				<thead>
 					<tr class="bookListManage-tr">
 					
