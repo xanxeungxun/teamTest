@@ -91,34 +91,29 @@ public class ReportDao {
 	}
 	
 	
-	// 문의 상세 조회
-	public ReportVo selectOneReport(Connection conn, String reportNo) {
+	// 신고 상세 조회
+	public ReportVo selectOneReport(Connection conn, int reportNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ReportVo result = new ReportVo();
-		String query = "SELECT * FROM QUESTION WHERE QUESTION_NO = ?";
-		
-		
+		String query = "SELECT * FROM REPORT WHERE REPORT_NO = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, Integer.parseInt(questionNo));
+			pstmt.setInt(1, reportNo);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				result.setQuestionNo(rset.getInt("QUESTION_NO"));
-				result.setQuestionUserId(rset.getString("QUESTION_USER_ID"));
-				result.setQuestionName(rset.getString("QUESTION_NAME"));
-				result.setQuestionTitle(rset.getString("QUESTION_TITLE"));
-				result.setQuestionType(rset.getInt("QUESTION_TYPE"));
-				result.setQuestionContent(rset.getString("QUESTION_CONTENT"));
-				result.setEnrollDate(rset.getString("ENROLL_DATE"));
-				result.setAnswerYn(rset.getString("ANSWER_YN"));
-				result.setAnswerUserName(rset.getString("ANSWER_USER_NAME"));
-				result.setAnswerUserId(rset.getString("ANSWER_USER_ID"));
-				result.setAnswerTitle(rset.getString("ANSWER_TITLE"));
-				result.setAnswerContent(rset.getString("ANSWER_CONTENT"));
-				result.setAnswerDate(rset.getString("ANSWER_DATE"));
-				
+				result.setReportNo(rset.getInt("report_no"));
+				result.setReporterId(rset.getString("report_id"));
+				result.setReportTitle(rset.getString("report_title"));
+				result.setReportContent(rset.getString("report_content"));
+				result.setReportType(rset.getInt("report_type"));
+				result.setReportDate(rset.getString("report_date"));
+				result.setBobType(rset.getString("book_of_board_type"));
+				result.setBobNo(rset.getInt("book_of_board_no"));
+				result.setBobTitle(rset.getString("book_of_board_title"));
+				result.setFileName(rset.getString("file_name"));
+				result.setFilePatch(rset.getString("file_patch"));
 			}
 			
 		} catch (SQLException e) {
@@ -127,61 +122,12 @@ public class ReportDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
+		System.out.println(result);
 		return result;
 	}
 	
-	// 답변 수정 등록
-	public int updateAnswer(Connection conn, ReportVo paramVo) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String query = "UPDATE QUESTION SET ANSWER_YN = ? , ANSWER_TITLE = ? , ANSWER_CONTENT = ? , ANSWER_USER_NAME = ? , ANSWER_USER_ID = ? , ANSWER_DATE = SYSDATE WHERE QUESTION_NO = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "y");
-			pstmt.setString(2, paramVo.getAnswerTitle());
-			pstmt.setString(3, paramVo.getAnswerContent());
-			pstmt.setString(4, paramVo.getAnswerUserName());
-			pstmt.setString(5, paramVo.getAnswerUserId());
-			pstmt.setInt(6, paramVo.getQuestionNo());
-			
-			System.out.println(pstmt.toString());
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(pstmt);
-		}
-		return result;
-	}
+	
 
-	//신고 게시물 작성
-	public int insertReport(Connection conn, ReportVo q) {
-		PreparedStatement pstmt = null;
-		int result = 0;
-		String query = "insert into report values(report_seq.nextval,?,?,?,?,?,to_char(sysdate,'yy/mm/dd'),?,?,?,?)";
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, q.getQuestionUserId());//1 신고인(int)
-			pstmt.setString(2, q.getQuestionName());//2 피신고인(int)
-			pstmt.setString(3, q.getQuestionTitle());//3 신고내용(Str)
-			pstmt.setString(3, q.getQuestionTitle());//4 파일첨부(Str)
-			pstmt.setInt(4, q.getQuestionType());//5 신고종류(int)
-			pstmt.setString(5, q.getQuestionContent());//6 댓글번호(소설게시판)-(댓글신고용)-(int)
-			pstmt.setString(6, "n");//7 신고게시물(소설게시판)-(게시물신고용)-(int)
-			pstmt.setString(7, "n");//8 댓글번호(자유게시판)-(댓글신고용)-(int)
-			pstmt.setString(8, "n");//9 신고게시물(자유게시판)-(게시물신고용)-(int)
-			System.out.println(pstmt);
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			JDBCTemplate.close(pstmt);
-		}
-		return result;
-	}
 // 게시물수가 몇개인지 세어주는 dao
 	public int selectReportCount(Connection conn) {
 		PreparedStatement pstmt = null;

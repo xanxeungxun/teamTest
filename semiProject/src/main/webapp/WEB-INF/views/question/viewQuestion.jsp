@@ -10,6 +10,18 @@ QuestionVo question = (QuestionVo) request.getAttribute("questionResult");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/question.css">
+<style>
+.tt{
+background:#FFE4EA;
+
+}
+.tt-1{
+padding-left:50px;
+text-align:left;
+background:#FFE4EA;
+}
+
+</style>
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -23,12 +35,12 @@ QuestionVo question = (QuestionVo) request.getAttribute("questionResult");
 					<td class="question-td-2" colspan="4">문의사항</td>
 				</tr>
 				<tr class="question-tr">
-					<td class="question-td" style="width: 30%"><span><%=question.getQuestionTitle()%></span>
+					<td class="question-td tt" style="width: 45%"><span><%=question.getQuestionTitle()%></span>
 					</td>
-					<td class="question-td" style="width: 10%">
+					<td class="question-td tt" style="width: 10%">
 						<div><%=question.getEnrollDate()%></div>
 					</td>
-					<td class="question-td" style="width: 10%">
+					<td class="question-td tt-1" style="width: 10%">
 						<div>
 							아이디
 							<%=question.getQuestionUserId()%>
@@ -45,7 +57,7 @@ QuestionVo question = (QuestionVo) request.getAttribute("questionResult");
 				<tr class="question-tr">
 					<td class="question-td-2" colspan="4">답변</td>
 				</tr>
-				<tr class="question-tr">
+				<tr class="question-tr tt">
 					<td class="question-td" colspan="4">등록된 답변이 없습니다.</td>
 				</tr>
 				<br>
