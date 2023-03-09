@@ -1,4 +1,4 @@
-package com.iei.map.controller;
+package common;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MapServlet
+ * Servlet implementation class TermsServlet
  */
-@WebServlet(name = "Map", urlPatterns = { "/map.do" })
-public class MapServlet extends HttpServlet {
+@WebServlet(name = "Terms", urlPatterns = { "/terms.do" })
+public class TermsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MapServlet() {
+    public TermsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,7 @@ public class MapServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/etc/map.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/etc/terms.jsp");
 		
 		view.forward(request, response);
 	}
