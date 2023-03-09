@@ -31,7 +31,7 @@ int start = (int)request.getAttribute("start");
 			</div>
 			<%-- 검색 폼 태그 시작 --%>
 			<div class="div-form-box">
-				<form id="searchForm" action="/question/searchQuestion.do">
+				<form id="searchForm" action="/report/searchReportList.do">
 					<select id="searchType" class="select bc666" name="searchType" style="background:#fff;border:1px solid #CCC;">
 						<%-- 검색 선택 구간 --%>
 						<option value="1" id="select1">신고자</option>

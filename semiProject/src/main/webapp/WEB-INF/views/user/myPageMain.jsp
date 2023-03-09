@@ -146,8 +146,10 @@
 				</div>
 				<%} %>
 				<%if(loginUser!=null&&loginUser.getUserLevel()!=1){ %>
-					<div class="myPoint bc4" onclick="location.href='/reportList.do?reqPage=1';" style="cursor: pointer;">
+					<div class="myPoint bc4" 
+					onclick="location.href='/report/searchReportList.do?searchType=1&searchValue=<%=loginUser.getUserId() %>';" style="cursor: pointer;">
 					내가 신고한 게시글
+					
 					</div>
 				<%} %>
 			</div>

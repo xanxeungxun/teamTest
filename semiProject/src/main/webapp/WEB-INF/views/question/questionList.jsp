@@ -5,8 +5,8 @@
 	pageEncoding="UTF-8"%>
 <%
 ArrayList<QuestionVo> list = (ArrayList<QuestionVo>) request.getAttribute("list");
-String pageNavi = (String)request.getAttribute("pageNavi");
-int start = (int)request.getAttribute("start");
+String pageNavi = (String) request.getAttribute("pageNavi");
+int start = (int) request.getAttribute("start");
 %>
 <!DOCTYPE html>
 <html>
@@ -15,14 +15,13 @@ int start = (int)request.getAttribute("start");
 <title>문의 게시판</title>
 <link rel="stylesheet" href="/css/question.css">
 <style>
-.tt{
-background:#F2F1F3;
-
+.tt {
+	background: #F2F1F3;
 }
 </style>
 </head>
 <body>
-<script src="/js/jquery-3.6.3.min.js"></script>
+	<script src="/js/jquery-3.6.3.min.js"></script>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-content">
 		<div class="question-wrap">
@@ -30,23 +29,26 @@ background:#F2F1F3;
 				<span>문의사항</span>
 			</div>
 			<%-- 검색 폼 태그 시작 --%>
-			<div class="div-form-box">
+			<div class="div-form-box" style="width:500px;">
 				<form id="searchForm" action="/question/searchQuestion.do">
-					<select id="searchType" class="select bc666" name="searchType" style="background:#fff;border:1px solid #CCC;">
+					<select id="searchType" class="select bc666" name="searchType"
+						style="background: #fff; border: 1px solid #CCC;">
 						<%-- 검색 선택 구간 --%>
 						<option value="1" id="select2">제목</option>
 						<option value="2" id="select2">작성자</option>
 					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
 				</form>
-				<input type="text" id="searchValue" class="select bc666" style="background:#fff;border:1px solid #CCC;"
+				<input type="text" id="searchValue" class="select bc666"
+					style="background: #fff; border: 1px solid #CCC;"
 					onkeydown="javascript:if(event.keyCode==13) searchQuestion()">
-				<button onclick="searchQuestion()" class="select bttn bc666" id="search" style="background:#fff;border:1px solid #CCC;">검색</button>
+				<button onclick="searchQuestion()" class="select bttn bc666"
+					id="search" style="background: #fff; border: 1px solid #CCC;">검색</button>
 			</div>
 			<%-- 검색 폼 태그 종료 --%>
 			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
 			<script>
-				function searchQuestion(){
-					if($("#searchValue").val() == ""){
+				function searchQuestion() {
+					if ($("#searchValue").val() == "") {
 						alert("검색어를 입력해 주세요.");
 						return;
 					}
@@ -55,19 +57,21 @@ background:#F2F1F3;
 				}
 			</script>
 			<%-- 검색 미 입력시 나올 alert 띄우기 종료 --%>
-			
+
 			<%-- 테이블 시작 --%>
 			<table class="question-tbl">
 				<%
 				if (list.size() < 1) {
 				%>
 				<%
-				if(loginUser !=null && loginUser.getUserLevel() ==2) {
+				if (loginUser != null && loginUser.getUserLevel() == 2) {
 				%>
 				<div class="write-btd-wrap">
 					<button id="write-btn1" class="btn bc1 bs1">문의 게시물 작성</button>
 				</div>
-				<%}%>
+				<%
+				}
+				%>
 				<button id="write-btn1" class="btn bc1 bs1"
 					style="visibility: hidden;">문의 게시물 작성</button>
 				<tr class="question-tr">
@@ -78,13 +82,15 @@ background:#F2F1F3;
 				%>
 
 				<%
-				if(loginUser !=null && loginUser.getUserLevel() ==2) {
+				if (loginUser != null && loginUser.getUserLevel() == 2) {
 				%>
 				<div class="write-btd-wrap">
 					<%-- 문의 게시물 작성 버튼 --%>
 					<button id="write-btn1" class="btn bc1 bs1">문의 게시물 작성</button>
 				</div>
-				<%}%>
+				<%
+				}
+				%>
 				<button id="write-btn1" class="btn bc1 bs1"
 					style="visibility: hidden;">문의 게시물 작성</button>
 				<thead>
@@ -107,32 +113,65 @@ background:#F2F1F3;
 					%>
 
 					<tr class="question-tr ttr">
-						<td class="question-td ttd"><%=i+start %></td>
+						<td class="question-td ttd"><%=i + start%></td>
 						<td class="question-td ttd">
-							<% if(q.getQuestionType() == 1 ){%>이용안내 <%}else if(q.getQuestionType() == 2 ){%>시스템오류
-							<%}else if(q.getQuestionType() == 3 ){%>결제 <%}else if(q.getQuestionType() == 4 ){%>건의사항
-							<%}else if(q.getQuestionType() == 5 ){%>기타 <%}else if(q.getQuestionType() == 6 ){%>신고
-							<%} %>
+							<%
+							if (q.getQuestionType() == 1) {
+							%>이용안내 <%
+							} else if (q.getQuestionType() == 2) {
+							%>시스템오류
+							<%
+							} else if (q.getQuestionType() == 3) {
+							%>결제 <%
+							} else if (q.getQuestionType() == 4) {
+							%>건의사항
+							<%
+							} else if (q.getQuestionType() == 5) {
+							%>기타 <%
+							} else if (q.getQuestionType() == 6) {
+							%>신고
+							<%
+							}
+							%>
 						</td>
 						<%-- 게시물 제목 --%>
 						<td class="question-td ttd">
-							<% if(loginUser !=null && loginUser.getUserLevel() == 2||loginUser !=null && loginUser.getUserLevel() == 1) {%>
+							<%
+							if (loginUser != null && loginUser.getUserLevel() == 2 || loginUser != null && loginUser.getUserLevel() == 1) {
+							%>
 							<a
 							href="/question/viewQuestion.do?questionNo=
 							<%=q.getQuestionNo()%>"><%=q.getQuestionTitle()%></a>
-							<%}else{%> <%=q.getQuestionTitle()%><%} %>
+							<%
+							} else {
+							%> <%=q.getQuestionTitle()%>
+							<%
+							}
+							%>
 						</td>
 						<td class="question-td ttd"><%=q.getQuestionName()%></td>
 						<%-- 작성자 --%>
 						<td class="question-td ttd"><%=q.getEnrollDate()%></td>
 						<td class="question-td ttd">
-							<%if(q.getAnswerYn().equals("y")) {%> 답변완료 <%}else if(q.getAnswerYn().equals("n")){ %>
-							미답변 <%} %>
+							<%
+							if (q.getAnswerYn().equals("y")) {
+							%> 답변완료 <%
+							} else if (q.getAnswerYn().equals("n")) {
+							%>
+							미답변 <%
+							}
+							%>
 						</td>
 
 						<td class="question-td ttd">
-							<%if(q.getAnswerDate().equals("n")){ %> 답변 대기중 <%}else{ %> <%=q.getAnswerDate()%>
-							<%} %>
+							<%
+							if (q.getAnswerDate().equals("n")) {
+							%> 답변 대기중 <%
+							} else {
+							%> <%=q.getAnswerDate()%>
+							<%
+							}
+							%>
 						</td>
 					</tr>
 					<%
@@ -143,19 +182,21 @@ background:#F2F1F3;
 			</table>
 			<%-- 테이블 종료 --%>
 			<br>
-			<div id="pageNavi"><%=pageNavi %>
+			<div id="pageNavi"><%=pageNavi%>
 				<br>
 			</div>
 		</div>
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
-	$("#write-btn1").on("click",function(){
-		const loginUser = $(this).parent().parent().children().find('tr').eq(2).children().eq(1).text();
-		console.log(loginUser);
-		location.href =  '/questionWriteFrm.do';
-	});
-
-</script>
+		$("#write-btn1").on(
+				"click",
+				function() {
+					const loginUser = $(this).parent().parent().children()
+							.find('tr').eq(2).children().eq(1).text();
+					console.log(loginUser);
+					location.href = '/questionWriteFrm.do';
+				});
+	</script>
 </body>
 </html>
