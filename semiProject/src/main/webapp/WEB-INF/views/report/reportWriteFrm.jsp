@@ -100,6 +100,8 @@ $(document).ready(function(){
 							<br><span>닉네임</span>
 							<input type="hidden" name="reporterName" value="<%=loginUser.getUserName()%>">
 							<%=loginUser.getUserName()%>
+							<%-- 결과처리 유무  --%>
+							<input type="hidden" name="reportYn" value="2">
 						</td>
 					</tr>
 					<tr class="tr-1"style="position:relative;line-height:50px;">

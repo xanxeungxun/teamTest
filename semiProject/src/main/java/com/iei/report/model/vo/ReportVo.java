@@ -12,12 +12,14 @@ public class ReportVo {
 	private String bobTitle; //신고 게시물 타이틀
 	private String fileName; //보여질 파일 이름
 	private String filePatch; //저장될 파일 이름
+	private int reportYn; //신고 처리 유무
 	public ReportVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public ReportVo(int reportNo, String reporterId, String reportTitle, String reportContent, int reportType,
-			String reportDate, String bobType, int bobNo, String bobTitle, String fileName, String filePatch) {
+			String reportDate, String bobType, int bobNo, String bobTitle, String fileName, String filePatch,
+			int reportYn) {
 		super();
 		this.reportNo = reportNo;
 		this.reporterId = reporterId;
@@ -30,6 +32,7 @@ public class ReportVo {
 		this.bobTitle = bobTitle;
 		this.fileName = fileName;
 		this.filePatch = filePatch;
+		this.reportYn = reportYn;
 	}
 	public int getReportNo() {
 		return reportNo;
@@ -97,12 +100,18 @@ public class ReportVo {
 	public void setFilePatch(String filePatch) {
 		this.filePatch = filePatch;
 	}
+	public int getReportYn() {
+		return reportYn;
+	}
+	public void setReportYn(int reportYn) {
+		this.reportYn = reportYn;
+	}
 	@Override
 	public String toString() {
 		return "ReportVo [reportNo=" + reportNo + ", reporterId=" + reporterId + ", reportTitle=" + reportTitle
 				+ ", reportContent=" + reportContent + ", reportType=" + reportType + ", reportDate=" + reportDate
 				+ ", bobType=" + bobType + ", bobNo=" + bobNo + ", bobTitle=" + bobTitle + ", fileName=" + fileName
-				+ ", filePatch=" + filePatch + "]";
+				+ ", filePatch=" + filePatch + ", reportYn=" + reportYn + "]";
 	}
 	
 	
