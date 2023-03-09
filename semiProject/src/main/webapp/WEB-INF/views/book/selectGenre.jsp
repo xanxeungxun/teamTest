@@ -55,6 +55,7 @@
                 </div>
                 <form name="genreFrm" action="/selectGenre.do" method="post">
                 	<input type="hidden" name="reqPage" value="1">
+                	<input type="hidden" name="selectGenreCode" value="<%=selectGenreCode %>">
 	                <div class="book-selectBox">
 		               	<select name="genre" class="input-form">
 		                    <option value="1">판타지</option>
@@ -175,17 +176,24 @@
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 <script>
-	const selectGenre = $("[name=genre]");
-	const selectGenreVal = $("[name=genre]").val();
-	//[작품 설정 수정] 장르코드 기본 선택
+	/*const selectGenre = $("[name=genre]");
+	const selectGenreVal = $("[name=genre]").val();*/
 
-	$(selectGenre).change(function(selectGenreCode){
+	$("[name=genre]").change(function(){
+		const selectGenreCode = $("[name=selectGenreCode]");
+		const options = $("[name=genre]>option");
+		options.each(function(index,item){
+			if($(item).val() == selectGenreCode){
+				$(item).prop("selected",true);
+			}
+		});
+		
 		$("[name=genreFrm]").submit();
 	});
-	
+
 	//[작품 설정 수정] 장르코드 기본 선택
-	$(function(selectGenreCode){
-		const code = selectGenreCode;
+	$(function(){
+		const selectGenreCode = $("[name=selectGenreCode]").val();
 		const options = $("[name=genre]>option");
 		options.each(function(index,item){
 			if($(item).val() == selectGenreCode){
@@ -193,6 +201,8 @@
 			}
 		});
 	});
+	
+	
 		
 </script>
 </body>
