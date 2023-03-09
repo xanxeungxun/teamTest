@@ -142,7 +142,6 @@ div[class$="-menu"]>ul>li {
 
 
 .logo-text{
-	width : 700px;
     float: left;
     font-size: 30px;
     color: blueviolet;
@@ -153,6 +152,7 @@ div[class$="-menu"]>ul>li {
 	color : blueviolet;
 	float: left;
 }
+
 .logo-text>h4:hover{
 	cursor: pointer;
 }
