@@ -166,22 +166,11 @@
       </div> --%>
       
       <script>
-	      function deleteUploadBook(bookNo, bookWriter) {
-	          swal({
-	              title: '작품 삭제',
-	              text: "로그인한 회원만 마이페이지를 조회할 수 있습니다.",
-	              icon: 'info',
-	              showCancelButton: true,
-	              /*confirmButtonColor: '#AACB73',
-	              cancelButtonColor: '#ccc',*/
-	              confirmButtonText: '확인',
-	              cancelButtonText: '취소'
-	          }).then(function(result) {
-	              if (result) {
-	                  location.href="/";
-	              }
-	          })
-	      }
+		function deleteUploadBook(bookNo, bookWriter) {
+			if(confirm("작품을 삭제하시겠습니까?")){
+				location.href="/deleteUploadBook.do?bookNo="+bookNo+"&bookWriter="+bookWriter;
+			}
+		}
       </script>
 </body>
 </html>
