@@ -52,7 +52,7 @@
                         <li><a href="#">완결</a></li>
                     </ul>
                 </div>
-                <form name="genreFrm" action="/selectGenre.do" method="post">
+                <form name="genreFrm" action="/selectGenre.do" method="get">
                 	<input type="hidden" name="reqPage" value="1">
 	                <div class="book-selectBox">
 		               	<select name="genre" class="input-form">
@@ -203,13 +203,7 @@
 	const selectGenreVal = $("[name=genre]").val();
 	const options = $("[name=genre]>option");
 	$(selectGenre).change(function(){
-		console.log(selectGenre);
-		console.log(options);
-		options.each(function(index,item){
-			if($(item).prop("selected",true)){
-				$("[name=genreFrm]").submit();
-			}
-		});
+		$("[name=genreFrm]").submit();
 	});
 </script>
 </body>

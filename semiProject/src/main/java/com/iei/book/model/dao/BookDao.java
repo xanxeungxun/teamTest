@@ -374,9 +374,10 @@ public class BookDao {
 	public ArrayList<Book> selectGenreBook(Connection conn, int selectGenreCode, int start, int end) {
 		PreparedStatement pstmt = null;
 		ArrayList<Book> genreList = new ArrayList<Book>();
+		//System.out.println("111 : "+selectGenreCode);
 		ResultSet rset = null;
 		//String query = "select book_title from book where book_title like ?";
-		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where b.genre_code = ? order by 1 desc)n) where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from book b left join genre g on (b.genre_code = g.genre_code) left join user_tbl u  on (b.book_writer = u.user_id) where b.genre_code = ?  order by 1 desc)n) where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, selectGenreCode);
@@ -407,6 +408,29 @@ public class BookDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return genreList;
+	}
+
+	public int selectGenreBookCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query ="select count(*) as count from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from book b left join genre g on (b.genre_code = g.genre_code) left join user_tbl u  on (b.book_writer = u.user_id) where b.genre_code = 3  order by 1 desc)n)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 
