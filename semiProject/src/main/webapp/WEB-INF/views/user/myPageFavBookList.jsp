@@ -37,6 +37,7 @@
     }
     .book-img{
         width: 130px;
+        height: 100%;
         background-color: #fff;
         border: 1px solid #EEEEEE;
         box-sizing: border-box;
@@ -44,7 +45,7 @@
         margin-right: 10px;
     }
     .book-info{
-    	width: 280px;
+    	width: 250px;
     	position: relative;
     }
     .box{
@@ -52,7 +53,8 @@
     	bottom: 0;
     }
     .book-info>div>div{
-        padding: 3px 0px 3px 0px;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
     .book-info-head{
         display: flex;
@@ -105,7 +107,7 @@
                 	<%for(int i=0; i<favList.size(); i++) { %>
                 		<%FavoriteBook fb = favList.get(i); %>
 	                    <div class="book-box">
-	                        <a href="/storyList.do?bookNo=<%=fb.getBookNo() %>" style="background-image: url(/upload/cover-image/<%=fb.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></a>
+	                    	<a href="/storyList.do?bookNo=<%=fb.getBookNo() %>"><img src="/upload/cover-image/<%=fb.getCoverPath()%>" class="book-img"></a>
 	                        <div class="book-info">
 	                            <div class="book-info-head">
 	                                <a href="/storyList.do?bookNo=<%=fb.getBookNo() %>" class="book-title"><%=fb.getBookTitle() %></a>
