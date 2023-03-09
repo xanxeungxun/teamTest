@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%	
-	ArrayList<Book> list = (ArrayList<Book>)request.getAttribute("bookList");
+	ArrayList<Book> genreList = (ArrayList<Book>)request.getAttribute("genreList");
 	String naviCode = (String)request.getAttribute("naviCode");
 	int start = (int)request.getAttribute("start");
 	String result1="";
@@ -52,7 +52,7 @@
                         <li><a href="#">완결</a></li>
                     </ul>
                 </div>
-                <form name="genreFrm" action="/selectGenre.do" method="post">
+                <form action="/selectGenre.do" method="post">
                 	<input type="hidden" name="reqPage" value="1">
 	                <div class="book-selectBox">
 		               	<select name="genre" class="input-form">
@@ -118,8 +118,8 @@
                     </div>
                 </div><!--작품하나..-->
             
-            <%for(int i=0 ; i<list.size() ; i++){ %>
-            <%		Book b = list.get(i);		  %>
+            <%for(int i=0 ; i<genreList.size() ; i++){ %>
+            <%		Book b = genreList.get(i);		  %>
             	
             	<div class="book-one">
                     <div class="book-one-cover"
@@ -197,19 +197,5 @@
 </div><!-- page-content -->
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
-
-<script>
-	const selectGenre = $("[name=genre]").val();
-	const options = $("[name=genre]>option");
-		console.log(selectGenre);
-		console.log(options);
-	$(options).click(function(){
-		options.each(function(index,item){
-			if($(item).prop("selected",true)){
-				$("[name=genreFrm]").submit();
-			}
-		});
-	});
-</script>
 </body>
 </html>

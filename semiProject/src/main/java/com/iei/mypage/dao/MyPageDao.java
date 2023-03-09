@@ -337,7 +337,7 @@ public class MyPageDao {
 		return book;
 	}
 
-	public int updateBook(Connection conn, Book updateBook, int bookNo) {
+	public int updateBook(Connection conn, Book updateBook) {
 		PreparedStatement pstmt = null;
 		
 		int result = 0;
@@ -351,7 +351,7 @@ public class MyPageDao {
 			pstmt.setString(3, updateBook.getBookTitle());
 			pstmt.setString(4, updateBook.getBookExp());
 			pstmt.setInt(5, updateBook.getGenreCode());
-			pstmt.setInt(6, bookNo);
+			pstmt.setInt(6, updateBook.getBookNo());
 			
 			result = pstmt.executeUpdate();
 		
@@ -361,7 +361,6 @@ public class MyPageDao {
 		} finally {
 			JDBCTemplate.close(pstmt);
 		}
-		
 		
 		return result;
 	}
