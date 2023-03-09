@@ -1,4 +1,4 @@
-package com.iei.story.controller;
+package com.iei.book.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iei.story.model.service.StoryService;
-import com.iei.story.model.vo.Story;
+import com.iei.book.model.service.BookService;
+import com.iei.book.model.vo.BookListData;
 
 /**
- * Servlet implementation class StoryWriteFrmServlet
+ * Servlet implementation class SelectGenreServlet
  */
-@WebServlet(name = "StoryWriteFrm1", urlPatterns = { "/storyNewWriteFrm.do" })
-public class StoryWriteFrmServlet extends HttpServlet {
+@WebServlet(name = "SelectGenre", urlPatterns = { "/selectGenre.do" })
+public class SelectGenreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StoryWriteFrmServlet() {
+    public SelectGenreServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +31,26 @@ public class StoryWriteFrmServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1인코딩
+		//1. 인코딩
 		request.setCharacterEncoding("utf-8");
-		//2값추출
-		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
-		//3비즈니스로직
-		StoryService service = new StoryService();
-		Story story = service.selectOneStory(bookNo);
-		//4결과처리
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyWriteFrm.jsp");
-		request.setAttribute("bookNo", bookNo);
-		request.setAttribute("story", story);
+		
+		//2. 값 추출
+		int selectGenreCode = Integer.parseInt(request.getParameter("genre"));
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		
+		//3. 비즈니스 로직
+		BookService service = new BookService();
+		BookListData bld = service.selectGenreBook(selectGenreCode, reqPage);
+		
+		//4. 결과 처리
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/user/selectGenre.jsp");
+		
+		request.setAttribute("genreList", bld.getBookList());
+		request.setAttribute("pageNavi", bld.getPageNavi());
+		request.setAttribute("start", bld.getStart());
+		
 		view.forward(request, response);
+	
 	}
 
 	/**

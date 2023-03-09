@@ -34,16 +34,18 @@
     }
     .book-img{
         width: 130px;
+        height: 100%;
         background-color: #fff;
         border-radius: 4px;
         margin-right: 10px;
         border : 1px solid #EEEEEE;
     }
     .book-info>div, .book-info>div>div{
-        padding: 3px 0px 3px 0px;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
     .book-info{
-    	width: 280px;
+    	width: 250px;
     	position: relative;
     }
     .book-info-head{
@@ -111,7 +113,7 @@
                 	<%for(int i=0; i<supList.size(); i++) { %>
                 		<%SupportBook sb = supList.get(i); %>
 	                    <div class="book-box">
-	                        <a href="/storyList.do?bookNo=<%=sb.getBookNo() %>" style="background-image: url(/upload/cover-image/<%=sb.getCoverPath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; cursor : pointer;" class="book-img"></a>
+	                        <a href="/storyList.do?bookNo=<%=sb.getBookNo() %>"><img src="/upload/cover-image/<%=sb.getCoverPath()%>" class="book-img"></a>
 	                        <div class="book-info">
 	                            <div class="book-info-head">
 	                                <a href="/storyList.do?bookNo=<%=sb.getBookNo() %>" class="book-title"><%=sb.getBookTitle() %></a>

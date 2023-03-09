@@ -56,7 +56,9 @@ public class UpdateUserServlet extends HttpServlet {
 		String userPhone = mRequest.getParameter("userPhone");
 		String userEmail = mRequest.getParameter("userEmail");
 		String currentUserPw = mRequest.getParameter("currentUserPw");
-		String userPw = mRequest.getParameter("newPw");
+		String newUserPw = mRequest.getParameter("newPw");
+		
+		System.out.println(currentUserPw);
 		
 		u.setUserId(userId);
 		u.setUserPic(userPic);
@@ -64,10 +66,10 @@ public class UpdateUserServlet extends HttpServlet {
 		u.setUserPhone(userPhone);
 		u.setUserEmail(userEmail);
 		
-		if(userPw.equals("")) { //input에서 받아올때 아무것도 입력안하면 빈 문자열
+		if(newUserPw.equals("")) { //input에서 받아올때 아무것도 입력안하면 빈 문자열
 			u.setUserPw(currentUserPw);
 		} else {
-			u.setUserPw(userPw);
+			u.setUserPw(newUserPw);
 		}
 		
 		//3. 비즈니스 로직
@@ -86,7 +88,11 @@ public class UpdateUserServlet extends HttpServlet {
 			loginUser.setUserNick(userNick);
 			loginUser.setUserPhone(userPhone);
 			loginUser.setUserEmail(userEmail);
-			loginUser.setUserPw(userPw);
+			if(newUserPw.equals("")) { //input에서 받아올때 아무것도 입력안하면 빈 문자열
+				loginUser.setUserPw(currentUserPw);
+			} else {
+				loginUser.setUserPw(newUserPw);
+			}
 			
 			request.setAttribute("title", "정보 변경 성공");
 			request.setAttribute("msg", "정보가 수정되었습니다.");
