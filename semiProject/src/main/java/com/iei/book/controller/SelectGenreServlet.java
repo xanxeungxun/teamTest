@@ -48,6 +48,7 @@ public class SelectGenreServlet extends HttpServlet {
 		request.setAttribute("genreList", bld.getBookList());
 		request.setAttribute("pageNavi", bld.getPageNavi());
 		request.setAttribute("start", bld.getStart());
+		request.setAttribute("selectGenreCode", selectGenreCode);
 		
 		view.forward(request, response);
 	

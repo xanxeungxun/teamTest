@@ -6,6 +6,7 @@
 	ArrayList<Book> genreList = (ArrayList<Book>)request.getAttribute("genreList");
 	String naviCode = (String)request.getAttribute("pageNavi");
 	int start = (int)request.getAttribute("start");
+	int selectGenreCode = (int)request.getAttribute("selectGenreCode");
 	String result1="";
 	String result2="";
 %>    
@@ -54,6 +55,7 @@
                 </div>
                 <form name="genreFrm" action="/selectGenre.do" method="post">
                 	<input type="hidden" name="reqPage" value="1">
+                	<input type="hidden" name="selectGenreCode" value="<%=selectGenreCode %>">
 	                <div class="book-selectBox">
 		               	<select name="genre" class="input-form">
 		                    <option value="1">판타지</option>
@@ -174,23 +176,34 @@
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 <script>
-	const selectGenre = $("[name=genre]");
-	const selectGenreVal = $("[name=genre]").val();
-	const options = $("[name=genre]>option");
-	//[작품 설정 수정] 장르코드 기본 선택
+	/*const selectGenre = $("[name=genre]");
+	const selectGenreVal = $("[name=genre]").val();*/
 
-	$(window).onload(function(){
-		$(selectGenre).change(function(){
-			$("[name=genreFrm]").submit();
-		}
+	$("[name=genre]").change(function(){
+		const selectGenreCode = $("[name=selectGenreCode]");
+		const options = $("[name=genre]>option");
 		options.each(function(index,item){
-			if($(item).val() == code){
+			if($(item).val() == selectGenreCode){
 				$(item).prop("selected",true);
 			}
 		});
-			
+		
+		$("[name=genreFrm]").submit();
+	});
+
+	//[작품 설정 수정] 장르코드 기본 선택
+	$(function(){
+		const selectGenreCode = $("[name=selectGenreCode]").val();
+		const options = $("[name=genre]>option");
+		options.each(function(index,item){
+			if($(item).val() == selectGenreCode){
+				$(item).prop("selected",true);
+			}
+		});
 	});
 	
+	
+		
 </script>
 </body>
 </html>
