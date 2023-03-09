@@ -86,33 +86,12 @@
             <%		Book b = viewList.get(i);		  %>
             	
             	<div class="book-one">
-                    <div class="book-one-cover"
-                    	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
-                    	 background-size: contain;
-  						 background-position: center;
-  						 background-repeat: no-repeat;
-  						 cursor : pointer;"
-  						 onclick="location.href='/storyList.do?bookNo=<%=b.getBookNo()%>';">
+                    <div class="book-one-cover" onclick="location.href='/storyList.do?bookNo=<%=b.getBookNo()%>';">
+  						 <img class="book-img" src="/upload/cover-image/<%=b.getCoverpath() %>" style="cursor:pointer;">
                     </div>
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                  	<!--   <%int total1 = b.getBookTitle().length();
-		                        	if(36 < total1){		                        		
-		                        		//System.out.println(arrayTitle);
-		                        		result1 = b.getBookTitle().substring(0,36);
-		                        		/*
-		                        		for(int j=0 ; j<36 ; j++){
-		                        			result1 = result1 + b.getBookTitle().charAt(j);		
-		                         		}//for문
-		                        		System.out.println(result1);
-		                         		*/
-		                        %>
-		                        	<%=result1+" ..."%>
-		                        <%}else{//공백포함 20글자가 안넘는다면%>
-		                        	<%=b.getBookTitle() %>
-		                        <%} %>  -->	
-		                        
 		                        <%=b.getBookTitle() %>
 	                        </a>
                         </div>
@@ -124,15 +103,6 @@
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		             <!--       <%int total2 = b.getBookExp().length();
-		                        	if(86 < total2){
-		                        		result2 = b.getBookExp().substring(0,86);
-		                        %>
-		                        	<%=result2+" ..."%>
-		                        <%}else{//공백포함 89글자가 안넘는다면%>
-		                        	<%=b.getBookExp() %>
-		                        <%} %> -->
-		                        
 		                        <%=b.getBookExp() %>
 	                        </a>
                         </div>
@@ -302,33 +272,12 @@
             <%		Book b = viewList2.get(i);		  %>
             	
             	<div class="book-one">
-                    <div class="book-one-cover"
-                    	 style="background-image: url(/upload/cover-image/<%=b.getCoverpath() %>);
-                    	 background-size: contain;
-  						 background-position: center;
-  						 background-repeat: no-repeat;
-  						 cursor : pointer;"
-  						 onclick="location.href='/storyList.do?bookNo=<%=b.getBookNo()%>';">
+                    <div class="book-one-cover" onclick="location.href='/storyList.do?bookNo=<%=b.getBookNo()%>';">
+  						 <img class="book-img" src="/upload/cover-image/<%=b.getCoverpath() %>" style="cursor:pointer;">
                     </div>
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                  	<!--   <%int total1 = b.getBookTitle().length();
-		                        	if(36 < total1){		                        		
-		                        		//System.out.println(arrayTitle);
-		                        		result1 = b.getBookTitle().substring(0,36);
-		                        		/*
-		                        		for(int j=0 ; j<36 ; j++){
-		                        			result1 = result1 + b.getBookTitle().charAt(j);		
-		                         		}//for문
-		                        		System.out.println(result1);
-		                         		*/
-		                        %>
-		                        	<%=result1+" ..."%>
-		                        <%}else{//공백포함 20글자가 안넘는다면%>
-		                        	<%=b.getBookTitle() %>
-		                        <%} %>  -->	
-		                        
 		                        <%=b.getBookTitle() %>
 	                        </a>
                         </div>
@@ -340,15 +289,6 @@
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		             <!--       <%int total2 = b.getBookExp().length();
-		                        	if(86 < total2){
-		                        		result2 = b.getBookExp().substring(0,86);
-		                        %>
-		                        	<%=result2+" ..."%>
-		                        <%}else{//공백포함 89글자가 안넘는다면%>
-		                        	<%=b.getBookExp() %>
-		                        <%} %> -->
-		                        
 		                        <%=b.getBookExp() %>
 	                        </a>
                         </div>
