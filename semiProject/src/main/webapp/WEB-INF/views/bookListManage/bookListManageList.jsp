@@ -28,7 +28,7 @@ text-align:left;
 padding-left:50px;
 padding-right:50px;
 display:block;
-height:19px;
+height:16px;
 white-space: no-wrap;
 overflow: hidden;
 text-overflow: ellipsis;
@@ -57,11 +57,11 @@ font-size:14px;
 				%>
 				<br><br><br>
 				<thead>
-					<tr class="bookListManage-tr">
+					<tr class="bookListManage-tr" style="background:#F0F0F0;">
 					
 						<td class="bookListManage-td" style="width:6%">순번</td>
 						<td class="bookListManage-td" style="width:6%">품번</td>
-						<td class="bookListManage-td" style="width:10%">장르코드</td>
+						<td class="bookListManage-td" style="width:10%">장르</td>
 						<td class="bookListManage-td ttd" style="width:40%">작품명</td>
 						<td class="bookListManage-td" style="width:8%">작가명</td>
 						<td class="bookListManage-td" style="width:9%">연재상태</td>

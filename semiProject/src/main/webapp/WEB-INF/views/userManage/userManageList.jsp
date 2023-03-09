@@ -41,7 +41,7 @@ int start = (int)request.getAttribute("start");
 				%>
 				<br><br><br>
 				<thead>
-					<tr class="userManage-tr">
+					<tr class="userManage-tr" style="background:#F2F1F3;">
 					<td class="userManage-td" style="width:5%;padding:10px;">순번</td>
 						<td class="userManage-td kk" style="width:5%;">유저코드</td>
 						<td class="userManage-td" style="width:5%;">아이디</td>

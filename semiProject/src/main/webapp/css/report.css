@@ -2,7 +2,6 @@
 
 /*검색창 css 만들기 시작*/
 .div-form-box{
-	color:red;
 	width: 1200px;
 	overflow:hidden;
 	height:40px;
@@ -10,7 +9,7 @@
 }
 .div-form-box #searchType{
 	padding-left:10px;
-	width:92.23px;
+	width:79.91px;
 	box-sizing:border-box;
 }
 /*검색바 전체디자인*/
@@ -23,7 +22,7 @@
 /*검색어 바*/
 .div-form-box #searchValue{
 	padding-left:10px;
-	width:184.47px;
+	width:159.84px;
 	height:40px;
 	float:left;
 	box-sizing:border-box;
