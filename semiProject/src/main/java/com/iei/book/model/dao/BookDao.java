@@ -486,6 +486,9 @@ public class BookDao {
 				b.setGenreName(rset.getString("genre_name"));
 				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
 				
+				b.setAllScore(rset.getInt("all_score"));
+				b.setAllViewer(rset.getInt("all_viewer"));
+				
 				bookList.add(b);
 			}
 		
@@ -526,6 +529,9 @@ public class BookDao {
 				b.setGenreCode(Integer.parseInt(rset.getString("genre_code")));
 				b.setGenreName(rset.getString("genre_name"));
 				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
+				
+				b.setAllScore(rset.getInt("all_score"));
+				b.setAllViewer(rset.getInt("all_viewer"));
 				
 				bookList.add(b);
 			}
