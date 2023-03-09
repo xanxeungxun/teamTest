@@ -31,7 +31,6 @@ public class BookService {
 		int start = (end - numPerPage) + 1;
 		ArrayList<Book> bookList = dao.seletAllBook(conn,start,end);
 		
-		
 		//페이징 제작
 		//필요한 전체 페이지수 구하기 <-- 일단 전체 작품 수 알아야함
 		int totalCount = dao.selectBookCount(conn); //전체 작품수
@@ -258,6 +257,14 @@ public class BookService {
 		
 		BookListData bld = new BookListData(genreList, naviCode, start);
 		return bld;
+	}
+
+	public int selectScore(int bookNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int score = dao.selectScore(conn,bookNo);
+		JDBCTemplate.close(conn);
+		return score;
 	}
 
 

@@ -6,6 +6,15 @@
     <%
     	Book b = (Book)request.getAttribute("b");
     	ArrayList<Story> storyList = (ArrayList<Story>)request.getAttribute("storyList");
+    	int score = (int)request.getAttribute("score");
+    	
+    	int readAll = 0;
+        for(Story s : storyList) {
+        	
+        	int oneRead = s.getReadCount();
+        	
+        	readAll = readAll + oneRead;
+        }
     %>    
 <!DOCTYPE html>
 <html>
@@ -63,12 +72,14 @@
                             <span class="material-symbols-outlined">
                                 visibility
                             </span>
-                            <span>총 조회수</span>
+                            <span>
+                            	<%=readAll %>
+                            </span>
                             <span class="gray-bar">|</span>
                             <span class="material-symbols-outlined bookmarks">
                                 bookmarks
                             </span>
-                            <span>총 구독자수</span>
+                            <span><%=score %></span>
                             <span class="gray-bar">|</span>
                             <span>
                             <%=b.getBookStatus() %>

@@ -409,6 +409,30 @@ public class BookDao {
 		return genreList;
 	}
 
+	public int selectScore(Connection conn, int bookNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int score = 0;
+		String query = "select count(*)as score from favorite_book where book_no=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, bookNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				score = rset.getInt("score");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return score;
+	}
+
 
 
 	

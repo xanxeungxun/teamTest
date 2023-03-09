@@ -1,4 +1,4 @@
-package com.iei.book.controller;
+	package com.iei.book.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,10 +43,12 @@ public class StoryListServlet extends HttpServlet {
 		BookService service = new BookService();
 		Book b = service.selectOneBook(bookNo); //<--클릭한 작품의 bookNo로 그 작품의 정보를 불러옴
 		ArrayList<Story> storyList = service.selectStoryList(bookNo); //<--클릭한 작품의 bookNo로 그 작품의 스토리 목록을 불러옴
+		int score = service.selectScore(bookNo);
 		
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/storyList.jsp");
 		request.setAttribute("b", b);
+		request.setAttribute("score", score);
 		request.setAttribute("storyList", storyList);
 		view.forward(request, response);
 	}
