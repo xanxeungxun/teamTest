@@ -32,11 +32,10 @@ public class ReportWriteFrmServlet extends HttpServlet {
 		// 2값추출
 		// 3비즈니스 로직
 		BookListManageService service = new BookListManageService();
-		
-		
-		int reportNo = 
-	Integer.parseInt(request.getParameter("bookNo") != null ? request.getParameter("bookNo")  : request.getParameter("boardNo"));
-		if(request.getParameter("bookNo") != null) {
+
+		int reportNo = Integer.parseInt(request.getParameter("bookNo") != null ? request.getParameter("bookNo")
+				: request.getParameter("boardNo"));
+		if (request.getParameter("bookNo") != null) {
 			BookListManageVo list = service.selectAllBook(reportNo);
 			HttpSession session = request.getSession();
 			User loginUser = (User) session.getAttribute("loginUser");
@@ -46,16 +45,17 @@ public class ReportWriteFrmServlet extends HttpServlet {
 				request.setAttribute("list", list);
 
 				view.forward(request, response);
-			} else {
-				RequestDispatcher view = request.getRequestDispatcher("/");
+			} else if (loginUser == null) {
+
+				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				request.setAttribute("title", "로그인이 필요한 서비스입니다");
+				request.setAttribute("msg", "로그인 후 이용해주세요");
+				request.setAttribute("icon", "warning");
+				request.setAttribute("loc", "/loginFrm.do");
 				view.forward(request, response);
 			}
-		
-		
-		
-		
-		
-		}else if(request.getParameter("boardNo") != null) {
+
+		} else if (request.getParameter("boardNo") != null) {
 			Board list2 = service.selectAllBoard(reportNo);
 			HttpSession session = request.getSession();
 			User loginUser = (User) session.getAttribute("loginUser");
@@ -65,13 +65,17 @@ public class ReportWriteFrmServlet extends HttpServlet {
 				request.setAttribute("list2", list2);
 
 				view.forward(request, response);
-			} else {
-				RequestDispatcher view = request.getRequestDispatcher("/");
+			} else if (loginUser == null) {
+
+				RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
+				request.setAttribute("title", "로그인이 필요한 서비스입니다");
+				request.setAttribute("msg", "로그인 후 이용해주세요");
+				request.setAttribute("icon", "warning");
+				request.setAttribute("loc", "/loginFrm.do");
 				view.forward(request, response);
 			}
 		}
-		
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
