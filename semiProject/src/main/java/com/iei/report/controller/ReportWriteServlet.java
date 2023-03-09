@@ -80,6 +80,9 @@ public class ReportWriteServlet extends HttpServlet {
 				
 				String filePath = mRequest.getFilesystemName("upfile");
 				//실제 서버에 업로드된 파일 이름(중복처리 후 파일명)
+				
+				String reportYn = mRequest.getParameter("reportYn").toString();
+				System.out.println("reportYn : " + reportYn);
 				ReportVo r = new ReportVo();
 				r.setBobTitle(bobTitle);
 				r.setBobNo(Integer.parseInt(bobNo));
@@ -90,6 +93,8 @@ public class ReportWriteServlet extends HttpServlet {
 				r.setReportType(Integer.parseInt(reportType));
 				r.setFileName(fileName);
 				r.setFilePatch(filePath);
+				r.setReportYn(Integer.parseInt(reportYn));
+				
 				
 				
 				System.out.println("ReportWriteServlet 접근");
