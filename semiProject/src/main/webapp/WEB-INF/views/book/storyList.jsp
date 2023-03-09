@@ -151,12 +151,6 @@
 	                       		<span>
 	                            <%=s.getReadCount() %>
 	                            </span>
-	                            <span class="material-symbols-outlined">
-	                                forum
-	                            </span>
-	                            <span>
-	                            0
-	                            </span>
 	                        </div>
 	                        <div class="story-date">
 	                            <%=s.getStoryTime() %>
@@ -262,7 +256,21 @@
       
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
 <%
-if(loginUser==null || !loginUser.getUserId().equals(b.getBookWriterId())){%>
+if(loginUser==null){%>
+	<script>
+		const button1 = $("<button>");
+		
+		const bookNo2 = $("#bookNo").val();
+		const url = "location.href='/selectFirstStory.do?bookNo="+bookNo2+"'";
+		
+		button1.text("첫 화 보기");
+		button1.addClass("btn bc4");
+		button1.attr("onclick",url);
+		
+		$(".book-button").append(button1);
+	</script>
+<%}
+else if(!loginUser.getUserId().equals(b.getBookWriterId())){%>
 	<script>
 			/*	
 			<button class="btn bc66" style="margin-bottom: 10px;">첫 화 보기</button>
