@@ -22,9 +22,15 @@ ReportVo report = (ReportVo) request.getAttribute("questionResult");
 				<tr class="report-tr">
 					<td class="report-td-2" colspan="3">신고 사항</td>
 					<td style="float:right;" >
-					<button type="text" id="btn" class="btn bc1 bs2" style="line-height:5px;height:20px;margin:10px;">
-					처리중</button>
-					</td>
+					<%if(report.getReportYn()==1){ %>
+					<span id="btn" class="btn bc1 bs2" style="line-height:5px;height:20px;margin:10px;cursor:default;">
+					처리완료
+					</span>
+					<%}else{ %>
+					<span id="btn" class="btn bc1 bs2" style="line-height:5px;height:20px;margin:10px;cursor:default;">
+					진행중
+					</span>
+					<%}%>
 				</tr>
 				<%-- ============================================================ --%>
 				<tr class="report-tr">
@@ -53,16 +59,22 @@ ReportVo report = (ReportVo) request.getAttribute("questionResult");
 					</td>
 				</tr>
 			</table>
-			<%if(loginUser!=null&&loginUser.getUserLevel()==1){ %>
-				<button onclick="btnClick();" value="테스트" id="btn" class="btn bc1 bs4">신고 처리 완료</button>
+			<%if(loginUser!=null&&loginUser.getUserLevel()==1&&report.getReportYn()==2){ %>
+				<button onclick="btnClick();" value="테스트" id="btn" class="btn bc1 bs4">신고 처리 하기</button>
+				<%}else if(loginUser!=null&&loginUser.getUserLevel()==1&&report.getReportYn()==1){ %>
+				<button value="테스트" id="btn" class="btn bc1 bs4">신고 처리가 완료되었습니다</button>
 				<%} %>
+				
 		</div>
+		<input type="hidden" id="reportNo" name="reportNo" value="<%=report.getReportNo()%>">
 	</div>
 	<%@include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
 	function btnClick(){
-		if(window.confirm("테스트")){
-			$("#btn").text("처리완료");
+		if(window.confirm("신고완료를 진행하시겠습니까?")){
+			const reportNo = $("#reportNo").val();
+			location.href="/changeReportNo.do?reportNo="+reportNo;
+			console.log(reportNo);
 		}
 	}
 	</script>
