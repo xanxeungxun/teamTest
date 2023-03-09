@@ -170,6 +170,29 @@ public class StoryService {
 		
 		return result;
 	}
+
+	public int insertStoryReComment(int bookNo, int storyNo, String userId, String commentCnt, int commentRef) {
+		Connection conn = JDBCTemplate.getConnection();
+		
+		int result = dao.insertStoryReComment(conn,bookNo,storyNo,userId,commentCnt,commentRef);
+		
+		if(result>0) {
+			JDBCTemplate.commit(conn);
+		}else {
+			JDBCTemplate.rollback(conn);
+		}
+		
+		JDBCTemplate.close(conn);
+		return result;
+	}
+
+	public ArrayList<StoryComment> selectAllReComment(int storyNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<StoryComment> StoryReComment = dao.selectAllReComment(conn,storyNo);
+		
+		JDBCTemplate.close(conn);
+		return StoryReComment;
+	}
 	
 	
 	

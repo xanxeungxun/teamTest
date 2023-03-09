@@ -39,7 +39,6 @@ public class StoryWriteFrmServlet extends HttpServlet {
 		//3비즈니스로직
 		StoryService service = new StoryService();
 		Story story = service.selectOneStory(storyNo);
-		
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyWriteFrm.jsp");
 		request.setAttribute("bookNo", bookNo);
