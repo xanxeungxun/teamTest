@@ -6,7 +6,7 @@
                 <div class="bottom-menu">
                     <ul>
                         <a href="#">서비스 소개ㅤ|ㅤ</a>
-                        <a href="#">이용약관ㅤ|ㅤ</a>
+                        <a href="/terms.do">이용약관ㅤ|ㅤ</a>
                         <a href="#">개인정보처리방침ㅤ|ㅤ</a>
                         <a href="#">채용ㅤ|ㅤ</a>
                         <a href="#">도움 센터ㅤ|ㅤ</a>
