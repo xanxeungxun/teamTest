@@ -16,7 +16,7 @@ int start = (int)request.getAttribute("start");
 <link rel="stylesheet" href="/css/question.css">
 <style>
 .tt{
-background:#FFE4EA;
+background:#F2F1F3;
 
 }
 </style>

@@ -31,24 +31,21 @@ int start = (int)request.getAttribute("start");
 			</div>
 			<%-- 검색 폼 태그 시작 --%>
 			<div class="div-form-box">
-				<form id="searchForm" action="/report/searchReportList.do">
-					<select id="searchType" class="select" name="searchType">
+				<form id="searchForm" action="/question/searchQuestion.do">
+					<select id="searchType" class="select bc666" name="searchType" style="background:#fff;border:1px solid #CCC;">
 						<%-- 검색 선택 구간 --%>
 						<option value="1" id="select1">신고자</option>
 						<option value="2" id="select2">신고제목</option>
 					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
 				</form>
-				<input type="text" id="searchValue" class="select"
-					onkeydown="javascript:if(event.keyCode==13) searchReport()">
-				<button onclick="searchReport()" class="select bttn" id="search">검색</button>
+				<input type="text" id="searchValue" class="select bc666" style="background:#fff;border:1px solid #CCC;"
+					onkeydown="javascript:if(event.keyCode==13) searchQuestion()">
+				<button onclick="searchQuestion()" class="select bttn bc666" id="search" style="background:#fff;border:1px solid #CCC;">검색</button>
 			</div>
-			<br>
-			<br>
-			<br>
 			<%-- 검색 폼 태그 종료 --%>
 			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
 			<script>
-				function searchReport(){
+				function searchQuestion(){
 					if($("#searchValue").val() == ""){
 						alert("검색어를 입력해 주세요.");
 						return;
@@ -58,6 +55,7 @@ int start = (int)request.getAttribute("start");
 				}
 			</script>
 			<%-- 검색 미 입력시 나올 alert 띄우기 종료 --%>
+			<br><br>
 			<table class="report-tbl">
 				<%
 				if (list.size() < 1) {
@@ -69,7 +67,7 @@ int start = (int)request.getAttribute("start");
 				} else {
 				%>
 				<thead>
-					<tr class="report-tr">
+					<tr class="report-tr" style="background:#F2F1F3;">
 						<td class="report-td" style="width:5%;padding:10px;">순번</td>
 						<td class="report-td kk" style="width:10%;">신고자</td>
 						<td class="report-td" style="width:30%;">신고제목</td>
@@ -91,15 +89,21 @@ int start = (int)request.getAttribute("start");
 						<td class="report-td"style="font-size:14px;">
 						<a class="text-inline" href="/reportView.do?reportNo=<%=u.getReportNo()%>"><%=u.getReportTitle()%></a></td>
 						<td class="report-td"style="font-size:14px;">
-						<% if(u.getReportType() == 1 ){%>유저
-						<%}else if(u.getReportType() == 2 ){%>게시판
-						<%}else if(u.getReportType() == 3 ){%>소설<%} %></td>
-						<td class="report-td"style="font-size:14px;"><%=u.getReportDate() %>
-						<td class="report-td"style="font-size:14px;"><%=u.getReportDate() %>
-					<%
-					}
-					}
-					%>
+						<% if(u.getReportType() == 1 ){%>욕설
+						<%}else if(u.getReportType() == 2 ){%>폭언
+						<%}else if(u.getReportType() == 3 ){%>성적수치심
+						<%}else if(u.getReportType() == 4 ){%>기타
+						<%} %></td>
+						<td class="report-td"style="font-size:14px;"><%=u.getReportDate() %></td>
+						<%if(u.getReportYn()==2){ %>
+						<td class="report-td"style="font-size:14px;color:#2F343D;">처리중</td>
+						<%}else if(u.getReportYn()==1){%>
+						<td class="report-td"style="font-size:14px;background:#2F343D;color:#EFEFEF;">처리완료</td>
+						<%} %>
+						
+						</tr>
+					<%}%>
+					<%}%>
 				</tbody>
 			</table>
 			<br>
