@@ -43,7 +43,7 @@
 							<td class="board-td" colspan="3">
 								<input type="hidden" name="status" value="stay">
 								<input type="hidden" name="boardNo" value="<%=b.getBoardNo() %>">
-								<input type="text" name="boardTitle" class="board-input" value="<%=b.getBoardTitle()%>">
+								<input type="text" name="boardTitle" class="board-input" value="<%=b.getBoardTitle()%>" style="padding-left: 15px;">
 							</td>
 						</tr>
 						<tr class="board-tr">
@@ -64,8 +64,7 @@
 							</td>
 						</tr>
 						<tr class="board-tr">
-							<th class="board-td">내용</th>
-							<td class="board-td" colspan="3">
+							<td class="board-td" colspan="4">
 								<textarea id="boardContent" name="boardContent" class="board-input"><%=b.getBoardContent() %></textarea>
 							</td>
 						</tr>
