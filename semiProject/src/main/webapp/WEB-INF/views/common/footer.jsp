@@ -5,16 +5,16 @@
             <div class="bottom-menu-wrap">
                 <div class="bottom-menu">
                     <ul>
-                        <a href="#">서비스 소개</a><span>ㅤ|ㅤ</span>
+                        <a href="/ing.do">서비스 소개</a><span>ㅤ|ㅤ</span>
                         <a href="/terms.do">이용약관</a><span>ㅤ|ㅤ</span>
-                        <a href="#">개인정보처리방침</a><span>ㅤ|ㅤ</span>
-                        <a href="#">채용</a><span>ㅤ|ㅤ</span>
-                        <a href="#">도움 센터</a><span>ㅤ|ㅤ</span>
-                        <a href="#">권리침해신고센터</a><span>ㅤ|ㅤ</span>
-                        <a href="#">에브리유니버스 파트너스</a><span>ㅤ|ㅤ</span>
-                        <a href="#">공식 채널</a><span>ㅤ|ㅤ</span>
+                        <a href="/ing.do">개인정보처리방침</a><span>ㅤ|ㅤ</span>
+                        <a href="/ing.do">채용</a><span>ㅤ|ㅤ</span>
+                        <a href="/ing.do">도움 센터</a><span>ㅤ|ㅤ</span>
+                        <a href="/ing.do">권리침해신고센터</a><span>ㅤ|ㅤ</span>
+                        <a href="/ing.do">에브리유니버스 파트너스</a><span>ㅤ|ㅤ</span>
+                        <a href="/ing.do">공식 채널</a><span>ㅤ|ㅤ</span>
                         <a href="/map.do" class="co-info" >회사 소개</a></a><span>ㅤ|ㅤ</span>
-                        <a href="#">브랜드 리소스</a></a>
+                        <a href="/ing.do">브랜드 리소스</a></a>
                         <a class="copyright">ㅤㅤ© EveryUniverse, Inc.</a>
                     </ul>
                 </div>
