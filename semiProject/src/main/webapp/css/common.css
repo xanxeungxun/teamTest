@@ -165,6 +165,9 @@ div[class$="-menu"]>ul>li {
     border-right: none;
     cursor: pointer;
 }
+#integrated-search:hover{
+    cursor: text;
+}
 .search-bar {
 	display : block;
 	float : left;
@@ -177,6 +180,7 @@ div[class$="-menu"]>ul>li {
     width: 260px;
     border: 1px solid #ccc;
 }
+
 #search-icon{
 	width : 40px;
 	border-left : none;
