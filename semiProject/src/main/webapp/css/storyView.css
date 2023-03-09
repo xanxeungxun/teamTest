@@ -8,12 +8,25 @@
 	padding : 50px 0 20px 0;
 	border-bottom: 1px solid #eeeeee;
 }
+
+
 .story-header .book-and-story{
 	width : 80%;
 	margin: 0 auto;
 	text-align: center;
 	background-color: white;
+	position: relative;
 }
+
+.story-header .book-and-story .go-list{
+	position: absolute;
+	display: flex;
+	padding-top:10px;
+}
+.story-header .book-and-story .go-list a{
+	line-height: 25px;
+}
+
 .story-header .book-and-story .book-title{
 	font-size: 12px;
 	font-weight: bold;
