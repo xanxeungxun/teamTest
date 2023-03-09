@@ -58,7 +58,7 @@ public class ReportDao {
 		
 		ArrayList<ReportVo> list = new ArrayList<ReportVo>();
 		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,report_title,report_content,report_type,report_date,BOOK_OR_BOARD_TYPE,BOOK_OR_BOARD_NO,BOOK_OR_BOARD_TITLE,file_name,file_patch from report"
-				+ " where " + type + " = " + "\'" + searchValue + "\'" +  " order by 1 desc)n)where rnum between ? and ?";
+				+ " where " + type + " like " + "\'" +"%" + searchValue +"%"+ "\'" +  " order by 1 desc)n)where rnum between ? and ?";
 		
 		System.out.println("QUERY : " + query);
 		try {
@@ -104,7 +104,7 @@ public class ReportDao {
 			
 			while(rset.next()) {
 				result.setReportNo(rset.getInt("report_no"));
-				result.setReporterId(rset.getString("report_id"));
+				result.setReporterId(rset.getString("reporter_id"));
 				result.setReportTitle(rset.getString("report_title"));
 				result.setReportContent(rset.getString("report_content"));
 				result.setReportType(rset.getInt("report_type"));

@@ -6,6 +6,7 @@
 	ArrayList<Book> genreList = (ArrayList<Book>)request.getAttribute("genreList");
 	String naviCode = (String)request.getAttribute("pageNavi");
 	int start = (int)request.getAttribute("start");
+	int selectGenreCode = (int)request.getAttribute("selectGenreCode");
 	String result1="";
 	String result2="";
 %>    
@@ -176,21 +177,23 @@
 <script>
 	const selectGenre = $("[name=genre]");
 	const selectGenreVal = $("[name=genre]").val();
-	const options = $("[name=genre]>option");
 	//[작품 설정 수정] 장르코드 기본 선택
 
-	$(window).onload(function(){
-		$(selectGenre).change(function(){
-			$("[name=genreFrm]").submit();
-		}
+	$(selectGenre).change(function(selectGenreCode){
+		$("[name=genreFrm]").submit();
+	});
+	
+	//[작품 설정 수정] 장르코드 기본 선택
+	$(function(selectGenreCode){
+		const code = selectGenreCode;
+		const options = $("[name=genre]>option");
 		options.each(function(index,item){
-			if($(item).val() == code){
+			if($(item).val() == selectGenreCode){
 				$(item).prop("selected",true);
 			}
 		});
-			
 	});
-	
+		
 </script>
 </body>
 </html>
