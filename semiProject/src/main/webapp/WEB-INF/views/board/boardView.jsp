@@ -155,7 +155,7 @@
 		                  	<%if(bc.getFilePath()==null){ %>
 								<div class="material-icons">account_circle</div>
 							<%} else { %>
-								<div style="background-image: url(/upload/profile/<%=bc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
+								<div style="background-image: url(/upload/profile/<%=bc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; border-radius: 40px;" id="previewImg" class="book-img"></div>
 							<%} %>
 		                </li>
 		                <li>
@@ -186,7 +186,7 @@
 		                  	<%if(bcc.getFilePath()==null){ %>
 								<div class="material-icons">account_circle</div>
 							<%} else { %>
-								<div style="background-image: url(/upload/profile/<%=bcc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
+								<div style="background-image: url(/upload/profile/<%=bcc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; border-radius: 40px;" id="previewImg" class="book-img"></div>
 							<%} %>
 		                </li>
 		                <li>
