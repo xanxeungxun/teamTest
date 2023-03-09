@@ -324,7 +324,7 @@ public class StoryDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<StoryComment> StoryComment = new ArrayList<StoryComment>();
-		String query = "select * from Story_Comment where story_no=?";
+		String query = "select sc.*,(select user_pic from user_tbl where user_id=sc.user_id) as userPic from story_comment sc where story_no=? and story_comment_ref!='0' order by 1";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -340,7 +340,7 @@ public class StoryDao {
 				c.setStoryCommentRef(rset.getInt("story_comment_ref"));
 				c.setStoryNo(rset.getInt("story_no"));
 				c.setUserId(rset.getString("user_id"));
-				
+				c.setFilePath(rset.getString("userpic"));
 				StoryComment.add(c);
 			}
 		} catch (SQLException e) {

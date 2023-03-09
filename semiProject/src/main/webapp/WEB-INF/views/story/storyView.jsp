@@ -101,9 +101,9 @@
 			                <li>
 			                  <%if(c.getFilePath()==null){ %>
 								<div class="material-icons">account_circle</div>
-								<%} else { %>
-								<div style="background-image: url(/upload/profile/<%=c.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
-								<%} %>
+							  <%} else { %>
+								<div style="background-image: url(/upload/profile/<%=c.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; height: 80px; width: 80px;" id="previewImg" class="book-img"></div>
+							  <%} %>
 			                </li>
 			                <li>
 			                  <p class="comment-info">
@@ -131,7 +131,11 @@
 		         	%>
 			         	<ul class="posting-comment reply">
 			                <li>
-			                  <span class="material-icons">account_circle</span>
+			                  <%if(cc.getFilePath()==null){ %>
+								<div class="material-icons">account_circle</div>
+							  <%} else { %>
+								<div style="background-image: url(/upload/profile/<%=cc.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat; height: 80px; width: 80px;" id="previewImg" class="book-img"></div>
+							  <%} %>
 			                </li>
 			                <li>
 			                  <p class="comment-info">
