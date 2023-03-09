@@ -75,6 +75,7 @@ int start = (int)request.getAttribute("start");
 						<td class="report-td" style="width:30%;">신고제목</td>
 						<td class="report-td" style="width:10%;">종류</td>
 						<td class="report-td" style="width:10%;">신고일자</td>
+						<td class="report-td" style="width:10%;">처리현황</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -93,6 +94,7 @@ int start = (int)request.getAttribute("start");
 						<% if(u.getReportType() == 1 ){%>유저
 						<%}else if(u.getReportType() == 2 ){%>게시판
 						<%}else if(u.getReportType() == 3 ){%>소설<%} %></td>
+						<td class="report-td"style="font-size:14px;"><%=u.getReportDate() %>
 						<td class="report-td"style="font-size:14px;"><%=u.getReportDate() %>
 					<%
 					}
