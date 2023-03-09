@@ -78,11 +78,11 @@
 			<div class="mid-container">
 				<div class="mid-content-title">
 					<div class="content-category">
-						<a href="/bookList.do?reqPage=1">ㅤ인기콘텐츠 ></a>
+						<a href="/bookList.do?reqPage=1">ㅤ최신콘텐츠 ></a>
 					</div>
 				</div>
 				<div class="book-list">
-				<%for(int i=0 ; i<viewList.size(); i++){ %>
+				<%for(int i=0 ; i<viewList.size() ; i++){ %>
             <%		Book b = viewList.get(i);		  %>
             	
             	<div class="book-one">
@@ -97,7 +97,7 @@
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                        	<%int total1 = b.getBookTitle().length();
+	                  	<!--   <%int total1 = b.getBookTitle().length();
 		                        	if(36 < total1){		                        		
 		                        		//System.out.println(arrayTitle);
 		                        		result1 = b.getBookTitle().substring(0,36);
@@ -111,7 +111,9 @@
 		                        	<%=result1+" ..."%>
 		                        <%}else{//공백포함 20글자가 안넘는다면%>
 		                        	<%=b.getBookTitle() %>
-		                        <%} %>
+		                        <%} %>  -->	
+		                        
+		                        <%=b.getBookTitle() %>
 	                        </a>
                         </div>
                         <div class="book-one-subTitle">
@@ -122,14 +124,16 @@
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		                        <%int total2 = b.getBookExp().length();
+		             <!--       <%int total2 = b.getBookExp().length();
 		                        	if(86 < total2){
 		                        		result2 = b.getBookExp().substring(0,86);
 		                        %>
 		                        	<%=result2+" ..."%>
 		                        <%}else{//공백포함 89글자가 안넘는다면%>
 		                        	<%=b.getBookExp() %>
-		                        <%} %>
+		                        <%} %> -->
+		                        
+		                        <%=b.getBookExp() %>
 	                        </a>
                         </div>
                         <div class="book-one-exp">
@@ -290,11 +294,11 @@
 	
 				<div class="mid-content-title">
 					<div class="content-category">
-						<a href="/bookList.do?reqPage=1">ㅤ최신콘텐츠 ></a>
+						<a href="/bookList.do?reqPage=1">ㅤ인기콘텐츠 ></a>
 					</div>
 				</div>
 				<div class="book-list">
-				<%for(int i=0 ; i<viewList2.size(); i++){ %>
+				<%for(int i=0 ; i<viewList2.size() ; i++){ %>
             <%		Book b = viewList2.get(i);		  %>
             	
             	<div class="book-one">
@@ -309,7 +313,7 @@
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                        	<%int total1 = b.getBookTitle().length();
+	                  	<!--   <%int total1 = b.getBookTitle().length();
 		                        	if(36 < total1){		                        		
 		                        		//System.out.println(arrayTitle);
 		                        		result1 = b.getBookTitle().substring(0,36);
@@ -323,7 +327,9 @@
 		                        	<%=result1+" ..."%>
 		                        <%}else{//공백포함 20글자가 안넘는다면%>
 		                        	<%=b.getBookTitle() %>
-		                        <%} %>
+		                        <%} %>  -->	
+		                        
+		                        <%=b.getBookTitle() %>
 	                        </a>
                         </div>
                         <div class="book-one-subTitle">
@@ -334,14 +340,16 @@
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		                        <%int total2 = b.getBookExp().length();
+		             <!--       <%int total2 = b.getBookExp().length();
 		                        	if(86 < total2){
 		                        		result2 = b.getBookExp().substring(0,86);
 		                        %>
 		                        	<%=result2+" ..."%>
 		                        <%}else{//공백포함 89글자가 안넘는다면%>
 		                        	<%=b.getBookExp() %>
-		                        <%} %>
+		                        <%} %> -->
+		                        
+		                        <%=b.getBookExp() %>
 	                        </a>
                         </div>
                         <div class="book-one-exp">
