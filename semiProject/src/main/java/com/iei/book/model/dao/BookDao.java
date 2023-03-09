@@ -187,7 +187,6 @@ public class BookDao {
 			pstmt.setString(3, b.getBookWriterId());
 			pstmt.setString(4, b.getBookExp());
 			pstmt.setString(5, b.getCoverpath());
-			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
