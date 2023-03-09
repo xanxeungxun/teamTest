@@ -33,6 +33,7 @@
 	.boardContentDiv{
 		min-height: 400px;
 		padding-top: 70px;
+		padding-bottom: 70px;
 	}
 	.report-a{
 		float: right;
