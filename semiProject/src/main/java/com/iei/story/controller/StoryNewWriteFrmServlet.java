@@ -15,14 +15,14 @@ import com.iei.story.model.vo.Story;
 /**
  * Servlet implementation class StoryWriteFrmServlet
  */
-@WebServlet(name = "StoryWriteFrm1", urlPatterns = { "/storyNewWriteFrm.do" })
-public class StoryWriteFrmServlet extends HttpServlet {
+@WebServlet(name = "StoryWriteFrm", urlPatterns = { "/storyWriteFrm.do" })
+public class StoryNewWriteFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public StoryWriteFrmServlet() {
+    public StoryNewWriteFrmServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,9 +35,10 @@ public class StoryWriteFrmServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//2값추출
 		int bookNo = Integer.parseInt(request.getParameter("bookNo"));
+		int storyNo = Integer.parseInt(request.getParameter("storyNo"));
 		//3비즈니스로직
 		StoryService service = new StoryService();
-		Story story = service.selectOneStory(bookNo);
+		Story story = service.selectOneStory(storyNo);
 		//4결과처리
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/story/storyWriteFrm.jsp");
 		request.setAttribute("bookNo", bookNo);
