@@ -31,13 +31,13 @@
 		margin-bottom: 20px;
 	}
 	.new-view:hover{
-		color: #f85f73;
+		color: #952eee
 	}
 	.best-view{
 		margin-left: 20px;
 	}
 	.best-view:hover{
-		color: #f85f73;
+		color: #952eee
 	}
 	.readCountSpan{
 		font-size: 13px;

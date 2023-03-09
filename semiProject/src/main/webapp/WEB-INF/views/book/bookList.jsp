@@ -47,12 +47,12 @@
                 <div>전체소설</div>
                 <div>
                    <ul>
-                        <li><a href="#">최신순</a><span class="gray-bar">|</span></li>
-                        <li><a href="#">인기순</a><span class="gray-bar">|</span></li>
-                        <li><a href="#">완결</a></li>
+                        <li><a href="/bookList.do?reqPage=1">최신순</a><span class="gray-bar">|</span></li>
+                        <li><a href="/bookListViews.do?reqPage=1">인기순</a><span class="gray-bar">|</span></li>
+                        <li><a href="/bookListComplete.do?reqPage=1">완결</a></li>
                     </ul>
                 </div>
-                <form name="genreFrm" action="/selectGenre.do" method="post">
+                <form name="genreFrm" action="/selectGenre.do" method="get">
                 	<input type="hidden" name="reqPage" value="1">
 	                <div class="book-selectBox">
 		               	<select name="genre" class="input-form">
@@ -176,11 +176,11 @@
                             <span class="material-symbols-outlined">
                                 visibility
                             </span>
-                            <span class="book-one-count">조회수</span>
+                            <span class="book-one-count"><%=b.getAllViewer() %></span>
                             <span class="material-symbols-outlined bookmarks">
                                 bookmarks
                             </span>
-                            <span class="subscriber">구독자수</span>
+                            <span class="subscriber"><%=b.getAllScore() %></span>
                         </div>
                     </div>
                 </div><!--작품하나..-->
@@ -203,13 +203,7 @@
 	const selectGenreVal = $("[name=genre]").val();
 	const options = $("[name=genre]>option");
 	$(selectGenre).change(function(){
-		console.log(selectGenre);
-		console.log(options);
-		options.each(function(index,item){
-			if($(item).prop("selected",true)){
-				$("[name=genreFrm]").submit();
-			}
-		});
+		$("[name=genreFrm]").submit();
 	});
 </script>
 </body>

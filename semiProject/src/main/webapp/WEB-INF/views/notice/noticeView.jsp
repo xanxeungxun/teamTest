@@ -24,6 +24,7 @@
 	}
 	.noticeContentDiv{
 		min-height: 400px;
+		padding-top: 70px;
 	}
 	
 </style>

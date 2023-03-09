@@ -133,22 +133,6 @@
                     <div class="book-one-etc">	
                         <div class="book-one-title">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-	                  	<!--   <%int total1 = b.getBookTitle().length();
-		                        	if(36 < total1){		                        		
-		                        		//System.out.println(arrayTitle);
-		                        		result1 = b.getBookTitle().substring(0,36);
-		                        		/*
-		                        		for(int j=0 ; j<36 ; j++){
-		                        			result1 = result1 + b.getBookTitle().charAt(j);		
-		                         		}//for문
-		                        		System.out.println(result1);
-		                         		*/
-		                        %>
-		                        	<%=result1+" ..."%>
-		                        <%}else{//공백포함 20글자가 안넘는다면%>
-		                        	<%=b.getBookTitle() %>
-		                        <%} %>  -->	
-		                        
 		                        <%=b.getBookTitle() %>
 	                        </a>
                         </div>
@@ -160,15 +144,6 @@
                         <div class="book-one-writer"><a href="#"><%=b.getBookWriterNick() %></a></div>
                         <div class="book-one-syn">
 	                        <a href="/storyList.do?bookNo=<%=b.getBookNo()%>">
-		             <!--       <%int total2 = b.getBookExp().length();
-		                        	if(86 < total2){
-		                        		result2 = b.getBookExp().substring(0,86);
-		                        %>
-		                        	<%=result2+" ..."%>
-		                        <%}else{//공백포함 89글자가 안넘는다면%>
-		                        	<%=b.getBookExp() %>
-		                        <%} %> -->
-		                        
 		                        <%=b.getBookExp() %>
 	                        </a>
                         </div>
@@ -202,15 +177,20 @@
 	const selectGenre = $("[name=genre]");
 	const selectGenreVal = $("[name=genre]").val();
 	const options = $("[name=genre]>option");
-	console.log(selectGenre);
-	console.log(options);
-	$(selectGenre).change(function(){
+	//[작품 설정 수정] 장르코드 기본 선택
+
+	$(window).onload(function(){
+		$(selectGenre).change(function(){
+			$("[name=genreFrm]").submit();
+		}
 		options.each(function(index,item){
-			if($(item).prop("selected",true)){
-				$("[name=genreFrm]").submit();
+			if($(item).val() == code){
+				$(item).prop("selected",true);
 			}
 		});
+			
 	});
+	
 </script>
 </body>
 </html>

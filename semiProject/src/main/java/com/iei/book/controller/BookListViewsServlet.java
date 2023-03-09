@@ -1,4 +1,4 @@
-package com.iei.map.controller;
+package com.iei.book.controller;
 
 import java.io.IOException;
 
@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iei.book.model.service.BookService;
+import com.iei.book.model.vo.BookListData;
+
 /**
- * Servlet implementation class MapServlet
+ * Servlet implementation class BookListViewsServlet
  */
-@WebServlet(name = "Map", urlPatterns = { "/map.do" })
-public class MapServlet extends HttpServlet {
+@WebServlet(name = "BookListViews", urlPatterns = { "/bookListViews.do" })
+public class BookListViewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MapServlet() {
+    public BookListViewsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,8 +33,15 @@ public class MapServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/etc/map.jsp");
+		int reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		
+		BookService service = new BookService();
+		BookListData bld = service.selectAllBookViews(reqPage);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/book/bookList.jsp");
+		request.setAttribute("bookList", bld.getBookList());
+		request.setAttribute("naviCode", bld.getPageNavi());
+		request.setAttribute("start", bld.getStart());
 		view.forward(request, response);
 	}
 

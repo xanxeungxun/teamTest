@@ -29,6 +29,12 @@
        		
        		<div class="story-header">
        			<div class="book-and-story">
+       				<div class="go-list">
+       					<span class="material-symbols-outlined">
+							list_alt
+						</span>
+       					<a href="/storyList.do?bookNo=<%=b.getBookNo()%>"><span style="cursor : pointer;">목록으로</span></a>
+       				</div>
        				<div class="book-title">
        					<%=b.getBookTitle() %>
        				</div>

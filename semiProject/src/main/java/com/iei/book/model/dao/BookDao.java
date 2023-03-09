@@ -18,7 +18,7 @@ public class BookDao {
 		ResultSet rset = null;
 		ArrayList<Book> bookList = new ArrayList<Book>();
 		
-		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id order by 1 desc)n) where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count,n.* from(select (select count(*)as score from favorite_book f where f.book_no=b.book_no)as all_score ,nvl((select sum(read_count) from story where book_no=b.book_no),0) as all_viewer, b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id order by 1 desc)n)where rnum between ? and ?";
 		
 		try {
 			pstmt=conn.prepareStatement(query);
@@ -38,6 +38,9 @@ public class BookDao {
 				b.setGenreCode(Integer.parseInt(rset.getString("genre_code")));
 				b.setGenreName(rset.getString("genre_name"));
 				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
+				
+				b.setAllScore(rset.getInt("all_score"));
+				b.setAllViewer(rset.getInt("all_viewer"));
 				
 				bookList.add(b);
 			}
@@ -300,8 +303,8 @@ public class BookDao {
 		
 		return result;
 	}
-
-	public ArrayList<Book> mainViewBook(Connection conn) {
+	
+	public ArrayList<Book> mainViewBook(Connection conn) {//최신순
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Book> viewList = new ArrayList<Book>();
@@ -336,7 +339,7 @@ public class BookDao {
 		return viewList;
 	}
 
-	public ArrayList<Book> mainViewBook2(Connection conn) {
+	public ArrayList<Book> mainViewBook2(Connection conn) {//인기(조회수)순
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Book> viewList2 = new ArrayList<Book>();
@@ -374,9 +377,10 @@ public class BookDao {
 	public ArrayList<Book> selectGenreBook(Connection conn, int selectGenreCode, int start, int end) {
 		PreparedStatement pstmt = null;
 		ArrayList<Book> genreList = new ArrayList<Book>();
+		//System.out.println("111 : "+selectGenreCode);
 		ResultSet rset = null;
 		//String query = "select book_title from book where book_title like ?";
-		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where b.genre_code = ? order by 1 desc)n) where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from book b left join genre g on (b.genre_code = g.genre_code) left join user_tbl u  on (b.book_writer = u.user_id) where b.genre_code = ?  order by 1 desc)n) where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, selectGenreCode);
@@ -409,6 +413,29 @@ public class BookDao {
 		return genreList;
 	}
 
+	public int selectGenreBookCount(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query ="select count(*) as count from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from book b left join genre g on (b.genre_code = g.genre_code) left join user_tbl u  on (b.book_writer = u.user_id) where b.genre_code = 3  order by 1 desc)n)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
+	}
+
 	public int selectScore(Connection conn, int bookNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -431,6 +458,112 @@ public class BookDao {
 		}
 		
 		return score;
+	}
+
+	public ArrayList<Book> seletAllBookComplete(Connection conn, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Book> bookList = new ArrayList<Book>();
+		
+		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count,n.* from(select (select count(*)as score from favorite_book f where f.book_no=b.book_no)as all_score ,nvl((select sum(read_count) from story where book_no=b.book_no),0) as all_viewer, b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id and book_status != 1 order by 1 desc)n)where rnum between ? and ?";
+		
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Book b = new Book();
+				b.setBookDate(rset.getString("book_date"));
+				b.setBookExp(rset.getString("book_exp"));
+				b.setBookNo(Integer.parseInt(rset.getString("book_no")));
+				b.setBookStatus(rset.getString("book_status"));
+				b.setBookTitle(rset.getString("book_title"));
+				b.setBookWriterId(rset.getString("book_writer"));
+				b.setBookWriterNick(rset.getString("user_nick"));
+				b.setCoverpath(rset.getString("coverpath"));
+				b.setGenreCode(Integer.parseInt(rset.getString("genre_code")));
+				b.setGenreName(rset.getString("genre_name"));
+				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
+				
+				bookList.add(b);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		
+		return bookList;
+	}
+
+	public ArrayList<Book> seletAllBookViews(Connection conn, int start, int end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Book> bookList = new ArrayList<Book>();
+		
+		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count,n.* from(select (select count(*)as score from favorite_book f where f.book_no=b.book_no)as all_score ,nvl((select sum(read_count) from story where book_no=b.book_no),0) as all_viewer, b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id order by all_viewer desc)n)where rnum between ? and ?";
+		
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Book b = new Book();
+				b.setBookDate(rset.getString("book_date"));
+				b.setBookExp(rset.getString("book_exp"));
+				b.setBookNo(Integer.parseInt(rset.getString("book_no")));
+				b.setBookStatus(rset.getString("book_status"));
+				b.setBookTitle(rset.getString("book_title"));
+				b.setBookWriterId(rset.getString("book_writer"));
+				b.setBookWriterNick(rset.getString("user_nick"));
+				b.setCoverpath(rset.getString("coverpath"));
+				b.setGenreCode(Integer.parseInt(rset.getString("genre_code")));
+				b.setGenreName(rset.getString("genre_name"));
+				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
+				
+				bookList.add(b);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		
+		return bookList;
+	}
+
+	public int selectBookCountComplete(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String query ="select count(*) as cnt from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count,n.* from(select (select count(*)as score from favorite_book f where f.book_no=b.book_no)as all_score ,nvl((select sum(read_count) from story where book_no=b.book_no),0) as all_viewer, b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id and book_status != 1 order by 1 desc)n)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return result;
 	}
 
 
