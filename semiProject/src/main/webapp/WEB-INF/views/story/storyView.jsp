@@ -99,7 +99,11 @@
 				%>
 					<ul class="posting-comment">
 			                <li>
-			                  <span class="material-icons">account_circle</span>
+			                  <%if(c.getFilePath()==null){ %>
+								<div class="material-icons">account_circle</div>
+								<%} else { %>
+								<div style="background-image: url(/upload/profile/<%=c.getFilePath()%>); background-size: contain; background-position: center;  background-repeat: no-repeat;" id="previewImg" class="book-img"></div>
+								<%} %>
 			                </li>
 			                <li>
 			                  <p class="comment-info">
