@@ -39,6 +39,14 @@
             'FILL' 1,
             'wght' 300
         }
+        .book-img{
+        width: 180px;
+        height: 240px;
+        background-color: #fff;
+        border-radius: 4px;
+        margin-right: 10px;
+        border : 1px solid #EEEEEE;
+    }
     </style>
 </head>
 <body>
