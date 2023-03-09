@@ -140,11 +140,11 @@
                             <span class="material-symbols-outlined">
                                 visibility
                             </span>
-                            <span class="book-one-count">조회수</span>
+                            <span class="book-one-count"><%=b.getAllViewer() %></span>
                             <span class="material-symbols-outlined bookmarks">
                                 bookmarks
                             </span>
-                            <span class="subscriber">구독자수</span>
+                            <span class="subscriber"><%=b.getAllScore() %></span>
                         </div>
                     </div>
                 </div><!--작품하나..-->
@@ -356,11 +356,11 @@
                             <span class="material-symbols-outlined">
                                 visibility
                             </span>
-                            <span class="book-one-count">조회수</span>
+                            <span class="book-one-count"><%=b.getAllViewer() %></span>
                             <span class="material-symbols-outlined bookmarks">
                                 bookmarks
                             </span>
-                            <span class="subscriber">구독자수</span>
+                            <span class="subscriber"><%=b.getAllScore() %></span>
                         </div>
                     </div>
                 </div><!--작품하나..-->
