@@ -30,17 +30,21 @@ int start = (int)request.getAttribute("start");
 				<span>신고 관리</span>
 			</div>
 			<%-- 검색 폼 태그 시작 --%>
-			<form id="searchForm" action="/report/searchReportList.do">
-				<select id="searchType" class="select" name="searchType">
-				<%-- 검색 선택 구간 --%>
-					<option value="1" id="select1">신고자</option>
-					<option value="2" id="select2">신고제목</option>
-				</select>
-				<input type="hidden" name="searchValue" id="hiddenSearchValue">
-			</form>
-			<input type="text" id="searchValue" class="select" onkeydown="javascript:if(event.keyCode==13) searchReport()">
-			<button onclick="searchReport()" class="select">검색</button>
-			<br><br><br>
+			<div class="div-form-box">
+				<form id="searchForm" action="/report/searchReportList.do">
+					<select id="searchType" class="select" name="searchType">
+						<%-- 검색 선택 구간 --%>
+						<option value="1" id="select1">신고자</option>
+						<option value="2" id="select2">신고제목</option>
+					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
+				</form>
+				<input type="text" id="searchValue" class="select"
+					onkeydown="javascript:if(event.keyCode==13) searchReport()">
+				<button onclick="searchReport()" class="select bttn" id="search">검색</button>
+			</div>
+			<br>
+			<br>
+			<br>
 			<%-- 검색 폼 태그 종료 --%>
 			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
 			<script>
