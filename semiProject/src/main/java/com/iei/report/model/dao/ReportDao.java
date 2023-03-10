@@ -60,7 +60,7 @@ public class ReportDao {
 		
 		ArrayList<ReportVo> list = new ArrayList<ReportVo>();
 		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,report_title,report_content,report_type,report_date,BOOK_OR_BOARD_TYPE,BOOK_OR_BOARD_NO,BOOK_OR_BOARD_TITLE,file_name,file_patch,report_yn from report"
-				+ " where " + type + " like " + "\'" +"%" + searchValue +"%"+ "\'" +  " order by 1 desc)n)where rnum between ? and ?";
+				+ " where " + type + " like " + "\'" + searchValue +"%"+ "\'" +  " order by 1 desc)n)where rnum between ? and ?";
 		
 		System.out.println("QUERY : " + query);
 		try {

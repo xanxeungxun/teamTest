@@ -108,16 +108,16 @@ public class ReportWriteServlet extends HttpServlet {
 				RequestDispatcher view =
 						request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp");
 				if(result>0) {
-					request.setAttribute("title", "게시글 작성 성공");
-					request.setAttribute("msg", "게시글이 작성되었습니다.");
+					request.setAttribute("title", "신고 완료");
+					request.setAttribute("msg", "소중한 의견 감사합니다 \n빠른 시일 내에 처리하도록 하겠습니다.");
 					request.setAttribute("icon", "success");
+					request.setAttribute("loc", "/report/searchReportList.do?searchType=1&searchValue="+reporterId);
 				}else {
 					request.setAttribute("title", "게시글 작성 실패");
 					request.setAttribute("msg", "오류가 발생하였습니다.");
 					request.setAttribute("icon", "error");
+					request.setAttribute("loc", "/");
 				}
-				//보내줄 경로 위치
-				request.setAttribute("loc", "/report/reportList.do?reqPage=1");
 				view.forward(request, response);
 			}
 			protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

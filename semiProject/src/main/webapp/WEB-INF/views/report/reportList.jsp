@@ -32,6 +32,7 @@ background:#F7F7F7;
 			<div class="report-header">
 				<span>신고 관리</span>
 			</div>
+			<%if(loginUser!=null&&loginUser.getUserLevel()==1) {%>
 			<%-- 검색 폼 태그 시작 --%>
 			<div class="div-form-box">
 				<form id="searchForm" action="/report/searchReportList.do">
@@ -58,6 +59,34 @@ background:#F7F7F7;
 				}
 			</script>
 			<%-- 검색 미 입력시 나올 alert 띄우기 종료 --%>
+			<%}else if(loginUser!=null&&loginUser.getUserLevel()==2||loginUser!=null&&loginUser.getUserLevel()==3||loginUser!=null&&loginUser.getUserLevel()==4) {%>
+			<%-- 검색 폼 태그 시작 --%>
+			<div class="div-form-box" style="display:none;">
+				<form id="searchForm" action="/report/searchReportList.do">
+					<select id="searchType" class="select bc333" name="searchType" style="background:#fff;border:1px solid #CCC;">
+						<%-- 검색 선택 구간 --%>
+						<option value="1" id="select1">신고자</option>
+						<option value="2" id="select2">신고제목</option>
+					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
+				</form>
+				<input type="text" id="searchValue" class="select bc333" style="background:#fff;border:1px solid #CCC;"
+					onkeydown="javascript:if(event.keyCode==13) searchQuestion()">
+				<button onclick="searchQuestion()" class="select bttn bc333" id="search" style="background:#fff;border:1px solid #CCC;">검색</button>
+			</div>
+			<%-- 검색 폼 태그 종료 --%>
+			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
+			<script>
+				function searchQuestion(){
+					if($("#searchValue").val() == ""){
+						alert("검색어를 입력해 주세요.");
+						return;
+					}
+					$("#hiddenSearchValue").val($("#searchValue").val());
+					$("#searchForm").submit();
+				}
+			</script>
+			<%-- 검색 미 입력시 나올 alert 띄우기 종료 --%>
+			<%} %>
 			<br><br>
 			<table class="report-tbl">
 				<%

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.iei.question.model.vo.QuestionVo;
 import com.iei.userManage.model.vo.UserManageVo;
 
 import common.JDBCTemplate;
@@ -151,6 +152,51 @@ public class UserManageDao {
 		
 		return result;
 	}
+
+
+	public ArrayList<UserManageVo> selectSearchedUserManage(Connection conn, int start, int end, String searchValue,
+			String searchType) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String type = "";
+		if("1".equals(searchType)) type = "user_id";
+		else if("2".equals(searchType)) type = "user_nick";
+		
+		ArrayList<UserManageVo> list = new ArrayList<UserManageVo>();
+		String query = "select * from(select rownum as rnum, n.* from(select USER_NO,USER_ID,USER_PW,USER_NAME,USER_NICK,USER_PHONE,USER_LEVEL,USER_PIC,USER_POINT,USER_ENROLL,USER_EMAIL from user_tbl"
+				+ " where " + type + " like " + "\'" +"%" + searchValue +"%" + "\'"+ " order by 1 desc)n)where rnum between ? and ?";
+		
+		System.out.println("QUERY : " + query);
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				UserManageVo n = new UserManageVo();
+				n.setUserNo(rset.getInt("user_no"));
+				n.setUserId(rset.getString("user_id"));
+				n.setUserPw(rset.getString("user_pw"));
+				n.setUserName(rset.getString("user_name"));
+				n.setUserNick(rset.getString("user_nick"));
+				n.setUserPhone(rset.getString("user_phone"));
+				n.setUserLevel(rset.getInt("user_level"));
+				n.setUserPic(rset.getString("user_pic"));
+				n.setUserPoint(rset.getInt("user_point"));
+				n.setUserEnroll(rset.getString("user_enroll"));
+				n.setUserEmail(rset.getString("user_email"));
+				list.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return list;
+		
+
+		}
 
 
 	
