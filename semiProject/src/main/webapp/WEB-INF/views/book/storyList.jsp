@@ -57,7 +57,7 @@
 
                 <div class="book-content">
                     <div class="book-cover">
-  						 <img src="/upload/cover-image/<%=b.getCoverpath() %>" style="width: 180px; height:240px;cursor:pointer;">
+  						 <img src="/upload/cover-image/<%=b.getCoverpath() %>" style="width: 180px; height:240px;">
                     </div>
                     <div class="book-exp">
                         <div class="book-title">
