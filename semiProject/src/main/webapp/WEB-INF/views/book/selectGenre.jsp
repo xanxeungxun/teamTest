@@ -46,13 +46,6 @@
 
             <div class="book-list-header">
                 <div>전체소설</div>
-                <div>
-                   <ul>
-                        <li><a href="#">최신순</a><span class="gray-bar">|</span></li>
-                        <li><a href="#">인기순</a><span class="gray-bar">|</span></li>
-                        <li><a href="#">완결</a></li>
-                    </ul>
-                </div>
                 <form name="genreFrm" action="/selectGenre.do" method="post">
                 	<input type="hidden" name="reqPage" value="1">
                 	<input type="hidden" name="selectGenreCode" value="<%=selectGenreCode %>">
