@@ -160,7 +160,7 @@ public class UserManageDao {
 		ResultSet rset = null;
 		String type = "";
 		if("1".equals(searchType)) type = "user_id";
-		else if("2".equals(searchType)) type = "user_level";
+		else if("2".equals(searchType)) type = "user_nick";
 		
 		ArrayList<UserManageVo> list = new ArrayList<UserManageVo>();
 		String query = "select * from(select rownum as rnum, n.* from(select USER_NO,USER_ID,USER_PW,USER_NAME,USER_NICK,USER_PHONE,USER_LEVEL,USER_PIC,USER_POINT,USER_ENROLL,USER_EMAIL from user_tbl"

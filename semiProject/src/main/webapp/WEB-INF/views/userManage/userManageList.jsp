@@ -53,14 +53,14 @@ background:#F7F7F7;
 /*검색어 바*/
 .div-form-box>#searchValue{
 	padding-left:10px;
-	width:128px;
+	width:123px;
 	height:40px;
 	box-sizing:border-box;
 	font-size:14px;
 }
 .div-form-box .bttn{
 	box-sizing:border-box;
-	width:100px;
+	width:127px;
 }
 /*검색창 css 만들기 끝*/
 </style>
@@ -78,7 +78,7 @@ background:#F7F7F7;
 						style="background: #fff; border: 1px solid #CCC;">
 						<%-- 검색 선택 구간 --%>
 						<option value="1" id="select2">아이디</option>
-						<option value="2" id="select2">등급</option>
+						<option value="2" id="select2">닉네임</option>
 					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
 				</form>
 				<input type="text" id="searchValue" class="select bc333"
@@ -111,18 +111,18 @@ background:#F7F7F7;
 				<%
 				} else {
 				%>
-				<br><br><br>
+				<br>
 				<thead>
 					<tr class="userManage-tr" style="background:#F2F1F3;">
-					<td class="userManage-td" style="width:5%;padding:10px;">순번</td>
+					<td class="userManage-td" style="width:7.2%;padding:10px;">순번</td>
 						<td class="userManage-td kk" style="width:5%;">유저코드</td>
-						<td class="userManage-td" style="width:5%;">아이디</td>
-						<td class="userManage-td" style="width:10%;">이름</td>
+						<td class="userManage-td" style="width:6%;">아이디</td>
+						<td class="userManage-td" style="width:13%;">이름</td>
 						<td class="userManage-td" style="width:10%;">닉네임</td>
 						<td class="userManage-td" style="width:15%;">전화번호</td>
 						<td class="userManage-td" style="width:10%;">이메일</td>
 						<td class="userManage-td" style="width:15%;">가입일</td>
-						<td class="userManage-td" style="width:10%;">등급</td>
+						<td class="userManage-td" style="width:8%;">등급</td>
 						<td colspan="2" class="userManage-td" style="width:10%">등급변경</td>
 					</tr>
 				</thead>
