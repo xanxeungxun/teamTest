@@ -21,7 +21,9 @@ int start = (int) request.getAttribute("start");
 .write-btd-wrap{
 margin:0;
 }
-
+.bb:hover{
+background:#F7F7F7;
+}
 </style>
 </head>
 <body>
@@ -71,17 +73,17 @@ margin:0;
 			<%-- 검색 폼 태그 시작 --%>
 			<div class="div-form-box">
 				<form id="searchForm" action="/question/searchQuestion.do">
-					<select id="searchType" class="select bc666" name="searchType"
+					<select id="searchType" class="select bc333" name="searchType"
 						style="background: #fff; border: 1px solid #CCC;">
 						<%-- 검색 선택 구간 --%>
 						<option value="1" id="select2">제목</option>
 						<option value="2" id="select2">작성자</option>
 					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
 				</form>
-				<input type="text" id="searchValue" class="select bc666"
+				<input type="text" id="searchValue" class="select bc333"
 					style="background: #fff; border: 1px solid #CCC;"
 					onkeydown="javascript:if(event.keyCode==13) searchQuestion()">
-				<button onclick="searchQuestion()" class="select bttn bc666"
+				<button onclick="searchQuestion()" class="select bttn bc333"
 					id="search" style="background: #fff; border: 1px solid #CCC;">검색</button>
 			</div>
 			<%-- 검색 폼 태그 종료 --%>
@@ -117,7 +119,7 @@ margin:0;
 					QuestionVo q = list.get(i);
 					%>
 
-					<tr class="question-tr ttr">
+					<tr class="bb question-tr ttr">
 						<td class="question-td ttd"><%=i + start%></td>
 						<td class="question-td ttd">
 							<%
