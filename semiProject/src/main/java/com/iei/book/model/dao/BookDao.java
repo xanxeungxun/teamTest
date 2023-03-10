@@ -385,7 +385,7 @@ public class BookDao {
 		//System.out.println("111 : "+selectGenreCode);
 		ResultSet rset = null;
 		//String query = "select book_title from book where book_title like ?";
-		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from book b left join genre g on (b.genre_code = g.genre_code) left join user_tbl u  on (b.book_writer = u.user_id) where b.genre_code = ?  order by 1 desc)n) where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select (select count(*)as score from favorite_book f where f.book_no=b.book_no)as all_score ,nvl((select sum(read_count) from story where book_no=b.book_no),0) as all_viewer, b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from book b left join genre g on (b.genre_code = g.genre_code) left join user_tbl u  on (b.book_writer = u.user_id) where b.genre_code = ?  order by 1 desc)n) where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, selectGenreCode);
@@ -405,6 +405,9 @@ public class BookDao {
 				b.setGenreCode(Integer.parseInt(rset.getString("genre_code")));
 				b.setGenreName(rset.getString("genre_name"));
 				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
+				
+				b.setAllScore(rset.getInt("all_score"));
+				b.setAllViewer(rset.getInt("all_viewer"));
 				
 				genreList.add(b);
 			}
