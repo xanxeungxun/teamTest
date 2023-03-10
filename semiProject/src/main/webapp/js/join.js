@@ -252,7 +252,7 @@ function timeCount(){
 			
 			//시간 만료되면 메세지 뜸
 			$("#authMsg").text("인증시간 만료");
-			$("#authcMsg").css("color","red");
+			$("#authcMsg").css("color","#f86697");
 		}
 		
 	} else {
@@ -275,13 +275,13 @@ $("#authBtn").on("click",function(){
 		if(authCode == mailCode){
 			$("#authCode").prop("readonly",true);
 			$("#authMsg").text("인증 완료");
-			$("#authMsg").css("color","blue");
+			$("#authMsg").css("color","#e98ead");
 			
 			window.clearInterval(intervalId);//인증 완료되면 시간도 멈춤
 			
 		} else {
 			$("#authMsg").text("인증 실패");
-			$("#authMsg").css("color","red");
+			$("#authMsg").css("color","#f86697");
 		}
 	}
 	
