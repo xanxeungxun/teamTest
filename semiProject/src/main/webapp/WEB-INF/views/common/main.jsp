@@ -47,6 +47,9 @@
         margin-right: 10px;
         border : 1px solid #EEEEEE;
     }
+    .adminBtn:hover{
+    color:#8A2BE2;
+    }
     </style>
 </head>
 <body>
