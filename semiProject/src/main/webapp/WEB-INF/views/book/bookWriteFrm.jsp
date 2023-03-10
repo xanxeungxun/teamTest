@@ -44,7 +44,7 @@
 		   			<tr class="tr-1">
 		   				<th>카테고리</th>
 		   				<td style="text-align: left; line-height: 46px;">
-		   					<input type="radio" name="genre" value="1" id="test1">
+		   					<input type="radio" name="genre" value="1" id="test1" required>
 		   					<label for="test1">판타지</label>
 		   					<input type="radio" name="genre" value="2" id="test2">
 		   					<label for="test2">로맨스</label>
