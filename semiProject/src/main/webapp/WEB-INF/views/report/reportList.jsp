@@ -22,6 +22,9 @@ int start = (int)request.getAttribute("start");
 .report-tr{
 	text-align:center;
 }
+.report-tr:hover{
+background:#F7F7F7;
+}
 </style>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-content">
@@ -32,15 +35,15 @@ int start = (int)request.getAttribute("start");
 			<%-- 검색 폼 태그 시작 --%>
 			<div class="div-form-box">
 				<form id="searchForm" action="/report/searchReportList.do">
-					<select id="searchType" class="select bc666" name="searchType" style="background:#fff;border:1px solid #CCC;">
+					<select id="searchType" class="select bc333" name="searchType" style="background:#fff;border:1px solid #CCC;">
 						<%-- 검색 선택 구간 --%>
 						<option value="1" id="select1">신고자</option>
 						<option value="2" id="select2">신고제목</option>
 					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
 				</form>
-				<input type="text" id="searchValue" class="select bc666" style="background:#fff;border:1px solid #CCC;"
+				<input type="text" id="searchValue" class="select bc333" style="background:#fff;border:1px solid #CCC;"
 					onkeydown="javascript:if(event.keyCode==13) searchQuestion()">
-				<button onclick="searchQuestion()" class="select bttn bc666" id="search" style="background:#fff;border:1px solid #CCC;">검색</button>
+				<button onclick="searchQuestion()" class="select bttn bc333" id="search" style="background:#fff;border:1px solid #CCC;">검색</button>
 			</div>
 			<%-- 검색 폼 태그 종료 --%>
 			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
