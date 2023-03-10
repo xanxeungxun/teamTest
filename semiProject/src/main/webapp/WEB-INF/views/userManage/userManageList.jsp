@@ -22,6 +22,47 @@ int start = (int)request.getAttribute("start");
 .userManage-tr{
 	text-align:center;
 }
+.tt {
+	background: #F2F1F3;
+}
+.write-btd-wrap{
+margin:0;
+}
+.bb:hover{
+background:#F7F7F7;
+}
+/*검색창 css 만들기 시작*/
+.div-form-box{
+	color:red;
+	width: 1200px;
+	overflow:hidden;
+	height:40px;
+	font-size:14px;
+}
+.div-form-box #searchType{
+	padding-left:10px;
+	width:76.72px;
+}
+/*검색바 전체디자인*/
+.div-form-box .select{
+	height:40px;
+	float:left;
+	font-size:14px;
+	box-sizing:border-box;
+}
+/*검색어 바*/
+.div-form-box>#searchValue{
+	padding-left:10px;
+	width:128px;
+	height:40px;
+	box-sizing:border-box;
+	font-size:14px;
+}
+.div-form-box .bttn{
+	box-sizing:border-box;
+	width:100px;
+}
+/*검색창 css 만들기 끝*/
 </style>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
 	<div class="page-content">
@@ -29,6 +70,37 @@ int start = (int)request.getAttribute("start");
 			<div class="userManage-header">
 				<span>회원 관리</span>
 			</div>
+			
+			<%-- 검색 폼 태그 시작 --%>
+			<div class="div-form-box">
+				<form id="searchForm" action="/userManage/searchUserManage.do">
+					<select id="searchType" class="select bc333" name="searchType"
+						style="background: #fff; border: 1px solid #CCC;">
+						<%-- 검색 선택 구간 --%>
+						<option value="1" id="select2">아이디</option>
+						<option value="2" id="select2">등급</option>
+					</select> <input type="hidden" name="searchValue" id="hiddenSearchValue">
+				</form>
+				<input type="text" id="searchValue" class="select bc333"
+					style="background: #fff; border: 1px solid #CCC;"
+					onkeydown="javascript:if(event.keyCode==13) searchUserManage()">
+				<button onclick="searchUserManage()" class="select bttn bc333"
+					id="search" style="background: #fff; border: 1px solid #CCC;">검색</button>
+			</div>
+			<%-- 검색 폼 태그 종료 --%>
+			<%-- 검색 미 입력시 나올 alert 띄우기 시작 --%>
+			<script>
+				function searchUserManage() {
+					if ($("#searchValue").val() == "") {
+						alert("검색어를 입력해 주세요.");
+						return;
+					}
+					$("#hiddenSearchValue").val($("#searchValue").val());
+					$("#searchForm").submit();
+				}
+			</script>
+			<%-- 검색 미 입력시 나올 alert 띄우기 종료 --%>
+			
 			<table class="userManage-tbl">
 				<%
 				if (list.size() < 1) {
