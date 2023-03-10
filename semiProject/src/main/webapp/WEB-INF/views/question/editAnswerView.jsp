@@ -16,6 +16,7 @@
 		%>
     <%
     	QuestionVo question = (QuestionVo)request.getAttribute("questionResult");
+    System.out.println(question);
     %>
 <!DOCTYPE html>
 <html>
@@ -41,6 +42,7 @@ background:#fff;
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
+	
 	<div class="page-content">
 		<div class="question-wrap">
 			<div class="question-header">
@@ -64,7 +66,7 @@ background:#fff;
 				</tr>
 				<tr class="question-tr">
 					<td class="question-td tdt" colspan="3">
-						<span id="contentTT"><%=question.getQuestionContent().replace("\r\n","<br>") %></span>
+						<%=question.getQuestionContent().replace("\r\n","<br>") %>
 					</td>
 				</tr>
 				
@@ -171,8 +173,6 @@ background:#fff;
 		    	alert("오류가 발생했습니다.");
 		    }
 		});		
-		let str1 = $("#contentTT");
-		document.write(str1.replace(/^\s+|\s+$/gm,''));
 	}
 </script>
 </html>
