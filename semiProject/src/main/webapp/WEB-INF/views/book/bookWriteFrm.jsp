@@ -37,7 +37,7 @@
 		   			<tr class="tr-1">
 		   				<th>작품명</th>
 		   				<td style="text-align: left; height: 98px;">
-		   					<input type="text" name="bookTitle" id="bookTitle" class="input-form" placeholder="작품의 제목을 입력하세요.(최대 300Byte)">
+		   					<input type="text" name="bookTitle" id="bookTitle" class="input-form" placeholder="작품의 제목을 입력하세요.(최대 300Byte)" required>
 		   					<span id="titleChk" style="font-size:14px; color:red; display:none;">*작품명이 300Byte를 초과해 등록할 수 없습니다.</span>
 		   				</td>
 		   			</tr>
@@ -97,7 +97,7 @@
 		   			<tr class="tr-1">
 		   				<th>작품소개</th>
 		   				<td style="text-align: left; height: 135px;">
-		   					<textarea cols="30" rows="3" name="bookExp" class="input-form" placeholder="작품의 전체 내용을 간단하게 소개해주세요.(최대 2000Byte)"></textarea>
+		   					<textarea cols="30" rows="3" name="bookExp" class="input-form" placeholder="작품의 전체 내용을 간단하게 소개해주세요.(최대 2000Byte)" required></textarea>
 		   					<span id="expChk" style="font-size:14px; color:red; display:none;">*작품소개가 2000Byte를 초과해 등록할 수 없습니다.</span>
 		   				</td>
 		   			</tr>
@@ -119,7 +119,7 @@
 		   			<tr class="tr-1">
 		   				<th>스토리 제목</th>
 		   				<td style="text-align: left; height: 135px;">
-		   					<input type="text" name="storyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스 (최대 300Byte)">
+		   					<input type="text" name="storyName" class="input-form" placeholder="스토리 제목을 입력하세요. 예) 에브리 유니버스 (최대 300Byte)" required>
 		   					<span id="storyTitleChk" style="font-size:14px; color:red; display:none;">*스토리 제목이 300Byte를 초과해 등록할 수 없습니다.</span>
 		   				</td>
 		   			</tr>
@@ -128,13 +128,13 @@
 		   			</tr>
 		   			<tr class="tr-1">
 		   				<td colspan="2" style="text-align: left;">
-		   					<textarea name="storyContent" id="storyContent" class="input-form"></textarea>
+		   					<textarea name="storyContent" id="storyContent" class="input-form" required></textarea>
 		   				</td>
 		   			</tr>
 		   			<tr class="tr-1">
 		   				<th>작가후기</th>
 		   				<td>
-		   					<textarea cols="30" rows="3" name="storyAfter" class="input-form" placeholder="소설 작성 후기를 작성해주세요.(최대 2000Byte)"></textarea>
+		   					<textarea cols="30" rows="3" name="storyAfter" class="input-form" placeholder="소설 작성 후기를 작성해주세요.(최대 2000Byte)" required></textarea>
 		   					<span id="afterChk" style="font-size:14px; color:red; display:none; text-align: left;">*작가 후기가 2000Byte를 초과해 등록할 수 없습니다.</span>
 		   				</td>
 		   			</tr>
