@@ -35,20 +35,20 @@ $(document).ready(function(){
 <%@include file="/WEB-INF/views/common/header.jsp"%>
 		<div class="page-content">
 		<br><br>
-			<div class="page-title">문의 게시글 작성</div>
+			<div class="page-title"style="padding-left:10px;">문의 게시글 작성</div>
 			<br>
 			<hr>
 			<br><br>
 			<form action="/questionWrite.do" method="post">
 				<table class="tbl" id="questionWrite">
-					<tr class="tr-1">
-						<th class="td-3">제목</th>
+					<tr class="tr-1" style="background:#F0F0F0;">
+						<th class="td-3" style="background:#F0F0F0;">제목</th>
 						<td colspan="3">
 							<input type="text" id="questionTitle" name="questionTitle" class="input-form">						
 						</td> 
 					</tr>
-					<tr class="tr-1">
-						<th class="td-3">종류</th>
+					<tr class="tr-1" style="background:#F0F0F0;">
+						<th class="td-3" style="background:#F0F0F0;">종류</th>
 						<td colsan="2">
 					<select class="input-form" id="questionType" name="questionType">
     					<option value="0" selected>-- 문의사항선택 --</option>
@@ -59,7 +59,7 @@ $(document).ready(function(){
     					<option value="5">기타</option>
     					<option value="6">신고</option>
     				</select></td>
-						<td class="td-3">작성자</td>
+						<td class="td-3" style="background:#F0F0F0;">작성자</td>
 						<td>
 						<%-- 로그인 제작 완료시 해당 주석 풀고 적용 할 것 --%>
 						<%--<%=loginUser.getUserId()%>--%>
@@ -70,12 +70,12 @@ $(document).ready(function(){
 							<%=loginUser.getUserName()%>
 						</td>
 					</tr>
-					<tr class="tr-1">
+					<tr class="tr-1" style="background:#F0F0F0;">
 						<td colspan="4" style="text-align:left;">
 							<textarea id="questionContent" name="questionContent" class="input-form" style="height:600px;"></textarea>
 						</td>
 					</tr>
-					<tr class="tr-1">
+					<tr class="tr-1" style="background:#F0F0F0;">
 						<td colspan="4">
 							<button type="submit" id="submitBtn" class="btn bc1 bs4">문의 게시글 작성</button>
 						</td>

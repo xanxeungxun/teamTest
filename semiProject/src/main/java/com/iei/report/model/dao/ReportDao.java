@@ -18,7 +18,7 @@ public class ReportDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<ReportVo> list = new ArrayList<ReportVo>();
-		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,report_title,report_content,report_type,report_date,BOOK_OR_BOARD_TYPE,BOOK_OR_BOARD_NO,BOOK_OR_BOARD_TITLE,file_name,file_patch from report order by 1 desc)n)where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,report_title,report_content,report_type,report_date,BOOK_OR_BOARD_TYPE,BOOK_OR_BOARD_NO,BOOK_OR_BOARD_TITLE,file_name,file_patch,report_yn from report order by 1 desc)n)where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, start);
@@ -37,6 +37,8 @@ public class ReportDao {
 				n.setBobTitle(rset.getString("BOOK_OR_BOARD_TITLE"));
 				n.setFileName(rset.getString("file_name"));
 				n.setFilePatch(rset.getString("file_patch"));
+				n.setReportYn(rset.getInt("report_yn"));
+				
 				list.add(n);
 			}
 		} catch (SQLException e) {
@@ -57,7 +59,7 @@ public class ReportDao {
 		else if("2".equals(searchType)) type = "report_title";
 		
 		ArrayList<ReportVo> list = new ArrayList<ReportVo>();
-		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,report_title,report_content,report_type,report_date,BOOK_OR_BOARD_TYPE,BOOK_OR_BOARD_NO,BOOK_OR_BOARD_TITLE,file_name,file_patch from report"
+		String query = "select * from(select rownum as rnum, n.* from(select report_no,reporter_id,report_title,report_content,report_type,report_date,BOOK_OR_BOARD_TYPE,BOOK_OR_BOARD_NO,BOOK_OR_BOARD_TITLE,file_name,file_patch,report_yn from report"
 				+ " where " + type + " like " + "\'" +"%" + searchValue +"%"+ "\'" +  " order by 1 desc)n)where rnum between ? and ?";
 		
 		System.out.println("QUERY : " + query);
@@ -79,6 +81,7 @@ public class ReportDao {
 				n.setBobTitle(rset.getString("BOOK_OR_BOARD_TITLE"));
 				n.setFileName(rset.getString("file_name"));
 				n.setFilePatch(rset.getString("file_patch"));
+				n.setReportYn(rset.getInt("report_yn"));
 				list.add(n);
 			}
 		} catch (SQLException e) {
@@ -109,11 +112,12 @@ public class ReportDao {
 				result.setReportContent(rset.getString("report_content"));
 				result.setReportType(rset.getInt("report_type"));
 				result.setReportDate(rset.getString("report_date"));
-				result.setBobType(rset.getString("book_of_board_type"));
-				result.setBobNo(rset.getInt("book_of_board_no"));
-				result.setBobTitle(rset.getString("book_of_board_title"));
+				result.setBobType(rset.getString("book_or_board_type"));
+				result.setBobNo(rset.getInt("book_or_board_no"));
+				result.setBobTitle(rset.getString("book_or_board_title"));
 				result.setFileName(rset.getString("file_name"));
 				result.setFilePatch(rset.getString("file_patch"));
+				result.setReportYn(rset.getInt("report_yn"));
 			}
 			
 		} catch (SQLException e) {
@@ -147,6 +151,23 @@ public class ReportDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return totalCount;
+	}
+
+	public int changeReportNo(Connection conn, int reportNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update report set report_yn='1' where report_no=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, reportNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			
+		}
+		return result;
 	}
 
 }

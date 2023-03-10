@@ -28,6 +28,9 @@
 		
 	
 	}
+	.note-editable{
+	background:white;
+	}
 </style>
 <link rel="stylesheet" href="/css/report.css">
 </head>
@@ -51,11 +54,14 @@ $(document).ready(function(){
 	<script src="/summernote/lang/summernote-ko-KR.js"></script>
 	<link rel="stylesheet" href="/summernote/summernote-lite.css">
 		<div class="page-content">
-			<div class="page-title">신고 사항 작성</div>
+			<div class="page-title" style="padding-left:10px;">신고 사항 작성</div>
+			<br>
+			<hr>
 			<form action="/reportWrite.do" method="post" enctype="multipart/form-data">
+			<br><br>
 				<table class="tbl" id="reportWrite">
-					<tr class="tr-1">
-						<th class="td-3" style="height:50px;">신고 게시물</th>
+					<tr class="tr-1"style="background:#F0F0F0;">
+						<th class="td-3" style="height:50px;background:#F0F0F0;">신고 게시물</th>
 						<td colspan="3">
 					
 					<%-- 제목 (소설) --%>
@@ -75,14 +81,14 @@ $(document).ready(function(){
 							
 						</td> 
 					</tr>
-					<tr class="tr-1">
-						<th class="td-3">제목</th>
+					<tr class="tr-1"style="background:#F0F0F0;">
+						<th class="td-3"style="background:#F0F0F0;">제목</th>
 						<td colspan="3">
 							<input type="text" id="reportTitle" name="reportTitle" class="input-form">						
 						</td> 
 					</tr>
-					<tr class="tr-1">
-						<th class="td-3">종류</th>
+					<tr class="tr-1"style="background:#F0F0F0;">
+						<th class="td-3"style="background:#F0F0F0;">종류</th>
 						<td colsan="2">
 					<select class="input-form" id="reportType" name="reportType">
     					<option value="0" selected>-- 신고내용선택 --</option>
@@ -91,7 +97,7 @@ $(document).ready(function(){
     					<option value="3">성적수치심</option>
     					<option value="4">기타</option>
     				</select></td>
-						<th class="td-3" class="ttt">작성자</td>
+						<th class="td-3" class="ttt"style="background:#F0F0F0;">작성자</td>
 						<td style="width:200px;text-align:right;padding-right:50px;">
 							<span>아이디</span>
 							<input type="hidden" name="reporterId" id="reporterId"
@@ -100,6 +106,8 @@ $(document).ready(function(){
 							<br><span>닉네임</span>
 							<input type="hidden" name="reporterName" value="<%=loginUser.getUserName()%>">
 							<%=loginUser.getUserName()%>
+							<%-- 결과처리 유무  --%>
+							<input type="hidden" name="reportYn" value="2">
 						</td>
 					</tr>
 					<tr class="tr-1"style="position:relative;line-height:50px;">
@@ -107,11 +115,11 @@ $(document).ready(function(){
 						
 					</tr>
 					<tr class="tr-1">
-						<td colspan="4" style="text-align:left;">
-							<textarea id="reportContent" name="reportContent" class="input-form" style="height:500px;"></textarea>
+						<td colspan="4" style="text-align:left;background:#F0F0F0;">
+							<textarea id="reportContent" name="reportContent" class="input-form" style="height:500px;background:#ccc;"></textarea>
 						</td>
 					</tr>
-					<tr class="tr-1">
+					<tr class="tr-1"style="background:#F0F0F0;">
 						<td colspan="4">
 							<button type="submit" id="submitBtn" class="btn bc1 bs4">신고 사항 전송</button>
 						</td>

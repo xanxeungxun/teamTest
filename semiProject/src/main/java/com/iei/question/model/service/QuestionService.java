@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import com.iei.question.model.dao.QuestionDao;
 import com.iei.question.model.vo.QuestionPageData;
 import com.iei.question.model.vo.QuestionVo;
-import com.iei.report.model.vo.ReportPageData;
-import com.iei.report.model.vo.ReportVo;
 
 import common.JDBCTemplate;
 

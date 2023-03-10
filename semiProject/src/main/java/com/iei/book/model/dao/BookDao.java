@@ -187,7 +187,6 @@ public class BookDao {
 			pstmt.setString(3, b.getBookWriterId());
 			pstmt.setString(4, b.getBookExp());
 			pstmt.setString(5, b.getCoverpath());
-			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -249,7 +248,7 @@ public class BookDao {
 		ArrayList<Book> searchList = new ArrayList<Book>();
 		ResultSet rset = null;
 		//String query = "select book_title from book where book_title like ?";
-		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id and b.book_title like ? order by 1 desc)n) where rnum between ? and ?";
+		String query = "select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count, n.* from(select (select count(*)as score from favorite_book f where f.book_no=b.book_no)as all_score ,nvl((select sum(read_count) from story where book_no=b.book_no),0) as all_viewer, b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id and b.book_title like ? order by 1 desc)n) where rnum between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%"+searchKeyword+"%");
@@ -270,6 +269,8 @@ public class BookDao {
 				b.setGenreName(rset.getString("genre_name"));
 				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
 				
+				b.setAllScore(rset.getInt("all_score"));
+				b.setAllViewer(rset.getInt("all_viewer"));
 				searchList.add(b);
 			}
 		} catch (SQLException e) {
@@ -308,7 +309,7 @@ public class BookDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		ArrayList<Book> viewList = new ArrayList<Book>();
-		String query="SELECT *FROM (SELECT ROWNUM AS rnum, (SELECT COUNT(*) AS count FROM story WHERE book_no=n.book_no) AS story_count, n.*FROM (SELECT b.book_no, b.genre_code, g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, CASE b.book_status WHEN 1 THEN '연재중' ELSE '완결' END AS book_status, b.book_date FROM genre g, book b, user_tbl u WHERE g.genre_code = b.genre_code AND b.BOOK_WRITER = u.USER_id ORDER BY 1 DESC)n WHERE ROWNUM <= 6) WHERE rnum >= 1";
+		String query="select * from(select rownum as rnum, (select count(*) as count from story where book_no=n.book_no) as story_count,n.* from(select (select count(*)as score from favorite_book f where f.book_no=b.book_no)as all_score ,nvl((select sum(read_count) from story where book_no=b.book_no),0) as all_viewer, b.book_no, b.genre_code ,g.genre_name, b.book_title, b.book_writer, u.user_nick, b.book_exp, b.coverpath, case b.book_status when 1 then '연재중' else '완결' end as book_status, b.book_date from genre g, book b, user_tbl u where g.genre_code = b.genre_code and b.BOOK_WRITER = u.USER_id order by book_no desc)n WHERE ROWNUM <= 6) WHERE rnum >= 1";
 		try {
 			pstmt = conn.prepareStatement(query);
 			rset = pstmt.executeQuery();
@@ -326,6 +327,8 @@ public class BookDao {
 				b.setGenreName(rset.getString("genre_name"));
 				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
 				
+				b.setAllScore(rset.getInt("all_score"));
+				b.setAllViewer(rset.getInt("all_viewer"));
 				viewList.add(b);
 			
 			}
@@ -361,6 +364,8 @@ public class BookDao {
 				b.setGenreName(rset.getString("genre_name"));
 				b.setStoryCount(Integer.parseInt(rset.getString("story_count")));
 				
+				b.setAllScore(rset.getInt("all_score"));
+				b.setAllViewer(rset.getInt("all_viewer"));
 				viewList2.add(b);
 			}
 		} catch (SQLException e) {

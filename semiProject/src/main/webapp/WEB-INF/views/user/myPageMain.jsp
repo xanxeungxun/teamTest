@@ -103,6 +103,7 @@
         border : 1px solid #EEEEEE;
         border-radius: 60px;
     }
+   
 </style>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp"%>
@@ -144,6 +145,13 @@
 				<div class="myPoint bc4" onclick="location.href='/adminMain.do?userLevel=1';" style="cursor: pointer;">
 					관리자 페이지
 				</div>
+				<%} %>
+				<%if(loginUser!=null&&loginUser.getUserLevel()!=1){ %>
+					<div class="myPoint bc4" 
+					onclick="location.href='/report/searchReportList.do?searchType=1&searchValue=<%=loginUser.getUserId() %>';" style="cursor: pointer;">
+					내가 신고한 게시글
+					
+					</div>
 				<%} %>
 			</div>
 		</div>

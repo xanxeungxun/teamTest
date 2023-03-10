@@ -145,5 +145,14 @@ public class ReportService {
 	}
 
 
+	public int changeReportNo(int reportNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = dao.changeReportNo(conn,reportNo);
+		JDBCTemplate.close(conn);
+		
+		return result;
+	}
+
+
 
 }

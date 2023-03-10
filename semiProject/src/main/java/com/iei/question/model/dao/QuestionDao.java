@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.iei.question.model.vo.QuestionVo;
-import com.iei.report.model.vo.ReportVo;
 
 import common.JDBCTemplate;
 
@@ -39,6 +38,7 @@ public class QuestionDao {
 				n.setAnswerUserId(rset.getString("ANSWER_USER_ID"));
 				n.setAnswerTitle(rset.getString("ANSWER_TITLE"));
 				n.setAnswerContent(rset.getString("ANSWER_CONTENT"));
+				n.setAnswerDate(rset.getString("ANSWER_DATE"));
 				n.setAnswerDate(rset.getString("ANSWER_DATE"));
 				list.add(n);
 			}
