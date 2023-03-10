@@ -12,13 +12,13 @@ QuestionVo question = (QuestionVo) request.getAttribute("questionResult");
 <link rel="stylesheet" href="/css/question.css">
 <style>
 .tt{
-background:#FFE4EA;
+background:#F7F7F7;
 
 }
 .tt-1{
 padding-left:50px;
 text-align:left;
-background:#FFE4EA;
+background:#F7F7F7;
 }
 
 </style>
@@ -67,14 +67,14 @@ background:#FFE4EA;
 				</tr>
 				<tr class="question-tr">
 
-					<td class="question-td">
+					<td class="question-td tt">
 						<%-- 관리자 게시물 제목 --%> <span>
 						<%=question.getAnswerTitle()%></span>
 					</td>
-					<td class="question-td">
+					<td class="question-td tt">
 						<div><%=question.getAnswerDate()%></div>
 					</td>
-					<td class="question-td">
+					<td class="question-td tt">
 						<div>
 							관리자 아이디 <%=question.getAnswerUserId()%>
 							<br>관리자 닉네임

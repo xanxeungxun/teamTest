@@ -137,8 +137,8 @@ public class QuestionDao {
 			pstmt.setString(6, "n");
 			pstmt.setString(7, "n");
 			pstmt.setString(8, "n");
-			pstmt.setString(9, " ");
-			pstmt.setString(10, " ");
+			pstmt.setString(9, "");
+			pstmt.setString(10, "");
 			pstmt.setString(11, "n");
 			System.out.println(pstmt);
 			result = pstmt.executeUpdate();

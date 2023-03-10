@@ -25,6 +25,19 @@
 <%-- question 용 css --%>
 <link rel="stylesheet" href="/css/question.css">
 <%-- question 용 css --%>
+<style>
+.tt{
+background:#F7F7F7;
+}
+.question-td:nth-child(n+1){
+background:#F7F7F7;
+}
+.question-tr>.tdt{
+padding-left:30px;
+background:#fff;
+}
+</style>
+
 </head>
 <body>
 	<%@include file="/WEB-INF/views/common/header.jsp" %>
@@ -37,7 +50,7 @@
 				<tr class="question-tr">
 					<td class="question-td-2" colspan="4">문의사항</td>
 				</tr>
-				<tr class="question-tr">
+				<tr class="question-tr tt">
 					<td class="question-td"style="width:30%">
 						<span><%=question.getQuestionTitle()%></span>
 					</td>
@@ -50,8 +63,8 @@
 					</td>
 				</tr>
 				<tr class="question-tr">
-					<td class="question-td" colspan="3">
-						<%=question.getQuestionContent().replace("\r\n","<br>") %>
+					<td class="question-td tdt" colspan="3">
+						<span id="contentTT"><%=question.getQuestionContent().replace("\r\n","<br>") %></span>
 					</td>
 				</tr>
 				
@@ -61,7 +74,6 @@
 				
 				
 				<%if(question.getAnswerUserId()==loginUser.getUserId()){ %>
-				
 				<tr class="question-tr">
 					<td class="question-td">
 						<input class="input-form" style="font-size:18px;"
@@ -132,6 +144,7 @@
 </body>
 
 <script>
+
 	
 	function writeAnswer(){
 		
@@ -158,6 +171,8 @@
 		    	alert("오류가 발생했습니다.");
 		    }
 		});		
+		let str1 = $("#contentTT");
+		document.write(str1.replace(/^\s+|\s+$/gm,''));
 	}
 </script>
 </html>
